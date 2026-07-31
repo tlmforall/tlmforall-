@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #333;
+}
+
+header {
+    background: #1e3a8a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 8px;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: #e0f2fe;
+}
+
+.hero h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.hero button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+section {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cards div {
+    background: white;
+    width: 180px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px #ccc;
+}
+
+.classes button {
+    padding: 15px;
+    margin: 8px;
+    border-radius: 8px;
+    border: none;
+    background: #16a34a;
+    color: white;
+}
+
+footer {
+    background: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Mobile Design */
+
+@media(max-width:600px){
+
+nav a {
+    display:block;
+}
+
+.cards {
+    flex-direction: column;
+    align-items:center;
+}
+
+.hero h2 {
+    font-size:25px;
+}
+
+}
