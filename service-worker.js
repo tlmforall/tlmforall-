@@ -6,7 +6,7 @@
    SMART CACHE
    ========================================= */
 
-const CACHE_NAME = "tlm-for-all-v2";
+const CACHE_NAME = "tlm-for-all-v3";
 
 const CORE_FILES = [
     "./",
@@ -20,7 +20,7 @@ const CORE_FILES = [
     "./pages/ai-center.html",
     "./pages/library.html",
     "./assets/icon-192.png",
-    "./assets/icon-512.png"
+    "./assets/icon-512.png",
     "./offline.html"
 ];
 
