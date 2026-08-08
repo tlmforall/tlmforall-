@@ -1,143 +1,131 @@
-/* =======================================
-   TLM FOR ALL
-   STYLE.CSS PART-1
-======================================= */
+/*======================================
+TLM FOR ALL
+STYLE.CSS PART-1
+======================================*/
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+scroll-behavior:smooth;
 }
 
 body{
 
 font-family:'Poppins',sans-serif;
-
 background:#f5f7fb;
-
 color:#222;
-
-line-height:1.6;
+overflow-x:hidden;
 
 }
 
-/* ==========================
-HEADER
-========================== */
+/*================ HEADER ================*/
 
-header{
+.header{
 
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:18px 7%;
-
-background:#0d47a1;
-
-color:white;
-
-position:sticky;
-
+position:fixed;
 top:0;
-
-z-index:999;
-
-box-shadow:0 5px 20px rgba(0,0,0,.15);
+left:0;
+width:100%;
+padding:15px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(10,20,50,.92);
+backdrop-filter:blur(10px);
+z-index:1000;
 
 }
 
 .logo h1{
 
 font-size:32px;
-
-font-weight:700;
+color:#fff;
 
 }
 
 .logo span{
 
-color:#ffd54f;
+color:#00e5ff;
 
 }
 
 .logo p{
 
-font-size:13px;
-
-opacity:.9;
+font-size:12px;
+color:#ddd;
 
 }
 
 nav ul{
 
 display:flex;
-
+gap:22px;
 list-style:none;
 
-gap:22px;
-
 }
 
-nav ul li a{
+nav a{
 
 color:white;
-
 text-decoration:none;
-
-font-weight:500;
-
+font-weight:600;
 transition:.3s;
 
 }
 
-nav ul li a:hover{
+nav a:hover{
 
-color:#ffd54f;
+color:#00e5ff;
 
 }
 
-.header-buttons{
+.header-right{
 
 display:flex;
-
 gap:10px;
+align-items:center;
 
 }
 
-.header-buttons button{
+.header-right button,
+.login-btn{
 
 padding:10px 18px;
-
 border:none;
-
-border-radius:8px;
-
+border-radius:30px;
 cursor:pointer;
-
-background:#ffffff;
-
-color:#0d47a1;
-
 font-weight:600;
 
-transition:.3s;
+}
+
+.lang-btn{
+
+background:#00bcd4;
+color:white;
 
 }
 
-.header-buttons button:hover{
+.theme-btn{
 
-background:#ffd54f;
+background:#ffffff;
+font-size:18px;
 
 }
 
-/* ==========================
-HERO
-========================== */
+.login-btn{
+
+background:#ff9800;
+color:white;
+text-decoration:none;
+
+}
+
+/*================ HERO ================*/
 
 .hero{
+
+min-height:100vh;
 
 display:flex;
 
@@ -145,45 +133,52 @@ justify-content:space-between;
 
 align-items:center;
 
-padding:80px 7%;
+padding:120px 8%;
 
-background:linear-gradient(135deg,#1565c0,#42a5f5);
+background:
+linear-gradient(rgba(0,0,0,.55),
+rgba(0,0,0,.65)),
+url("../assets/images/bg.jpg");
+
+background-size:cover;
+
+background-position:center;
 
 color:white;
 
 }
 
-.hero-left{
+.hero-content{
 
-width:50%;
-
-}
-
-.hero-left h2{
-
-font-size:52px;
-
-margin-bottom:15px;
+max-width:650px;
 
 }
 
-.hero-left span{
+.hero-content h4{
 
-color:#ffeb3b;
+font-size:18px;
 
-}
-
-.hero-left h3{
-
-font-size:26px;
+color:#00e5ff;
 
 margin-bottom:20px;
 
 }
 
-.hero-left p{
+.hero-content h1{
+
+font-size:60px;
+
+line-height:1.2;
+
+margin-bottom:20px;
+
+}
+
+.hero-content p{
 
 font-size:18px;
+
+line-height:1.8;
 
 margin-bottom:35px;
 
@@ -193,616 +188,514 @@ margin-bottom:35px;
 
 display:flex;
 
-gap:15px;
+gap:20px;
 
 }
 
-.btn{
+.primary-btn{
 
-padding:14px 28px;
+background:#00bcd4;
 
-background:#ff9800;
+padding:14px 35px;
+
+border-radius:40px;
 
 color:white;
 
 text-decoration:none;
 
-border-radius:8px;
-
 font-weight:bold;
 
 }
 
-.btn2{
-
-padding:14px 28px;
+.secondary-btn{
 
 background:white;
 
-color:#1565c0;
+padding:14px 35px;
+
+border-radius:40px;
 
 text-decoration:none;
 
-border-radius:8px;
+color:#222;
 
 font-weight:bold;
 
 }
 
-.hero-right img{
+.hero-image img{
 
-width:500px;
+width:520px;
 
 max-width:100%;
 
+animation:float 4s ease-in-out infinite;
+
 }
 
-/* ==========================
-QUICK ACCESS
-========================== */
+/*================ SEARCH ================*/
 
-.quick-access{
+.search-section{
 
-padding:70px 7%;
+padding:90px 8%;
 
 text-align:center;
 
-}
-
-.quick-access h2{
-
-font-size:38px;
-
-margin-bottom:35px;
-
-}
-
-.cards{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:25px;
-
-}
-
-.card{
-
 background:white;
 
-padding:35px;
+}
 
-border-radius:16px;
-
-box-shadow:0 10px 30px rgba(0,0,0,.08);
+.search-section h2{
 
 font-size:40px;
 
-transition:.3s;
+margin-bottom:30px;
+
+}
+
+.search-box{
+
+display:flex;
+
+justify-content:center;
+
+max-width:850px;
+
+margin:auto;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:18px;
+
+border-radius:50px 0 0 50px;
+
+border:2px solid #00bcd4;
+
+font-size:17px;
+
+}
+
+.search-box button{
+
+padding:18px 35px;
+
+background:#00bcd4;
+
+color:white;
+
+border:none;
+
+border-radius:0 50px 50px 0;
 
 cursor:pointer;
 
 }
 
-.card h3{
+/*================ FEATURES ================*/
 
-margin:15px 0;
+.quick-features{
 
-font-size:22px;
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+padding:90px 8%;
+
+background:#eef7ff;
+
+}
+
+.feature-card{
+
+background:white;
+
+padding:35px;
+
+border-radius:20px;
+
+text-align:center;
+
+transition:.4s;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
 
 }
 
-.card p{
+.feature-card:hover{
 
-font-size:15px;
+transform:translateY(-12px);
+
+}
+
+.feature-card h3{
+
+margin:18px 0;
+
+font-size:24px;
 
 }
 
-.card:hover{
+.feature-card p{
 
-transform:translateY(-10px);
+color:#666;
+
+line-height:1.7;
 
 }
-/* =======================================
-   CLASSES SECTION
-======================================= */
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-18px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+/*======================================
+TLM FOR ALL
+STYLE.CSS PART-2
+======================================*/
+
+/*================ CLASSES ================*/
 
 .classes-section{
 
-padding:80px 7%;
-
+padding:90px 8%;
 background:#ffffff;
-
 text-align:center;
 
 }
 
 .classes-section h2{
 
-font-size:38px;
-
+font-size:42px;
 margin-bottom:15px;
-
-color:#0d47a1;
 
 }
 
 .classes-section p{
 
-margin-bottom:40px;
-
-font-size:18px;
-
 color:#666;
+margin-bottom:45px;
 
 }
 
 .class-grid{
 
 display:grid;
-
-grid-template-columns:repeat(5,1fr);
-
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
 
 }
 
 .class-card{
 
-background:#e3f2fd;
-
+background:white;
 padding:30px;
-
-border-radius:15px;
-
-font-size:22px;
-
-font-weight:600;
-
-cursor:pointer;
-
-transition:.3s;
-
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.35s;
 
 }
 
 .class-card:hover{
 
-background:#1565c0;
-
+transform:translateY(-10px);
+background:#00bcd4;
 color:#fff;
 
-transform:translateY(-8px);
-
 }
 
-/* =======================================
-   STATES
-======================================= */
+.class-card a{
 
-.states-section{
-
-padding:80px 7%;
-
-background:#f5f7fb;
-
-text-align:center;
-
-}
-
-.state-card{
-
-max-width:700px;
-
-margin:auto;
-
-background:#fff;
-
-padding:35px;
-
-border-radius:18px;
-
-box-shadow:0 12px 30px rgba(0,0,0,.10);
-
-}
-
-.state-card h3{
-
-font-size:32px;
-
-color:#1565c0;
-
-margin-bottom:15px;
-
-}
-
-.state-card ul{
-
-list-style:none;
-
+display:inline-block;
 margin-top:20px;
+padding:10px 25px;
+background:#0d47a1;
+color:white;
+text-decoration:none;
+border-radius:30px;
 
 }
 
-.state-card li{
-
-padding:8px;
-
-font-size:18px;
-
-}
-
-/* =======================================
-   AI STORIES
-======================================= */
-
-.stories-section{
-
-padding:80px 7%;
-
-background:#fff;
-
-text-align:center;
-
-}
-
-.story-grid{
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:25px;
-
-margin-top:40px;
-
-}
-
-.story-card{
-
-background:linear-gradient(135deg,#ff9800,#ffca28);
-
-padding:35px;
-
-border-radius:18px;
-
-color:#fff;
-
-transition:.3s;
-
-box-shadow:0 12px 25px rgba(0,0,0,.12);
-
-cursor:pointer;
-
-}
-
-.story-card:hover{
-
-transform:scale(1.05);
-
-}
-
-.story-card h3{
-
-margin:15px 0;
-
-font-size:24px;
-
-}
-
-/* =======================================
-   AI CENTER
-======================================= */
+/*================ AI CENTER ================*/
 
 .ai-center{
 
-padding:80px 7%;
-
-background:#eef5ff;
-
-text-align:center;
+padding:90px 8%;
+background:#eef8ff;
 
 }
 
 .ai-center h2{
 
-font-size:38px;
+text-align:center;
+font-size:42px;
+margin-bottom:15px;
 
-margin-bottom:40px;
+}
 
-color:#0d47a1;
+.ai-center p{
+
+text-align:center;
+margin-bottom:45px;
 
 }
 
 .ai-grid{
 
 display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 
 }
 
 .ai-card{
 
-background:#fff;
-
+background:white;
 padding:35px;
-
-border-radius:18px;
-
-font-size:22px;
-
-font-weight:600;
-
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-transition:.3s;
-
-cursor:pointer;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+transition:.4s;
 
 }
 
 .ai-card:hover{
 
-background:#1565c0;
-
-color:#fff;
-
-transform:translateY(-8px);
+transform:scale(1.05);
 
 }
 
-/* =======================================
-   TEACHER & STUDENT
-======================================= */
+.ai-card i{
 
-.teacher-zone,
-.student-zone{
+font-size:50px;
+color:#00bcd4;
+margin-bottom:20px;
 
-padding:80px 7%;
+}
 
+/*================ STORIES ================*/
+
+.stories-section{
+
+padding:90px 8%;
+background:white;
+
+}
+
+.story-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+
+}
+
+.story-card{
+
+background:#fff8ef;
+padding:30px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+
+}
+
+.story-card:hover{
+
+background:#ff9800;
+color:white;
+
+}
+
+/*================ VIDEO HUB ================*/
+
+.video-section{
+
+padding:90px 8%;
+background:#f5fbff;
+
+}
+
+.video-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+
+}
+
+.video-card{
+
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/*================ TEACHER ================*/
+
+.teacher-zone{
+
+padding:90px 8%;
+background:white;
+
+}
+
+.teacher-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+
+}
+
+.teacher-card{
+
+padding:30px;
+background:#eef7ff;
+border-radius:20px;
 text-align:center;
 
-background:#ffffff;
+}
+
+/*================ STUDENT ================*/
+
+.student-zone{
+
+padding:90px 8%;
+background:#f7fbff;
 
 }
 
-.teacher-grid,
 .student-grid{
 
 display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:25px;
 
-margin-top:35px;
-
 }
 
-.teacher-card,
 .student-card{
 
-background:#fff;
-
 padding:30px;
-
-border-radius:18px;
-
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-transition:.3s;
-
-cursor:pointer;
+background:white;
+border-radius:20px;
+text-align:center;
 
 }
 
-.teacher-card:hover,
-.student-card:hover{
-
-background:#0d47a1;
-
-color:#fff;
-
-transform:translateY(-8px);
-
-}
-/* =======================================
-   DIGITAL LIBRARY
-======================================= */
+/*================ LIBRARY ================*/
 
 .library-section{
 
-padding:80px 7%;
-
-background:#f5f7fb;
-
-text-align:center;
+padding:90px 8%;
+background:white;
 
 }
 
 .library-grid{
 
 display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:25px;
-
-margin-top:35px;
 
 }
 
 .library-card{
 
-background:#ffffff;
-
 padding:30px;
-
-border-radius:18px;
-
-font-size:22px;
-
-font-weight:600;
-
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-transition:.3s;
-
-cursor:pointer;
-
-}
-
-.library-card:hover{
-
-background:#ff9800;
-
-color:#ffffff;
-
-transform:translateY(-8px);
-
-}
-
-/* =======================================
-   CONTACT
-======================================= */
-
-.contact-section{
-
-padding:80px 7%;
-
-background:#1565c0;
-
-color:#ffffff;
-
+border-radius:20px;
+background:#f2f8ff;
 text-align:center;
 
 }
 
-.contact-section h2{
-
-font-size:38px;
-
-margin-bottom:20px;
-
-}
-
-.contact-section p{
-
-font-size:18px;
-
-margin:10px 0;
-
-}
-
-/* =======================================
-   FOOTER
-======================================= */
+/*================ FOOTER ================*/
 
 footer{
 
-background:#0d1b2a;
-
-color:#ffffff;
-
-padding:40px 7%;
-
+background:#07162d;
+color:white;
+padding:60px 8%;
 text-align:center;
-
-}
-
-.footer-content h2{
-
-font-size:34px;
-
-margin-bottom:15px;
 
 }
 
 .footer-links{
 
 display:flex;
-
 justify-content:center;
-
-flex-wrap:wrap;
-
 gap:20px;
-
-margin:25px 0;
+flex-wrap:wrap;
+margin:30px 0;
 
 }
 
 .footer-links a{
 
+color:white;
 text-decoration:none;
 
-color:#ffffff;
-
-font-weight:500;
-
-transition:.3s;
-
 }
 
-.footer-links a:hover{
+/*================ RESPONSIVE ================*/
 
-color:#ffd54f;
+@media(max-width:991px){
 
-}
-
-.copyright{
-
-margin-top:20px;
-
-font-size:15px;
-
-opacity:.8;
-
-}
-
-/* =======================================
-   MOBILE RESPONSIVE
-======================================= */
-
-@media(max-width:992px){
-
-header{
+.header{
 
 flex-direction:column;
+padding:20px;
 
-gap:20px;
+}
+
+nav ul{
+
+flex-wrap:wrap;
+justify-content:center;
 
 }
 
 .hero{
 
 flex-direction:column;
-
 text-align:center;
 
 }
 
-.hero-left,
-.hero-right{
+.hero-content h1{
 
-width:100%;
+font-size:42px;
 
 }
 
-.cards,
-.class-grid,
-.story-grid,
-.ai-grid,
-.teacher-grid,
-.student-grid,
-.library-grid{
+.hero-image{
 
-grid-template-columns:repeat(2,1fr);
+margin-top:40px;
 
 }
 
@@ -810,84 +703,67 @@ grid-template-columns:repeat(2,1fr);
 
 @media(max-width:768px){
 
-nav ul{
+.hero{
+
+padding:120px 20px 60px;
+
+}
+
+.search-box{
 
 flex-direction:column;
 
-align-items:center;
+}
+
+.search-box input{
+
+border-radius:50px;
+margin-bottom:15px;
 
 }
 
-.cards,
-.class-grid,
-.story-grid,
-.ai-grid,
-.teacher-grid,
-.student-grid,
-.library-grid{
+.search-box button{
 
-grid-template-columns:1fr;
+border-radius:50px;
 
 }
 
-.hero-left h2{
+.hero-content h1{
 
-font-size:38px;
-
-}
-
-.hero-left h3{
-
-font-size:22px;
+font-size:34px;
 
 }
 
-.quick-access h2,
-.classes-section h2,
-.ai-center h2,
-.contact-section h2{
+.logo h1{
 
-font-size:30px;
+font-size:26px;
 
 }
 
 }
 
-/* =======================================
-   DARK MODE (Ready)
-======================================= */
+@media(max-width:480px){
 
-body.dark-mode{
+.hero-content h1{
 
-background:#121212;
-
-color:#ffffff;
+font-size:28px;
 
 }
 
-body.dark-mode header{
+.hero-content p{
 
-background:#000000;
-
-}
-
-body.dark-mode .card,
-body.dark-mode .class-card,
-body.dark-mode .story-card,
-body.dark-mode .ai-card,
-body.dark-mode .teacher-card,
-body.dark-mode .student-card,
-body.dark-mode .library-card,
-body.dark-mode .state-card{
-
-background:#1e1e1e;
-
-color:#ffffff;
+font-size:15px;
 
 }
 
-body.dark-mode footer{
+.primary-btn,
+.secondary-btn{
 
-background:#000000;
+display:block;
+width:100%;
+margin-bottom:15px;
+text-align:center;
 
-    }gg#
+}
+
+}
