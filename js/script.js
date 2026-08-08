@@ -1,442 +1,364 @@
-/* ==========================================
-   TLM FOR ALL
-   SCRIPT.JS PART-1
-========================================== */
+/*=====================================
+TLM FOR ALL
+SCRIPT.JS PART-1
+======================================*/
 
-document.addEventListener("DOMContentLoaded", function () {
+// ==============================
+// Loading Screen
+// ==============================
 
-console.log("TLM FOR ALL Loaded Successfully");
+window.addEventListener("load", () => {
 
-/* ==========================================
-   DARK MODE
-========================================== */
+document.body.classList.add("loaded");
 
-const darkButton = document.querySelector(".header-buttons button:last-child");
+});
 
-if (localStorage.getItem("theme") === "dark") {
+// ==============================
+// Dynamic Greeting
+// ==============================
 
-document.body.classList.add("dark-mode");
+const hour = new Date().getHours();
+
+const greeting = document.getElementById("greeting");
+
+if(greeting){
+
+if(hour < 12){
+
+greeting.innerHTML="🌞 Good Morning Teacher";
 
 }
 
-if (darkButton) {
+else if(hour <18){
 
-darkButton.addEventListener("click", function () {
+greeting.innerHTML="☀️ Good Afternoon Teacher";
+
+}
+
+else{
+
+greeting.innerHTML="🌙 Good Evening Teacher";
+
+}
+
+}
+
+// ==============================
+// Dark Mode
+// ==============================
+
+const themeBtn=document.querySelector(".theme-btn");
+
+if(themeBtn){
+
+themeBtn.onclick=()=>{
 
 document.body.classList.toggle("dark-mode");
 
-if(document.body.classList.contains("dark-mode")){
-
-localStorage.setItem("theme","dark");
-
-darkButton.innerHTML="☀️ Light Mode";
-
-}else{
-
-localStorage.setItem("theme","light");
-
-darkButton.innerHTML="🌙 Dark Mode";
+};
 
 }
 
-});
+// ==============================
+// AI Buddy
+// ==============================
+
+const buddy=document.querySelector(".ai-buddy-float button");
+
+if(buddy){
+
+buddy.onclick=()=>{
+
+alert("🤖 Hello! I am Hey TLM AI Buddy.\nHow can I help you today?");
+
+};
 
 }
 
-/* ==========================================
-   LANGUAGE BUTTON
-========================================== */
+// ==============================
+// Smooth Scroll
+// ==============================
 
-const languageButton=document.querySelector(".header-buttons button:first-child");
+document.querySelectorAll("a[href^='#']").forEach(anchor=>{
 
-if(languageButton){
-
-languageButton.addEventListener("click",function(){
-
-alert(
-
-"Language Support\n\n" +
-
-"1. Telugu\n" +
-
-"2. Hindi\n" +
-
-"3. English\n\n" +
-
-"(Coming Soon)"
-
-);
-
-});
-
-}
-
-/* ==========================================
-   SMOOTH SCROLL
-========================================== */
-
-const links=document.querySelectorAll("nav a");
-
-links.forEach(function(link){
-
-link.addEventListener("click",function(e){
-
-const target=this.getAttribute("href");
-
-if(target.startsWith("#")){
+anchor.addEventListener("click",function(e){
 
 e.preventDefault();
 
-document.querySelector(target).scrollIntoView({
+document.querySelector(this.getAttribute("href"))?.scrollIntoView({
 
 behavior:"smooth"
 
 });
 
+});
+
+});
+
+// ==============================
+// Search
+// ==============================
+
+const searchBtn=document.querySelector(".search-box button");
+
+if(searchBtn){
+
+searchBtn.onclick=()=>{
+
+const value=document.querySelector(".search-box input").value;
+
+if(value===""){
+
+alert("Please enter a Class, Subject or Chapter");
+
 }
 
-});
+else{
 
-});
+alert("Searching : "+value);
 
-/* ==========================================
-   STORY OF THE DAY
-========================================== */
+}
 
-const stories=[
+};
 
-"Honesty is the Best Policy",
+}
 
-"The Clever Crow",
+// ==============================
+// Today's Theme
+// ==============================
 
-"The Lion and the Mouse",
+const themes=[
 
-"Akbar Birbal Wisdom",
+"🌍 Geography Day",
 
-"Tenali Rama Intelligence",
+"📖 Story Day",
 
-"Panchatantra Moral Story"
+"🧪 Science Fun",
+
+"🎬 Cinema Learning",
+
+"🏆 Quiz Day",
+
+"🎨 Creative Day",
+
+"🤖 AI Learning"
 
 ];
 
-const today=new Date().getDate();
+const todayTheme=document.getElementById("todayTheme");
 
-const selectedStory=stories[today%stories.length];
+if(todayTheme){
 
-console.log("Today's Story :",selectedStory);
+const day=new Date().getDay();
 
-});
-/* ==========================================
-   HERO ANIMATION
-========================================== */
-
-const hero=document.querySelector(".hero");
-
-if(hero){
-
-hero.style.opacity="0";
-
-hero.style.transform="translateY(40px)";
-
-setTimeout(()=>{
-
-hero.style.transition="1s";
-
-hero.style.opacity="1";
-
-hero.style.transform="translateY(0px)";
-
-},300);
+todayTheme.innerHTML=themes[day];
 
 }
 
-/* ==========================================
-   CLASS CARDS
-========================================== */
-
-const classCards=document.querySelectorAll(".class-card");
-
-classCards.forEach(card=>{
-
-card.addEventListener("click",()=>{
-
-const className=card.innerText;
-
-alert(
-
-"Opening "+className+
-
-"\n\n(Content Coming Soon)"
-
-);
-
-});
-
-});
-
-/* ==========================================
-   AI STORY CARDS
-========================================== */
-
-const storyCards=document.querySelectorAll(".story-card");
-
-storyCards.forEach(card=>{
-
-card.addEventListener("click",()=>{
-
-alert(
-
-"AI Story Module\n\n"+
-
-card.innerText+
-
-"\n\nComing Soon."
-
-);
-
-});
-
-});
-
-/* ==========================================
-   AI CENTER CARDS
-========================================== */
-
-const aiCards=document.querySelectorAll(".ai-card");
-
-aiCards.forEach(card=>{
-
-card.addEventListener("click",()=>{
-
-alert(
-
-card.innerText+
-
-"\n\nAI Module Under Development"
-
-);
-
-});
-
-});
-
-/* ==========================================
-   SEARCH PLACEHOLDER
-========================================== */
-
-function searchContent(){
-
-let keyword=prompt(
-
-"Search in TLM FOR ALL"
-
-);
-
-if(keyword){
-
-alert(
-
-"Searching for : "+keyword+
-
-"\n\n(Search Feature Coming Soon)"
-
-);
-
-}
-
-}
-
-/* ==========================================
-   WELCOME MESSAGE
-========================================== */
-
-setTimeout(()=>{
-
-console.log(
-
-"Welcome to TLM FOR ALL"
-
-);
-
-},1000);
-
-/* ==========================================
-   LOADING ANIMATION
-========================================== */
-
-window.addEventListener("load",()=>{
-
-document.body.style.transition=".5s";
-
-document.body.style.opacity="1";
-
-});
-
-/* ==========================================
-   SIMPLE BUTTON HOVER EFFECT
-========================================== */
-
-const buttons=document.querySelectorAll(".btn,.btn2");
-
-buttons.forEach(btn=>{
-
-btn.addEventListener("mouseenter",()=>{
-
-btn.style.transform="scale(1.05)";
-
-});
-
-btn.addEventListener("mouseleave",()=>{
-
-btn.style.transform="scale(1)";
-
-});
-
-});
-/* ==========================================
-   FIREBASE READY (Placeholder)
-========================================== */
-
-function initializeFirebase(){
-
-console.log("Firebase Ready");
-
-}
-
-/* ==========================================
-   LOGIN
-========================================== */
-
-function teacherLogin(){
-
-alert(
-
-"Teacher Login\n\nComing Soon"
-
-);
-
-}
-
-function studentLogin(){
-
-alert(
-
-"Student Login\n\nComing Soon"
-
-);
-
-}
-
-function logoutUser(){
-
-alert(
-
-"Logout Successful"
-
-);
-
-}
-
-/* ==========================================
-   LANGUAGE SWITCH
-========================================== */
-
-function changeLanguage(language){
-
-localStorage.setItem("language",language);
-
-alert(
-
-"Language Changed : "+language
-
-);
-
-}
-
-/* ==========================================
-   STORY OF THE DAY
-========================================== */
-
-const storyTitle=document.querySelector("#story-title");
-
-if(storyTitle){
-
-storyTitle.innerHTML=selectedStory;
-
-}
-
-/* ==========================================
-   TODAY'S QUOTE
-========================================== */
+// ==============================
+// Quote
+// ==============================
 
 const quotes=[
 
-"Education is the key to success.",
+"Every Child Can Learn.",
 
-"Learning never stops.",
+"Teachers Build The Nation.",
 
-"Dream Big, Study Smart.",
+"Learning Never Stops.",
 
-"Teachers Inspire Generations.",
+"Think Big Learn Smart.",
 
-"Knowledge Changes Lives."
+"Dream • Learn • Achieve.",
+
+"AI Makes Learning Easier.",
+
+"Believe In Yourself."
 
 ];
 
-const todayQuote=quotes[new Date().getDay()];
+const quote=document.getElementById("quote");
 
-console.log(todayQuote);
+if(quote){
 
-/* ==========================================
-   NAVIGATION ACTIVE
-========================================== */
+quote.innerHTML=quotes[new Date().getDay()];
 
-const menuItems=document.querySelectorAll("nav ul li a");
+}
 
-menuItems.forEach(item=>{
+// ==============================
+// End Part-1
+// ==============================
+/*=====================================
+TLM FOR ALL
+SCRIPT.JS PART-2
+======================================*/
 
-item.addEventListener("click",()=>{
+// ==============================
+// Welcome Voice (AI Buddy)
+// ==============================
 
-menuItems.forEach(link=>{
+function speak(text){
 
-link.classList.remove("active");
+if(!('speechSynthesis' in window)) return;
+
+speechSynthesis.cancel();
+
+const msg = new SpeechSynthesisUtterance(text);
+
+msg.lang = "en-IN";
+msg.rate = 0.95;
+msg.pitch = 1.1;
+msg.volume = 1;
+
+speechSynthesis.speak(msg);
+
+}
+
+// ==============================
+// Welcome Message
+// ==============================
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+speak("Welcome to T L M For All. Let's make learning beautiful.");
+
+},1200);
 
 });
 
-item.classList.add("active");
+// ==============================
+// Teacher Login
+// ==============================
+
+const teacherLogin=document.querySelector(".login-btn");
+
+if(teacherLogin){
+
+teacherLogin.addEventListener("click",(e)=>{
+
+e.preventDefault();
+
+const pass=prompt("Teacher Login Password");
+
+if(pass==="tlm2026"){
+
+alert("Welcome Teacher");
+
+}else{
+
+alert("Invalid Password");
+
+}
+
+});
+
+}
+
+// ==============================
+// Hidden Admin
+// Double click logo
+// ==============================
+
+const logo=document.querySelector(".logo");
+
+if(logo){
+
+logo.addEventListener("dblclick",()=>{
+
+const admin=prompt("Admin Password");
+
+if(admin==="TLM@Admin"){
+
+alert("Admin Panel");
+
+window.location.href="admin.html";
+
+}else{
+
+alert("Access Denied");
+
+}
+
+});
+
+}
+
+// ==============================
+// Scroll Animation
+// ==============================
+
+const cards=document.querySelectorAll(
+
+".feature-card,.class-card,.teacher-card,.student-card,.story-card,.ai-card,.library-card"
+
+);
+
+window.addEventListener("scroll",()=>{
+
+cards.forEach(card=>{
+
+const top=card.getBoundingClientRect().top;
+
+if(top<window.innerHeight-100){
+
+card.classList.add("show");
+
+}
 
 });
 
 });
 
-/* ==========================================
-   FUTURE MODULES
-========================================== */
+// ==============================
+// AI Story
+// ==============================
 
-console.log("Future Modules");
+const stories=[
 
-console.log("Firebase Authentication");
+"Be Honest.",
 
-console.log("Firestore");
+"Help Others.",
 
-console.log("AI Stories");
+"Save Nature.",
 
-console.log("AI Video");
+"Respect Teachers.",
 
-console.log("Teacher Dashboard");
+"Never Give Up.",
 
-console.log("Student Dashboard");
+"Dream Big.",
 
-console.log("Question Paper Generator");
+"Believe In Yourself."
 
-console.log("PPT Generator");
+];
 
-console.log("Digital Library");
+const story=document.getElementById("storyOfDay");
 
-/* ==========================================
-   INITIALIZE
-========================================== */
+if(story){
 
-initializeFirebase();
+story.innerHTML=stories[new Date().getDay()];
 
-console.log("TLM FOR ALL Ready");
+}
+
+// ==============================
+// Footer Year
+// ==============================
+
+const year=document.getElementById("year");
+
+if(year){
+
+year.innerHTML=new Date().getFullYear();
+
+}
+
+// ==============================
+// Console
+// ==============================
+
+console.log("TLM FOR ALL Loaded Successfully");
+
+/*=====================================
+END OF SCRIPT.JS
+======================================*/
