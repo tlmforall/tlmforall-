@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>TLM FOR ALL | Offline</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      background: #101936;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .offline-box {
+      width: 100%;
+      max-width: 520px;
+      padding: 40px 25px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .logo {
+      font-size: 58px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 20px;
+      color: #18d7f5;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      background: #18c8e8;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .small {
+      margin-top: 20px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="offline-box">
+
+    <div class="logo">🌐📚</div>
+
+    <h1>TLM <span style="color:#18d7f5;">FOR ALL</span></h1>
+
+    <h2>You are currently offline</h2>
+
+    <p>
+      इंटरनेट कनेक्शन उपलब्ध नहीं है।
+      कुछ सामग्री आपके डिवाइस में पहले से सुरक्षित हो सकती है।
+      Internet आने पर फिर से कोशिश करें।
+    </p>
+
+    <button onclick="location.reload()">
+      🔄 Try Again
+    </button>
+
+    <div class="small">
+      Teaching • Learning • Materials
+    </div>
+
+  </div>
+
+</body>
+</html>
