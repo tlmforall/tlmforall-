@@ -21,6 +21,7 @@ const CORE_FILES = [
     "./pages/library.html",
     "./assets/icon-192.png",
     "./assets/icon-512.png"
+    "./offline.html"
 ];
 
 
@@ -171,8 +172,16 @@ self.addEventListener(
                             }
 
 
-                            return caches.match(
-                                "./index.html"
+                            return caches.match("./index.html")
+    .then(function (indexResponse) {
+
+        if (indexResponse) {
+            return indexResponse;
+        }
+
+        return caches.match("./offline.html");
+    });
+      
                             );
 
                         }
