@@ -1434,3 +1434,31 @@ Powered by TLM FOR ALL AI Buddy
 <!-- END OF HOME PAGE CONTENT -->
 <!-- CSS PART-1 NEXT -->
 <!-- ========================= -->
+<script>
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            navigator.serviceWorker.register(
+                "./service-worker.js"
+            ).catch(
+                function (error) {
+
+                    console.log(
+                        "TLM Service Worker registration failed:",
+                        error
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+</script>
+
+</body>
+</html>
