@@ -11,7 +11,7 @@ const CACHE_NAME = "tlm-for-all-v2";
 const CORE_FILES = [
     "./",
     "./index.html",
-    "./css/style.css",
+    "./css/css/style.css",
     "./js/script.js",
     "./manifest.json",
     "./pages/classes.html",
