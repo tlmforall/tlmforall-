@@ -1,0 +1,13 @@
+{
+  "name": "TLM FOR ALL",
+  "short_name": "TLM FOR ALL",
+  "description": "India's AI Powered Teaching and Learning Platform for Teachers and Students",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#101936",
+  "background_color": "#101936",
+  "lang": "en",
+  "dir": "ltr"
+}
