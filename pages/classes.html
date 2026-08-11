@@ -1,90 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TLM FOR ALL - Classes</title>
-
-<link rel="stylesheet" href="../css/style.css">
-
+<title>TLM FOR ALL | Classes Zone</title>
+<link rel="stylesheet" href="../css/css/style.css">
+<style>
+.classes-zone{padding:48px 6%;background:#f5f9ff;min-height:70vh}
+.zone-hero{max-width:1100px;margin:auto;text-align:center;padding:30px 10px 42px}
+.zone-hero h2{font-size:clamp(30px,5vw,52px);color:#09265a;margin-bottom:10px}
+.zone-hero p{color:#617089}
+.state-card,.class-card,.subject-card{background:#fff;border:1px solid #e1eaf4;border-radius:22px;padding:24px;box-shadow:0 10px 30px rgba(9,38,90,.07)}
+.state-card{max-width:900px;margin:0 auto 28px;text-align:center}
+.class-grid,.subject-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px}
+.class-card{display:block;text-align:center;transition:.25s}
+.class-card:hover{transform:translateY(-5px);border-color:#00a8d6}
+.class-card strong{display:block;font-size:22px;color:#09265a}
+.class-card span{font-size:12px;color:#718096}
+.subject-panel{max-width:1100px;margin:30px auto 0}
+.subject-card{display:block;color:#09265a}
+.subject-card small{display:block;color:#6b7b91;margin-top:5px}
+.chapter-link{display:block;margin-top:24px;background:linear-gradient(135deg,#09265a,#00a8d6);color:#fff;padding:22px;border-radius:22px;text-decoration:none}
+.chapter-link strong{font-size:20px;display:block}
+.chapter-link span{font-size:13px;opacity:.9}
+.breadcrumb{max-width:1100px;margin:auto;color:#66758c;font-size:13px}
+</style>
 </head>
-
-
 <body>
-
-
 <header>
-
-<h1>📚 TLM FOR ALL</h1>
-
-<nav>
-
-<a href="../index.html">Home</a>
-
-<a href="classes.html">Classes</a>
-
-</nav>
-
+  <h1>🌍 TLM FOR ALL</h1>
+  <nav><a href="../index.html">Home</a> <a href="classes.html" class="active-nav">Classes Zone</a></nav>
 </header>
 
+<main class="classes-zone">
+  <div class="breadcrumb">Home → Classes Zone</div>
+  <section class="zone-hero">
+    <h2>📚 Classes Zone</h2>
+    <p>Learn • Explore • Practice • Create — Classes 1 to 10</p>
+  </section>
 
+  <section class="state-card">
+    <h3>🇮🇳 Select State</h3>
+    <p>Telangana SCERT learning pathway</p>
+  </section>
 
-<section class="hero">
+  <section class="class-grid">
+    <a class="class-card" href="#"><strong>Class 1</strong><span>Explore</span></a>
+    <a class="class-card" href="#"><strong>Class 2</strong><span>Explore</span></a>
+    <a class="class-card" href="#"><strong>Class 3</strong><span>Explore</span></a>
+    <a class="class-card" href="#"><strong>Class 4</strong><span>Explore</span></a>
+    <a class="class-card" href="#"><strong>Class 5</strong><span>Explore</span></a>
+    <a class="class-card" href="class6-social.html"><strong>Class 6</strong><span>Social Studies</span></a>
+    <a class="class-card" href="#"><strong>Class 7</strong><span>Coming</span></a>
+    <a class="class-card" href="#"><strong>Class 8</strong><span>Coming</span></a>
+    <a class="class-card" href="#"><strong>Class 9</strong><span>Coming</span></a>
+    <a class="class-card" href="#"><strong>Class 10</strong><span>Coming</span></a>
+  </section>
 
-<h2>Select Your Class</h2>
+  <section class="subject-panel">
+    <div class="subject-grid">
+      <div class="subject-card">📘 Telugu<small>Language resources</small></div>
+      <div class="subject-card">📗 Hindi<small>Language resources</small></div>
+      <div class="subject-card">📕 English<small>Language resources</small></div>
+      <div class="subject-card">🔢 Mathematics<small>Learning resources</small></div>
+      <div class="subject-card">🔬 Science<small>Learning resources</small></div>
+      <a class="subject-card" href="class6-social.html">🌍 Social Studies<small>Open Class 6</small></a>
+    </div>
+    <a class="chapter-link" href="chapter1-reading-making-maps.html">
+      <strong>🗺️ Class 6 Social Studies — Chapter 1: Reading and Making Maps</strong>
+      <span>Open the first complete TLM FOR ALL chapter experience →</span>
+    </a>
+  </section>
+</main>
 
-<p>
-Choose class and start learning
-</p>
-
-</section>
-
-
-
-<section>
-
-<div class="classes">
-
-
-<button>Class 1</button>
-
-<button>Class 2</button>
-
-<button>Class 3</button>
-
-<button>Class 4</button>
-
-<button>Class 5</button>
-
-<button>Class 6</button>
-
-<button>Class 7</button>
-
-<button>Class 8</button>
-
-<button>Class 9</button>
-
-<button>Class 10</button>
-
-
-</div>
-
-</section>
-
-
-
-<footer>
-
-<h3>TLM FOR ALL</h3>
-
-<p>TEACH • LEARN • CREATE</p>
-
-</footer>
-
-
+<footer><h3>TLM FOR ALL</h3><p>TEACH • LEARN • CREATE</p></footer>
 </body>
-
 </html>
