@@ -28,6 +28,168 @@ function classes(){openM('<h2>📚 Classes Zone</h2><p>Select State first.</p><d
 function classList2(){let a='';for(let i=1;i<=10;i++)a+=`<div class="step" onclick="subjects(${i})"><b>Class ${i}</b><small>Open →</small></div>`;openM('<button class="back" onclick="classes()">← State</button><h2>Telangana SCERT</h2><p>Select Class</p><div class="steps">'+a+'</div>')}
 function subjects(c){let a=['Telugu','Hindi','English','Mathematics','Science','Social Studies'].map(s=>`<div class="step" onclick="chapters(${c},'${s}')"><b>${s}</b><small>Open →</small></div>`).join('');openM(`<button class="back" onclick="classList2()">← Classes</button><h2>Class ${c}</h2><p>Select Subject</p><div class="steps">${a}</div>`)}
 function chapters(c,s){let a='';for(let i=1;i<=8;i++)a+=`<div class="step" onclick="chapter(${c},'${s}',${i})"><b>Chapter ${i}</b><small>Open →</small></div>`;openM(`<button class="back" onclick="subjects(${c})">← Subjects</button><h2>Class ${c} • ${s}</h2><p>Select Chapter</p><div class="steps">${a}</div>`)}
-function chapter(c,s,n){let r=['Overview','Learning Outcomes','Teaching Plan','Complete Chapter PDF','Chapter PPTs','Period-wise PPTs','Teaching Notes','Student Notes','Videos','Activities','TLM Materials','Worksheets','Practice Questions','FA / SA','CCE Rubric','Project Work','Homework','Mind Map','Flash Cards','Quiz'];let a=r.map(x=>`<div class="step" onclick="alert('${x} content link is ready for your next upload.')"><b>${x}</b><small>Open →</small></div>`).join('');openM(`<button class="back" onclick="chapters(${c},'${s}')">← Chapters</button><h2>Class ${c} • ${s} • Chapter ${n}</h2><div class="steps">${a}</div>`)}
+function chapter(c,s,n){
+
+  let items = [
+
+    {
+      name: "Overview",
+      action: "page",
+      url: `pages/chapter1-reading-making-maps.html`
+    },
+
+    {
+      name: "Learning Outcomes",
+      action: "page",
+      url: `pages/chapter1-reading-making-maps.html`
+    },
+
+    {
+      name: "Teaching Plan",
+      action: "page",
+      url: `pages/chapter1-reading-making-maps.html`
+    },
+
+    {
+      name: "Complete Chapter PDF",
+      action: "pdf",
+      url: `resources/class-6/social/chapter-01/chapter-01-reading-and-making-maps.pdf`
+    },
+
+    {
+      name: "Chapter PPTs",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "Period-wise PPTs",
+      action: "page",
+      url: `pages/chapter1-period1.html`
+    },
+
+    {
+      name: "Teaching Notes",
+      action: "page",
+      url: `pages/teacher-plan.html`
+    },
+
+    {
+      name: "Student Notes",
+      action: "page",
+      url: `pages/student-notes.html`
+    },
+
+    {
+      name: "Videos",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "Activities",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "TLM Materials",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "Worksheets",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "Practice Questions",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "FA / SA",
+      action: "page",
+      url: `pages/assessment.html`
+    },
+
+    {
+      name: "CCE Rubric",
+      action: "page",
+      url: `pages/cce-rubric.html`
+    },
+
+    {
+      name: "Project Work",
+      action: "page",
+      url: `pages/cce-project.html`
+    },
+
+    {
+      name: "Homework",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "Mind Map",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "Flash Cards",
+      action: "page",
+      url: `pages/chapter1-resources.html`
+    },
+
+    {
+      name: "Quiz",
+      action: "page",
+      url: `pages/question-bank.html`
+    }
+
+  ];
+
+
+  let a = items.map(function(item){
+
+    let clickAction;
+
+    if(item.action === "pdf"){
+      clickAction =
+        `window.open('${item.url}','_blank')`;
+    }else{
+      clickAction =
+        `window.location.href='${item.url}'`;
+    }
+
+    return `
+      <div class="step" onclick="${clickAction}">
+        <b>${item.name}</b>
+        <small>Open →</small>
+      </div>
+    `;
+
+  }).join('');
+
+
+  openM(`
+    <button class="back" onclick="chapters(${c},'${s}')">
+      ← Chapters
+    </button>
+
+    <h2>Class ${c} • ${s} • Chapter ${n}</h2>
+
+    <p>Select learning resource</p>
+
+    <div class="steps">
+      ${a}
+    </div>
+  `);
+  }
 function zone(t,a){openM(`<h2>${t}</h2><p>Touch any item to open its content.</p><div class="steps">${a.map(x=>`<div class="step" onclick="alert('${x} section is ready for content linking.')"><b>${x}</b><small>Open →</small></div>`).join('')}</div>`)}function search(){let q=document.getElementById('q').value.trim();if(q)zone('🤖 AI Smart Search',['Search: '+q,'AI Question Paper','AI PPT','Worksheet','Chapter','Activity'])}document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeM()};
 </script></body></html>
