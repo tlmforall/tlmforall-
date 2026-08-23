@@ -170,38 +170,260 @@ educationalFact:"The Earth rotates on its axis approximately once every 24 hours
 }
 ];
 
+/* =========================================================
+   TLM FOR ALL — 365 DAY SMART DAILY CONTENT ENGINE
+   Telugu + English
+   ========================================================= */
+
+const TLM_DAILY = {
+
+  suvichar: [
+    "ప్రతి రోజు కొత్తగా నేర్చుకునే అవకాశం. | Every day is a new opportunity to learn.",
+    "విద్య మన భవిష్యత్తును మార్చే శక్తి. | Education has the power to transform our future.",
+    "చిన్న ప్రయత్నాలు గొప్ప విజయాలకు దారి తీస్తాయి. | Small efforts lead to great achievements.",
+    "ఆసక్తి ఉన్న మనసు ఎప్పుడూ కొత్తదాన్ని కనుగొంటుంది. | A curious mind always discovers something new.",
+    "చేసి నేర్చుకున్నది ఎక్కువకాలం గుర్తుంటుంది. | Learning by doing stays longer.",
+    "జ్ఞానాన్ని పంచితే అది మరింత పెరుగుతుంది. | Knowledge grows when it is shared.",
+    "ప్రయత్నించే ధైర్యమే విజయానికి మొదటి అడుగు. | The courage to try is the first step toward success.",
+    "ప్రతి బాలుడిలో ఒక ప్రత్యేక ప్రతిభ ఉంటుంది. | Every child has a unique talent.",
+    "సమయాన్ని గౌరవించడం విజయానికి అలవాటు. | Respecting time is a habit of success.",
+    "మంచి గురువు జీవితాంతం నేర్చుకునేలా ప్రేరేపిస్తాడు. | A good teacher inspires lifelong learning.",
+    "తప్పులు మనకు మంచి పాఠాలు నేర్పుతాయి. | Mistakes teach us valuable lessons.",
+    "నమ్మకం ఉంటే కష్టమైన పని కూడా సాధ్యమే. | With confidence, difficult tasks become possible."
+  ],
+
+  slogan: [
+    "నేర్చుకో • ఆలోచించు • సృష్టించు • పంచుకో | Learn • Think • Create • Share",
+    "ఈ రోజు నేర్చుకో, రేపు నాయకత్వం వహించు! | Learn Today, Lead Tomorrow!",
+    "చిన్న అడుగులు • పెద్ద కలలు! | Small Steps • Big Dreams!",
+    "అడుగు • అన్వేషించు • కనుగొను! | Ask • Explore • Discover!",
+    "చదవడమే కాదు — అనుభవించు! | Don't Just Read — Experience Learning!",
+    "జ్ఞానాన్ని పంచుకో, భవిష్యత్తును నిర్మించు! | Share Knowledge, Build the Future!",
+    "ప్రయత్నించు • నేర్చుకో • మెరుగుపరుచుకో! | Try • Learn • Improve!",
+    "ప్రతి బాలుడు నేర్చుకోగలడు! | Every Child Can Learn!",
+    "సమయాన్ని సద్వినియోగం చేసుకో! | Use Time Wisely!",
+    "బోధించు • ప్రేరేపించు • మార్పు తీసుకురా! | Teach • Inspire • Transform!",
+    "ఆలోచనలే మార్పుకు విత్తనాలు! | Ideas are the seeds of change!",
+    "నేర్చుకోవడం జీవితాంతం కొనసాగే ప్రయాణం! | Learning is a lifelong journey!"
+  ],
+
+  dialogue: [
+    "Teacher: ఈ రోజు ఏమి నేర్చుకుంటావు? Student: కొత్త విషయం నేర్చుకుంటాను! | Teacher: What will you learn today? Student: Something new!",
+    "Teacher: మనం ప్రశ్నలు ఎందుకు అడుగుతాం? Student: కొత్త విషయాలు తెలుసుకోవడానికి! | Teacher: Why do we ask questions? Student: To discover new ideas!",
+    "Teacher: మళ్లీ ప్రయత్నిస్తావా? Student: అవును, నేను ప్రయత్నిస్తాను! | Teacher: Can you try again? Student: Yes, I can!",
+    "Student: ఇది ఎందుకు జరుగుతుంది? Teacher: మనం కలిసి తెలుసుకుందాం. | Student: Why does this happen? Teacher: Let's find out together.",
+    "Teacher: ఏమి కనుగొన్నావు? Student: చేసి నేర్చుకున్నాను! | Teacher: What did you discover? Student: I discovered it by doing!",
+    "Student: నా స్నేహితుడికి సహాయం చేయవచ్చా? Teacher: తప్పకుండా! | Student: Can I help my friend? Teacher: Of course!",
+    "Teacher: తప్పు చేస్తే ఏమవుతుంది? Student: దాని నుంచి నేర్చుకుంటాను! | Teacher: What if you make a mistake? Student: I will learn from it!",
+    "Teacher: నీ కల ఏమిటి? Student: దాన్ని నిజం చేయాలి! | Teacher: What is your dream? Student: I want to make it real!",
+    "Teacher: సమయం ఎందుకు ముఖ్యమైనది? Student: ప్రతి క్షణం విలువైనది. | Teacher: Why is time important? Student: Every moment matters.",
+    "Student: మీరు ఎందుకు బోధిస్తారు? Teacher: మీ భవిష్యత్తు ముఖ్యం. | Student: Why do you teach us? Teacher: Your future matters.",
+    "Teacher: మంచి నేర్చుకోవడం అంటే ఏమిటి? Student: అర్థం చేసుకుని చేయడం! | Teacher: What is good learning? Student: Understanding and doing!",
+    "Student: నేను ప్రశ్న అడగవచ్చా? Teacher: తప్పకుండా, ప్రశ్నలే జ్ఞానానికి మార్గం! | Student: May I ask a question? Teacher: Certainly, questions lead to knowledge!"
+  ],
+
+  wish: [
+    "మీ రోజు ఆనందం, జ్ఞానం మరియు విజయంతో నిండాలి. | Wishing you a day filled with happiness, knowledge and success.",
+    "మీకు ప్రకాశవంతమైన మరియు ప్రేరణాత్మకమైన రోజు కావాలి! | Have a bright and inspiring day!",
+    "ఆత్మవిశ్వాసంతో ముందుకు సాగండి. | Move forward with confidence.",
+    "ఈ రోజు నేర్చుకుంటూ నవ్వుతూ ఉండండి! | Keep learning and keep smiling today!",
+    "మీ రోజు సృజనాత్మకంగా మరియు ఆనందంగా ఉండాలి. | Have a creative and joyful learning day.",
+    "మీ జ్ఞానం ఇతరులకు స్ఫూర్తిగా నిలవాలి. | May your knowledge inspire others.",
+    "ఈ రోజు మీ శక్తిని పూర్తిగా ఉపయోగించండి. | Make the most of your energy today.",
+    "ప్రతి విద్యార్థి తన ప్రతిభను కనుగొనాలి. | May every learner discover their talent.",
+    "ఈ రోజును అర్థవంతంగా ఉపయోగించండి. | Make today meaningful.",
+    "అందరికీ సంతోషకరమైన మరియు అర్థవంతమైన రోజు కావాలి. | Wishing everyone a happy and meaningful day.",
+    "మీ కలల వైపు మరో అడుగు వేయండి. | Take one more step toward your dreams.",
+    "ఈ రోజు మీకు కొత్త ఆలోచనలు రావాలి. | May today bring you new ideas."
+  ],
+
+  teachingTip: [
+    "ప్రతి పాఠాన్ని నిజ జీవిత ఉదాహరణతో ప్రారంభించండి. | Connect every lesson with a real-life example.",
+    "ప్రతి విద్యార్థికి పాల్గొనే అవకాశం ఇవ్వండి. | Give every child an opportunity to participate.",
+    "సాధ్యమైనప్పుడల్లా activity-based learning ఉపయోగించండి. | Use activity-based learning whenever possible.",
+    "పాఠాన్ని ఆసక్తికరమైన ప్రశ్నతో ప్రారంభించండి. | Start the lesson with an interesting question.",
+    "చేసి నేర్చుకునే అవకాశాలు ఇవ్వండి. | Give students hands-on learning opportunities.",
+    "Peer learning మరియు group activities ఉపయోగించండి. | Use peer learning and group activities.",
+    "సరైన సమాధానంతో పాటు ప్రయత్నాన్ని కూడా ప్రశంసించండి. | Appreciate effort, not only correct answers.",
+    "విద్యార్థులకు learning choices ఇవ్వండి. | Give students choices in learning activities.",
+    "ప్రతి activityకి స్పష్టమైన time limit ఇవ్వండి. | Set clear time limits for classroom activities.",
+    "పాఠం చివర reflection question అడగండి. | End every lesson with a reflection question.",
+    "చిత్రాలు, వస్తువులు మరియు స్థానిక ఉదాహరణలు ఉపయోగించండి. | Use visuals, objects and local examples.",
+    "విద్యార్థి స్వయంగా మాట్లాడేలా ప్రశ్నలు అడగండి. | Ask questions that encourage students to speak."
+  ],
+
+  valueThought: [
+    "దయ మరియు ఆసక్తి మనల్ని మంచి learnersగా మారుస్తాయి. | Kindness and curiosity make us better learners.",
+    "తప్పులు నేర్చుకునే అవకాశాలు. | Mistakes are opportunities to learn.",
+    "సహనం కష్టమైన పనులను సాధ్యంగా చేస్తుంది. | Patience makes difficult things possible.",
+    "ఆసక్తి జ్ఞానానికి ప్రారంభం. | Curiosity is the beginning of knowledge.",
+    "జట్టుగా పనిచేయడం learningను మరింత అర్థవంతం చేస్తుంది. | Teamwork makes learning more meaningful.",
+    "ఇతరులకు సహాయం చేయడం గొప్ప విలువ. | Helping others is a powerful value.",
+    "అభ్యాసం ద్వారా ఆత్మవిశ్వాసం పెరుగుతుంది. | Confidence grows through practice.",
+    "ప్రతి విద్యార్థిని ప్రోత్సహించాలి. | Every learner deserves encouragement.",
+    "సమయపాలన బాధ్యతను పెంచుతుంది. | Punctuality develops responsibility.",
+    "గౌరవం మంచి classroom environmentను సృష్టిస్తుంది. | Respect creates a positive learning environment.",
+    "నిజాయితీ జ్ఞానానికి బలమైన పునాది. | Honesty is a strong foundation for learning.",
+    "పంచుకోవడం మంచి సమాజాన్ని నిర్మిస్తుంది. | Sharing helps build a better community."
+  ],
+
+  educationQuote: [
+    "విద్య అనేది జీవితానికి సిద్ధం కావడం మాత్రమే కాదు; విద్యే జీవితం. | Education is not only preparation for life; education is life.",
+    "నేర్చుకోవడం ఎప్పటికీ ఆగకూడదు. | Learning should never stop.",
+    "ఉత్తమ విద్య ప్రశ్నలు అడిగే ధైర్యాన్ని ఇస్తుంది. | Great education gives us the courage to ask questions.",
+    "ఒక మంచి గురువు ఒక జీవితాన్ని మార్చగలడు. | A good teacher can transform a life.",
+    "పిల్లలు వినడం కంటే అనుభవించడం ద్వారా ఎక్కువ నేర్చుకుంటారు. | Children often learn more through experience than listening.",
+    "జ్ఞానం మనిషికి శక్తిని ఇస్తుంది. | Knowledge gives people power.",
+    "విద్య భవిష్యత్తుకు తలుపులు తెరుస్తుంది. | Education opens doors to the future.",
+    "చదువు మన ఆలోచనలను విస్తరిస్తుంది. | Learning expands our thinking.",
+    "ప్రతి classroom ఒక కొత్త ప్రపంచానికి ద్వారం. | Every classroom is a doorway to a new world.",
+    "ప్రశ్నించే విద్యార్థి ఎదుగుతున్న విద్యార్థి. | A questioning student is a growing student.",
+    "విద్యలో లక్ష్యం marks మాత్రమే కాదు, meaningful learning. | The goal of education is not only marks, but meaningful learning.",
+    "గురువు చూపే మార్గం విద్యార్థి భవిష్యత్తును ప్రభావితం చేస్తుంది. | A teacher's guidance can influence a student's future."
+  ],
+
+  educationalFact: [
+    "భూమి సూర్యుని చుట్టూ ఒక పరిభ్రమణం పూర్తి చేయడానికి సుమారు 365 రోజులు పడుతుంది. | Earth takes about 365 days to orbit the Sun.",
+    "భూమి ఉపరితలంలో సుమారు 71% నీరు ఉంది. | About 71% of Earth's surface is covered by water.",
+    "మనిషి శరీరంలో సాధారణంగా 206 ఎముకలు ఉంటాయి. | The human body normally has 206 bones.",
+    "చంద్రుడు భూమికి సహజ ఉపగ్రహం. | The Moon is Earth's natural satellite.",
+    "సూర్యకాంతి భూమిని చేరడానికి సుమారు 8 నిమిషాలు 20 సెకన్లు పడుతుంది. | Sunlight takes about 8 minutes 20 seconds to reach Earth.",
+    "ఒక రోజు సుమారు 24 గంటలు ఉంటుంది. | A day is approximately 24 hours long.",
+    "నీటి రసాయన సూత్రం H₂O. | The chemical formula of water is H₂O.",
+    "సూర్యుడు మన సౌర కుటుంబంలోని అతిపెద్ద వస్తువు. | The Sun is the largest object in our solar system.",
+    "చంద్రుడికి స్వంత కాంతి లేదు; అది సూర్యకాంతిని ప్రతిబింబిస్తుంది. | The Moon has no light of its own; it reflects sunlight.",
+    "భూమి తన అక్షంపై తిరుగుతుంది. | Earth rotates on its axis.",
+    "మొక్కలు photosynthesis ద్వారా తమ ఆహారాన్ని తయారు చేసుకుంటాయి. | Plants make their food through photosynthesis.",
+    "వాయుమండలంలో నైట్రోజన్ అత్యధికంగా ఉంటుంది. | Nitrogen is the most abundant gas in Earth's atmosphere."
+  ]
+};
+
+
+/* =========================================================
+   IMPORTANT DAYS
+   ========================================================= */
+
+const TLM_SPECIAL_DAYS = {
+
+  "1-1": "నూతన సంవత్సరం | New Year",
+  "1-12": "జాతీయ యువజన దినోత్సవం | National Youth Day",
+  "1-26": "గణతంత్ర దినోత్సవం | Republic Day",
+
+  "2-28": "జాతీయ విజ్ఞాన దినోత్సవం | National Science Day",
+
+  "3-8": "అంతర్జాతీయ మహిళా దినోత్సవం | International Women's Day",
+  "3-22": "ప్రపంచ నీటి దినోత్సవం | World Water Day",
+
+  "4-7": "ప్రపంచ ఆరోగ్య దినోత్సవం | World Health Day",
+  "4-22": "భూమి దినోత్సవం | Earth Day",
+
+  "5-1": "అంతర్జాతీయ కార్మిక దినోత్సవం | International Workers' Day",
+  "5-15": "అంతర్జాతీయ కుటుంబ దినోత్సవం | International Day of Families",
+
+  "6-5": "ప్రపంచ పర్యావరణ దినోత్సవం | World Environment Day",
+  "6-21": "అంతర్జాతీయ యోగా దినోత్సవం | International Yoga Day",
+
+  "7-11": "ప్రపంచ జనాభా దినోత్సవం | World Population Day",
+
+  "8-15": "స్వాతంత్ర్య దినోత్సవం | Independence Day",
+  "8-23": "జాతీయ అంతరిక్ష దినోత్సవం | National Space Day",
+
+  "9-5": "ఉపాధ్యాయ దినోత్సవం | Teachers' Day",
+  "9-8": "అంతర్జాతీయ అక్షరాస్యత దినోత్సవం | International Literacy Day",
+  "9-14": "హిందీ దివస్ | Hindi Diwas",
+  "9-16": "ప్రపంచ ఓజోన్ దినోత్సవం | World Ozone Day",
+
+  "10-2": "గాంధీ జయంతి | Gandhi Jayanti",
+  "10-5": "ప్రపంచ ఉపాధ్యాయ దినోత్సవం | World Teachers' Day",
+  "10-15": "ప్రపంచ విద్యార్థుల దినోత్సవం | World Students' Day",
+
+  "11-14": "బాలల దినోత్సవం | Children's Day",
+  "11-19": "ప్రపంచ మరుగుదొడ్ల దినోత్సవం | World Toilet Day",
+
+  "12-10": "మానవ హక్కుల దినోత్సవం | Human Rights Day",
+  "12-22": "జాతీయ గణిత దినోత్సవం | National Mathematics Day"
+};
+
+
+/* =========================================================
+   DATE → DAY NUMBER
+   ========================================================= */
+
+function getTlmDayNumber(date){
+
+    const start = new Date(date.getFullYear(), 0, 1);
+
+    const diff =
+        date.getTime() - start.getTime();
+
+    return Math.floor(diff / 86400000) + 1;
+}
+
+
+/* =========================================================
+   SMART CONTENT PICKER
+   ========================================================= */
+
+function pickTlmContent(list, day){
+
+    return list[(day - 1) % list.length];
+
+}
+
+
+/* =========================================================
+   DAILY CONTENT LOADER
+   ========================================================= */
+
 function loadTlmDailyContent(){
 
     const now = new Date();
 
-    const start = new Date(now.getFullYear(),0,0);
-    const diff = now - start;
-    const dayOfYear = Math.floor(diff / 86400000);
+    const day = getTlmDayNumber(now);
 
-    const content =
-        TLM_DAILY_CONTENT[(dayOfYear - 1) % TLM_DAILY_CONTENT.length];
+    const month = now.getMonth() + 1;
+
+    const date = now.getDate();
+
+    const specialKey = month + "-" + date;
+
+    const special =
+        TLM_SPECIAL_DAYS[specialKey] ||
+        "ఈ రోజు కూడా ఒక ప్రత్యేకమైన నేర్చుకునే రోజు. | Today is another special day to learn.";
+
 
     document.getElementById("dailySuvichar").textContent =
-        content.suvichar;
+        pickTlmContent(TLM_DAILY.suvichar, day);
 
     document.getElementById("dailySlogan").textContent =
-        content.slogan;
+        pickTlmContent(TLM_DAILY.slogan, day + 3);
 
     document.getElementById("dailyDialogue").textContent =
-        content.dialogue;
+        pickTlmContent(TLM_DAILY.dialogue, day + 5);
 
     document.getElementById("dailyWish").textContent =
-        content.wish;
+        pickTlmContent(TLM_DAILY.wish, day + 7);
 
     document.getElementById("dailyTeachingTip").textContent =
-        content.teachingTip;
+        pickTlmContent(TLM_DAILY.teachingTip, day + 2);
 
     document.getElementById("dailyValueThought").textContent =
-        content.valueThought;
+        pickTlmContent(TLM_DAILY.valueThought, day + 4);
 
     document.getElementById("dailyEducationalFact").textContent =
-        content.educationalFact;
+        pickTlmContent(TLM_DAILY.educationalFact, day + 6);
+
+    document.getElementById("dailyEducationQuote").textContent =
+        pickTlmContent(TLM_DAILY.educationQuote, day + 8);
+
+    document.getElementById("dailySpecial").textContent =
+        special;
 }
+
+
+/* =========================================================
+   START DAILY SYSTEM
+   ========================================================= */
 
 loadTlmDailyContent();
 
