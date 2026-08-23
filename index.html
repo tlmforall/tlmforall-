@@ -429,9 +429,56 @@ loadTlmDailyContent();
 
 /* ===== EXISTING CLOCK ===== */
 
-function clock(){let d=new Date(),h=d.getHours(),m=String(d.getMinutes()).padStart(2,'0'),s=String(d.getSeconds()).padStart(2,'0');document.getElementById('time').textContent=((h%12)||12)+':'+m+':'+s+' '+(h>=12?'PM':'AM');document.getElementById('date').textContent=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});document.getElementById('day').textContent=d.toLocaleDateString('en-IN',{weekday:'long'});document.getElementById('greet').textContent=h<12?'Good Morning! ☀️':h<17?'Good Afternoon! 🌤️':h<21?'Good Evening! 🌇':'Good Night! 🌙'}setInterval(clock,1000);clock();
-function clock(){let d=new Date(),h=d.getHours(),m=String(d.getMinutes()).padStart(2,'0'),s=String(d.getSeconds()).padStart(2,'0');document.getElementById('time').textContent=((h%12)||12)+':'+m+':'+s+' '+(h>=12?'PM':'AM');document.getElementById('date').textContent=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});document.getElementById('day').textContent=d.toLocaleDateString('en-IN',{weekday:'long'});document.getElementById('greet').textContent=h<12?'Good Morning! ☀️':h<17?'Good Afternoon! 🌤️':h<21?'Good Evening! 🌇':'Good Night! 🌙'}setInterval(clock,1000);clock();
-function openM(x){document.getElementById('content').innerHTML=x;document.getElementById('modal').classList.add('show')}function closeM(){document.getElementById('modal').classList.remove('show')}
+function clock(){
+
+    const d = new Date();
+
+    const h = d.getHours();
+
+    const m =
+        String(d.getMinutes()).padStart(2,'0');
+
+    const s =
+        String(d.getSeconds()).padStart(2,'0');
+
+
+    document.getElementById('time').textContent =
+        ((h % 12) || 12) +
+        ':' + m +
+        ':' + s +
+        ' ' +
+        (h >= 12 ? 'PM' : 'AM');
+
+
+    document.getElementById('date').textContent =
+        d.toLocaleDateString('en-IN',{
+            day:'2-digit',
+            month:'short',
+            year:'numeric'
+        });
+
+
+    document.getElementById('day').textContent =
+        d.toLocaleDateString('en-IN',{
+            weekday:'long'
+        });
+
+
+    document.getElementById('greet').textContent =
+        h < 12
+        ? 'Good Morning! ☀️'
+        : h < 17
+        ? 'Good Afternoon! 🌤️'
+        : h < 21
+        ? 'Good Evening! 🌇'
+        : 'Good Night! 🌙';
+}
+
+
+setInterval(clock,1000);
+
+clock();
+   function openM(x){document.getElementById('content').innerHTML=x;document.getElementById('modal').classList.add('show')}function closeM(){document.getElementById('modal').classList.remove('show')}
 function classes(){openM('<h2>📚 Classes Zone</h2><p>Select State first.</p><div class="steps"><div class="step" onclick="classList2()"><b>🇮🇳 Telangana SCERT</b><small>Open State →</small></div></div>')}
 function classList2(){let a='';for(let i=1;i<=10;i++)a+=`<div class="step" onclick="subjects(${i})"><b>Class ${i}</b><small>Open →</small></div>`;openM('<button class="back" onclick="classes()">← State</button><h2>Telangana SCERT</h2><p>Select Class</p><div class="steps">'+a+'</div>')}
 function subjects(c){let a=['Telugu','Hindi','English','Mathematics','Science','Social Studies'].map(s=>`<div class="step" onclick="chapters(${c},'${s}')"><b>${s}</b><small>Open →</small></div>`).join('');openM(`<button class="back" onclick="classList2()">← Classes</button><h2>Class ${c}</h2><p>Select Subject</p><div class="steps">${a}</div>`)}
