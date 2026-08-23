@@ -65,7 +65,139 @@
 <div class="card competitive" onclick="zone('Competitive Zone',['MCQs','Previous Papers','Current Affairs','Quiz','Exam Practice','Model Papers'])"><div class="pic">🏆</div><h2>COMPETITIVE<br><span>ZONE</span></h2><p>Exams, MCQs, papers and quiz</p></div>
 </div></main><footer class="footer"><span>🚀 NEP 2020 Aligned</span><span>🛡️ CCE Based Learning</span><span>👨‍👩‍👧‍👦 For Teachers & Students</span><b>❤️ Think • Learn • Create • Share</b><span>© 2026 TLM FOR ALL</span></footer>
 <div class="modal" id="modal"><div class="panel"><button class="close" onclick="closeM()">×</button><div id="content"></div></div></div>
-<script>
+<script>/* ===== TLM FOR ALL DAILY CONTENT ===== */
+
+const TLM_DAILY_CONTENT = [
+{
+suvichar:"Every day is a new opportunity to learn, grow and inspire.",
+slogan:"Learn • Think • Create • Share",
+dialogue:"Teacher: What will you learn today? Student: Something new!",
+wish:"Wishing you a wonderful day filled with learning and happiness.",
+teachingTip:"Connect every lesson with a real-life example.",
+valueThought:"Kindness and curiosity make us better learners.",
+educationalFact:"The Earth takes about 365 days to complete one revolution around the Sun."
+},
+{
+suvichar:"Education gives us the power to transform our future.",
+slogan:"Learn Today, Lead Tomorrow!",
+dialogue:"Teacher: Why do we ask questions? Student: To discover new ideas!",
+wish:"Have a bright and inspiring day!",
+teachingTip:"Give every child an opportunity to participate.",
+valueThought:"Mistakes are opportunities to learn.",
+educationalFact:"Water covers about 71% of Earth's surface."
+},
+{
+suvichar:"Small efforts every day create great achievements.",
+slogan:"Small Steps, Big Dreams!",
+dialogue:"Teacher: Can you try again? Student: Yes, I can!",
+wish:"May your day be full of confidence and success.",
+teachingTip:"Use activity-based learning whenever possible.",
+valueThought:"Patience makes difficult things possible.",
+educationalFact:"The human body normally has 206 bones."
+},
+{
+suvichar:"A curious mind is always ready to discover something new.",
+slogan:"Ask • Explore • Discover!",
+dialogue:"Student: Why does this happen? Teacher: Let's find the answer together.",
+wish:"Keep learning and keep smiling today!",
+teachingTip:"Start your lesson with an interesting question.",
+valueThought:"Curiosity is the beginning of knowledge.",
+educationalFact:"The Moon is Earth's natural satellite."
+},
+{
+suvichar:"The best learning happens when we understand and experience.",
+slogan:"Don't Just Read — Experience Learning!",
+dialogue:"Teacher: What did you discover? Student: I discovered it by doing!",
+wish:"Have a creative and joyful learning day.",
+teachingTip:"Let students learn through hands-on activities.",
+valueThought:"Teamwork makes learning more meaningful.",
+educationalFact:"Light from the Sun takes about 8 minutes 20 seconds to reach Earth."
+},
+{
+suvichar:"Knowledge grows when we share it with others.",
+slogan:"Share Knowledge, Build the Future!",
+dialogue:"Student: Can I help my friend? Teacher: Of course. Learning grows through sharing.",
+wish:"May your kindness and knowledge inspire others today.",
+teachingTip:"Use peer learning and group activities.",
+valueThought:"Helping others is a powerful form of learning.",
+educationalFact:"A day on Earth is approximately 24 hours long."
+},
+{
+suvichar:"Success begins with the courage to try.",
+slogan:"Try • Learn • Improve!",
+dialogue:"Teacher: What if you make a mistake? Student: I will learn from it!",
+wish:"Believe in yourself and make today count.",
+teachingTip:"Appreciate effort, not only correct answers.",
+valueThought:"Confidence grows through practice.",
+educationalFact:"The chemical formula of water is H₂O."
+},
+{
+suvichar:"Every child has the potential to create something wonderful.",
+slogan:"Every Child Can Learn!",
+dialogue:"Teacher: What is your dream? Student: I want to make it real!",
+wish:"May every learner discover their special talent today.",
+teachingTip:"Give students choices in learning activities.",
+valueThought:"Every learner deserves encouragement.",
+educationalFact:"The Sun is the largest object in our solar system."
+},
+{
+suvichar:"Time is one of our most valuable resources.",
+slogan:"Use Time Wisely, Achieve Greatly!",
+dialogue:"Teacher: Why is time important? Student: Because every moment matters.",
+wish:"May you use every moment of today meaningfully.",
+teachingTip:"Set clear time limits for classroom activities.",
+valueThought:"Punctuality develops responsibility.",
+educationalFact:"There are 24 hours in one day."
+},
+{
+suvichar:"A good teacher inspires students to become lifelong learners.",
+slogan:"Teach • Inspire • Transform!",
+dialogue:"Student: Why do you teach us? Teacher: Because your future matters.",
+wish:"Wishing all teachers and learners a meaningful day.",
+teachingTip:"End every lesson with one reflection question.",
+valueThought:"Respect creates a positive learning environment.",
+educationalFact:"The Earth rotates on its axis approximately once every 24 hours."
+}
+];
+
+function loadTlmDailyContent(){
+
+    const now = new Date();
+
+    const start = new Date(now.getFullYear(),0,0);
+    const diff = now - start;
+    const dayOfYear = Math.floor(diff / 86400000);
+
+    const content =
+        TLM_DAILY_CONTENT[(dayOfYear - 1) % TLM_DAILY_CONTENT.length];
+
+    document.getElementById("dailySuvichar").textContent =
+        content.suvichar;
+
+    document.getElementById("dailySlogan").textContent =
+        content.slogan;
+
+    document.getElementById("dailyDialogue").textContent =
+        content.dialogue;
+
+    document.getElementById("dailyWish").textContent =
+        content.wish;
+
+    document.getElementById("dailyTeachingTip").textContent =
+        content.teachingTip;
+
+    document.getElementById("dailyValueThought").textContent =
+        content.valueThought;
+
+    document.getElementById("dailyEducationalFact").textContent =
+        content.educationalFact;
+}
+
+loadTlmDailyContent();
+
+/* ===== EXISTING CLOCK ===== */
+
+function clock(){let d=new Date(),h=d.getHours(),m=String(d.getMinutes()).padStart(2,'0'),s=String(d.getSeconds()).padStart(2,'0');document.getElementById('time').textContent=((h%12)||12)+':'+m+':'+s+' '+(h>=12?'PM':'AM');document.getElementById('date').textContent=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});document.getElementById('day').textContent=d.toLocaleDateString('en-IN',{weekday:'long'});document.getElementById('greet').textContent=h<12?'Good Morning! ☀️':h<17?'Good Afternoon! 🌤️':h<21?'Good Evening! 🌇':'Good Night! 🌙'}setInterval(clock,1000);clock();
 function clock(){let d=new Date(),h=d.getHours(),m=String(d.getMinutes()).padStart(2,'0'),s=String(d.getSeconds()).padStart(2,'0');document.getElementById('time').textContent=((h%12)||12)+':'+m+':'+s+' '+(h>=12?'PM':'AM');document.getElementById('date').textContent=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});document.getElementById('day').textContent=d.toLocaleDateString('en-IN',{weekday:'long'});document.getElementById('greet').textContent=h<12?'Good Morning! ☀️':h<17?'Good Afternoon! 🌤️':h<21?'Good Evening! 🌇':'Good Night! 🌙'}setInterval(clock,1000);clock();
 function openM(x){document.getElementById('content').innerHTML=x;document.getElementById('modal').classList.add('show')}function closeM(){document.getElementById('modal').classList.remove('show')}
 function classes(){openM('<h2>📚 Classes Zone</h2><p>Select State first.</p><div class="steps"><div class="step" onclick="classList2()"><b>🇮🇳 Telangana SCERT</b><small>Open State →</small></div></div>')}
