@@ -187,6 +187,138 @@ flex-direction:column!important;
 }
 .photo-pic img{width:100%;height:100%;object-fit:cover;display:block}
 @media(max-width:650px){.hero-old-image{margin-top:18px;border-radius:18px}.hero-old-image img{max-height:240px}.photo-pic{height:125px!important}}
+  /* ===== AI IMAGE CREATOR ===== */
+
+.ai-create-header{
+  text-align:center;
+  padding:22px;
+  border-radius:22px;
+  color:#fff;
+  margin-bottom:18px;
+}
+
+.image-create-header{
+  background:linear-gradient(
+    135deg,
+    #6937ff,
+    #b000ff,
+    #ff4b00
+  );
+}
+
+.ai-create-icon{
+  font-size:55px;
+  line-height:1;
+}
+
+.ai-create-header h2{
+  color:#fff!important;
+  margin:10px 0;
+  font-size:30px;
+}
+
+.ai-create-header p{
+  color:#fff!important;
+}
+
+.ai-form-card{
+  background:#fff;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 10px 30px #0002;
+}
+
+.ai-form-card label{
+  display:block;
+  font-weight:800;
+  margin:10px 0 7px;
+}
+
+.ai-big-input{
+  width:100%;
+  min-height:170px;
+  resize:vertical;
+  padding:16px;
+  border:2px solid #6937ff;
+  border-radius:16px;
+  outline:none;
+  font-size:16px;
+  line-height:1.5;
+  font-family:Arial,sans-serif;
+}
+
+.ai-big-input:focus{
+  border-color:#ff006e;
+  box-shadow:0 0 0 3px #ff006e22;
+}
+
+.ai-form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-top:15px;
+}
+
+.ai-form-grid select{
+  width:100%;
+  padding:12px;
+  border:2px solid #d5ddff;
+  border-radius:12px;
+  background:#fff;
+  font-size:15px;
+}
+
+.ai-check-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:18px 0;
+}
+
+.ai-check-options label{
+  padding:10px 13px;
+  border-radius:14px;
+  background:#eef3ff;
+  border:1px solid #d5ddff;
+  font-size:14px;
+}
+
+.ai-check-options input{
+  accent-color:#6937ff;
+}
+
+.ai-main-generate{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:18px;
+  background:linear-gradient(
+    135deg,
+    #6937ff,
+    #ff006e
+  );
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 20px #6937ff44;
+}
+
+@media(max-width:650px){
+
+  .ai-form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .ai-check-options{
+    display:block;
+  }
+
+  .ai-check-options label{
+    margin-bottom:8px;
+  }
+
+  }
 </style></head><body>
 <header class="hero"><div class="stars"></div><div class="top"><div><div class="brand"><h1>🌍 TLM <span>FOR</span> <em>ALL</em></h1><p>TEACHING • LEARNING • MATERIALS</p></div><div class="greet"><h2 id="greet">Good Day! ☀️</h2><p>Every day is a new opportunity to learn, teach and inspire.</p></div></div><div class="info"><div class="box"><b>🏅 PFMS</b>Teacher Empowerment</div><div class="box"><b>📅 DATE</b><span id="date"></span></div><div class="box"><b>📘 DAY</b><span id="day"></span></div><div class="box"><b>🕘 TIME</b><span id="time"></span></div></div><div class="hero-old-image"><img src="assets/images/hero.png" alt="TLM FOR ALL AI powered learning classroom"></div></div><div class="globe"></div></header>
 <section class="daily" id="dailyContent">
