@@ -1023,5 +1023,95 @@ Create a realistic 3D educational scene of a tribal village community meeting fo
     </div>
   `);
  }
+  function generateImage(){
+
+  const prompt =
+    document.getElementById("imagePrompt").value.trim();
+
+  if(!prompt){
+    alert("Please enter an image prompt.");
+    return;
+  }
+
+  const language =
+    document.getElementById("imageLanguage").value;
+
+  const style =
+    document.getElementById("imageStyle").value;
+
+  const ratio =
+    document.getElementById("imageRatio").value;
+
+  const level =
+    document.getElementById("imageLevel").value;
+
+  const accuracy =
+    document.getElementById("imageAccuracy").checked;
+
+  const addText =
+    document.getElementById("imageText").checked;
+
+  const use3D =
+    document.getElementById("image3D").checked;
+
+  const result =
+    document.getElementById("imageResult");
+
+  result.innerHTML = `
+    <div class="ai-processing">
+      <div style="font-size:42px">🤖🎨</div>
+
+      <h3>Preparing your educational image...</h3>
+
+      <p>
+        Understanding prompt →
+        Applying educational context →
+        Preparing visual
+      </p>
+    </div>
+  `;
+
+  const imageRequest = {
+    prompt: prompt,
+    language: language,
+    style: style,
+    aspectRatio: ratio,
+    level: level,
+    educationalAccuracy: accuracy,
+    addText: addText,
+    use3D: use3D
+  };
+
+  console.log(
+    "TLM FOR ALL Image Request:",
+    imageRequest
+  );
+
+  setTimeout(() => {
+
+    result.innerHTML = `
+      <div class="ai-processing">
+
+        <div style="font-size:45px">
+          🔐
+        </div>
+
+        <h3>AI Image Engine Ready</h3>
+
+        <p>
+          Secure AI connection will be activated
+          in the next step.
+        </p>
+
+        <small>
+          Your prompt has been prepared successfully.
+        </small>
+
+      </div>
+    `;
+
+  },700);
+
+        }
 function zone(t,a){openM(`<h2>${t}</h2><p>Touch any item to open its content.</p><div class="steps">${a.map(x=>`<div class="step" onclick="alert('${x} section is ready for content linking.')"><b>${x}</b><small>Open →</small></div>`).join('')}</div>`)}function search(){let q=document.getElementById('q').value.trim();if(q)zone('🤖 AI Smart Search',['Search: '+q,'AI Question Paper','AI PPT','Worksheet','Chapter','Activity'])}document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeM()};
 </script></body></html>
