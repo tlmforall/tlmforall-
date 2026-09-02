@@ -833,89 +833,195 @@ function chapter(c,s,n){
    TLM FOR ALL — AI CREATOR CENTER
    ========================================================= */
 
-function openAICenter(){
+ function openAIImage(){
 
   openM(`
-    <div class="ai-header">
-      <div class="ai-logo">🤖✨</div>
+    <button class="back" onclick="openAICenter()">
+      ← AI Creator
+    </button>
 
-      <h2>TLM FOR ALL AI CREATOR</h2>
+    <div class="ai-create-header image-create-header">
 
-      <p>Create • Teach • Learn • Inspire</p>
+      <div class="ai-create-icon">🖼️✨</div>
 
-      <div class="ai-language">
-        <label>🌐 Language</label>
-
-        <select id="aiLanguage">
-          <option value="te">తెలుగు</option>
-          <option value="en" selected>English</option>
-          <option value="hi">हिन्दी</option>
-          <option value="bi">తెలుగు + English</option>
-          <option value="tri">తెలుగు + English + हिन्दी</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="ai-tools">
-
-      <div class="ai-tool image-tool" onclick="openAIImage()">
-        <div class="ai-tool-icon">🖼️✨</div>
-        <h3>Prompt → Image</h3>
-        <p>
-          Create educational images, 3D visuals,
-          diagrams, maps and illustrations.
-        </p>
-        <button>CREATE IMAGE →</button>
-      </div>
-
-      <div class="ai-tool video-tool" onclick="openAIVideo()">
-        <div class="ai-tool-icon">🎬🚀</div>
-        <h3>Prompt → Video</h3>
-        <p>
-          Create educational videos from a single prompt.
-        </p>
-        <button>CREATE VIDEO →</button>
-      </div>
-
-      <div class="ai-tool image-video-tool" onclick="openAIImageVideo()">
-        <div class="ai-tool-icon">🖼️➡️🎬</div>
-        <h3>Image → Video</h3>
-        <p>
-          Turn educational images into animated videos.
-        </p>
-        <button>ANIMATE IMAGE →</button>
-      </div>
-
-      <div class="ai-tool ppt-tool" onclick="openAIPPT()">
-        <div class="ai-tool-icon">🖥️✨</div>
-        <h3>Auto PPT</h3>
-        <p>
-          Create classroom-ready presentations automatically.
-        </p>
-        <button>CREATE PPT →</button>
-      </div>
-
-      <div class="ai-tool voice-tool" onclick="openAIVoice()">
-        <div class="ai-tool-icon">🎙️🔊</div>
-        <h3>AI Voice</h3>
-        <p>
-          Create Telugu, English and Hindi educational narration.
-        </p>
-        <button>CREATE VOICE →</button>
-      </div>
-
-    </div>
-
-    <div class="ai-footer-note">
-      <b>💡 One Prompt. One Platform. Complete Creation.</b>
+      <h2>Prompt → Image</h2>
 
       <p>
-        TLM FOR ALL AI Creator will connect
-        lesson content, images, videos, PPTs and voice
-        into one educational workspace.
+        Create accurate educational images, 3D visuals,
+        diagrams, maps and illustrations.
       </p>
+
+    </div>
+
+
+    <div class="ai-form-card">
+
+      <label>✍️ What do you want to create?</label>
+
+      <textarea
+        id="imagePrompt"
+        class="ai-big-input"
+        placeholder="Example:
+
+Create a realistic 3D educational scene of a tribal village community meeting for Class 6 Social Studies. Show villagers sitting together and discussing an important community decision."
+      ></textarea>
+
+
+      <div class="ai-form-grid">
+
+        <div>
+
+          <label>🌐 Language</label>
+
+          <select id="imageLanguage">
+
+            <option value="English">English</option>
+
+            <option value="Telugu">తెలుగు</option>
+
+            <option value="Hindi">हिन्दी</option>
+
+            <option value="Telugu + English">
+              తెలుగు + English
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>🎨 Style</label>
+
+          <select id="imageStyle">
+
+            <option value="Educational realistic">
+              Educational Realistic
+            </option>
+
+            <option value="3D educational">
+              3D Educational
+            </option>
+
+            <option value="Cinematic">
+              Cinematic
+            </option>
+
+            <option value="Cartoon">
+              Cartoon
+            </option>
+
+            <option value="Watercolor">
+              Watercolor
+            </option>
+
+            <option value="Infographic">
+              Infographic
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>📐 Format</label>
+
+          <select id="imageRatio">
+
+            <option value="16:9">
+              16:9 — PPT / IFP
+            </option>
+
+            <option value="1:1">
+              1:1 — Square
+            </option>
+
+            <option value="4:3">
+              4:3 — Classroom
+            </option>
+
+            <option value="9:16">
+              9:16 — Mobile / Reel
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>🎓 Level</label>
+
+          <select id="imageLevel">
+
+            <option value="School">
+              School
+            </option>
+
+            <option value="Class 1–5">
+              Class 1–5
+            </option>
+
+            <option value="Class 6–8">
+              Class 6–8
+            </option>
+
+            <option value="Class 9–10">
+              Class 9–10
+            </option>
+
+            <option value="Teacher">
+              Teacher
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="ai-check-options">
+
+        <label>
+          <input type="checkbox"
+                 id="imageAccuracy"
+                 checked>
+          🎯 Educational Accuracy
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 id="imageText">
+          🔤 Add Text / Labels
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 id="image3D">
+          🌍 3D Visual
+        </label>
+
+      </div>
+
+
+      <button
+        class="ai-main-generate"
+        onclick="generateImage()">
+
+        ✨ GENERATE IMAGE
+
+      </button>
+
+
+      <div id="imageResult"></div>
+
     </div>
   `);
-  }
+ }
 function zone(t,a){openM(`<h2>${t}</h2><p>Touch any item to open its content.</p><div class="steps">${a.map(x=>`<div class="step" onclick="alert('${x} section is ready for content linking.')"><b>${x}</b><small>Open →</small></div>`).join('')}</div>`)}function search(){let q=document.getElementById('q').value.trim();if(q)zone('🤖 AI Smart Search',['Search: '+q,'AI Question Paper','AI PPT','Worksheet','Chapter','Activity'])}document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeM()};
 </script></body></html>
