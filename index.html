@@ -964,7 +964,167 @@ function chapter(c,s,n){
   /* =========================================================
    TLM FOR ALL — AI CREATOR CENTER
    ========================================================= */
+function openAICenter(){
 
+  openM(`
+    
+    <div class="ai-header">
+
+      <div class="ai-logo">🤖✨</div>
+
+      <h2>TLM FOR ALL AI CREATOR</h2>
+
+      <p>
+        Create • Teach • Learn • Inspire
+      </p>
+
+      <div class="ai-language">
+
+        <label>🌐 Language</label>
+
+        <select id="aiLanguage">
+
+          <option value="English">English</option>
+
+          <option value="Telugu">తెలుగు</option>
+
+          <option value="Hindi">हिन्दी</option>
+
+          <option value="Telugu + English">
+            తెలుగు + English
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="ai-tools">
+
+
+      <div class="ai-tool image-tool"
+           onclick="openAIImage()">
+
+        <div class="ai-tool-icon">
+          🖼️✨
+        </div>
+
+        <h3>Prompt → Image</h3>
+
+        <p>
+          Create educational images,
+          3D visuals, diagrams and maps.
+        </p>
+
+        <button>
+          CREATE IMAGE →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool video-tool"
+           onclick="openAIVideo()">
+
+        <div class="ai-tool-icon">
+          🎬✨
+        </div>
+
+        <h3>Prompt → Video</h3>
+
+        <p>
+          Create educational videos
+          from your topic or prompt.
+        </p>
+
+        <button>
+          CREATE VIDEO →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool image-video-tool"
+           onclick="openAIImageVideo()">
+
+        <div class="ai-tool-icon">
+          🖼️🎬
+        </div>
+
+        <h3>Image → Video</h3>
+
+        <p>
+          Turn educational images
+          into engaging videos.
+        </p>
+
+        <button>
+          CREATE VIDEO →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool ppt-tool"
+           onclick="openAIPPT()">
+
+        <div class="ai-tool-icon">
+          📊✨
+        </div>
+
+        <h3>Auto PPT</h3>
+
+        <p>
+          Generate complete educational
+          presentations automatically.
+        </p>
+
+        <button>
+          CREATE PPT →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool voice-tool"
+           onclick="openAIVoice()">
+
+        <div class="ai-tool-icon">
+          🎙️✨
+        </div>
+
+        <h3>AI Voice</h3>
+
+        <p>
+          Create attractive educational
+          voice narration.
+        </p>
+
+        <button>
+          CREATE VOICE →
+        </button>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="ai-footer-note">
+
+      🚀 <b>TLM FOR ALL AI CREATOR</b>
+
+      <br><br>
+
+      One place for Images • Videos • PPTs • Voice
+
+    </div>
+
+  `);
+
+  }
  function openAIImage(){
 
   openM(`
