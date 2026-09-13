@@ -1,0 +1,39 @@
+name: Restore Class 6 Social
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Checkout old commit
+        uses: actions/checkout@v4
+        with:
+          ref: ff4a620031493492abc413d17cbb5b9dc4c59472
+          path: old
+          fetch-depth: 1
+
+      - name: Restore social resources
+        run: |
+          rm -rf resources/class-6/social
+          mkdir -p resources/class-6
+          cp -R old/resources/class-6/social resources/class-6/social
+          rm -rf old
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resources/class-6/social
+          git commit -m "Restore Class 6 Social resources" || echo "No changes to commit"
+          git push origin main
