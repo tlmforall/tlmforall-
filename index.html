@@ -797,129 +797,674 @@ clock();
 function classes(){openM('<h2>📚 Classes Zone</h2><p>Select State first.</p><div class="steps"><div class="step" onclick="classList2()"><b>🇮🇳 Telangana SCERT</b><small>Open State →</small></div></div>')}
 function classList2(){let a='';for(let i=1;i<=10;i++)a+=`<div class="step" onclick="subjects(${i})"><b>Class ${i}</b><small>Open →</small></div>`;openM('<button class="back" onclick="classes()">← State</button><h2>Telangana SCERT</h2><p>Select Class</p><div class="steps">'+a+'</div>')}
 function subjects(c){let a=['Telugu','Hindi','English','Mathematics','Science','Social Studies'].map(s=>`<div class="step" onclick="chapters(${c},'${s}')"><b>${s}</b><small>Open →</small></div>`).join('');openM(`<button class="back" onclick="classList2()">← Classes</button><h2>Class ${c}</h2><p>Select Subject</p><div class="steps">${a}</div>`)}
-function chapters(c,s){let a='';for(let i=1;i<=8;i++)a+=`<div class="step" onclick="chapter(${c},'${s}',${i})"><b>Chapter ${i}</b><small>Open →</small></div>`;openM(`<button class="back" onclick="subjects(${c})">← Subjects</button><h2>Class ${c} • ${s}</h2><p>Select Chapter</p><div class="steps">${a}</div>`)}
-function chapter(c,s,n){
+
+      /* =========================================================
+   TLM FOR ALL — CLASSES ZONE
+   Class 6 Social Studies: 21 Chapters + Maps Part-A/B
+   ========================================================= */
+
+async function getTlmGithubFiles(path){
+  const api =
+    `https://api.github.com/repos/tlmforall/tlmforall-/contents/${path}?ref=main`;
+
+  const response = await fetch(api);
+
+  if(!response.ok){
+    throw new Error("GitHub files could not be loaded");
+  }
+
+  return await response.json();
+}
+
+function tlmSiteUrl(path){
+  return (
+    'https://tlmforall.github.io/tlmforall-/' +
+    path.split('/').map(encodeURIComponent).join('/')
+  );
+}
+
+async function openTlmPdf(folder){
+  try{
+
+    const files = await getTlmGithubFiles(folder);
+
+    const pdf = files.find(function(file){
+      return file.type === 'file' &&
+             file.name.toLowerCase().endsWith('.pdf');
+    });
+
+    if(!pdf){
+      alert('PDF not found in this folder.');
+      return;
+    }
+
+    window.open(tlmSiteUrl(pdf.path), '_blank');
+
+  }catch(error){
+
+    alert(
+      'PDF open nahi ho pa raha hai.\n\n' +
+      'Please try again.'
+    );
+
+  }
+}
+
+
+/* =========================
+   CHAPTER LIST
+   ========================= */
+
+function chapters(c,s){
+
+  /* CLASS 6 SOCIAL SPECIAL */
+  if(c === 6 && s === 'Social Studies'){
+
+    let a = '';
+
+    /* MAPS PART-A */
+    a += `
+      <div class="step"
+           onclick="openTlmPdf('resources/class-6/social/maps - part -A')">
+        <b>🗺️ Maps Part-A</b>
+        <small>Open PDF →</small>
+      </div>
+    `;
+
+    /* MAPS PART-B */
+    a += `
+      <div class="step"
+           onclick="openTlmPdf('resources/class-6/social/Maps-part-B')">
+        <b>🗺️ Maps Part-B</b>
+        <small>Open PDF →</small>
+      </div>
+    `;
+
+    /* 21 CHAPTERS */
+    for(let i = 1; i <= 21; i++){
+
+      let chapterNumber = String(i).padStart(2,'0');
+
+      a += `
+        <div class="step"
+             onclick="chapter(6,'Social Studies',${i})">
+
+          <b>Chapter ${i}</b>
+
+          <small>
+            Class 6 Social Studies • Chapter ${chapterNumber}
+            <br>
+            Open →
+          </small>
+
+        </div>
+      `;
+    }
+
+    openM(`
+      <button class="back"
+              onclick="subjects(${c})">
+        ← Subjects
+      </button>
+
+      <h2>Class 6 • Social Studies</h2>
+
+      <p>
+        Select Maps Part or Chapter
+      </p>
+
+      <div class="steps">
+        ${a}
+      </div>
+    `);
+
+    return;
+  }
+
+
+  /* =========================
+     OTHER CLASSES / SUBJECTS
+     OLD BEHAVIOUR
+     ========================= */
+
+  let a = '';
+
+  for(let i = 1; i <= 8; i++){
+
+    a += `
+      <div class="step"
+           onclick="chapter(${c},'${s}',${i})">
+
+        <b>Chapter ${i}</b>
+
+        <small>
+          Open →
+        </small>
+
+      </div>
+    `;
+  }
+
+  openM(`
+    <button class="back"
+            onclick="subjects(${c})">
+      ← Subjects
+    </button>
+
+    <h2>Class ${c} • ${s}</h2>
+
+    <p>
+      Select Chapter
+    </p>
+
+    <div class="steps">
+      ${a}
+    </div>
+  `);
+}
+
+
+/* =========================
+   OPEN CHAPTER
+   ========================= */
+
+async function chapter(c,s,n){
+
+  /* CLASS 6 SOCIAL SPECIAL */
+  if(c === 6 && s === 'Social Studies'){
+
+    const chapterNumber =
+      String(n).padStart(2,'0');
+
+    const folder =
+      `resources/class-6/social/chapter-${chapterNumber}`;
+
+
+    /* Loading screen */
+    openM(`
+      <button class="back"
+              onclick="chapters(${c},'${s}')">
+        ← Chapters
+      </button>
+
+      <h2>
+        Class ${c} • ${s} • Chapter ${n}
+      </h2>
+
+      <p>
+        Loading chapter resources...
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <b>⏳ Please wait</b>
+          <small>
+            Finding the correct PDF...
+          </small>
+        </div>
+
+      </div>
+    `);
+
+
+    try{
+
+      const files =
+        await getTlmGithubFiles(folder);
+
+
+      /* Find chapter PDF */
+      const pdf =
+        files.find(function(file){
+
+          return file.type === 'file' &&
+                 file.name.toLowerCase().endsWith('.pdf');
+
+        });
+
+
+      /* Find PPT if available directly in chapter folder */
+      const ppt =
+        files.find(function(file){
+
+          return file.type === 'file' &&
+                 (
+                   file.name.toLowerCase().endsWith('.pptx') ||
+                   file.name.toLowerCase().endsWith('.ppt')
+                 );
+
+        });
+
+
+      let items = '';
+
+
+      /* COMPLETE CHAPTER PDF */
+      if(pdf){
+
+        const pdfUrl =
+          tlmSiteUrl(pdf.path);
+
+        items += `
+          <div class="step"
+               onclick="window.open('${pdfUrl}','_blank')">
+
+            <b>📕 Complete Chapter PDF</b>
+
+            <small>
+              ${pdf.name}
+              <br>
+              Open PDF →
+            </small>
+
+          </div>
+        `;
+
+      }else{
+
+        items += `
+          <div class="step">
+
+            <b>📕 Complete Chapter PDF</b>
+
+            <small>
+              PDF not found
+            </small>
+
+          </div>
+        `;
+
+      }
+
+
+      /* CHAPTER PPT */
+      if(ppt){
+
+        const pptUrl =
+          tlmSiteUrl(ppt.path);
+
+        items += `
+          <div class="step"
+               onclick="window.open('${pptUrl}','_blank')">
+
+            <b>📊 Complete Chapter PPT</b>
+
+            <small>
+              ${ppt.name}
+              <br>
+              Open →
+            </small>
+
+          </div>
+        `;
+
+      }else{
+
+        items += `
+          <div class="step"
+               onclick="window.location.href='pages/chapter1-resources.html'">
+
+            <b>📊 Chapter PPTs</b>
+
+            <small>
+              Open →
+            </small>
+
+          </div>
+        `;
+
+      }
+
+
+      /* OTHER RESOURCE SECTIONS */
+
+      items += `
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-period1.html'">
+
+          <b>🎞️ Period-wise PPTs</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/teacher-plan.html'">
+
+          <b>👨‍🏫 Teaching Notes</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/student-notes.html'">
+
+          <b>📘 Student Notes</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>🎥 Videos</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>🧩 Activities</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>🛠️ TLM Materials</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>📝 Worksheets</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>❓ Practice Questions</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/assessment.html'">
+
+          <b>📋 FA / SA</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/cce-rubric.html'">
+
+          <b>📊 CCE Rubric</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/cce-project.html'">
+
+          <b>🏆 Project Work</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>🏠 Homework</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>🧠 Mind Map</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/chapter1-resources.html'">
+
+          <b>🃏 Flash Cards</b>
+
+          <small>Open →</small>
+
+        </div>
+
+
+        <div class="step"
+             onclick="window.location.href='pages/question-bank.html'">
+
+          <b>🎯 Quiz</b>
+
+          <small>Open →</small>
+
+        </div>
+
+      `;
+
+
+      openM(`
+
+        <button class="back"
+                onclick="chapters(${c},'${s}')">
+
+          ← Chapters
+
+        </button>
+
+
+        <h2>
+          Class ${c} • ${s} • Chapter ${n}
+        </h2>
+
+
+        <p>
+          Select learning resource
+        </p>
+
+
+        <div class="steps">
+          ${items}
+        </div>
+
+      `);
+
+
+    }catch(error){
+
+      openM(`
+
+        <button class="back"
+                onclick="chapters(${c},'${s}')">
+
+          ← Chapters
+
+        </button>
+
+
+        <h2>
+          Class ${c} • ${s} • Chapter ${n}
+        </h2>
+
+
+        <div class="steps">
+
+          <div class="step">
+
+            <b>⚠️ Resources could not be loaded</b>
+
+            <small>
+              Please check your internet connection
+              and try again.
+            </small>
+
+          </div>
+
+        </div>
+
+      `);
+
+    }
+
+    return;
+  }
+
+
+  /* =========================
+     OTHER CLASSES
+     OLD CHAPTER-1 BEHAVIOUR
+     ========================= */
 
   let items = [
 
     {
       name: "Overview",
       action: "page",
-      url: `pages/chapter1-reading-making-maps.html`
+      url: "pages/chapter1-reading-making-maps.html"
     },
 
     {
       name: "Learning Outcomes",
       action: "page",
-      url: `pages/chapter1-reading-making-maps.html`
+      url: "pages/chapter1-reading-making-maps.html"
     },
 
     {
       name: "Teaching Plan",
       action: "page",
-      url: `pages/chapter1-reading-making-maps.html`
+      url: "pages/chapter1-reading-making-maps.html"
     },
 
     {
       name: "Complete Chapter PDF",
       action: "pdf",
-      url: `resources/class-6/social/chapter-01/chapter-01-reading-and-making-maps.pdf`
+      url: "resources/class-6/social/chapter-01/chapter-01-reading-and-making-maps.pdf"
     },
 
     {
       name: "Chapter PPTs",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "Period-wise PPTs",
       action: "page",
-      url: `pages/chapter1-period1.html`
+      url: "pages/chapter1-period1.html"
     },
 
     {
       name: "Teaching Notes",
       action: "page",
-      url: `pages/teacher-plan.html`
+      url: "pages/teacher-plan.html"
     },
 
     {
       name: "Student Notes",
       action: "page",
-      url: `pages/student-notes.html`
+      url: "pages/student-notes.html"
     },
 
     {
       name: "Videos",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "Activities",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "TLM Materials",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "Worksheets",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "Practice Questions",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "FA / SA",
       action: "page",
-      url: `pages/assessment.html`
+      url: "pages/assessment.html"
     },
 
     {
       name: "CCE Rubric",
       action: "page",
-      url: `pages/cce-rubric.html`
+      url: "pages/cce-rubric.html"
     },
 
     {
       name: "Project Work",
       action: "page",
-      url: `pages/cce-project.html`
+      url: "pages/cce-project.html"
     },
 
     {
       name: "Homework",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "Mind Map",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "Flash Cards",
       action: "page",
-      url: `pages/chapter1-resources.html`
+      url: "pages/chapter1-resources.html"
     },
 
     {
       name: "Quiz",
       action: "page",
-      url: `pages/question-bank.html`
+      url: "pages/question-bank.html"
     }
 
   ];
@@ -930,17 +1475,27 @@ function chapter(c,s,n){
     let clickAction;
 
     if(item.action === "pdf"){
+
       clickAction =
         `window.open('${item.url}','_blank')`;
+
     }else{
+
       clickAction =
         `window.location.href='${item.url}'`;
+
     }
 
     return `
-      <div class="step" onclick="${clickAction}">
+      <div class="step"
+           onclick="${clickAction}">
+
         <b>${item.name}</b>
-        <small>Open →</small>
+
+        <small>
+          Open →
+        </small>
+
       </div>
     `;
 
@@ -948,19 +1503,33 @@ function chapter(c,s,n){
 
 
   openM(`
-    <button class="back" onclick="chapters(${c},'${s}')">
+
+    <button class="back"
+            onclick="chapters(${c},'${s}')">
+
       ← Chapters
+
     </button>
 
-    <h2>Class ${c} • ${s} • Chapter ${n}</h2>
 
-    <p>Select learning resource</p>
+    <h2>
+      Class ${c} • ${s} • Chapter ${n}
+    </h2>
+
+
+    <p>
+      Select learning resource
+    </p>
+
 
     <div class="steps">
       ${a}
     </div>
+
   `);
-  }
+    }
+      
+
   /* =========================================================
    TLM FOR ALL — AI CREATOR CENTER
    ========================================================= */
