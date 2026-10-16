@@ -1230,158 +1230,103 @@ async function chapter(c,s,n){
       }
 
 
-      /* OTHER RESOURCE SECTIONS */
+ /* OTHER RESOURCE SECTIONS */
+
+items += `
+
+  <div class="step"
+       onclick="openTlmPeriodPpts(${Number(chapterNumber)})">
+    <b>🎞️ Period-wise PPTs</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/teacher-plan.html'">
+    <b>👨‍🏫 Teaching Notes</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/student-notes.html'">
+    <b>📘 Student Notes</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🎥 Videos</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🧩 Activities</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🛠️ TLM Materials</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>📝 Worksheets</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>❓ Practice Questions</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/assessment.html'">
+    <b>📋 FA / SA</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/cce-rubric.html'">
+    <b>📊 CCE Rubric</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/cce-project.html'">
+    <b>🏆 Project Work</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🏠 Homework</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🧠 Mind Map</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🃏 Flash Cards</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/question-bank.html'">
+    <b>🎯 Quiz</b>
+    <small>Open →</small>
+  </div>
+
+`;
 
-      items += `
 
-            <div class="step"
-      <div class="step"
-     onclick="openTlmPeriodPpts('${chapterNumber}')">
-
-  <b>🎞️ Period-wise PPTs</b>
-
-  <small>Open →</small>
-
-</div>
-onclick="window.location.href='pages/teacher-plan.html'">
-
-          <b>👨‍🏫 Teaching Notes</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/student-notes.html'">
-
-          <b>📘 Student Notes</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>🎥 Videos</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>🧩 Activities</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>🛠️ TLM Materials</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>📝 Worksheets</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>❓ Practice Questions</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/assessment.html'">
-
-          <b>📋 FA / SA</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/cce-rubric.html'">
-
-          <b>📊 CCE Rubric</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/cce-project.html'">
-
-          <b>🏆 Project Work</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>🏠 Homework</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>🧠 Mind Map</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-resources.html'">
-
-          <b>🃏 Flash Cards</b>
-
-          <small>Open →</small>
-
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/question-bank.html'">
-
-          <b>🎯 Quiz</b>
-
-          <small>Open →</small>
-
-        </div>
-
-      `;
 
 
       openM(`
