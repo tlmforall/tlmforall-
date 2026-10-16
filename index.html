@@ -849,7 +849,101 @@ async function openTlmPdf(folder){
 
   }
 }
+async function openTlmPeriodPpts(chapterNumber) {
 
+  const chapterFolder =
+    `resources/class-6/social/chapter-${chapterNumber}`;
+
+  openM(`
+    <h2>Class 6 Social Studies</h2>
+    <h3>Chapter ${Number(chapterNumber)} — Period-wise PPTs</h3>
+    <p>Loading PPTs...</p>
+  `);
+
+  try {
+
+    const folders = await getTlmGithubFiles(chapterFolder);
+
+    const periods = folders.filter(function(file) {
+      return file.type === 'dir' &&
+             /^period-\d+$/i.test(file.name);
+    });
+
+    let items = '';
+
+    for (const period of periods) {
+
+      const periodFiles =
+        await getTlmGithubFiles(period.path);
+
+      const ppts = periodFiles.filter(function(file) {
+        return file.type === 'file' &&
+          /\.(pptx|ppt)$/i.test(file.name);
+      });
+
+      if (ppts.length > 0) {
+
+        ppts.forEach(function(ppt) {
+
+          const url = tlmSiteUrl(ppt.path);
+
+          items += `
+            <div class="step"
+                 onclick="window.open('${url}','_blank')">
+
+              <b>📊 ${period.name.toUpperCase()}</b>
+
+              <small>${ppt.name}<br>Open PPT →</small>
+
+            </div>
+          `;
+
+        });
+
+      } else {
+
+        items += `
+          <div class="step">
+            <b>📊 ${period.name.toUpperCase()}</b>
+            <small>PPT not found in this period.</small>
+          </div>
+        `;
+
+      }
+    }
+
+    if (!periods.length) {
+      items = `
+        <div class="step">
+          <b>No period folders found</b>
+          <small>Please check the chapter folder in GitHub.</small>
+        </div>
+      `;
+    }
+
+    openM(`
+      <button class="back"
+              onclick="chapter(6,'Social Studies',${Number(chapterNumber)})">
+        ← Back to Chapter
+      </button>
+
+      <h2>Class 6 Social Studies</h2>
+      <h3>Chapter ${Number(chapterNumber)} — Period-wise PPTs</h3>
+
+      <div class="steps">
+        ${items}
+      </div>
+    `);
+
+  } catch (error) {
+
+    openM(`
+      <h2>Unable to load PPTs</h2>
+      <p>Please check the GitHub chapter and period folders.</p>
+    `);
+
+  }
+}
 
 /* =========================
    CHAPTER LIST
@@ -1121,18 +1215,16 @@ async function chapter(c,s,n){
 
       items += `
 
-        <div class="step"
-             onclick="window.location.href='pages/chapter1-period1.html'">
+            <div class="step"
+      <div class="step"
+     onclick="openTlmPeriodPpts('${chapterNumber}')">
 
-          <b>🎞️ Period-wise PPTs</b>
+  <b>🎞️ Period-wise PPTs</b>
 
-          <small>Open →</small>
+  <small>Open →</small>
 
-        </div>
-
-
-        <div class="step"
-             onclick="window.location.href='pages/teacher-plan.html'">
+</div>
+onclick="window.location.href='pages/teacher-plan.html'">
 
           <b>👨‍🏫 Teaching Notes</b>
 
