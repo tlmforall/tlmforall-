@@ -851,84 +851,96 @@ async function openTlmPdf(folder){
 }
 async function openTlmPeriodPpts(chapterNumber) {
 
+  const chapterNo = Number(chapterNumber);
+
+  if (!Number.isInteger(chapterNo) || chapterNo < 1 || chapterNo > 21) {
+    openM(`<h2>Invalid chapter number</h2>`);
+    return;
+  }
+
   const chapterFolder =
-  `resources/class-6/social/chapter-${String(chapterNumber).padStart(2, '0')}`;
+    `resources/class-6/social/chapter-${String(chapterNo).padStart(2, '0')}`;
 
   openM(`
     <h2>Class 6 Social Studies</h2>
-    <h3>Chapter ${Number(chapterNumber)} — Period-wise PPTs</h3>
-    <p>Loading PPTs...</p>
+    <h3>Chapter ${chapterNo} — Period-wise PPTs</h3>
+    <p>Loading latest PPT files...</p>
   `);
 
   try {
 
-    const folders = await getTlmGithubFiles(chapterFolder);
+    async function getFreshFiles(path) {
 
-    const periods = folders.filter(function(file) {
-      return file.type === 'dir' &&
-             /^period-\d+$/i.test(file.name);
-    });
+      const api =
+        `https://api.github.com/repos/tlmforall/tlmforall-/contents/${path}?ref=main&_=${Date.now()}`;
+
+      const response = await fetch(api, {
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error(`GitHub returned ${response.status}`);
+      }
+
+      return await response.json();
+    }
+
+    const folders = await getFreshFiles(chapterFolder);
+
+    const periods = folders
+      .filter(file =>
+        file.type === 'dir' &&
+        /^period-\d+$/i.test(file.name)
+      )
+      .sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { numeric: true })
+      );
 
     let items = '';
 
     for (const period of periods) {
 
-      const periodFiles =
-        await getTlmGithubFiles(period.path);
+      const periodFiles = await getFreshFiles(period.path);
 
-      const ppts = periodFiles.filter(function(file) {
-        return file.type === 'file' &&
-          /\.(pptx|ppt)$/i.test(file.name);
-      });
+      const ppts = periodFiles.filter(file =>
+        file.type === 'file' &&
+        /\.(pptx|ppt)$/i.test(file.name)
+      );
 
-      if (ppts.length > 0) {
+      for (const ppt of ppts) {
 
-        ppts.forEach(function(ppt) {
-
-          const url = tlmSiteUrl(ppt.path);
-
-          items += `
-            <div class="step"
-                 onclick="window.open('${url}','_blank')">
-
-              <b>📊 ${period.name.toUpperCase()}</b>
-
-              <small>${ppt.name}<br>Open PPT →</small>
-
-            </div>
-          `;
-
-        });
-
-      } else {
+        const url = tlmSiteUrl(ppt.path);
 
         items += `
-          <div class="step">
+          <div class="step"
+               onclick="window.open('${url}', '_blank')">
             <b>📊 ${period.name.toUpperCase()}</b>
-            <small>PPT not found in this period.</small>
+            <small>${ppt.name}<br>Open PPT →</small>
           </div>
         `;
-
       }
     }
 
-    if (!periods.length) {
+    if (!items) {
       items = `
         <div class="step">
-          <b>No period folders found</b>
-          <small>Please check the chapter folder in GitHub.</small>
+          <b>No PPT files found</b>
+          <small>
+            No PPT files were found in Chapter ${chapterNo}'s period folders.
+            Please verify the files in GitHub.
+          </small>
         </div>
       `;
     }
 
     openM(`
       <button class="back"
-              onclick="chapter(6,'Social Studies',${Number(chapterNumber)})">
+        onclick="chapter(6,'Social Studies',${chapterNo})">
         ← Back to Chapter
       </button>
 
       <h2>Class 6 Social Studies</h2>
-      <h3>Chapter ${Number(chapterNumber)} — Period-wise PPTs</h3>
+      <h3>Chapter ${chapterNo} — Period-wise PPTs</h3>
 
       <div class="steps">
         ${items}
@@ -937,13 +949,20 @@ async function openTlmPeriodPpts(chapterNumber) {
 
   } catch (error) {
 
-    openM(`
-      <h2>Unable to load PPTs</h2>
-      <p>Please check the GitHub chapter and period folders.</p>
-    `);
+    console.error('PPT loading error:', error);
 
+    openM(`
+      <button class="back"
+        onclick="chapter(6,'Social Studies',${chapterNo})">
+        ← Back to Chapter
+      </button>
+
+      <h2>Unable to load PPTs</h2>
+      <p>GitHub నుంచి PPT ఫైళ్లను తీసుకోలేకపోయాం. కొద్దిసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.</p>
+    `);
   }
 }
+        
 
 /* =========================
    CHAPTER LIST
