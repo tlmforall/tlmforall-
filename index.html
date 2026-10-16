@@ -852,7 +852,7 @@ async function openTlmPdf(folder){
 async function openTlmPeriodPpts(chapterNumber) {
 
   const chapterFolder =
-    `resources/class-6/social/chapter-${chapterNumber}`;
+  `resources/class-6/social/chapter-${String(chapterNumber).padStart(2, '0')}`;
 
   openM(`
     <h2>Class 6 Social Studies</h2>
