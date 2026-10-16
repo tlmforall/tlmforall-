@@ -861,6 +861,10 @@ async function openTlmPeriodPpts(chapterNumber) {
   const chapterFolder =
     `resources/class-6/social/chapter-${String(chapterNo).padStart(2, '0')}`;
 
+  // Chapter 10, Period 1 Google Drive PPT
+  const drivePptUrl =
+    'https://docs.google.com/presentation/d/1WA4RSzsW-5atkKg01r6iYNSyRBTOxtYK/edit?usp=sharing';
+
   openM(`
     <h2>Class 6 Social Studies</h2>
     <h3>Chapter ${chapterNo} — Period-wise PPTs</h3>
@@ -898,7 +902,29 @@ async function openTlmPeriodPpts(chapterNumber) {
 
     let items = '';
 
+    // Add the Google Drive PPT card for Chapter 10, Period 1
+    if (chapterNo === 10) {
+
+      items += `
+        <div class="step"
+             onclick="window.open('${drivePptUrl}', '_blank', 'noopener')"
+             role="button"
+             tabindex="0">
+          <b>📊 PERIOD 1</b>
+          <small>
+            Class6 Social Chapter 10<br>
+            Open Google Drive PPT →
+          </small>
+        </div>
+      `;
+    }
+
     for (const period of periods) {
+
+      // Avoid duplicate Period 1 card for Chapter 10
+      if (chapterNo === 10 && /^period-01$/i.test(period.name)) {
+        continue;
+      }
 
       const periodFiles = await getFreshFiles(period.path);
 
@@ -913,7 +939,9 @@ async function openTlmPeriodPpts(chapterNumber) {
 
         items += `
           <div class="step"
-               onclick="window.open('${url}', '_blank')">
+               onclick="window.open('${url}', '_blank', 'noopener')"
+               role="button"
+               tabindex="0">
             <b>📊 ${period.name.toUpperCase()}</b>
             <small>${ppt.name}<br>Open PPT →</small>
           </div>
@@ -958,7 +986,10 @@ async function openTlmPeriodPpts(chapterNumber) {
       </button>
 
       <h2>Unable to load PPTs</h2>
-      <p>GitHub నుంచి PPT ఫైళ్లను తీసుకోలేకపోయాం. కొద్దిసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.</p>
+      <p>
+        GitHub నుంచి PPT ఫైళ్లను తీసుకోలేకపోయాం.
+        కొద్దిసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.
+      </p>
     `);
   }
 }
