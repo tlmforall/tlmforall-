@@ -1191,41 +1191,43 @@ async function chapter(c,s,n){
       }
 
 
-      /* CHAPTER PPT */
-      if(ppt){
+/* COMPLETE CHAPTER PPT */
 
-        const pptUrl =
-          tlmSiteUrl(ppt.path);
+if (ppt) {
 
-        items += `
-          <div class="step"
-               onclick="window.open('${pptUrl}','_blank')">
+  const pptUrl = tlmSiteUrl(ppt.path);
 
-            <b>📊 Complete Chapter PPT</b>
+  items += `
+    <div class="step"
+         onclick="window.open('${pptUrl}', '_blank')">
 
-            <small>
-              ${ppt.name}
-              <br>
-              Open →
-            </small>
+      <b>📊 Complete Chapter PPT</b>
 
-          </div>
-        `;
+      <small>
+        ${ppt.name}
+        <br>
+        Open PPT →
+      </small>
 
-      }else{
+    </div>
+  `;
 
-        items += `
-          <div class="step"
-     onclick="openTlmPeriodPpts(${Number(chapterNumber)})">
+} else {
 
-  <b>📊 Chapter PPTs</b>
+  items += `
+    <div class="step"
+         style="cursor:default;">
 
-  <small>Open →</small>
+      <b>📊 Complete Chapter PPT</b>
 
-</div>
-        `;
+      <small>
+        🚧 PPT Coming Soon
+      </small>
 
-      }
+    </div>
+  `;
+
+}
 
 
  /* OTHER RESOURCE SECTIONS */
