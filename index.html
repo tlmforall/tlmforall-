@@ -854,42 +854,36 @@ async function openTlmPeriodPpts(chapterNumber) {
   const chapterNo = Number(chapterNumber);
 
   if (!Number.isInteger(chapterNo) || chapterNo < 1 || chapterNo > 21) {
-    openM(`<h2>Invalid chapter number</h2>`);
+    openM('<h2>Invalid chapter number</h2>');
     return;
   }
 
   const chapterFolder =
     `resources/class-6/social/chapter-${String(chapterNo).padStart(2, '0')}`;
 
-  // Chapter 10, Period 1 Google Drive PPT
   const drivePptUrl =
     'https://docs.google.com/presentation/d/1WA4RSzsW-5atkKg01r6iYNSyRBTOxtYK/edit?usp=sharing';
 
   openM(`
     <h2>Class 6 Social Studies</h2>
     <h3>Chapter ${chapterNo} — Period-wise PPTs</h3>
-    <p>Loading latest PPT files...</p>
+    <p>Loading periods...</p>
   `);
 
   try {
 
-    async function getFreshFiles(path) {
+    const api =
+      `https://api.github.com/repos/tlmforall/tlmforall-/contents/${chapterFolder}?ref=main&_=${Date.now()}`;
 
-      const api =
-        `https://api.github.com/repos/tlmforall/tlmforall-/contents/${path}?ref=main&_=${Date.now()}`;
+    const response = await fetch(api, {
+      cache: 'no-store'
+    });
 
-      const response = await fetch(api, {
-        cache: 'no-store'
-      });
-
-      if (!response.ok) {
-        throw new Error(`GitHub returned ${response.status}`);
-      }
-
-      return await response.json();
+    if (!response.ok) {
+      throw new Error(`GitHub returned ${response.status}`);
     }
 
-    const folders = await getFreshFiles(chapterFolder);
+    const folders = await response.json();
 
     const periods = folders
       .filter(file =>
@@ -902,60 +896,88 @@ async function openTlmPeriodPpts(chapterNumber) {
 
     let items = '';
 
-    // Add the Google Drive PPT card for Chapter 10, Period 1
-    if (chapterNo === 10) {
-
-      items += `
-        <div class="step"
-             onclick="window.open('${drivePptUrl}', '_blank', 'noopener')"
-             role="button"
-             tabindex="0">
-          <b>📊 PERIOD 1</b>
-          <small>
-            Class6 Social Chapter 10<br>
-            Open Google Drive PPT →
-          </small>
-        </div>
-      `;
-    }
-
+    // Show every period folder, even when it has no PPT file.
     for (const period of periods) {
 
-      // Avoid duplicate Period 1 card for Chapter 10
-      if (chapterNo === 10 && /^period-01$/i.test(period.name)) {
-        continue;
-      }
-
-      const periodFiles = await getFreshFiles(period.path);
-
-      const ppts = periodFiles.filter(file =>
-        file.type === 'file' &&
-        /\.(pptx|ppt)$/i.test(file.name)
+      const periodNumber = Number(
+        period.name.match(/\d+/)[0]
       );
 
-      for (const ppt of ppts) {
-
-        const url = tlmSiteUrl(ppt.path);
+      // Chapter 10, Period 1: open Google Drive presentation.
+      if (chapterNo === 10 && periodNumber === 1) {
 
         items += `
           <div class="step"
-               onclick="window.open('${url}', '_blank', 'noopener')"
+               onclick="window.open('${drivePptUrl}', '_blank', 'noopener')"
                role="button"
                tabindex="0">
-            <b>📊 ${period.name.toUpperCase()}</b>
-            <small>${ppt.name}<br>Open PPT →</small>
+            <b>📊 PERIOD 1</b>
+            <small>Chapter 10 Presentation<br>Open Google Drive PPT →</small>
+          </div>
+        `;
+
+        continue;
+      }
+
+      // For other periods, find a PPT file if available.
+      let ppts = [];
+
+      try {
+
+        const periodResponse = await fetch(
+          `https://api.github.com/repos/tlmforall/tlmforall-/contents/${period.path}?ref=main&_=${Date.now()}`,
+          { cache: 'no-store' }
+        );
+
+        if (periodResponse.ok) {
+          const periodFiles = await periodResponse.json();
+
+          ppts = periodFiles.filter(file =>
+            file.type === 'file' &&
+            /\.(pptx|ppt)$/i.test(file.name)
+          );
+        }
+
+      } catch (periodError) {
+        console.warn('Could not load period files:', period.name);
+      }
+
+      if (ppts.length > 0) {
+
+        for (const ppt of ppts) {
+
+          const url = tlmSiteUrl(ppt.path);
+
+          items += `
+            <div class="step"
+                 onclick="window.open('${url}', '_blank', 'noopener')"
+                 role="button"
+                 tabindex="0">
+              <b>📊 PERIOD ${periodNumber}</b>
+              <small>${ppt.name}<br>Open PPT →</small>
+            </div>
+          `;
+        }
+
+      } else {
+
+        items += `
+          <div class="step">
+            <b>📊 PERIOD ${periodNumber}</b>
+            <small>PPT will be added soon.</small>
           </div>
         `;
       }
     }
 
     if (!items) {
+
       items = `
         <div class="step">
-          <b>No PPT files found</b>
+          <b>No period folders found</b>
           <small>
-            No PPT files were found in Chapter ${chapterNo}'s period folders.
-            Please verify the files in GitHub.
+            GitHubలో ఈ Chapterకు period-01, period-02 వంటి ఫోల్డర్లు
+            ఉన్నాయో లేదో తనిఖీ చేయండి.
           </small>
         </div>
       `;
@@ -985,14 +1007,15 @@ async function openTlmPeriodPpts(chapterNumber) {
         ← Back to Chapter
       </button>
 
-      <h2>Unable to load PPTs</h2>
+      <h2>Unable to load periods</h2>
       <p>
-        GitHub నుంచి PPT ఫైళ్లను తీసుకోలేకపోయాం.
+        GitHub నుంచి ఫోల్డర్ల వివరాలు పొందలేకపోయాం.
         కొద్దిసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.
       </p>
     `);
   }
 }
+
         
 
 /* =========================
