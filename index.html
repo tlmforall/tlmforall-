@@ -1470,13 +1470,12 @@ onclick="window.location.href='pages/teacher-plan.html'">
     },
 
     {
-      name: "Period-wise PPTs",
-      action: "page",
-      url: "pages/chapter1-period1.html"
-    },
-
-    {
-      name: "Teaching Notes",
+  name: "Period-wise PPTs",
+  action: "function",
+  run: () => openTlmPeriodPpts("01")
+} ,
+  {   
+  name: "Teaching Notes",
       action: "page",
       url: "pages/teacher-plan.html"
     },
