@@ -1275,63 +1275,43 @@ async function chapter(c,s,n){
       }
 
 
+
 /* COMPLETE CHAPTER PPT */
 
-// Chapter 10: Open combined PDF of all 3 periods.
+// Chapter 10: Open the separately prepared AI-generated PDF from Google Drive.
 if (Number(n) === 10) {
-
   items += `
     <div class="step"
-         onclick="window.open('https://drive.google.com/file/d/1hFlWcHB3WMjMweecceJybutPm3AGm81g/preview', '_blank', 'noopener')"
+         onclick="window.open('https://drive.google.com/file/d/1hFlWcHB3WMjMweecceJybutPm3AGm81g/preview', '_blank')"
          role="button"
          tabindex="0"
          style="cursor:pointer;">
-
       <b>📊 Complete Chapter PPT</b>
-
       <small>
-        All 3 Periods – Complete PDF<br>
-        Open Complete PPT →
+        AI Generated PDF – All 3 Periods<br>
+        Open Complete Chapter PPT →
       </small>
-
     </div>
   `;
-
-// Other chapters: Keep their existing PPT behavior.
 } else if (ppt) {
-
   const pptUrl = tlmSiteUrl(ppt.path);
-
   items += `
     <div class="step"
-         onclick="window.open('${pptUrl}', '_blank')">
-
+         onclick="window.open('${pptUrl}', '_blank')"
+         role="button"
+         tabindex="0"
+         style="cursor:pointer;">
       <b>📊 Complete Chapter PPT</b>
-
-      <small>
-        ${ppt.name}
-        <br>
-        Open PPT →
-      </small>
-
+      <small>Open Complete Chapter PPT →</small>
     </div>
   `;
-
 } else {
-
   items += `
-    <div class="step"
-         style="cursor:default;">
-
+    <div class="step">
       <b>📊 Complete Chapter PPT</b>
-
-      <small>
-        🚧 PPT Coming Soon
-      </small>
-
+      <small>PPT Coming Soon</small>
     </div>
   `;
-
 }
 
 
