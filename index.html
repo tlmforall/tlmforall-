@@ -1277,7 +1277,28 @@ async function chapter(c,s,n){
 
 /* COMPLETE CHAPTER PPT */
 
-if (ppt) {
+// Chapter 10: Open combined PDF of all 3 periods.
+if (Number(chapterNo) === 10) {
+
+  items += `
+    <div class="step"
+         onclick="window.open('https://drive.google.com/file/d/1hFlWcHB3WMjMweecceJybutPm3AGm81g/preview', '_blank', 'noopener')"
+         role="button"
+         tabindex="0"
+         style="cursor:pointer;">
+
+      <b>📊 Complete Chapter PPT</b>
+
+      <small>
+        All 3 Periods – Complete PDF<br>
+        Open Complete PPT →
+      </small>
+
+    </div>
+  `;
+
+// Other chapters: Keep their existing PPT behavior.
+} else if (ppt) {
 
   const pptUrl = tlmSiteUrl(ppt.path);
 
