@@ -933,6 +933,21 @@ async function openTlmPeriodPpts(chapterNumber) {
 
         continue;
       }
+      // Chapter 10, Period 3: open Google Slides presentation.
+      if (chapterNo === 10 && periodNumber === 3) {
+
+        items += `
+          <div class="step"
+               onclick="window.open('https://docs.google.com/presentation/d/1WRhn1tLYqukD5u-Z9QV3XfrbKy4RPUa9/present', '_blank', 'noopener')"
+               role="button"
+               tabindex="0">
+            <b>📊 PERIOD 3</b>
+            <small>Chapter 10 Presentation<br>Open Google Slides PPT →</small>
+          </div>
+        `;
+
+        continue;
+      }
       
       // For other periods, find a PPT file if available.
       let ppts = [];
