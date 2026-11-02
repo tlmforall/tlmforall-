@@ -408,405 +408,232 @@ flex-direction:column!important;
   }
 
   }
-  /* ===== TLM FOR ALL NEW HOME MODEL ===== */
-.home-layout{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:1fr 1.5fr 0.8fr;
-  grid-template-areas:
-    "earth brand info"
-    "greet banner banner";
-  gap:18px;
-  align-items:center;
-  padding:25px 3vw;
-  min-height:520px;
-}
-.home-earth{grid-area:earth;min-width:0}
-.home-earth .globe{
-  position:relative;
-  left:auto;
-  bottom:auto;
-  transform:none;
-  width:100%;
-  max-width:360px;
-}
-.home-earth .globe img{width:100%;height:auto;display:block}
-.home-brand{grid-area:brand;text-align:center}
+  
+  /* ===== TLM FOR ALL - UNIFIED HOMEPAGE LAYOUT ===== */
 
-.home-brand .brand h1{
-  font-size:clamp(38px,10vw,58px);
-  font-weight:1000;
-  letter-spacing:1px;
-  line-height:1.1;
-  text-align:center;
-  color:#ffffff;
-  background:linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #b9f5ff 35%,
-    #168bff 65%,
-    #063baf 100%
-  );
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 3px 0 #063baf)
-         drop-shadow(0 7px 0 #031d65)
-         drop-shadow(0 0 12px #00d9ff)
-         drop-shadow(0 0 24px #087bff);
-}
-
-.home-brand .brand h1 span{
-  background:linear-gradient(180deg,#fff800,#ff9d00,#ff3d00);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.home-brand .brand h1 em{
-  font-style:normal;
-  background:linear-gradient(180deg,#caff85,#36ed55,#009b38);
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.home-brand .brand p{
-  color:#fff36b;
-  font-weight:1000;
-  letter-spacing:2px;
-  text-shadow:0 0 8px #00cfff,0 2px 5px #001b66;
-}
-
-.home-info{grid-area:info;min-width:0}
-.home-info .info{display:grid;grid-template-columns:1fr;gap:7px;width:100%}
-.home-info .box{padding:8px 10px;min-height:0;border-radius:12px}
-.home-info .box b{font-size:12px}
-.home-info .box span{display:block;font-size:13px;overflow-wrap:anywhere}
-.home-greet{grid-area:greet;min-width:0}
-.home-greet .greet{margin:0;padding:15px;max-width:100%}
-.home-banner{grid-area:banner;min-width:0}
-.home-banner .hero-old-image{width:100%;margin:0}
-
-@media(max-width:650px){
-  .home-layout{
-    grid-template-columns:1fr 1fr;
-    grid-template-areas:
-      "earth brand"
-      "info info"
-      "greet greet"
-      "banner banner";
-    gap:12px;
-    padding:18px 12px;
-    min-height:0;
-  }
-  .home-earth .globe{width:100%;max-width:320px;margin:auto}
-
-.home-brand{
-  min-width:0;
-  overflow:visible;
-}
-
-.home-brand .brand{
-  width:100%;
-  min-width:0;
-}
-
-.home-brand .brand h1{
-  font-size:clamp(25px,7vw,38px);
-  font-weight:1000;
-  letter-spacing:-1px;
-  line-height:1.2;
-  white-space:nowrap;
-  text-align:center;
-}
-
-  .home-brand .brand p{font-size:10px;letter-spacing:1px}
-  .home-info .info{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
-  .home-info .box{padding:7px 4px}
-  .home-info .box b{font-size:10px}
-  .home-info .box span{font-size:11px}
-  .home-greet .greet{margin-top:5px}
-  .home-banner .hero-old-image img{max-height:240px;object-fit:cover}
-}
-
-/* ===== FINAL HOME PAGE LAYOUT: MATCH THE PROVIDED REFERENCE ===== */
-.hero{
-  min-height:0!important;
-  padding:18px 16px 22px!important;
-  overflow:hidden;
+.hero {
+  position: relative;
+  width: 100%;
+  padding: 25px 3%;
   background:
-    radial-gradient(ellipse at 50% 35%,rgba(0,184,255,.42),transparent 42%),
-    radial-gradient(ellipse at 8% 70%,rgba(0,82,255,.42),transparent 38%),
-    radial-gradient(ellipse at 92% 25%,rgba(0,140,255,.30),transparent 35%),
-    linear-gradient(135deg,#00052d 0%,#0034b7 48%,#000a43 100%)!important;
-}
-.home-layout{
-  position:relative;z-index:2;
-  display:grid!important;
-  grid-template-columns:minmax(0,1.02fr) minmax(0,1.05fr) minmax(0,1.08fr)!important;
-  grid-template-areas:"earth brand info" "greet brand banner"!important;
-  grid-template-rows:minmax(250px,auto) minmax(150px,auto)!important;
-  gap:14px!important;
-  align-items:center!important;
-  min-height:490px!important;
-  max-width:1600px;margin:0 auto;padding:0!important;
-}
-.home-earth{grid-area:earth;min-width:0;display:flex;align-items:center;justify-content:center}
-.home-earth .globe{position:relative!important;left:auto!important;bottom:auto!important;transform:none!important;width:100%!important;max-width:500px!important;filter:drop-shadow(0 0 18px #00cfff) drop-shadow(0 0 36px #075cff)!important}
-.home-earth .globe img{display:block;width:100%;height:auto}
-.home-brand{grid-area:brand;min-width:0;display:flex;align-items:center;justify-content:center;text-align:center}
-.home-brand .brand{width:100%;}
-.home-brand .brand h1{font-size:clamp(42px,5.2vw,88px)!important;font-weight:1000!important;letter-spacing:-2px!important;line-height:1.05!important;white-space:normal!important;color:#fff;background:linear-gradient(180deg,#fff 0%,#9eeaff 42%,#087dff 72%,#062a9b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 4px 0 #08216d) drop-shadow(0 0 14px #00d9ff)}
-.home-brand .brand h1 span{background:linear-gradient(180deg,#fff900,#ff9b00,#ff3c00)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
-.home-brand .brand h1 em{font-style:normal;background:linear-gradient(180deg,#e5ff9b,#42ef43,#008d32)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
-.home-brand .brand p{margin:14px 0 0!important;padding:10px 8px;border:2px solid #ffd54a;border-radius:30px;background:linear-gradient(90deg,#06175e,#0758c9,#06175e);color:#fff36b!important;font-size:clamp(11px,1.25vw,18px)!important;font-weight:1000!important;letter-spacing:1px!important;text-shadow:0 2px 5px #001044;box-shadow:0 0 15px #00cfff}
-.home-info{grid-area:info;min-width:0;align-self:start;padding-top:4px}
-.home-info .info{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;width:100%!important}
-.home-info .box{min-width:0;padding:10px 5px!important;min-height:70px!important;border:2px solid #00bfff!important;border-radius:17px!important;background:linear-gradient(145deg,#07154e,#0649a7)!important;box-shadow:0 0 12px #00bfff, inset 0 0 10px #153d9c!important}
-.home-info .box b{font-size:clamp(10px,1.15vw,17px)!important;color:#8cff39!important}
-.home-info .box span{display:block;font-size:clamp(10px,1.05vw,16px)!important;font-weight:900;color:#fff;overflow-wrap:anywhere}
-.home-greet{grid-area:greet;min-width:0;align-self:center}
-.home-greet .greet{max-width:none!important;margin:0!important;padding:16px 18px!important;border:2px solid #00cfff!important;border-radius:24px!important;background:linear-gradient(110deg,#07154f,#0645a8)!important;box-shadow:0 0 18px #00bfff!important}
-.home-greet .greet h2{margin:0 0 6px;color:#fff;font-size:clamp(20px,2.1vw,32px)}
-.home-greet .greet p{margin:0;color:#fff;font-size:clamp(13px,1.25vw,18px);line-height:1.4}
-.home-banner{grid-area:banner;min-width:0;align-self:stretch;display:flex;align-items:center}
-.home-banner .hero-old-image{width:100%!important;margin:0!important;border:2px solid #21c8ff!important;border-radius:22px!important;box-shadow:0 0 18px #00aaff,0 12px 30px #0009!important}
-.home-banner .hero-old-image img{display:block;width:100%;height:auto;max-height:350px;object-fit:cover}
-/* Daily cards retain all existing content, with the reference's colourful card style. */
-.daily{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;padding:20px 12px!important;background:linear-gradient(180deg,#00104a,#0038a8)!important}
-.daily article{min-width:0;min-height:190px!important;padding:16px 12px!important;border:2px solid #fff8!important;border-radius:24px!important;box-shadow:0 7px 0 #001b69,0 0 16px #00bfff!important;text-align:center}
-.daily article:nth-child(1){background:linear-gradient(145deg,#fff36a,#ff9b00)!important}
-.daily article:nth-child(2){background:linear-gradient(145deg,#e7f7ff,#62baff)!important}
-.daily article:nth-child(3){background:linear-gradient(145deg,#d7ff9c,#56df43)!important}
-.daily article:nth-child(4){background:linear-gradient(145deg,#ffd8ed,#ff83bd)!important}
-.daily article:nth-child(5){background:linear-gradient(145deg,#f3dcff,#ba7cff)!important}
-.daily article:nth-child(n+6){background:linear-gradient(145deg,#dffaff,#75baff)!important}
-.daily article h3{font-size:clamp(14px,1.4vw,20px);font-weight:900;color:#07154e}
-.daily article p{font-size:clamp(12px,1.15vw,16px);font-weight:700;color:#07154e;line-height:1.4}
-.card:hover{transform:translateY(-7px) scale(1.01)}
-@media(max-width:900px){
- .home-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"earth brand" "info info" "greet greet" "banner banner"!important;grid-template-rows:auto!important;gap:14px!important;min-height:0!important}
- .home-earth .globe{max-width:360px!important}
- .home-brand .brand h1{font-size:clamp(28px,6vw,54px)!important;letter-spacing:-1px!important}
- .home-info{padding:0}
- .home-info .box{min-height:60px!important}
- .home-banner .hero-old-image img{max-height:320px;object-fit:contain}
- .daily{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-}
-@media(max-width:480px){
- .hero{padding:12px 10px 16px!important}
- .home-layout{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"brand" "earth" "info" "greet" "banner"!important;gap:12px!important}
- .home-brand{grid-area:brand}
- .home-brand .brand h1{font-size:clamp(34px,10vw,48px)!important}
- .home-brand .brand p{font-size:10px!important;letter-spacing:.5px!important}
- .home-earth{grid-area:earth}
- .home-earth .globe{max-width:330px!important}
- .home-info .info{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}
- .home-info .box{padding:8px 3px!important}
- .home-info .box b{font-size:10px!important}
- .home-info .box span{font-size:10px!important}
- .home-greet .greet{padding:13px!important}
- .home-banner .hero-old-image img{max-height:none;object-fit:contain}
- .daily{grid-template-columns:1fr!important;padding:14px 10px!important}
- .daily article{min-height:145px!important}
-}
-/* ===== TLM PREMIUM PNG LOGO ===== */
-
-.home-brand .brand{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+    radial-gradient(ellipse at 50% 35%, #123b85 0%, transparent 65%),
+    linear-gradient(135deg, #020b2b, #061b50, #020824);
+  overflow: visible;
 }
 
-.home-brand .brand img{
-  display:block;
-  width:100%;
-  max-width:680px;
-  height:auto;
-  object-fit:contain;
-  filter:
-    drop-shadow(0 0 10px #00dfff)
-    drop-shadow(0 0 22px #006aff);
-}
-
-@media(max-width:650px){
-  .home-brand .brand img{
-    width:100%;
-    max-width:100%;
-    height:auto;
-  }
-}
-/* ===== TLM MODEL HOMEPAGE FINAL LAYOUT ===== */
-
-.home-layout{
-  display:grid!important;
-  grid-template-columns:1.05fr 1.15fr 1.25fr!important;
+.home-layout {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.15fr) !important;
   grid-template-areas:
     "earth brand info"
-    "greet brand banner"!important;
-  grid-template-rows:minmax(260px,1fr) minmax(180px,.8fr)!important;
-  gap:16px!important;
-  align-items:center!important;
-  min-height:600px!important;
-  padding:18px 2vw!important;
-  overflow:visible!important;
+    "greet brand banner" !important;
+  grid-template-rows: minmax(250px, auto) minmax(170px, auto);
+  gap: 20px;
+  align-items: center;
 }
 
-/* LEFT: EDUCATION GLOBE */
-.home-earth{
-  grid-area:earth;
-  min-width:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:visible!important;
+.home-earth {
+  grid-area: earth;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.home-earth .globe{
-  width:100%!important;
-  max-width:460px!important;
-  transform:none!important;
-  filter:
-    drop-shadow(0 0 18px #00dfff)
-    drop-shadow(0 0 35px #075cff)!important;
+.home-earth .globe {
+  width: 100%;
+  max-width: 430px;
+  text-align: center;
 }
 
-.home-earth .globe img{
-  width:100%;
-  height:auto;
-  display:block;
+.home-earth .globe img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px #168cff);
 }
 
-/* CENTER: TLM PNG LOGO */
-.home-brand{
-  grid-area:brand;
-  min-width:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+.home-brand {
+  grid-area: brand;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
 }
 
-.home-brand .brand{
-  width:100%;
+.home-brand .brand {
+  width: 100%;
+  text-align: center;
 }
 
-.home-brand .brand img{
-  display:block;
-  width:100%;
-  max-width:620px;
-  height:auto;
-  margin:auto;
-  object-fit:contain;
-  filter:
-    drop-shadow(0 0 12px #00dfff)
-    drop-shadow(0 0 24px #006aff);
+.home-brand .brand img {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px rgba(40, 145, 255, 0.7));
 }
 
-/* RIGHT TOP: DATE / DAY / TIME */
-.home-info{
-  grid-area:info;
-  min-width:0;
-  align-self:start;
-  padding-top:0!important;
+.home-info {
+  grid-area: info;
+  width: 100%;
 }
 
-.home-info .info{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+.home-info .info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
 }
 
-/* LEFT BOTTOM: GREETING */
-.home-greet{
-  grid-area:greet;
-  min-width:0;
-  align-self:center;
+.home-info .box {
+  min-width: 0;
+  padding: 14px 8px;
+  text-align: center;
+  color: #fff;
+  background: rgba(12, 45, 105, 0.85);
+  border: 1px solid #42a5ff;
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(35, 145, 255, 0.35);
 }
 
-/* RIGHT BOTTOM: ORIGINAL BANNER */
-.home-banner{
-  grid-area:banner;
-  min-width:0;
-  align-self:center;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.home-info .box b,
+.home-info .box span {
+  display: block;
 }
 
-.home-banner .hero-old-image{
-  width:100%!important;
-  margin:0!important;
-  transform:translateY(-8px)!important;
+.home-info .box span {
+  margin-top: 7px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
 }
 
-.home-banner .hero-old-image img{
-  display:block;
-  width:100%!important;
-  height:auto!important;
-  max-height:400px!important;
-  object-fit:contain!important;
+.home-greet {
+  grid-area: greet;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* TABLET */
-@media(max-width:900px){
-  .home-layout{
-    grid-template-columns:1fr 1fr!important;
+.home-greet .greet {
+  width: 100%;
+  padding: 15px;
+  color: #fff;
+}
+
+.home-greet .greet h2 {
+  color: #ffd54f;
+  font-size: clamp(22px, 2.5vw, 32px);
+  margin: 0 0 10px;
+  text-shadow: 0 0 12px rgba(255, 190, 40, 0.5);
+}
+
+.home-greet .greet p {
+  color: #e5f2ff;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.home-banner {
+  grid-area: banner;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-banner .hero-old-image {
+  width: 100%;
+  text-align: center;
+}
+
+.home-banner .hero-old-image img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(30, 145, 255, 0.35);
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 900px) {
+  .home-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
     grid-template-areas:
       "earth brand"
       "info info"
       "greet greet"
-      "banner banner"!important;
-    grid-template-rows:auto!important;
-    min-height:0!important;
-    gap:14px!important;
+      "banner banner" !important;
+    grid-template-rows: auto;
+    gap: 18px;
   }
 
-  .home-earth .globe{
-    max-width:380px!important;
+  .home-earth .globe {
+    max-width: 340px;
   }
 
-  .home-brand .brand img{
-    max-width:440px;
+  .home-brand .brand img {
+    max-width: 480px;
   }
 
-  .home-banner .hero-old-image img{
-    max-height:360px!important;
+  .home-banner .hero-old-image img {
+    max-height: 340px;
   }
 }
 
-/* SMALL MOBILE */
-@media(max-width:480px){
-  .home-layout{
-    grid-template-columns:1fr!important;
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 18px 12px;
+  }
+
+  .home-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
     grid-template-areas:
       "brand"
       "earth"
       "info"
       "greet"
-      "banner"!important;
-    gap:12px!important;
-    min-height:0!important;
+      "banner" !important;
+    gap: 14px;
   }
 
-  .home-brand .brand img{
-    max-width:360px;
-    width:100%;
+  .home-brand .brand img {
+    max-width: 360px;
   }
 
-  .home-earth .globe{
-    max-width:340px!important;
+  .home-earth .globe {
+    max-width: 300px;
   }
 
-  .home-banner .hero-old-image{
-    transform:none!important;
+  .home-info .info {
+    gap: 7px;
   }
 
-  .home-banner .hero-old-image img{
-    max-height:none!important;
+  .home-info .box {
+    padding: 11px 5px;
+    font-size: 13px;
+  }
+
+  .home-greet .greet {
+    padding: 10px;
+  }
+
+  .home-banner .hero-old-image img {
+    max-height: 260px;
   }
   }
+
 </style>
 </head>
 <body>
@@ -918,11 +745,7 @@ flex-direction:column!important;
 <p id="dailySpecial">Loading...</p>
 </article>
 </section>
-<section class="search"><h2>🔎 What do you want to learn today?</h2><div class="searchbar"><input id="q" placeholder="Search Chapter, PPT, Worksheet, Question, AI Tool, Activity..."><button onclick="search()">AI SEARCH</button></div></section>
-<main class="dashboard"><div class="cards">
-<div class="card classes" onclick="classes()"><div class="pic">🌍📚</div><h2>CLASSES<br><span>ZONE</span></h2><p>State → Class → Subject → Chapters → PPTs & more</p></div>
-<div class="card teacher" onclick="zone('Teacher Zone',['Lesson Planner','Teaching Notes','TLM Materials','Worksheets','Assessment','Question Papers'])"><div class="pic photo-pic"><img src="assets/teacher-card.png" alt="Teacher in classroom"></div><h2>TEACHER<br><span>ZONE</span></h2><p>Lesson Plans, TLM, Worksheets and resources</p></div>
-<div class="card student" onclick="zone('Student Zone',['Student Notes','Practice','Worksheets','Projects','Quiz','Homework'])"><div class="pic photo-pic"><img src="assets/student-card.png" alt="Students learning"></div><h2>STUDENT<br><span>ZONE</span></h2><p>Notes, Practice, Projects and activities</p></div>
+<section class="search"><h2>🔎 What do you want to learn today?</h2><div class="searchbar"><input id="q" placeholder="Searcrd student" onclick="zone('Student Zone',['Student Notes','Practice','Worksheets','Projects','Quiz','Homework'])"><div class="pic photo-pic"><img src="assets/student-card.png" alt="Students learning"></div><h2>STUDENT<br><span>ZONE</span></h2><p>Notes, Practice, Projects and activities</p></div>
 <div class="card ai" onclick="openAICenter()">
   <div class="pic">🤖✨</div>
   <h2>AI<br><span>CREATOR</span></h2>
