@@ -639,6 +639,174 @@ flex-direction:column!important;
     height:auto;
   }
 }
+/* ===== TLM MODEL HOMEPAGE FINAL LAYOUT ===== */
+
+.home-layout{
+  display:grid!important;
+  grid-template-columns:1.05fr 1.15fr 1.25fr!important;
+  grid-template-areas:
+    "earth brand info"
+    "greet brand banner"!important;
+  grid-template-rows:minmax(260px,1fr) minmax(180px,.8fr)!important;
+  gap:16px!important;
+  align-items:center!important;
+  min-height:600px!important;
+  padding:18px 2vw!important;
+  overflow:visible!important;
+}
+
+/* LEFT: EDUCATION GLOBE */
+.home-earth{
+  grid-area:earth;
+  min-width:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:visible!important;
+}
+
+.home-earth .globe{
+  width:100%!important;
+  max-width:460px!important;
+  transform:none!important;
+  filter:
+    drop-shadow(0 0 18px #00dfff)
+    drop-shadow(0 0 35px #075cff)!important;
+}
+
+.home-earth .globe img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* CENTER: TLM PNG LOGO */
+.home-brand{
+  grid-area:brand;
+  min-width:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.home-brand .brand{
+  width:100%;
+}
+
+.home-brand .brand img{
+  display:block;
+  width:100%;
+  max-width:620px;
+  height:auto;
+  margin:auto;
+  object-fit:contain;
+  filter:
+    drop-shadow(0 0 12px #00dfff)
+    drop-shadow(0 0 24px #006aff);
+}
+
+/* RIGHT TOP: DATE / DAY / TIME */
+.home-info{
+  grid-area:info;
+  min-width:0;
+  align-self:start;
+  padding-top:0!important;
+}
+
+.home-info .info{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+
+/* LEFT BOTTOM: GREETING */
+.home-greet{
+  grid-area:greet;
+  min-width:0;
+  align-self:center;
+}
+
+/* RIGHT BOTTOM: ORIGINAL BANNER */
+.home-banner{
+  grid-area:banner;
+  min-width:0;
+  align-self:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.home-banner .hero-old-image{
+  width:100%!important;
+  margin:0!important;
+  transform:translateY(-8px)!important;
+}
+
+.home-banner .hero-old-image img{
+  display:block;
+  width:100%!important;
+  height:auto!important;
+  max-height:400px!important;
+  object-fit:contain!important;
+}
+
+/* TABLET */
+@media(max-width:900px){
+  .home-layout{
+    grid-template-columns:1fr 1fr!important;
+    grid-template-areas:
+      "earth brand"
+      "info info"
+      "greet greet"
+      "banner banner"!important;
+    grid-template-rows:auto!important;
+    min-height:0!important;
+    gap:14px!important;
+  }
+
+  .home-earth .globe{
+    max-width:380px!important;
+  }
+
+  .home-brand .brand img{
+    max-width:440px;
+  }
+
+  .home-banner .hero-old-image img{
+    max-height:360px!important;
+  }
+}
+
+/* SMALL MOBILE */
+@media(max-width:480px){
+  .home-layout{
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "brand"
+      "earth"
+      "info"
+      "greet"
+      "banner"!important;
+    gap:12px!important;
+    min-height:0!important;
+  }
+
+  .home-brand .brand img{
+    max-width:360px;
+    width:100%;
+  }
+
+  .home-earth .globe{
+    max-width:340px!important;
+  }
+
+  .home-banner .hero-old-image{
+    transform:none!important;
+  }
+
+  .home-banner .hero-old-image img{
+    max-height:none!important;
+  }
+  }
 </style>
 </head>
 <body>
