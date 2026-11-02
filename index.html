@@ -408,6 +408,76 @@ flex-direction:column!important;
   }
 
   }
+  /* ===== TLM FOR ALL NEW HOME MODEL ===== */
+.home-layout{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1.5fr 0.8fr;
+  grid-template-areas:
+    "earth brand info"
+    "greet banner banner";
+  gap:18px;
+  align-items:center;
+  padding:25px 3vw;
+  min-height:520px;
+}
+.home-earth{grid-area:earth;min-width:0}
+.home-earth .globe{
+  position:relative;
+  left:auto;
+  bottom:auto;
+  transform:none;
+  width:100%;
+  max-width:360px;
+}
+.home-earth .globe img{width:100%;height:auto;display:block}
+.home-brand{grid-area:brand;text-align:center}
+.home-brand .brand h1{
+  font-size:clamp(38px,5vw,72px);
+  font-weight:1000;
+  letter-spacing:2px;
+  color:#fff;
+  text-shadow:0 3px 0 #174b9b,0 6px 0 #09265f,0 10px 20px #00cfff;
+}
+.home-brand .brand h1 span{color:#20dfff}
+.home-brand .brand h1 em{color:#49ed77;font-style:normal}
+.home-brand .brand p{color:#ffe500;font-weight:900;letter-spacing:2px}
+.home-info{grid-area:info;min-width:0}
+.home-info .info{display:grid;grid-template-columns:1fr;gap:7px;width:100%}
+.home-info .box{padding:8px 10px;min-height:0;border-radius:12px}
+.home-info .box b{font-size:12px}
+.home-info .box span{display:block;font-size:13px;overflow-wrap:anywhere}
+.home-greet{grid-area:greet;min-width:0}
+.home-greet .greet{margin:0;padding:15px;max-width:100%}
+.home-banner{grid-area:banner;min-width:0}
+.home-banner .hero-old-image{width:100%;margin:0}
+
+@media(max-width:650px){
+  .home-layout{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "earth brand"
+      "info info"
+      "greet greet"
+      "banner banner";
+    gap:12px;
+    padding:18px 12px;
+    min-height:0;
+  }
+  .home-earth .globe{width:100%;max-width:220px;margin:auto}
+  .home-brand .brand h1{font-size:clamp(27px,8vw,40px);letter-spacing:0}
+  .home-brand .brand p{font-size:10px;letter-spacing:1px}
+  .home-info .info{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .home-info .box{padding:7px 4px}
+  .home-info .box b{font-size:10px}
+  .home-info .box span{font-size:11px}
+  .home-greet .greet{margin-top:5px}
+  .home-banner .hero-old-image img{max-height:240px;object-fit:cover}
+}
+</style>
+</head>
+<body>
 <header class="hero">
   <div class="stars"></div>
 
