@@ -1,0 +1,2877 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TLM FOR ALL</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f8ff;color:#08143d;}
+  .hero{
+  min-height:430px;
+  padding:25px 4vw;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(22,139,232,.55) 0%, transparent 28%),
+    radial-gradient(circle at 15% 75%, rgba(40,80,255,.28) 0%, transparent 30%),
+    radial-gradient(circle at 85% 60%, rgba(0,190,255,.18) 0%, transparent 28%),
+    linear-gradient(135deg,#01031a 0%,#07165c 45%,#031b42 100%);
+}
+
+.stars{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.75;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) 1px,transparent 1.8px),
+    radial-gradient(circle,rgba(120,220,255,.8) 1px,transparent 2px),
+    radial-gradient(circle,rgba(255,255,255,.65) .7px,transparent 1.5px);
+  background-size:
+    90px 90px,
+    140px 140px,
+    55px 55px;
+  background-position:
+    0 0,
+    35px 60px,
+    20px 25px;
+}
+  .top{position:relative;z-index:2;display:flex;justify-content:space-between;gap:20px}.brand h1{font-size:clamp(35px,5vw,65px);margin:0;font-weight:900}.brand h1 span{color:#12bce5}.brand h1 em{color:#35d44b;font-style:normal}.brand p{color:#ffe500;font-weight:bold}.greet{margin-top:20px;padding:18px;border:1px solid #315cff;border-radius:18px;background:#061044cc;max-width:480px}.info{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.box{padding:14px;border:1px solid #315cff;border-radius:15px;background:#061044cc;text-align:center}.box b{display:block;color:#ffe500}
+  .globe{
+  position:absolute;
+  z-index:1;
+  left:29%;
+  bottom:-25px;
+  transform:translateX(-50%);
+  width:min(620px,48vw);
+  pointer-events:none;
+  filter:
+    drop-shadow(0 0 18px rgba(0,190,255,.75))
+    drop-shadow(0 0 45px rgba(30,90,255,.45));
+}
+
+.globe img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+  .daily{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:22px 4vw;background:#f4f8ff}.daily article{padding:18px;border-radius:18px;min-height:125px;box-shadow:0 7px 18px #0002}.daily article:nth-child(1){background:#fff0c9}.daily article:nth-child(2){background:#dcecff}.daily article:nth-child(3){background:#dcf5dd}.daily article:nth-child(4){background:#ffe0ee}.daily article:nth-child(5){background:#e7ddff}.daily h3{margin:6px 0}.search{padding:20px 4vw;background:#f4f8ff}.search h2{font-size:clamp(25px,4vw,40px)}.searchbar{display:flex;background:#fff;border:3px solid #6937ff;border-radius:24px;padding:7px}.searchbar input{flex:1;border:0;outline:0;padding:12px;font-size:17px}.searchbar button{border:0;border-radius:16px;background:#6937ff;color:white;padding:10px 18px;font-weight:bold}.dashboard{padding:25px 4vw 40px}.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:13px}.card{min-height:330px;border-radius:22px;padding:18px;color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;cursor:pointer;transition:.25s;box-shadow:0 12px 28px #0003}.card:hover{transform:trslateY(-7px) scale(1.01)}.card .pic{position:absolute;top:15px;left:0;right:0;font-size:85px}.card h2{font-size:24px;margin:0 0 8px}.card h2 span{color:#ffe500}.card p{font-size:13px;line-height:1.4}.classes{background:linear-gradient(160deg,#0717a7,#00125d)}.teacher{background:linear-gradient(160deg,#08741d,#073d16)}.student{background:linear-gradient(160deg,#7b12d6,#310064)}.ai{background:linear-gradient(160deg,#ff7a00,#e84300)}.today{background:linear-gradient(160deg,#0c93a8,#005169)}.competitive{background:linear-gradient(160deg,#e30072,#8d0047)}.footer{padding:16px 4vw;background:#030c2d;color:#fff;display:flex;gap:18px;justify-content:space-between;flex-wrap:wrap}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:10;padding:18px;overflow:auto}.modal.show{display:block}.panel{max-width:1000px;margin:25px auto;background:#f7faff;border-radius:22px;padding:25px;min-height:70vh}.close{float:right;border:0;border-radius:50%;width:42px;height:42px;font-size:24px}.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.step{background:white;border:2px solid #d2dcff;border-radius:16px;padding:18px;cursor:pointer}.step:hover{border-color:#6937ff}.back{background:#132a8c;color:#fff;border:0;border-radius:10px;padding:10px 15px;margin-bottom:15px}
+@media(max-width:650px){
+  .top{display:block}
+  .info{margin-top:18px}
+  .hero{min-height:560px}
+
+  .globe{
+    left:29%;
+    width:105vw;
+    height:auto;
+    bottom:-20px;
+  }
+
+  .daily{grid-template-columns:1fr}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .card{min-height:285px}
+  .card .pic{font-size:65px;}
+}
+/* Desktop and IFP: Compact Date, Day and Time Boxes */
+@media (min-width:1001px){
+
+  .info{
+    grid-template-columns:repeat(3,minmax(110px,145px));
+    gap:8px;
+    width:fit-content;
+  }
+
+  .box{
+    padding:9px 10px;
+    min-height:62px;
+    border-radius:12px;
+  }
+
+  .box b{
+    font-size:13px;
+  }
+
+  .box span{
+    font-size:14px;
+  }
+
+}
+.hero-old-image{width:min(920px,100%);margin:22px auto 0;position:relative;z-index:2;border:2px solid #2d7cff;border-radius:22px;overflow:hidden;box-shadow:0 14px 40px #0008;background:#07164c}
+.hero-old-image img{display:block;width:100%;height:auto;max-height:390px;object-fit:cover}
+.photo-pic{height:145px!important;padding:0!important;overflow:hidden!important;border-radius:18px}
+  /* ===== TLM FOR ALL AI CREATOR ===== */
+
+.ai-header{
+text-align:center!important;
+padding:24px!important;
+border-radius:24px!important;
+background:linear-gradient(135deg,#3510a8,#ff4b00,#d00080)!important;
+color:#fff!important;
+margin-bottom:24px!important;
+box-shadow:0 12px 30px rgba(0,0,0,.25)!important;
+}
+
+.ai-logo{
+font-size:52px!important;
+line-height:1!important;
+}
+
+.ai-header h2{
+font-size:clamp(26px,6vw,42px)!important;
+margin:10px 0!important;
+color:#fff!important;
+}
+
+.ai-header p{
+color:#fff!important;
+font-weight:bold!important;
+}
+
+.ai-language{
+display:flex!important;
+justify-content:center!important;
+align-items:center!important;
+gap:10px!important;
+background:rgba(255,255,255,.18)!important;
+padding:12px 16px!important;
+border-radius:16px!important;
+}
+
+.ai-language label{
+color:#fff!important;
+font-weight:bold!important;
+}
+
+.ai-language select{
+padding:9px 14px!important;
+border:0!important;
+border-radius:10px!important;
+font-size:16px!important;
+font-weight:bold!important;
+}
+
+.ai-tools{
+display:grid!important;
+grid-template-columns:repeat(2,minmax(0,1fr))!important;
+gap:18px!important;
+width:100%!important;
+}
+
+.ai-tool{
+display:block!important;
+padding:25px!important;
+min-height:250px!important;
+border-radius:24px!important;
+color:#fff!important;
+text-align:center!important;
+cursor:pointer!important;
+box-shadow:0 12px 28px rgba(0,0,0,.20)!important;
+transition:transform .25s ease,box-shadow .25s ease!important;
+}
+
+.ai-tool:hover{
+transform:translateY(-7px)!important;
+box-shadow:0 18px 35px rgba(0,0,0,.28)!important;
+}
+
+.ai-tool-icon{
+font-size:55px!important;
+line-height:1.1!important;
+margin-bottom:12px!important;
+}
+
+.ai-tool h3{
+color:#fff!important;
+font-size:25px!important;
+margin:8px 0 12px!important;
+}
+
+.ai-tool p{
+color:#fff!important;
+line-height:1.5!important;
+margin:0 0 18px!important;
+}
+
+.ai-tool button{
+display:inline-block!important;
+border:0!important;
+padding:12px 18px!important;
+border-radius:25px!important;
+background:#fff!important;
+color:#111!important;
+font-weight:900!important;
+cursor:pointer!important;
+}
+
+.image-tool{
+background:linear-gradient(135deg,#6937ff,#b000ff)!important;
+}
+
+.video-tool{
+background:linear-gradient(135deg,#ff3d00,#ff006e)!important;
+}
+
+.image-video-tool{
+background:linear-gradient(135deg,#008cff,#00c9a7)!important;
+}
+
+.ppt-tool{
+background:linear-gradient(135deg,#ff9800,#ff4500)!important;
+}
+
+.voice-tool{
+background:linear-gradient(135deg,#d00080,#6a00ff)!important;
+}
+
+.ai-footer-note{
+margin-top:20px!important;
+padding:20px!important;
+text-align:center!important;
+border-radius:18px!important;
+background:#eef3ff!important;
+border:2px solid #d5ddff!important;
+}
+
+.ai-generate-btn{
+display:inline-block!important;
+border:0!important;
+padding:14px 24px!important;
+border-radius:25px!important;
+background:linear-gradient(135deg,#6937ff,#ff006e)!important;
+color:#fff!important;
+font-weight:900!important;
+cursor:pointer!important;
+}
+
+.ai-processing{
+margin-top:25px!important;
+padding:25px!important;
+text-align:center!important;
+border-radius:18px!important;
+background:#eef3ff!important;
+border:2px dashed #6937ff!important;
+font-weight:bold!important;
+}
+
+@media(max-width:700px){
+
+.ai-tools{
+grid-template-columns:1fr!important;
+gap:16px!important;
+}
+
+.ai-tool{
+min-height:225px!important;
+padding:22px 18px!important;
+}
+
+.ai-tool-icon{
+font-size:48px!important;
+}
+
+.ai-tool h3{
+font-size:23px!important;
+}
+
+.ai-language{
+flex-direction:column!important;
+}
+
+}
+.photo-pic img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:650px){.hero-old-image{margin-top:18px;border-radius:18px}.hero-old-image img{max-height:240px}.photo-pic{height:125px!important}}
+  /* ===== AI IMAGE CREATOR ===== */
+
+.ai-create-header{
+  text-align:center;
+  padding:22px;
+  border-radius:22px;
+  color:#fff;
+  margin-bottom:18px;
+}
+
+.image-create-header{
+  background:linear-gradient(
+    135deg,
+    #6937ff,
+    #b000ff,
+    #ff4b00
+  );
+}
+
+.ai-create-icon{
+  font-size:55px;
+  line-height:1;
+}
+
+.ai-create-header h2{
+  color:#fff!important;
+  margin:10px 0;
+  font-size:30px;
+}
+
+.ai-create-header p{
+  color:#fff!important;
+}
+
+.ai-form-card{
+  background:#fff;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 10px 30px #0002;
+}
+
+.ai-form-card label{
+  display:block;
+  font-weight:800;
+  margin:10px 0 7px;
+}
+
+.ai-big-input{
+  width:100%;
+  min-height:170px;
+  resize:vertical;
+  padding:16px;
+  border:2px solid #6937ff;
+  border-radius:16px;
+  outline:none;
+  font-size:16px;
+  line-height:1.5;
+  font-family:Arial,sans-serif;
+}
+
+.ai-big-input:focus{
+  border-color:#ff006e;
+  box-shadow:0 0 0 3px #ff006e22;
+}
+
+.ai-form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-top:15px;
+}
+
+.ai-form-grid select{
+  width:100%;
+  padding:12px;
+  border:2px solid #d5ddff;
+  border-radius:12px;
+  background:#fff;
+  font-size:15px;
+}
+
+.ai-check-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:18px 0;
+}
+
+.ai-check-options label{
+  padding:10px 13px;
+  border-radius:14px;
+  background:#eef3ff;
+  border:1px solid #d5ddff;
+  font-size:14px;
+}
+
+.ai-check-options input{
+  accent-color:#6937ff;
+}
+
+.ai-main-generate{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:18px;
+  background:linear-gradient(
+    135deg,
+    #6937ff,
+    #ff006e
+  );
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 8px 20px #6937ff44;
+}
+
+@media(max-width:650px){
+
+  .ai-form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .ai-check-options{
+    display:block;
+  }
+
+  .ai-check-options label{
+    margin-bottom:8px;
+  }
+
+  }
+  /* ===== TLM FOR ALL NEW HOME MODEL ===== */
+.home-layout{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1.5fr 0.8fr;
+  grid-template-areas:
+    "earth brand info"
+    "greet banner banner";
+  gap:18px;
+  align-items:center;
+  padding:25px 3vw;
+  min-height:520px;
+}
+.home-earth{grid-area:earth;min-width:0}
+.home-earth .globe{
+  position:relative;
+  left:auto;
+  bottom:auto;
+  transform:none;
+  width:100%;
+  max-width:360px;
+}
+.home-earth .globe img{width:100%;height:auto;display:block}
+.home-brand{grid-area:brand;text-align:center}
+
+.home-brand .brand h1{
+  font-size:clamp(38px,10vw,58px);
+  font-weight:1000;
+  letter-spacing:1px;
+  line-height:1.1;
+  text-align:center;
+  color:#ffffff;
+  background:linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #b9f5ff 35%,
+    #168bff 65%,
+    #063baf 100%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 3px 0 #063baf)
+         drop-shadow(0 7px 0 #031d65)
+         drop-shadow(0 0 12px #00d9ff)
+         drop-shadow(0 0 24px #087bff);
+}
+
+.home-brand .brand h1 span{
+  background:linear-gradient(180deg,#fff800,#ff9d00,#ff3d00);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.home-brand .brand h1 em{
+  font-style:normal;
+  background:linear-gradient(180deg,#caff85,#36ed55,#009b38);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.home-brand .brand p{
+  color:#fff36b;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-shadow:0 0 8px #00cfff,0 2px 5px #001b66;
+}
+
+.home-info{grid-area:info;min-width:0}
+.home-info .info{display:grid;grid-template-columns:1fr;gap:7px;width:100%}
+.home-info .box{padding:8px 10px;min-height:0;border-radius:12px}
+.home-info .box b{font-size:12px}
+.home-info .box span{display:block;font-size:13px;overflow-wrap:anywhere}
+.home-greet{grid-area:greet;min-width:0}
+.home-greet .greet{margin:0;padding:15px;max-width:100%}
+.home-banner{grid-area:banner;min-width:0}
+.home-banner .hero-old-image{width:100%;margin:0}
+
+@media(max-width:650px){
+  .home-layout{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "earth brand"
+      "info info"
+      "greet greet"
+      "banner banner";
+    gap:12px;
+    padding:18px 12px;
+    min-height:0;
+  }
+  .home-earth .globe{width:100%;max-width:320px;margin:auto}
+
+.home-brand{
+  min-width:0;
+  overflow:visible;
+}
+
+.home-brand .brand{
+  width:100%;
+  min-width:0;
+}
+
+.home-brand .brand h1{
+  font-size:clamp(25px,7vw,38px);
+  font-weight:1000;
+  letter-spacing:-1px;
+  line-height:1.2;
+  white-space:nowrap;
+  text-align:center;
+}
+
+  .home-brand .brand p{font-size:10px;letter-spacing:1px}
+  .home-info .info{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .home-info .box{padding:7px 4px}
+  .home-info .box b{font-size:10px}
+  .home-info .box span{font-size:11px}
+  .home-greet .greet{margin-top:5px}
+  .home-banner .hero-old-image img{max-height:240px;object-fit:cover}
+}
+
+/* ===== FINAL HOME PAGE LAYOUT: MATCH THE PROVIDED REFERENCE ===== */
+.hero{
+  min-height:0!important;
+  padding:18px 16px 22px!important;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 35%,rgba(0,184,255,.42),transparent 42%),
+    radial-gradient(ellipse at 8% 70%,rgba(0,82,255,.42),transparent 38%),
+    radial-gradient(ellipse at 92% 25%,rgba(0,140,255,.30),transparent 35%),
+    linear-gradient(135deg,#00052d 0%,#0034b7 48%,#000a43 100%)!important;
+}
+.home-layout{
+  position:relative;z-index:2;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.02fr) minmax(0,1.05fr) minmax(0,1.08fr)!important;
+  grid-template-areas:"earth brand info" "greet brand banner"!important;
+  grid-template-rows:minmax(250px,auto) minmax(150px,auto)!important;
+  gap:14px!important;
+  align-items:center!important;
+  min-height:490px!important;
+  max-width:1600px;margin:0 auto;padding:0!important;
+}
+.home-earth{grid-area:earth;min-width:0;display:flex;align-items:center;justify-content:center}
+.home-earth .globe{position:relative!important;left:auto!important;bottom:auto!important;transform:none!important;width:100%!important;max-width:500px!important;filter:drop-shadow(0 0 18px #00cfff) drop-shadow(0 0 36px #075cff)!important}
+.home-earth .globe img{display:block;width:100%;height:auto}
+.home-brand{grid-area:brand;min-width:0;display:flex;align-items:center;justify-content:center;text-align:center}
+.home-brand .brand{width:100%;}
+.home-brand .brand h1{font-size:clamp(42px,5.2vw,88px)!important;font-weight:1000!important;letter-spacing:-2px!important;line-height:1.05!important;white-space:normal!important;color:#fff;background:linear-gradient(180deg,#fff 0%,#9eeaff 42%,#087dff 72%,#062a9b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 4px 0 #08216d) drop-shadow(0 0 14px #00d9ff)}
+.home-brand .brand h1 span{background:linear-gradient(180deg,#fff900,#ff9b00,#ff3c00)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
+.home-brand .brand h1 em{font-style:normal;background:linear-gradient(180deg,#e5ff9b,#42ef43,#008d32)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important}
+.home-brand .brand p{margin:14px 0 0!important;padding:10px 8px;border:2px solid #ffd54a;border-radius:30px;background:linear-gradient(90deg,#06175e,#0758c9,#06175e);color:#fff36b!important;font-size:clamp(11px,1.25vw,18px)!important;font-weight:1000!important;letter-spacing:1px!important;text-shadow:0 2px 5px #001044;box-shadow:0 0 15px #00cfff}
+.home-info{grid-area:info;min-width:0;align-self:start;padding-top:4px}
+.home-info .info{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;width:100%!important}
+.home-info .box{min-width:0;padding:10px 5px!important;min-height:70px!important;border:2px solid #00bfff!important;border-radius:17px!important;background:linear-gradient(145deg,#07154e,#0649a7)!important;box-shadow:0 0 12px #00bfff, inset 0 0 10px #153d9c!important}
+.home-info .box b{font-size:clamp(10px,1.15vw,17px)!important;color:#8cff39!important}
+.home-info .box span{display:block;font-size:clamp(10px,1.05vw,16px)!important;font-weight:900;color:#fff;overflow-wrap:anywhere}
+.home-greet{grid-area:greet;min-width:0;align-self:center}
+.home-greet .greet{max-width:none!important;margin:0!important;padding:16px 18px!important;border:2px solid #00cfff!important;border-radius:24px!important;background:linear-gradient(110deg,#07154f,#0645a8)!important;box-shadow:0 0 18px #00bfff!important}
+.home-greet .greet h2{margin:0 0 6px;color:#fff;font-size:clamp(20px,2.1vw,32px)}
+.home-greet .greet p{margin:0;color:#fff;font-size:clamp(13px,1.25vw,18px);line-height:1.4}
+.home-banner{grid-area:banner;min-width:0;align-self:stretch;display:flex;align-items:center}
+.home-banner .hero-old-image{width:100%!important;margin:0!important;border:2px solid #21c8ff!important;border-radius:22px!important;box-shadow:0 0 18px #00aaff,0 12px 30px #0009!important}
+.home-banner .hero-old-image img{display:block;width:100%;height:auto;max-height:350px;object-fit:cover}
+/* Daily cards retain all existing content, with the reference's colourful card style. */
+.daily{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;padding:20px 12px!important;background:linear-gradient(180deg,#00104a,#0038a8)!important}
+.daily article{min-width:0;min-height:190px!important;padding:16px 12px!important;border:2px solid #fff8!important;border-radius:24px!important;box-shadow:0 7px 0 #001b69,0 0 16px #00bfff!important;text-align:center}
+.daily article:nth-child(1){background:linear-gradient(145deg,#fff36a,#ff9b00)!important}
+.daily article:nth-child(2){background:linear-gradient(145deg,#e7f7ff,#62baff)!important}
+.daily article:nth-child(3){background:linear-gradient(145deg,#d7ff9c,#56df43)!important}
+.daily article:nth-child(4){background:linear-gradient(145deg,#ffd8ed,#ff83bd)!important}
+.daily article:nth-child(5){background:linear-gradient(145deg,#f3dcff,#ba7cff)!important}
+.daily article:nth-child(n+6){background:linear-gradient(145deg,#dffaff,#75baff)!important}
+.daily article h3{font-size:clamp(14px,1.4vw,20px);font-weight:900;color:#07154e}
+.daily article p{font-size:clamp(12px,1.15vw,16px);font-weight:700;color:#07154e;line-height:1.4}
+.card:hover{transform:translateY(-7px) scale(1.01)}
+@media(max-width:900px){
+ .home-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;grid-template-areas:"earth brand" "info info" "greet greet" "banner banner"!important;grid-template-rows:auto!important;gap:14px!important;min-height:0!important}
+ .home-earth .globe{max-width:360px!important}
+ .home-brand .brand h1{font-size:clamp(28px,6vw,54px)!important;letter-spacing:-1px!important}
+ .home-info{padding:0}
+ .home-info .box{min-height:60px!important}
+ .home-banner .hero-old-image img{max-height:320px;object-fit:contain}
+ .daily{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:480px){
+ .hero{padding:12px 10px 16px!important}
+ .home-layout{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"brand" "earth" "info" "greet" "banner"!important;gap:12px!important}
+ .home-brand{grid-area:brand}
+ .home-brand .brand h1{font-size:clamp(34px,10vw,48px)!important}
+ .home-brand .brand p{font-size:10px!important;letter-spacing:.5px!important}
+ .home-earth{grid-area:earth}
+ .home-earth .globe{max-width:330px!important}
+ .home-info .info{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:5px!important}
+ .home-info .box{padding:8px 3px!important}
+ .home-info .box b{font-size:10px!important}
+ .home-info .box span{font-size:10px!important}
+ .home-greet .greet{padding:13px!important}
+ .home-banner .hero-old-image img{max-height:none;object-fit:contain}
+ .daily{grid-template-columns:1fr!important;padding:14px 10px!important}
+ .daily article{min-height:145px!important}
+}
+
+
+/* =====================================================================
+   HOME PAGE — NEW DESIGN (matches the reference model)
+   Only the hero + daily cards are styled here. Everything else untouched.
+   ===================================================================== */
+.hero{
+  padding:22px 22px 0!important;
+  background:
+    radial-gradient(ellipse 34% 55% at 50% 42%,rgba(255,226,130,.55),rgba(90,200,255,.30) 45%,transparent 75%),
+    radial-gradient(ellipse 40% 60% at 14% 40%,rgba(0,170,255,.40),transparent 70%),
+    radial-gradient(ellipse 38% 50% at 92% 18%,rgba(0,120,255,.35),transparent 70%),
+    linear-gradient(180deg,#0a2fc2 0%,#0a40e0 45%,#052096 100%)!important;
+}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent,#052096)}
+.hero .stars{opacity:.9}
+
+.hero .home-layout{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.12fr)!important;
+  grid-template-areas:"earth brand right" "greet brand right"!important;
+  grid-template-rows:auto auto!important;
+  gap:10px 20px!important;
+  align-items:center!important;
+  min-height:0!important;
+  max-width:1600px;margin:0 auto;padding:0 0 46px!important;
+}
+
+/* --- left: globe + decorations --- */
+.hero .home-earth{grid-area:earth;position:relative;display:flex;justify-content:center;align-items:center;padding:34px 0 0}
+.hero .home-earth .globe{max-width:430px!important;width:84%!important}
+.hero .deco{position:absolute;inset:0;pointer-events:none}
+.hero .deco span{position:absolute;line-height:1;filter:drop-shadow(0 6px 8px rgba(0,0,40,.45))}
+.hero .deco .d-book{left:2%;top:6%;font-size:clamp(34px,4.4vw,70px);transform:rotate(-12deg)}
+.hero .deco .d-cap{left:50%;top:-2%;font-size:clamp(34px,4.2vw,68px);transform:rotate(8deg)}
+.hero .deco .d-pencil{right:8%;top:2%;font-size:clamp(28px,3.4vw,54px);transform:rotate(25deg)}
+.hero .deco .d-laptop{left:-1%;top:36%;font-size:clamp(34px,4.2vw,66px)}
+.hero .deco .d-books{left:3%;bottom:6%;font-size:clamp(32px,4vw,62px)}
+.hero .deco .d-atom{right:2%;bottom:8%;font-size:clamp(30px,3.8vw,58px)}
+
+/* --- left: greeting card --- */
+.hero .home-greet{grid-area:greet;align-self:start}
+.hero .home-greet .greet{
+  display:flex;align-items:stretch;gap:16px;
+  padding:16px 20px!important;
+  border:2px solid #3b8bff!important;border-radius:26px!important;
+  background:linear-gradient(120deg,#07175c,#0a3aa8)!important;
+  box-shadow:0 0 22px rgba(0,150,255,.7),inset 0 0 14px rgba(70,130,255,.35)!important;
+}
+.hero .home-greet .bar{flex:0 0 9px;border-radius:6px;background:linear-gradient(180deg,#fff36a,#ffb800);box-shadow:0 0 10px #ffd400}
+.hero .home-greet .greet h2{margin:0 0 6px!important;font-size:clamp(22px,2.6vw,42px)!important;font-style:italic;font-weight:900;color:#fff!important;line-height:1.1}
+.hero .home-greet .greet p{margin:0!important;font-size:clamp(13px,1.45vw,23px)!important;line-height:1.35!important;font-weight:600;color:#fff!important}
+.hero .home-greet .greet .y{color:#ffe500;font-weight:800}
+
+/* --- center: TLM FOR ALL --- */
+.hero .home-brand{grid-area:brand;position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px 0}
+.hero .home-brand::before{
+  content:"";position:absolute;inset:-25% -22% -15%;z-index:-1;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg at 50% 42%,rgba(255,245,180,.55) 0 3deg,transparent 3deg 11deg);
+  -webkit-mask:radial-gradient(circle at 50% 42%,#000 0,rgba(0,0,0,.6) 30%,transparent 68%);
+          mask:radial-gradient(circle at 50% 42%,#000 0,rgba(0,0,0,.6) 30%,transparent 68%);
+}
+.hero .home-brand .spark{position:absolute;font-style:normal;line-height:1;pointer-events:none;filter:drop-shadow(0 0 6px rgba(255,255,255,.8))}
+.hero .home-brand .s1{left:12%;top:18%;color:#ff6bd6;font-size:clamp(14px,2vw,30px)}
+.hero .home-brand .s2{left:30%;top:2%;color:#7dff6a;font-size:clamp(14px,1.9vw,28px)}
+.hero .home-brand .s3{right:14%;top:6%;color:#ffd84a;font-size:clamp(16px,2.2vw,34px)}
+.hero .home-brand .s4{right:6%;top:30%;color:#ff6bd6;font-size:clamp(14px,1.8vw,26px)}
+.hero .home-brand .s5{left:4%;top:42%;color:#ffd84a;font-size:clamp(14px,1.8vw,26px)}
+.hero .home-brand .s6{right:8%;bottom:30%;color:#7dff6a;font-size:clamp(16px,2vw,30px)}
+
+.hero .home-layout .home-brand .brand{width:100%}
+.hero .home-layout .home-brand .brand h1{
+  margin:0!important;font-size:min(10.6vw,170px)!important;line-height:.95!important;letter-spacing:0!important;
+  font-family:"Arial Black","Arial Rounded MT Bold",Impact,Arial,sans-serif!important;font-weight:900!important;
+  background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;
+  -webkit-text-fill-color:initial!important;filter:none!important;color:#fff;
+}
+.hero .brand h1 .tlm{display:flex;justify-content:center;gap:.02em;background:none!important;-webkit-text-fill-color:initial!important}
+.hero .brand h1 .tlm b{
+  font-weight:900;-webkit-text-stroke:.05em #fff;paint-order:stroke fill;
+  text-shadow:0 .03em 0 var(--d),0 .06em 0 var(--d),0 .09em 0 var(--d),0 .14em .08em rgba(0,0,50,.55);
+}
+.hero .brand h1 .tlm .c1{color:#2a74ff;-webkit-text-fill-color:#2a74ff;--d:#0a2a9a}
+.hero .brand h1 .tlm .c2{color:#ff2d2d;-webkit-text-fill-color:#ff2d2d;--d:#9a0a12}
+.hero .brand h1 .tlm .c3{color:#34e634;-webkit-text-fill-color:#34e634;--d:#0b7a1c}
+
+.hero .brand h1 .ribbon{
+  display:block;position:relative;z-index:0;
+  margin:-.04em 2% 0;padding:.05em .25em .09em;font-size:.4em;line-height:1.05;
+  background:linear-gradient(180deg,#ff5b4d 0%,#e0151f 55%,#a00812 100%)!important;
+  border-radius:.14em;box-shadow:0 .07em .12em rgba(0,0,40,.5),inset 0 .035em 0 rgba(255,255,255,.55);
+  -webkit-text-fill-color:initial!important;
+}
+.hero .brand h1 .ribbon::before,.hero .brand h1 .ribbon::after{
+  content:"";position:absolute;top:.2em;bottom:-.2em;width:.7em;z-index:-1;
+  background:linear-gradient(180deg,#c60f1a,#7d050d);
+}
+.hero .brand h1 .ribbon::before{left:-.5em;clip-path:polygon(0 0,100% 0,100% 100%,0 100%,.22em 50%)}
+.hero .brand h1 .ribbon::after{right:-.5em;clip-path:polygon(0 0,100% 0,calc(100% - .22em) 50%,100% 100%,0 100%)}
+.hero .brand h1 .ribbon b{
+  font-weight:900;letter-spacing:.02em;
+  background:linear-gradient(180deg,#fff 25%,#ffd23a 95%);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;filter:drop-shadow(0 .035em 0 #5a0006) drop-shadow(0 0 .1em rgba(255,200,60,.6));
+}
+.hero .home-layout .home-brand .brand p{
+  display:block;width:fit-content;max-width:100%;margin:16px auto 0!important;padding:.55em 1.2em!important;
+  border:3px solid #ffd54a!important;border-radius:40px!important;
+  background:linear-gradient(180deg,#0a1f78,#06124a)!important;
+  box-shadow:0 0 0 2px #ff9d00,0 0 18px rgba(255,200,60,.7)!important;
+  color:#ffe500!important;font-size:clamp(11px,1.45vw,24px)!important;font-weight:900!important;letter-spacing:0!important;white-space:nowrap;
+  text-shadow:0 2px 4px #00104a!important;
+}
+
+/* --- right: date / day / time + banner --- */
+.hero .home-right{grid-area:right;min-width:0;display:flex;flex-direction:column;gap:16px;align-self:center}
+.hero .home-info{padding:0!important;align-self:auto}
+.hero .home-info .info{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;width:100%!important}
+.hero .home-info .box{
+  display:flex!important;align-items:center;justify-content:center;gap:8px;text-align:left;
+  min-width:0;min-height:0!important;padding:10px 8px!important;
+  border:2px solid #4aa2ff!important;border-radius:22px!important;
+  background:linear-gradient(160deg,#0a1f78,#0a45b8)!important;
+  box-shadow:0 0 16px rgba(0,160,255,.75),inset 0 0 12px rgba(80,140,255,.4)!important;
+}
+.hero .home-info .box .ic{font-style:normal;font-size:clamp(22px,2.6vw,42px);line-height:1;flex:0 0 auto}
+.hero .home-info .box b{display:block;font-size:clamp(12px,1.55vw,26px)!important;font-weight:900;color:#7dff3a!important;line-height:1.1}
+.hero .home-info .box:nth-child(2) b{color:#ffe500!important}
+.hero .home-info .box span{display:block;font-size:clamp(10px,1.2vw,20px)!important;font-weight:800;color:#fff;white-space:nowrap}
+.hero .home-banner{display:block;align-self:auto}
+.hero .home-banner .hero-old-image{
+  width:100%!important;margin:0!important;
+  border:3px solid #bfe6ff!important;border-radius:26px!important;
+  box-shadow:0 0 22px rgba(0,170,255,.85),0 14px 30px rgba(0,0,40,.55)!important;
+}
+.hero .home-banner .hero-old-image img{display:block;width:100%;height:auto;max-height:none;object-fit:cover}
+
+/* --- daily cards (same content, reference style) --- */
+#dailyContent.daily{
+  display:grid!important;grid-template-columns:repeat(10,minmax(0,1fr))!important;gap:48px 14px!important;
+  padding:46px 18px 34px!important;
+  background:
+    radial-gradient(ellipse 70% 90px at 50% 0,rgba(130,225,255,.55),transparent 75%),
+    linear-gradient(180deg,#052096 0%,#0a3cc4 45%,#06228f 100%)!important;
+}
+#dailyContent.daily article.dc{
+  grid-column:span 2;position:relative;display:flex!important;flex-direction:column;align-items:center;justify-content:flex-end;
+  min-width:0;min-height:230px!important;padding:50px 12px 16px!important;text-align:center;cursor:pointer;
+  border:3px solid rgba(255,255,255,.9)!important;border-radius:30px!important;
+  box-shadow:0 6px 0 var(--edge),0 0 22px var(--glow)!important;
+  transition:transform .2s;
+}
+#dailyContent.daily article.dc:nth-child(6){grid-column:2 / span 2}
+#dailyContent.daily article.dc:hover{transform:translateY(-5px)}
+#dailyContent.daily article.dc:focus-visible{outline:4px solid #fff;outline-offset:3px}
+#dailyContent.daily article.dc .dc-ic{position:absolute;top:-34px;left:50%;transform:translateX(-50%);font-size:clamp(46px,4.8vw,78px);line-height:1;filter:drop-shadow(0 6px 6px rgba(0,0,50,.35))}
+#dailyContent.daily article.dc h3{margin:0 0 6px!important;font-size:clamp(15px,1.7vw,28px)!important;font-weight:900;color:#07154e!important;line-height:1.15}
+#dailyContent.daily article.dc .dc-te{font-size:clamp(13px,1.4vw,23px);font-weight:800;color:#0a1a55;line-height:1.35}
+#dailyContent.daily article.dc .dc-en{margin-top:2px;font-size:clamp(12px,1.2vw,19px);font-weight:600;color:#12246a;line-height:1.25}
+#dailyContent.daily article.dc p{display:none!important}   /* full text opens in a popup (arrow / card tap) */
+#dailyContent.daily article.dc .dc-go{
+  display:grid;place-items:center;width:clamp(30px,2.6vw,42px);height:clamp(30px,2.6vw,42px);margin-top:12px;border-radius:50%;
+  background:linear-gradient(180deg,#3c97ff,#0a3fd8);color:#fff;font-size:clamp(14px,1.4vw,22px);font-weight:900;line-height:1;
+  box-shadow:0 0 0 3px #fff,0 4px 8px rgba(0,0,50,.4);
+}
+#dailyContent.daily article.c1{background:linear-gradient(165deg,#fff07a,#ffbb22 55%,#ff8a00)!important;--edge:#b85a00;--glow:rgba(255,200,50,.85)}
+#dailyContent.daily article.c2{background:linear-gradient(165deg,#f4fcff,#aedcff 55%,#6bb8ff)!important;--edge:#2b6fc9;--glow:rgba(130,210,255,.9)}
+#dailyContent.daily article.c3{background:linear-gradient(165deg,#e8ffb8,#8ce46b 55%,#4cc83a)!important;--edge:#2a8a22;--glow:rgba(140,240,90,.85)}
+#dailyContent.daily article.c4{background:linear-gradient(165deg,#ffe6f3,#ffa3cd 55%,#ff6fae)!important;--edge:#c23a7c;--glow:rgba(255,150,200,.85)}
+#dailyContent.daily article.c5{background:linear-gradient(165deg,#f8ecff,#d1a5ff 55%,#a56cf0)!important;--edge:#6e3fc0;--glow:rgba(200,150,255,.85)}
+#dailyContent.daily article.c6{background:linear-gradient(165deg,#dcfff3,#72e5c3 55%,#2bbf9a)!important;--edge:#17846a;--glow:rgba(110,235,200,.85)}
+#dailyContent.daily article.c7{background:linear-gradient(165deg,#f4fcff,#aedcff 55%,#6bb8ff)!important;--edge:#2b6fc9;--glow:rgba(130,210,255,.9)}
+#dailyContent.daily article.c8{background:linear-gradient(165deg,#fff1e2,#ffc78e 55%,#ff9c4d)!important;--edge:#c06a1c;--glow:rgba(255,190,120,.85)}
+#dailyContent.daily article.c9{background:linear-gradient(165deg,#fff07a,#ffbb22 55%,#ff8a00)!important;--edge:#b85a00;--glow:rgba(255,200,50,.85)}
+
+/* --- tablet --- */
+@media(max-width:900px){
+  .hero .home-layout{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"brand" "earth" "greet" "right"!important;gap:14px!important;padding-bottom:34px!important}
+  .hero .home-layout .home-brand .brand h1{font-size:min(24vw,170px)!important}
+  .hero .home-layout .home-brand .brand p{font-size:clamp(12px,3.2vw,20px)!important}
+  .hero .home-earth .globe{max-width:380px!important}
+  .hero .home-greet{align-self:center}
+  #dailyContent.daily{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:46px 12px!important}
+  #dailyContent.daily article.dc,#dailyContent.daily article.dc:nth-child(6){grid-column:auto}
+}
+/* --- phone --- */
+@media(max-width:480px){
+  .hero{padding:14px 10px 0!important}
+  .hero .home-info .box{flex-direction:column;gap:2px;text-align:center;padding:8px 4px!important}
+  .hero .home-info .box .ic{font-size:24px}
+  .hero .home-info .box b{font-size:12px!important}
+  .hero .home-info .box span{font-size:11px!important}
+  #dailyContent.daily{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:44px 10px 28px!important}
+  #dailyContent.daily article.dc{min-height:205px!important;padding:44px 8px 14px!important}
+}
+@media(prefers-reduced-motion:reduce){#dailyContent.daily article.dc{transition:none}}
+
+/* =====================================================================
+   HOME PAGE v2 — space-sky background, stars, earth horizon, new heading
+   ===================================================================== */
+.hero{
+  background:
+    radial-gradient(ellipse 30% 45% at 18% 32%,rgba(40,120,255,.55),transparent 70%),
+    radial-gradient(ellipse 28% 40% at 52% 30%,rgba(60,150,255,.38),transparent 70%),
+    radial-gradient(ellipse 30% 45% at 85% 20%,rgba(30,110,255,.45),transparent 70%),
+    radial-gradient(ellipse 60% 30% at 50% 100%,rgba(40,140,255,.45),transparent 80%),
+    linear-gradient(180deg,#02062f 0%,#041a78 40%,#0630b0 75%,#04124f 100%)!important;
+}
+.hero::after{display:none!important}
+.hero .stars{
+  opacity:1!important;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,1) 0,rgba(255,255,255,0) 2.2px),
+    radial-gradient(circle,rgba(190,235,255,.95) 0,rgba(190,235,255,0) 1.6px),
+    radial-gradient(circle,rgba(255,255,255,.9) 0,rgba(255,255,255,0) 1.2px),
+    radial-gradient(circle,rgba(255,255,255,.8) 0,rgba(255,255,255,0) 1px),
+    radial-gradient(circle,rgba(160,210,255,.9) 0,rgba(160,210,255,0) 1.4px),
+    radial-gradient(circle,rgba(255,255,255,.95) 0,rgba(255,255,255,0) 3px)!important;
+  background-size:211px 211px,137px 137px,89px 89px,53px 53px,173px 173px,367px 367px!important;
+  background-position:17px 31px,83px 12px,40px 66px,9px 21px,120px 90px,200px 140px!important;
+}
+.hero .home-brand::before{display:none!important}
+.hero .home-brand .spark{display:none!important}
+.hero .home-layout{padding-bottom:104px!important}
+
+/* --- heading: glossy white TLM, FOR (yellow) ALL (green), swoosh --- */
+.hero .home-layout .home-brand .brand h1{
+  font-size:min(10.2vw,166px)!important;line-height:.92!important;
+  font-family:"Arial Black","Montserrat",Impact,Arial,sans-serif!important;
+}
+.hero .brand h1 .tlm{
+  display:flex;justify-content:center;gap:.01em;
+  filter:drop-shadow(0 .02em 0 #a9b8dd) drop-shadow(0 .045em 0 #7a8dc0) drop-shadow(0 .075em 0 #4a5e98) drop-shadow(0 .11em .05em rgba(0,0,50,.65));
+}
+.hero .brand h1 .tlm b{
+  -webkit-text-stroke:0;paint-order:normal;text-shadow:none;
+  background:linear-gradient(180deg,#ffffff 0%,#f1f6ff 45%,#c5d3f2 100%);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent!important;-webkit-text-fill-color:transparent!important;
+}
+.hero .brand h1 .forall{
+  display:flex;justify-content:center;align-items:baseline;gap:.14em;
+  margin:-.02em 0 0;padding:0;font-size:.6em;line-height:1;font-style:italic;
+  background:none!important;box-shadow:none!important;border-radius:0;
+}
+.hero .brand h1 .forall::before,.hero .brand h1 .forall::after{content:none!important}
+.hero .brand h1 .forall b{font-weight:900;letter-spacing:-.01em;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:none}
+.hero .brand h1 .forall .f{
+  background-image:linear-gradient(180deg,#fff44a 0%,#ffc21a 55%,#ff8a00 100%);
+  filter:drop-shadow(0 .03em 0 #8a3f00) drop-shadow(0 .06em 0 #5e2a00) drop-shadow(0 .08em .04em rgba(0,0,40,.5));
+}
+.hero .brand h1 .forall .a{
+  background-image:linear-gradient(180deg,#e2ff58 0%,#44ea2a 55%,#0aa52a 100%);
+  filter:drop-shadow(0 .03em 0 #086b1a) drop-shadow(0 .06em 0 #05470f) drop-shadow(0 .08em .04em rgba(0,0,40,.5));
+}
+.hero .brand h1 .swoosh{display:block;width:78%;height:.2em;margin:.02em auto 0;filter:drop-shadow(0 0 .05em rgba(255,170,0,.8))}
+
+.hero .home-layout .home-brand .brand p{
+  margin:12px auto 0!important;padding:.45em 1.1em!important;
+  border:2px solid #3f8cff!important;border-radius:40px!important;
+  background:linear-gradient(180deg,#0b2186,#050f45)!important;
+  box-shadow:0 0 16px rgba(40,130,255,.85),inset 0 0 10px rgba(70,130,255,.35)!important;
+  color:#fff!important;text-shadow:0 2px 3px #00104a!important;
+  font-family:"Arial Narrow","Roboto Condensed","Oswald",Arial,sans-serif!important;
+  font-size:clamp(12px,1.85vw,31px)!important;font-weight:900!important;letter-spacing:0!important;white-space:nowrap;
+}
+.hero .home-layout .home-brand .brand p i{font-style:normal;color:#ffd23a}
+
+/* --- daily section: earth horizon behind the cards --- */
+#dailyContent.daily{
+  position:relative;z-index:2;overflow:hidden;
+  margin-top:-96px;padding-top:150px!important;
+  background:linear-gradient(180deg,transparent 0,transparent 100px,#04124f 190px,#031042 100%)!important;
+}
+#dailyContent.daily::before{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  left:-28%;right:-28%;top:78px;height:1000px;border-radius:50%;
+  background:
+    radial-gradient(ellipse 14% 2.2% at 30% 5%,rgba(255,255,255,.8),transparent 70%),
+    radial-gradient(ellipse 10% 2% at 44% 3.5%,rgba(255,255,255,.75),transparent 70%),
+    radial-gradient(ellipse 16% 2.4% at 62% 4.5%,rgba(255,255,255,.8),transparent 70%),
+    radial-gradient(ellipse 9% 1.8% at 74% 7%,rgba(255,255,255,.7),transparent 70%),
+    radial-gradient(ellipse 12% 3% at 50% 9%,rgba(120,220,110,.75),transparent 70%),
+    radial-gradient(ellipse 14% 3% at 38% 12%,rgba(110,200,100,.6),transparent 70%),
+    radial-gradient(ellipse 60% 14% at 50% 1%,rgba(190,235,255,.95),rgba(80,170,255,.35) 55%,transparent 80%),
+    radial-gradient(ellipse 50% 60% at 50% 0,#2d8f55 0,#1f6fa0 22%,#0e48b0 48%,#06257a 100%);
+  box-shadow:0 -4px 22px 4px rgba(140,220,255,.85),inset 0 10px 26px rgba(190,240,255,.85);
+}
+#dailyContent.daily article.dc{position:relative;z-index:1}
+
+@media(max-width:900px){
+  .hero .home-layout{padding-bottom:70px!important}
+  .hero .home-layout .home-brand .brand h1{font-size:min(23vw,166px)!important}
+  .hero .home-layout .home-brand .brand p{font-size:clamp(12px,3.6vw,24px)!important}
+  #dailyContent.daily{margin-top:-60px;padding-top:112px!important}
+  #dailyContent.daily::before{top:50px;height:800px}
+}
+
+/* =====================================================================
+   HOME PAGE — v2: chrome TLM heading, night-sky background, earth horizon
+   ===================================================================== */
+/* night sky + stars + nebula */
+.hero{
+  background:
+    radial-gradient(1.6px 1.6px at 30px 40px,#fff,transparent),
+    radial-gradient(1.2px 1.2px at 120px 90px,rgba(255,255,255,.9),transparent),
+    radial-gradient(2px 2px at 200px 20px,#cfe8ff,transparent),
+    radial-gradient(1px 1px at 80px 160px,#fff,transparent),
+    radial-gradient(1.4px 1.4px at 170px 200px,rgba(255,255,255,.85),transparent),
+    radial-gradient(2.4px 2.4px at 260px 130px,#fff,transparent),
+    radial-gradient(1px 1px at 300px 250px,#fff,transparent),
+    radial-gradient(ellipse 30% 40% at 6% 12%,rgba(90,140,255,.45),transparent 70%),
+    radial-gradient(ellipse 22% 30% at 42% 8%,rgba(120,100,255,.35),transparent 70%),
+    radial-gradient(ellipse 26% 40% at 18% 52%,rgba(0,170,255,.45),transparent 70%),
+    radial-gradient(ellipse 30% 45% at 50% 55%,rgba(60,170,255,.30),transparent 72%),
+    radial-gradient(ellipse 26% 40% at 95% 12%,rgba(20,110,255,.40),transparent 70%),
+    linear-gradient(180deg,#020b45 0%,#05208f 38%,#0a45d6 78%,#0a3cc4 100%)!important;
+  background-size:
+    330px 300px,330px 300px,330px 300px,330px 300px,330px 300px,330px 300px,330px 300px,
+    auto,auto,auto,auto,auto,auto!important;
+}
+.hero .stars{opacity:1}
+
+/* heading: chrome TLM + gold FOR + green ALL + swoosh */
+.hero .home-brand::before{display:none!important}
+.hero .home-brand .spark{display:none!important}
+.hero .home-layout .home-brand .brand h1{font-size:min(10.6vw,172px)!important;line-height:.9!important}
+.hero .brand h1 .h-tlm{
+  display:block;font-weight:900;letter-spacing:-.02em;line-height:.92;
+  background:linear-gradient(180deg,#ffffff 0%,#eef3ff 38%,#b9c9ee 70%,#8fa4d6 100%)!important;
+  -webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent;
+  filter:drop-shadow(0 .025em 0 #7083b8) drop-shadow(0 .05em 0 #46589a) drop-shadow(0 .075em 0 #2b3a78) drop-shadow(0 .11em .08em rgba(0,0,40,.65))!important;
+}
+.hero .brand h1 .h-fa{display:flex;justify-content:center;align-items:baseline;gap:.16em;margin-top:-.04em;font-size:.58em;line-height:1;font-style:italic;font-weight:900;transform:skewX(-4deg)}
+.hero .brand h1 .h-fa b{font-weight:900;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent}
+.hero .brand h1 .h-for{background:linear-gradient(180deg,#fff56a 0%,#ffc21a 50%,#ff7d00 100%)!important;filter:drop-shadow(0 .04em 0 #9a4a00) drop-shadow(0 .08em .05em rgba(0,0,40,.6))}
+.hero .brand h1 .h-all{background:linear-gradient(180deg,#e2ff55 0%,#5de63a 50%,#0b9a2c 100%)!important;filter:drop-shadow(0 .04em 0 #086a1c) drop-shadow(0 .08em .05em rgba(0,0,40,.6))}
+.hero .brand h1 .h-swoosh{
+  display:block;width:84%;height:.075em;margin:.01em auto 0;border-radius:50%;
+  background:linear-gradient(90deg,transparent 0%,#ff8a00 18%,#ffe14a 50%,#ff8a00 82%,transparent 100%);
+  box-shadow:0 0 .08em rgba(255,170,0,.8);transform:rotate(-3deg);
+}
+.hero .home-layout .home-brand .brand p{
+  color:#fff!important;font-weight:800!important;
+  background:linear-gradient(180deg,#0a2394,#071663)!important;
+  border:2px solid #5aa9ff!important;
+  box-shadow:0 0 0 2px rgba(10,30,120,.8),0 0 16px rgba(80,170,255,.85)!important;
+  text-shadow:0 2px 3px #000a40!important;
+}
+
+/* earth horizon behind the daily cards */
+.hero::after{height:90px!important;background:linear-gradient(180deg,transparent,#0a3cc4)!important}
+#dailyContent.daily{position:relative;overflow:hidden;padding-top:100px!important;
+  background:linear-gradient(180deg,#0a3cc4 0%,#082aa0 40%,#051a78 100%)!important}
+#dailyContent.daily::before{
+  content:"";position:absolute;z-index:0;left:-12%;right:-12%;top:18px;height:520px;pointer-events:none;
+  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  background:
+    radial-gradient(ellipse 22% 14% at 28% 22%,rgba(255,255,255,.55),transparent 70%),
+    radial-gradient(ellipse 18% 12% at 62% 14%,rgba(255,255,255,.5),transparent 70%),
+    radial-gradient(ellipse 14% 10% at 80% 30%,rgba(255,255,255,.4),transparent 70%),
+    radial-gradient(ellipse 30% 22% at 46% 34%,rgba(70,185,80,.6),transparent 72%),
+    radial-gradient(ellipse 24% 18% at 14% 40%,rgba(70,185,80,.45),transparent 72%),
+    linear-gradient(180deg,#8be3ff 0%,#3a8cf0 5%,#1250c0 22%,#082a96 55%,#051a78 100%);
+  box-shadow:0 -4px 22px 4px rgba(130,220,255,.95),0 -14px 60px rgba(60,150,255,.6);
+}
+#dailyContent.daily article.dc{z-index:1}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="stars"></div>
+
+  <div class="home-layout">
+
+    <!-- LEFT : globe + greeting -->
+    <div class="home-earth">
+      <div class="globe">
+        <img src="assets/earth-education.png" alt="TLM FOR ALL Education Globe">
+      </div>
+    </div>
+
+    <div class="home-greet">
+      <div class="greet">
+        <i class="bar"></i>
+        <div>
+          <h2 id="greet">Good Day! ☀️</h2>
+          <p>Every day is a new opportunity<br>to <span class="y">learn</span>, <span class="y">teach</span> and <span class="y">inspire</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER : brand -->
+    <div class="home-brand">
+      <div class="brand">
+        <h1 aria-label="TLM FOR ALL">
+          <span class="h-tlm">TLM</span>
+          <span class="h-fa"><b class="h-for">FOR</b><b class="h-all">ALL</b></span>
+          <span class="h-swoosh"></span>
+        </h1>
+        <p>TEACHING <i>•</i> LEARNING <i>•</i> MATERIALS</p>
+      </div>
+    </div>
+
+    <!-- RIGHT : date / day / time + banner -->
+    <div class="home-right">
+      <div class="home-info">
+        <div class="info">
+          <div class="box">
+            <i class="ic">📅</i>
+            <div><b>DATE</b><span id="date"></span></div>
+          </div>
+          <div class="box">
+            <i class="ic">🗓️</i>
+            <div><b>DAY</b><span id="day"></span></div>
+          </div>
+          <div class="box">
+            <i class="ic">🕘</i>
+            <div><b>TIME</b><span id="time"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-banner">
+        <div class="hero-old-image">
+          <img src="assets/images/hero.jpg" alt="TLM FOR ALL AI powered learning classroom">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+<section class="daily" id="dailyContent">
+<article class="dc c1" role="button" tabindex="0" onclick="openDaily('💡 Today\'s Suvichar','dailySuvichar')">
+<span class="dc-ic">💡</span>
+<h3>Today's Suvichar</h3>
+<div class="dc-te">ప్రతి రోజు ఒక మంచి మాట!</div>
+<p id="dailySuvichar">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c2" role="button" tabindex="0" onclick="openDaily('📢 Today\'s Slogan','dailySlogan')">
+<span class="dc-ic">📢</span>
+<h3>Today's Slogan</h3>
+<div class="dc-te">జయహో విద్యా!</div>
+<div class="dc-en">Education for a better future!</div>
+<p id="dailySlogan">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c3" role="button" tabindex="0" onclick="openDaily('💬 Today\'s Dialogue','dailyDialogue')">
+<span class="dc-ic">💬</span>
+<h3>Today's Dialogue</h3>
+<div class="dc-te">మనం మాట్లాడుకుందాం!</div>
+<div class="dc-en">Let's Talk!</div>
+<p id="dailyDialogue">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c4" role="button" tabindex="0" onclick="openDaily('🌟 Today\'s Wish','dailyWish')">
+<span class="dc-ic">🌟</span>
+<h3>Today's Wish</h3>
+<div class="dc-te">శుభోదయం!</div>
+<div class="dc-en">Have a great day!</div>
+<p id="dailyWish">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c5" role="button" tabindex="0" onclick="openDaily('📖 Teaching Tip','dailyTeachingTip')">
+<span class="dc-ic">📖</span>
+<h3>Teaching Tip</h3>
+<div class="dc-te">బోధనలో చిన్న మెలకువలు!</div>
+<div class="dc-en">Smart Teaching Tip.</div>
+<p id="dailyTeachingTip">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c6" role="button" tabindex="0" onclick="openDaily('🌱 Value Thought','dailyValueThought')">
+<span class="dc-ic">🌱</span>
+<h3>Value Thought</h3>
+<div class="dc-te">విలువలే జీవితం!</div>
+<div class="dc-en">Values shape us.</div>
+<p id="dailyValueThought">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c7" role="button" tabindex="0" onclick="openDaily('🌍 Educational Fact','dailyEducationalFact')">
+<span class="dc-ic">🌍</span>
+<h3>Educational Fact</h3>
+<div class="dc-te">తెలుసుకుందాం!</div>
+<div class="dc-en">Did you know?</div>
+<p id="dailyEducationalFact">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c8" role="button" tabindex="0" onclick="openDaily('📚 Education Quote','dailyEducationQuote')">
+<span class="dc-ic">📚</span>
+<h3>Education Quote</h3>
+<div class="dc-te">విద్యా సూక్తి</div>
+<div class="dc-en">Words that inspire.</div>
+<p id="dailyEducationQuote">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+
+<article class="dc c9" role="button" tabindex="0" onclick="openDaily('⭐ Today\'s Special','dailySpecial')">
+<span class="dc-ic">⭐</span>
+<h3>Today's Special</h3>
+<div class="dc-te">ఈ రోజు ప్రత్యేకం!</div>
+<div class="dc-en">Make today count.</div>
+<p id="dailySpecial">Loading...</p>
+<span class="dc-go">➜</span>
+</article>
+</section>
+<section class="search"><h2>🔎 What do you want to learn today?</h2><div class="searchbar"><input id="q" placeholder="Search Chapter, PPT, Worksheet, Question, AI Tool, Activity..."><button onclick="search()">AI SEARCH</button></div></section>
+<main class="dashboard"><div class="cards">
+<div class="card classes" onclick="classes()"><div class="pic">🌍📚</div><h2>CLASSES<br><span>ZONE</span></h2><p>State → Class → Subject → Chapters → PPTs & more</p></div>
+<div class="card teacher" onclick="zone('Teacher Zone',['Lesson Planner','Teaching Notes','TLM Materials','Worksheets','Assessment','Question Papers'])"><div class="pic photo-pic"><img src="assets/teacher-card.png" alt="Teacher in classroom"></div><h2>TEACHER<br><span>ZONE</span></h2><p>Lesson Plans, TLM, Worksheets and resources</p></div>
+<div class="card student" onclick="zone('Student Zone',['Student Notes','Practice','Worksheets','Projects','Quiz','Homework'])"><div class="pic photo-pic"><img src="assets/student-card.png" alt="Students learning"></div><h2>STUDENT<br><span>ZONE</span></h2><p>Notes, Practice, Projects and activities</p></div>
+<div class="card ai" onclick="openAICenter()">
+  <div class="pic">🤖✨</div>
+  <h2>AI<br><span>CREATOR</span></h2>
+  <p>Image • Video • PPT • Voice • AI Learning</p>
+</div>
+<div class="card today" onclick="zone('Today’s Class',['Today\'s Topic','Today\'s Activity','Today\'s PPT','Today\'s Video','Classroom Idea'])"><div class="pic">💡📖</div><h2>TODAY'S<br><span>CLASS</span></h2><p>Today's topics, activities and ideas</p></div>
+<div class="card competitive" onclick="zone('Competitive Zone',['MCQs','Previous Papers','Current Affairs','Quiz','Exam Practice','Model Papers'])"><div class="pic">🏆</div><h2>COMPETITIVE<br><span>ZONE</span></h2><p>Exams, MCQs, papers and quiz</p></div>
+</div></main><footer class="footer"><span>🚀 NEP 2020 Aligned</span><span>🛡️ CCE Based Learning</span><span>👨‍👩‍👧‍👦 For Teachers & Students</span><b>❤️ Think • Learn • Create • Share</b><span>© 2026 TLM FOR ALL</span></footer>
+<div class="modal" id="modal"><div class="panel"><button class="close" onclick="closeM()">×</button><div id="content"></div></div></div>
+<script>/* ===== TLM FOR ALL DAILY CONTENT ===== */
+
+const TLM_DAILY_CONTENT = [
+{
+suvichar:"Every day is a new opportunity to learn, grow and inspire.",
+slogan:"Learn • Think • Create • Share",
+dialogue:"Teacher: What will you learn today? Student: Something new!",
+wish:"Wishing you a wonderful day filled with learning and happiness.",
+teachingTip:"Connect every lesson with a real-life example.",
+valueThought:"Kindness and curiosity make us better learners.",
+educationalFact:"The Earth takes about 365 days to complete one revolution around the Sun."
+},
+{
+suvichar:"Education gives us the power to transform our future.",
+slogan:"Learn Today, Lead Tomorrow!",
+dialogue:"Teacher: Why do we ask questions? Student: To discover new ideas!",
+wish:"Have a bright and inspiring day!",
+teachingTip:"Give every child an opportunity to participate.",
+valueThought:"Mistakes are opportunities to learn.",
+educationalFact:"Water covers about 71% of Earth's surface."
+},
+{
+suvichar:"Small efforts every day create great achievements.",
+slogan:"Small Steps, Big Dreams!",
+dialogue:"Teacher: Can you try again? Student: Yes, I can!",
+wish:"May your day be full of confidence and success.",
+teachingTip:"Use activity-based learning whenever possible.",
+valueThought:"Patience makes difficult things possible.",
+educationalFact:"The human body normally has 206 bones."
+},
+{
+suvichar:"A curious mind is always ready to discover something new.",
+slogan:"Ask • Explore • Discover!",
+dialogue:"Student: Why does this happen? Teacher: Let's find the answer together.",
+wish:"Keep learning and keep smiling today!",
+teachingTip:"Start your lesson with an interesting question.",
+valueThought:"Curiosity is the beginning of knowledge.",
+educationalFact:"The Moon is Earth's natural satellite."
+},
+{
+suvichar:"The best learning happens when we understand and experience.",
+slogan:"Don't Just Read — Experience Learning!",
+dialogue:"Teacher: What did you discover? Student: I discovered it by doing!",
+wish:"Have a creative and joyful learning day.",
+teachingTip:"Let students learn through hands-on activities.",
+valueThought:"Teamwork makes learning more meaningful.",
+educationalFact:"Light from the Sun takes about 8 minutes 20 seconds to reach Earth."
+},
+{
+suvichar:"Knowledge grows when we share it with others.",
+slogan:"Share Knowledge, Build the Future!",
+dialogue:"Student: Can I help my friend? Teacher: Of course. Learning grows through sharing.",
+wish:"May your kindness and knowledge inspire others today.",
+teachingTip:"Use peer learning and group activities.",
+valueThought:"Helping others is a powerful form of learning.",
+educationalFact:"A day on Earth is approximately 24 hours long."
+},
+{
+suvichar:"Success begins with the courage to try.",
+slogan:"Try • Learn • Improve!",
+dialogue:"Teacher: What if you make a mistake? Student: I will learn from it!",
+wish:"Believe in yourself and make today count.",
+teachingTip:"Appreciate effort, not only correct answers.",
+valueThought:"Confidence grows through practice.",
+educationalFact:"The chemical formula of water is H₂O."
+},
+{
+suvichar:"Every child has the potential to create something wonderful.",
+slogan:"Every Child Can Learn!",
+dialogue:"Teacher: What is your dream? Student: I want to make it real!",
+wish:"May every learner discover their special talent today.",
+teachingTip:"Give students choices in learning activities.",
+valueThought:"Every learner deserves encouragement.",
+educationalFact:"The Sun is the largest object in our solar system."
+},
+{
+suvichar:"Time is one of our most valuable resources.",
+slogan:"Use Time Wisely, Achieve Greatly!",
+dialogue:"Teacher: Why is time important? Student: Because every moment matters.",
+wish:"May you use every moment of today meaningfully.",
+teachingTip:"Set clear time limits for classroom activities.",
+valueThought:"Punctuality develops responsibility.",
+educationalFact:"There are 24 hours in one day."
+},
+{
+suvichar:"A good teacher inspires students to become lifelong learners.",
+slogan:"Teach • Inspire • Transform!",
+dialogue:"Student: Why do you teach us? Teacher: Because your future matters.",
+wish:"Wishing all teachers and learners a meaningful day.",
+teachingTip:"End every lesson with one reflection question.",
+valueThought:"Respect creates a positive learning environment.",
+educationalFact:"The Earth rotates on its axis approximately once every 24 hours."
+}
+];
+
+/* =========================================================
+   TLM FOR ALL — 365 DAY SMART DAILY CONTENT ENGINE
+   Telugu + English
+   ========================================================= */
+
+const TLM_DAILY = {
+
+  suvichar: [
+    "ప్రతి రోజు కొత్తగా నేర్చుకునే అవకాశం. | Every day is a new opportunity to learn.",
+    "విద్య మన భవిష్యత్తును మార్చే శక్తి. | Education has the power to transform our future.",
+    "చిన్న ప్రయత్నాలు గొప్ప విజయాలకు దారి తీస్తాయి. | Small efforts lead to great achievements.",
+    "ఆసక్తి ఉన్న మనసు ఎప్పుడూ కొత్తదాన్ని కనుగొంటుంది. | A curious mind always discovers something new.",
+    "చేసి నేర్చుకున్నది ఎక్కువకాలం గుర్తుంటుంది. | Learning by doing stays longer.",
+    "జ్ఞానాన్ని పంచితే అది మరింత పెరుగుతుంది. | Knowledge grows when it is shared.",
+    "ప్రయత్నించే ధైర్యమే విజయానికి మొదటి అడుగు. | The courage to try is the first step toward success.",
+    "ప్రతి బాలుడిలో ఒక ప్రత్యేక ప్రతిభ ఉంటుంది. | Every child has a unique talent.",
+    "సమయాన్ని గౌరవించడం విజయానికి అలవాటు. | Respecting time is a habit of success.",
+    "మంచి గురువు జీవితాంతం నేర్చుకునేలా ప్రేరేపిస్తాడు. | A good teacher inspires lifelong learning.",
+    "తప్పులు మనకు మంచి పాఠాలు నేర్పుతాయి. | Mistakes teach us valuable lessons.",
+    "నమ్మకం ఉంటే కష్టమైన పని కూడా సాధ్యమే. | With confidence, difficult tasks become possible."
+  ],
+
+  slogan: [
+    "నేర్చుకో • ఆలోచించు • సృష్టించు • పంచుకో | Learn • Think • Create • Share",
+    "ఈ రోజు నేర్చుకో, రేపు నాయకత్వం వహించు! | Learn Today, Lead Tomorrow!",
+    "చిన్న అడుగులు • పెద్ద కలలు! | Small Steps • Big Dreams!",
+    "అడుగు • అన్వేషించు • కనుగొను! | Ask • Explore • Discover!",
+    "చదవడమే కాదు — అనుభవించు! | Don't Just Read — Experience Learning!",
+    "జ్ఞానాన్ని పంచుకో, భవిష్యత్తును నిర్మించు! | Share Knowledge, Build the Future!",
+    "ప్రయత్నించు • నేర్చుకో • మెరుగుపరుచుకో! | Try • Learn • Improve!",
+    "ప్రతి బాలుడు నేర్చుకోగలడు! | Every Child Can Learn!",
+    "సమయాన్ని సద్వినియోగం చేసుకో! | Use Time Wisely!",
+    "బోధించు • ప్రేరేపించు • మార్పు తీసుకురా! | Teach • Inspire • Transform!",
+    "ఆలోచనలే మార్పుకు విత్తనాలు! | Ideas are the seeds of change!",
+    "నేర్చుకోవడం జీవితాంతం కొనసాగే ప్రయాణం! | Learning is a lifelong journey!"
+  ],
+
+  dialogue: [
+    "Teacher: ఈ రోజు ఏమి నేర్చుకుంటావు? Student: కొత్త విషయం నేర్చుకుంటాను! | Teacher: What will you learn today? Student: Something new!",
+    "Teacher: మనం ప్రశ్నలు ఎందుకు అడుగుతాం? Student: కొత్త విషయాలు తెలుసుకోవడానికి! | Teacher: Why do we ask questions? Student: To discover new ideas!",
+    "Teacher: మళ్లీ ప్రయత్నిస్తావా? Student: అవును, నేను ప్రయత్నిస్తాను! | Teacher: Can you try again? Student: Yes, I can!",
+    "Student: ఇది ఎందుకు జరుగుతుంది? Teacher: మనం కలిసి తెలుసుకుందాం. | Student: Why does this happen? Teacher: Let's find out together.",
+    "Teacher: ఏమి కనుగొన్నావు? Student: చేసి నేర్చుకున్నాను! | Teacher: What did you discover? Student: I discovered it by doing!",
+    "Student: నా స్నేహితుడికి సహాయం చేయవచ్చా? Teacher: తప్పకుండా! | Student: Can I help my friend? Teacher: Of course!",
+    "Teacher: తప్పు చేస్తే ఏమవుతుంది? Student: దాని నుంచి నేర్చుకుంటాను! | Teacher: What if you make a mistake? Student: I will learn from it!",
+    "Teacher: నీ కల ఏమిటి? Student: దాన్ని నిజం చేయాలి! | Teacher: What is your dream? Student: I want to make it real!",
+    "Teacher: సమయం ఎందుకు ముఖ్యమైనది? Student: ప్రతి క్షణం విలువైనది. | Teacher: Why is time important? Student: Every moment matters.",
+    "Student: మీరు ఎందుకు బోధిస్తారు? Teacher: మీ భవిష్యత్తు ముఖ్యం. | Student: Why do you teach us? Teacher: Your future matters.",
+    "Teacher: మంచి నేర్చుకోవడం అంటే ఏమిటి? Student: అర్థం చేసుకుని చేయడం! | Teacher: What is good learning? Student: Understanding and doing!",
+    "Student: నేను ప్రశ్న అడగవచ్చా? Teacher: తప్పకుండా, ప్రశ్నలే జ్ఞానానికి మార్గం! | Student: May I ask a question? Teacher: Certainly, questions lead to knowledge!"
+  ],
+
+  wish: [
+    "మీ రోజు ఆనందం, జ్ఞానం మరియు విజయంతో నిండాలి. | Wishing you a day filled with happiness, knowledge and success.",
+    "మీకు ప్రకాశవంతమైన మరియు ప్రేరణాత్మకమైన రోజు కావాలి! | Have a bright and inspiring day!",
+    "ఆత్మవిశ్వాసంతో ముందుకు సాగండి. | Move forward with confidence.",
+    "ఈ రోజు నేర్చుకుంటూ నవ్వుతూ ఉండండి! | Keep learning and keep smiling today!",
+    "మీ రోజు సృజనాత్మకంగా మరియు ఆనందంగా ఉండాలి. | Have a creative and joyful learning day.",
+    "మీ జ్ఞానం ఇతరులకు స్ఫూర్తిగా నిలవాలి. | May your knowledge inspire others.",
+    "ఈ రోజు మీ శక్తిని పూర్తిగా ఉపయోగించండి. | Make the most of your energy today.",
+    "ప్రతి విద్యార్థి తన ప్రతిభను కనుగొనాలి. | May every learner discover their talent.",
+    "ఈ రోజును అర్థవంతంగా ఉపయోగించండి. | Make today meaningful.",
+    "అందరికీ సంతోషకరమైన మరియు అర్థవంతమైన రోజు కావాలి. | Wishing everyone a happy and meaningful day.",
+    "మీ కలల వైపు మరో అడుగు వేయండి. | Take one more step toward your dreams.",
+    "ఈ రోజు మీకు కొత్త ఆలోచనలు రావాలి. | May today bring you new ideas."
+  ],
+
+  teachingTip: [
+    "ప్రతి పాఠాన్ని నిజ జీవిత ఉదాహరణతో ప్రారంభించండి. | Connect every lesson with a real-life example.",
+    "ప్రతి విద్యార్థికి పాల్గొనే అవకాశం ఇవ్వండి. | Give every child an opportunity to participate.",
+    "సాధ్యమైనప్పుడల్లా activity-based learning ఉపయోగించండి. | Use activity-based learning whenever possible.",
+    "పాఠాన్ని ఆసక్తికరమైన ప్రశ్నతో ప్రారంభించండి. | Start the lesson with an interesting question.",
+    "చేసి నేర్చుకునే అవకాశాలు ఇవ్వండి. | Give students hands-on learning opportunities.",
+    "Peer learning మరియు group activities ఉపయోగించండి. | Use peer learning and group activities.",
+    "సరైన సమాధానంతో పాటు ప్రయత్నాన్ని కూడా ప్రశంసించండి. | Appreciate effort, not only correct answers.",
+    "విద్యార్థులకు learning choices ఇవ్వండి. | Give students choices in learning activities.",
+    "ప్రతి activityకి స్పష్టమైన time limit ఇవ్వండి. | Set clear time limits for classroom activities.",
+    "పాఠం చివర reflection question అడగండి. | End every lesson with a reflection question.",
+    "చిత్రాలు, వస్తువులు మరియు స్థానిక ఉదాహరణలు ఉపయోగించండి. | Use visuals, objects and local examples.",
+    "విద్యార్థి స్వయంగా మాట్లాడేలా ప్రశ్నలు అడగండి. | Ask questions that encourage students to speak."
+  ],
+
+  valueThought: [
+    "దయ మరియు ఆసక్తి మనల్ని మంచి learnersగా మారుస్తాయి. | Kindness and curiosity make us better learners.",
+    "తప్పులు నేర్చుకునే అవకాశాలు. | Mistakes are opportunities to learn.",
+    "సహనం కష్టమైన పనులను సాధ్యంగా చేస్తుంది. | Patience makes difficult things possible.",
+    "ఆసక్తి జ్ఞానానికి ప్రారంభం. | Curiosity is the beginning of knowledge.",
+    "జట్టుగా పనిచేయడం learningను మరింత అర్థవంతం చేస్తుంది. | Teamwork makes learning more meaningful.",
+    "ఇతరులకు సహాయం చేయడం గొప్ప విలువ. | Helping others is a powerful value.",
+    "అభ్యాసం ద్వారా ఆత్మవిశ్వాసం పెరుగుతుంది. | Confidence grows through practice.",
+    "ప్రతి విద్యార్థిని ప్రోత్సహించాలి. | Every learner deserves encouragement.",
+    "సమయపాలన బాధ్యతను పెంచుతుంది. | Punctuality develops responsibility.",
+    "గౌరవం మంచి classroom environmentను సృష్టిస్తుంది. | Respect creates a positive learning environment.",
+    "నిజాయితీ జ్ఞానానికి బలమైన పునాది. | Honesty is a strong foundation for learning.",
+    "పంచుకోవడం మంచి సమాజాన్ని నిర్మిస్తుంది. | Sharing helps build a better community."
+  ],
+
+  educationQuote: [
+    "విద్య అనేది జీవితానికి సిద్ధం కావడం మాత్రమే కాదు; విద్యే జీవితం. | Education is not only preparation for life; education is life.",
+    "నేర్చుకోవడం ఎప్పటికీ ఆగకూడదు. | Learning should never stop.",
+    "ఉత్తమ విద్య ప్రశ్నలు అడిగే ధైర్యాన్ని ఇస్తుంది. | Great education gives us the courage to ask questions.",
+    "ఒక మంచి గురువు ఒక జీవితాన్ని మార్చగలడు. | A good teacher can transform a life.",
+    "పిల్లలు వినడం కంటే అనుభవించడం ద్వారా ఎక్కువ నేర్చుకుంటారు. | Children often learn more through experience than listening.",
+    "జ్ఞానం మనిషికి శక్తిని ఇస్తుంది. | Knowledge gives people power.",
+    "విద్య భవిష్యత్తుకు తలుపులు తెరుస్తుంది. | Education opens doors to the future.",
+    "చదువు మన ఆలోచనలను విస్తరిస్తుంది. | Learning expands our thinking.",
+    "ప్రతి classroom ఒక కొత్త ప్రపంచానికి ద్వారం. | Every classroom is a doorway to a new world.",
+    "ప్రశ్నించే విద్యార్థి ఎదుగుతున్న విద్యార్థి. | A questioning student is a growing student.",
+    "విద్యలో లక్ష్యం marks మాత్రమే కాదు, meaningful learning. | The goal of education is not only marks, but meaningful learning.",
+    "గురువు చూపే మార్గం విద్యార్థి భవిష్యత్తును ప్రభావితం చేస్తుంది. | A teacher's guidance can influence a student's future."
+  ],
+
+  educationalFact: [
+    "భూమి సూర్యుని చుట్టూ ఒక పరిభ్రమణం పూర్తి చేయడానికి సుమారు 365 రోజులు పడుతుంది. | Earth takes about 365 days to orbit the Sun.",
+    "భూమి ఉపరితలంలో సుమారు 71% నీరు ఉంది. | About 71% of Earth's surface is covered by water.",
+    "మనిషి శరీరంలో సాధారణంగా 206 ఎముకలు ఉంటాయి. | The human body normally has 206 bones.",
+    "చంద్రుడు భూమికి సహజ ఉపగ్రహం. | The Moon is Earth's natural satellite.",
+    "సూర్యకాంతి భూమిని చేరడానికి సుమారు 8 నిమిషాలు 20 సెకన్లు పడుతుంది. | Sunlight takes about 8 minutes 20 seconds to reach Earth.",
+    "ఒక రోజు సుమారు 24 గంటలు ఉంటుంది. | A day is approximately 24 hours long.",
+    "నీటి రసాయన సూత్రం H₂O. | The chemical formula of water is H₂O.",
+    "సూర్యుడు మన సౌర కుటుంబంలోని అతిపెద్ద వస్తువు. | The Sun is the largest object in our solar system.",
+    "చంద్రుడికి స్వంత కాంతి లేదు; అది సూర్యకాంతిని ప్రతిబింబిస్తుంది. | The Moon has no light of its own; it reflects sunlight.",
+    "భూమి తన అక్షంపై తిరుగుతుంది. | Earth rotates on its axis.",
+    "మొక్కలు photosynthesis ద్వారా తమ ఆహారాన్ని తయారు చేసుకుంటాయి. | Plants make their food through photosynthesis.",
+    "వాయుమండలంలో నైట్రోజన్ అత్యధికంగా ఉంటుంది. | Nitrogen is the most abundant gas in Earth's atmosphere."
+  ]
+};
+
+
+/* =========================================================
+   IMPORTANT DAYS
+   ========================================================= */
+
+const TLM_SPECIAL_DAYS = {
+
+  "1-1": "నూతన సంవత్సరం | New Year",
+  "1-12": "జాతీయ యువజన దినోత్సవం | National Youth Day",
+  "1-26": "గణతంత్ర దినోత్సవం | Republic Day",
+
+  "2-28": "జాతీయ విజ్ఞాన దినోత్సవం | National Science Day",
+
+  "3-8": "అంతర్జాతీయ మహిళా దినోత్సవం | International Women's Day",
+  "3-22": "ప్రపంచ నీటి దినోత్సవం | World Water Day",
+
+  "4-7": "ప్రపంచ ఆరోగ్య దినోత్సవం | World Health Day",
+  "4-22": "భూమి దినోత్సవం | Earth Day",
+
+  "5-1": "అంతర్జాతీయ కార్మిక దినోత్సవం | International Workers' Day",
+  "5-15": "అంతర్జాతీయ కుటుంబ దినోత్సవం | International Day of Families",
+
+  "6-5": "ప్రపంచ పర్యావరణ దినోత్సవం | World Environment Day",
+  "6-21": "అంతర్జాతీయ యోగా దినోత్సవం | International Yoga Day",
+
+  "7-11": "ప్రపంచ జనాభా దినోత్సవం | World Population Day",
+
+  "8-15": "స్వాతంత్ర్య దినోత్సవం | Independence Day",
+  "8-23": "జాతీయ అంతరిక్ష దినోత్సవం | National Space Day",
+
+  "9-5": "ఉపాధ్యాయ దినోత్సవం | Teachers' Day",
+  "9-8": "అంతర్జాతీయ అక్షరాస్యత దినోత్సవం | International Literacy Day",
+  "9-14": "హిందీ దివస్ | Hindi Diwas",
+  "9-16": "ప్రపంచ ఓజోన్ దినోత్సవం | World Ozone Day",
+
+  "10-2": "గాంధీ జయంతి | Gandhi Jayanti",
+  "10-5": "ప్రపంచ ఉపాధ్యాయ దినోత్సవం | World Teachers' Day",
+  "10-15": "ప్రపంచ విద్యార్థుల దినోత్సవం | World Students' Day",
+
+  "11-14": "బాలల దినోత్సవం | Children's Day",
+  "11-19": "ప్రపంచ మరుగుదొడ్ల దినోత్సవం | World Toilet Day",
+
+  "12-10": "మానవ హక్కుల దినోత్సవం | Human Rights Day",
+  "12-22": "జాతీయ గణిత దినోత్సవం | National Mathematics Day"
+};
+
+
+/* =========================================================
+   DATE → DAY NUMBER
+   ========================================================= */
+
+function getTlmDayNumber(date){
+
+    const start = new Date(date.getFullYear(), 0, 1);
+
+    const diff =
+        date.getTime() - start.getTime();
+
+    return Math.floor(diff / 86400000) + 1;
+}
+
+
+/* =========================================================
+   SMART CONTENT PICKER
+   ========================================================= */
+
+function pickTlmContent(list, day){
+
+    return list[(day - 1) % list.length];
+
+}
+
+
+/* =========================================================
+   DAILY CONTENT LOADER
+   ========================================================= */
+
+function loadTlmDailyContent(){
+
+    const now = new Date();
+
+    const day = getTlmDayNumber(now);
+
+    const month = now.getMonth() + 1;
+
+    const date = now.getDate();
+
+    const specialKey = month + "-" + date;
+
+    const special =
+        TLM_SPECIAL_DAYS[specialKey] ||
+        "ఈ రోజు కూడా ఒక ప్రత్యేకమైన నేర్చుకునే రోజు. | Today is another special day to learn.";
+
+
+    document.getElementById("dailySuvichar").textContent =
+        pickTlmContent(TLM_DAILY.suvichar, day);
+
+    document.getElementById("dailySlogan").textContent =
+        pickTlmContent(TLM_DAILY.slogan, day + 3);
+
+    document.getElementById("dailyDialogue").textContent =
+        pickTlmContent(TLM_DAILY.dialogue, day + 5);
+
+    document.getElementById("dailyWish").textContent =
+        pickTlmContent(TLM_DAILY.wish, day + 7);
+
+    document.getElementById("dailyTeachingTip").textContent =
+        pickTlmContent(TLM_DAILY.teachingTip, day + 2);
+
+    document.getElementById("dailyValueThought").textContent =
+        pickTlmContent(TLM_DAILY.valueThought, day + 4);
+
+    document.getElementById("dailyEducationalFact").textContent =
+        pickTlmContent(TLM_DAILY.educationalFact, day + 6);
+
+    document.getElementById("dailyEducationQuote").textContent =
+        pickTlmContent(TLM_DAILY.educationQuote, day + 8);
+
+    document.getElementById("dailySpecial").textContent =
+        special;
+}
+
+
+/* =========================================================
+   START DAILY SYSTEM
+   ========================================================= */
+
+loadTlmDailyContent();
+
+/* ===== EXISTING CLOCK ===== */
+
+function clock(){
+
+    const d = new Date();
+
+    const h = d.getHours();
+
+    const m =
+        String(d.getMinutes()).padStart(2,'0');
+
+    const s =
+        String(d.getSeconds()).padStart(2,'0');
+
+
+    document.getElementById('time').textContent =
+        ((h % 12) || 12) +
+        ':' + m +
+        ':' + s +
+        ' ' +
+        (h >= 12 ? 'PM' : 'AM');
+
+
+    document.getElementById('date').textContent =
+        d.toLocaleDateString('en-IN',{
+            day:'2-digit',
+            month:'short',
+            year:'numeric'
+        }).replace(/\s+/g,'-');
+
+
+    document.getElementById('day').textContent =
+        d.toLocaleDateString('en-IN',{
+            weekday:'long'
+        });
+
+
+    document.getElementById('greet').textContent =
+        h < 12
+        ? 'Good Morning! ☀️'
+        : h < 17
+        ? 'Good Afternoon! 🌤️'
+        : h < 21
+        ? 'Good Evening! 🌇'
+        : 'Good Night! 🌙';
+}
+
+
+setInterval(clock,1000);
+
+clock();
+   function openM(x){document.getElementById('content').innerHTML=x;document.getElementById('modal').classList.add('show')}function closeM(){document.getElementById('modal').classList.remove('show')}
+function classes(){openM('<h2>📚 Classes Zone</h2><p>Select State first.</p><div class="steps"><div class="step" onclick="classList2()"><b>🇮🇳 Telangana SCERT</b><small>Open State →</small></div></div>')}
+function classList2(){let a='';for(let i=1;i<=10;i++)a+=`<div class="step" onclick="subjects(${i})"><b>Class ${i}</b><small>Open →</small></div>`;openM('<button class="back" onclick="classes()">← State</button><h2>Telangana SCERT</h2><p>Select Class</p><div class="steps">'+a+'</div>')}
+function subjects(c){let a=['Telugu','Hindi','English','Mathematics','Science','Social Studies'].map(s=>`<div class="step" onclick="chapters(${c},'${s}')"><b>${s}</b><small>Open →</small></div>`).join('');openM(`<button class="back" onclick="classList2()">← Classes</button><h2>Class ${c}</h2><p>Select Subject</p><div class="steps">${a}</div>`)}
+
+      /* =========================================================
+   TLM FOR ALL — CLASSES ZONE
+   Class 6 Social Studies: 21 Chapters + Maps Part-A/B
+   ========================================================= */
+
+async function getTlmGithubFiles(path){
+  const api =
+    `https://api.github.com/repos/tlmforall/tlmforall-/contents/${path}?ref=main`;
+
+  const response = await fetch(api);
+
+  if(!response.ok){
+    throw new Error("GitHub files could not be loaded");
+  }
+
+  return await response.json();
+}
+
+function tlmSiteUrl(path){
+  return (
+    'https://tlmforall.github.io/tlmforall-/' +
+    path.split('/').map(encodeURIComponent).join('/')
+  );
+}
+
+async function openTlmPdf(folder){
+  try{
+
+    const files = await getTlmGithubFiles(folder);
+
+    const pdf = files.find(function(file){
+      return file.type === 'file' &&
+             file.name.toLowerCase().endsWith('.pdf');
+    });
+
+    if(!pdf){
+      alert('PDF not found in this folder.');
+      return;
+    }
+
+    window.open(tlmSiteUrl(pdf.path), '_blank');
+
+  }catch(error){
+
+    alert(
+      'PDF open nahi ho pa raha hai.\n\n' +
+      'Please try again.'
+    );
+
+  }
+}
+async function openTlmPeriodPpts(chapterNumber) {
+
+  const chapterNo = Number(chapterNumber);
+
+  if (!Number.isInteger(chapterNo) || chapterNo < 1 || chapterNo > 21) {
+    openM('<h2>Invalid chapter number</h2>');
+    return;
+  }
+
+  const chapterFolder =
+    `resources/class-6/social/chapter-${String(chapterNo).padStart(2, '0')}`;
+
+  const drivePptUrl =
+  'https://docs.google.com/presentation/d/1WA4RSzsW-5atkKg01r6iYNSyRBTOxtYK/present';
+
+  openM(`
+    <h2>Class 6 Social Studies</h2>
+    <h3>Chapter ${chapterNo} — Period-wise PPTs</h3>
+    <p>Loading periods...</p>
+  `);
+
+  try {
+
+    const api =
+      `https://api.github.com/repos/tlmforall/tlmforall-/contents/${chapterFolder}?ref=main&_=${Date.now()}`;
+
+    const response = await fetch(api, {
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      throw new Error(`GitHub returned ${response.status}`);
+    }
+
+    const folders = await response.json();
+
+    const periods = folders
+      .filter(file =>
+        file.type === 'dir' &&
+        /^period-\d+$/i.test(file.name)
+      )
+      .sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { numeric: true })
+      );
+
+    let items = '';
+
+    // Show every period folder, even when it has no PPT file.
+    for (const period of periods) {
+
+      const periodNumber = Number(
+        period.name.match(/\d+/)[0]
+      );
+
+      // Chapter 10, Period 1: open Google Drive presentation.
+      if (chapterNo === 10 && periodNumber === 1) {
+
+        items += `
+          <div class="step"
+               onclick="window.open('${drivePptUrl}', '_blank', 'noopener')"
+               role="button"
+               tabindex="0">
+            <b>📊 PERIOD 1</b>
+            <small>Chapter 10 Presentation<br>Open Google Drive PPT →</small>
+          </div>
+        `;
+
+        continue;
+      }
+      // Chapter 10, Period 2: open Google Drive presentation.
+      if (chapterNo === 10 && periodNumber === 2) {
+
+        items += `
+          <div class="step"
+               onclick="window.open('https://docs.google.com/presentation/d/1M6QYFMxgNcY8u5YBLaqu83DXvQMEXILR/present', '_blank', 'noopener')"
+               role="button"
+               tabindex="0">
+            <b>📊 PERIOD 2</b>
+            <small>Chapter 10 Presentation<br>Open Google Drive PPT →</small>
+          </div>
+        `;
+
+        continue;
+      }
+      // Chapter 10, Period 3: open Google Slides presentation.
+      if (chapterNo === 10 && periodNumber === 3) {
+
+        items += `
+          <div class="step"
+               onclick="window.open('https://docs.google.com/presentation/d/1WRhn1tLYqukD5u-Z9QV3XfrbKy4RPUa9/present', '_blank', 'noopener')"
+               role="button"
+               tabindex="0">
+            <b>📊 PERIOD 3</b>
+            <small>Chapter 10 Presentation<br>Open Google Slides PPT →</small>
+          </div>
+        `;
+
+        continue;
+      }
+      
+      // For other periods, find a PPT file if available.
+      let ppts = [];
+
+      try {
+
+        const periodResponse = await fetch(
+          `https://api.github.com/repos/tlmforall/tlmforall-/contents/${period.path}?ref=main&_=${Date.now()}`,
+          { cache: 'no-store' }
+        );
+
+        if (periodResponse.ok) {
+          const periodFiles = await periodResponse.json();
+
+          ppts = periodFiles.filter(file =>
+            file.type === 'file' &&
+            /\.(pptx|ppt)$/i.test(file.name)
+          );
+        }
+
+      } catch (periodError) {
+        console.warn('Could not load period files:', period.name);
+      }
+
+      if (ppts.length > 0) {
+
+        for (const ppt of ppts) {
+
+          const url = tlmSiteUrl(ppt.path);
+
+          items += `
+            <div class="step"
+                 onclick="window.open('${url}', '_blank', 'noopener')"
+                 role="button"
+                 tabindex="0">
+              <b>📊 PERIOD ${periodNumber}</b>
+              <small>${ppt.name}<br>Open PPT →</small>
+            </div>
+          `;
+        }
+
+      } else {
+
+        items += `
+          <div class="step">
+            <b>📊 PERIOD ${periodNumber}</b>
+            <small>PPT will be added soon.</small>
+          </div>
+        `;
+      }
+    }
+
+    if (!items) {
+
+      items = `
+        <div class="step">
+          <b>No period folders found</b>
+          <small>
+            GitHubలో ఈ Chapterకు period-01, period-02 వంటి ఫోల్డర్లు
+            ఉన్నాయో లేదో తనిఖీ చేయండి.
+          </small>
+        </div>
+      `;
+    }
+
+    openM(`
+      <button class="back"
+        onclick="chapter(6,'Social Studies',${chapterNo})">
+        ← Back to Chapter
+      </button>
+
+      <h2>Class 6 Social Studies</h2>
+      <h3>Chapter ${chapterNo} — Period-wise PPTs</h3>
+
+      <div class="steps">
+        ${items}
+      </div>
+    `);
+
+  } catch (error) {
+
+    console.error('PPT loading error:', error);
+
+    openM(`
+      <button class="back"
+        onclick="chapter(6,'Social Studies',${chapterNo})">
+        ← Back to Chapter
+      </button>
+
+      <h2>Unable to load periods</h2>
+      <p>
+        GitHub నుంచి ఫోల్డర్ల వివరాలు పొందలేకపోయాం.
+        కొద్దిసేపటి తర్వాత మళ్లీ ప్రయత్నించండి.
+      </p>
+    `);
+  }
+}
+
+        
+
+/* =========================
+   CHAPTER LIST
+   ========================= */
+
+function chapters(c,s){
+
+  /* CLASS 6 SOCIAL SPECIAL */
+  if(c === 6 && s === 'Social Studies'){
+
+    let a = '';
+
+    /* MAPS PART-A */
+    a += `
+      <div class="step"
+           onclick="openTlmPdf('resources/class-6/social/maps - part -A')">
+        <b>🗺️ Maps Part-A</b>
+        <small>Open PDF →</small>
+      </div>
+    `;
+
+    /* MAPS PART-B */
+    a += `
+      <div class="step"
+           onclick="openTlmPdf('resources/class-6/social/Maps-part-B')">
+        <b>🗺️ Maps Part-B</b>
+        <small>Open PDF →</small>
+      </div>
+    `;
+
+    /* 21 CHAPTERS */
+    for(let i = 1; i <= 21; i++){
+
+      let chapterNumber = String(i).padStart(2,'0');
+
+      a += `
+        <div class="step"
+             onclick="chapter(6,'Social Studies',${i})">
+
+          <b>Chapter ${i}</b>
+
+          <small>
+            Class 6 Social Studies • Chapter ${chapterNumber}
+            <br>
+            Open →
+          </small>
+
+        </div>
+      `;
+    }
+
+    openM(`
+      <button class="back"
+              onclick="subjects(${c})">
+        ← Subjects
+      </button>
+
+      <h2>Class 6 • Social Studies</h2>
+
+      <p>
+        Select Maps Part or Chapter
+      </p>
+
+      <div class="steps">
+        ${a}
+      </div>
+    `);
+
+    return;
+  }
+
+
+  /* =========================
+     OTHER CLASSES / SUBJECTS
+     OLD BEHAVIOUR
+     ========================= */
+
+  let a = '';
+
+  for(let i = 1; i <= 8; i++){
+
+    a += `
+      <div class="step"
+           onclick="chapter(${c},'${s}',${i})">
+
+        <b>Chapter ${i}</b>
+
+        <small>
+          Open →
+        </small>
+
+      </div>
+    `;
+  }
+
+  openM(`
+    <button class="back"
+            onclick="subjects(${c})">
+      ← Subjects
+    </button>
+
+    <h2>Class ${c} • ${s}</h2>
+
+    <p>
+      Select Chapter
+    </p>
+
+    <div class="steps">
+      ${a}
+    </div>
+  `);
+}
+
+
+/* =========================
+   OPEN CHAPTER
+   ========================= */
+
+async function chapter(c,s,n){
+
+  /* CLASS 6 SOCIAL SPECIAL */
+  if(c === 6 && s === 'Social Studies'){
+
+    const chapterNumber =
+      String(n).padStart(2,'0');
+
+    const folder =
+      `resources/class-6/social/chapter-${chapterNumber}`;
+
+
+    /* Loading screen */
+    openM(`
+      <button class="back"
+              onclick="chapters(${c},'${s}')">
+        ← Chapters
+      </button>
+
+      <h2>
+        Class ${c} • ${s} • Chapter ${n}
+      </h2>
+
+      <p>
+        Loading chapter resources...
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <b>⏳ Please wait</b>
+          <small>
+            Finding the correct PDF...
+          </small>
+        </div>
+
+      </div>
+    `);
+
+
+    try{
+
+      const files =
+        await getTlmGithubFiles(folder);
+
+
+      /* Find chapter PDF */
+      const pdf =
+        files.find(function(file){
+
+          return file.type === 'file' &&
+                 file.name.toLowerCase().endsWith('.pdf');
+
+        });
+
+
+      /* Find PPT if available directly in chapter folder */
+      const ppt =
+        files.find(function(file){
+
+          return file.type === 'file' &&
+                 (
+                   file.name.toLowerCase().endsWith('.pptx') ||
+                   file.name.toLowerCase().endsWith('.ppt')
+                 );
+
+        });
+
+
+      let items = '';
+
+
+      /* COMPLETE CHAPTER PDF */
+      if(pdf){
+
+        const pdfUrl =
+          tlmSiteUrl(pdf.path);
+
+        items += `
+          <div class="step"
+               onclick="window.open('${pdfUrl}','_blank')">
+
+            <b>📕 Complete Chapter PDF</b>
+
+            <small>
+              ${pdf.name}
+              <br>
+              Open PDF →
+            </small>
+
+          </div>
+        `;
+
+      }else{
+
+        items += `
+          <div class="step">
+
+            <b>📕 Complete Chapter PDF</b>
+
+            <small>
+              PDF not found
+            </small>
+
+          </div>
+        `;
+
+      }
+
+
+
+/* COMPLETE CHAPTER PPT */
+
+// Chapter 10: Open the separately prepared AI-generated PDF from Google Drive.
+if (Number(n) === 10) {
+  items += `
+    <div class="step"
+         onclick="window.open('https://drive.google.com/file/d/1hFlWcHB3WMjMweecceJybutPm3AGm81g/preview', '_blank')"
+         role="button"
+         tabindex="0"
+         style="cursor:pointer;">
+      <b>📊 Complete Chapter PPT</b>
+      <small>
+        AI Generated PDF – All 3 Periods<br>
+        Open Complete Chapter PPT →
+      </small>
+    </div>
+  `;
+} else if (ppt) {
+  const pptUrl = tlmSiteUrl(ppt.path);
+  items += `
+    <div class="step"
+         onclick="window.open('${pptUrl}', '_blank')"
+         role="button"
+         tabindex="0"
+         style="cursor:pointer;">
+      <b>📊 Complete Chapter PPT</b>
+      <small>Open Complete Chapter PPT →</small>
+    </div>
+  `;
+} else {
+  items += `
+    <div class="step">
+      <b>📊 Complete Chapter PPT</b>
+      <small>PPT Coming Soon</small>
+    </div>
+  `;
+}
+
+
+ /* OTHER RESOURCE SECTIONS */
+
+items += `
+
+  <div class="step"
+       onclick="openTlmPeriodPpts(${Number(chapterNumber)})">
+    <b>🎞️ Period-wise PPTs</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/teacher-plan.html'">
+    <b>👨‍🏫 Teaching Notes</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/student-notes.html'">
+    <b>📘 Student Notes</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🎥 Videos</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🧩 Activities</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🛠️ TLM Materials</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>📝 Worksheets</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>❓ Practice Questions</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/assessment.html'">
+    <b>📋 FA / SA</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/cce-rubric.html'">
+    <b>📊 CCE Rubric</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/cce-project.html'">
+    <b>🏆 Project Work</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🏠 Homework</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🧠 Mind Map</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/chapter1-resources.html'">
+    <b>🃏 Flash Cards</b>
+    <small>Open →</small>
+  </div>
+
+  <div class="step"
+       onclick="window.location.href='pages/question-bank.html'">
+    <b>🎯 Quiz</b>
+    <small>Open →</small>
+  </div>
+
+`;
+
+
+
+
+      openM(`
+
+        <button class="back"
+                onclick="chapters(${c},'${s}')">
+
+          ← Chapters
+
+        </button>
+
+
+        <h2>
+          Class ${c} • ${s} • Chapter ${n}
+        </h2>
+
+
+        <p>
+          Select learning resource
+        </p>
+
+
+        <div class="steps">
+          ${items}
+        </div>
+
+      `);
+
+
+    }catch(error){
+
+      openM(`
+
+        <button class="back"
+                onclick="chapters(${c},'${s}')">
+
+          ← Chapters
+
+        </button>
+
+
+        <h2>
+          Class ${c} • ${s} • Chapter ${n}
+        </h2>
+
+
+        <div class="steps">
+
+          <div class="step">
+
+            <b>⚠️ Resources could not be loaded</b>
+
+            <small>
+              Please check your internet connection
+              and try again.
+            </small>
+
+          </div>
+
+        </div>
+
+      `);
+
+    }
+
+    return;
+  }
+
+
+  /* =========================
+     OTHER CLASSES
+     OLD CHAPTER-1 BEHAVIOUR
+     ========================= */
+
+  let items = [
+
+    {
+      name: "Overview",
+      action: "page",
+      url: "pages/chapter1-reading-making-maps.html"
+    },
+
+    {
+      name: "Learning Outcomes",
+      action: "page",
+      url: "pages/chapter1-reading-making-maps.html"
+    },
+
+    {
+      name: "Teaching Plan",
+      action: "page",
+      url: "pages/chapter1-reading-making-maps.html"
+    },
+
+    {
+      name: "Complete Chapter PDF",
+      action: "pdf",
+      url: "resources/class-6/social/chapter-01/chapter-01-reading-and-making-maps.pdf"
+    },
+
+    {
+      name: "Chapter PPTs",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+  name: "Period-wise PPTs",
+  action: "function",
+  run: () => openTlmPeriodPpts("01")
+} ,
+  {   
+  name: "Teaching Notes",
+      action: "page",
+      url: "pages/teacher-plan.html"
+    },
+
+    {
+      name: "Student Notes",
+      action: "page",
+      url: "pages/student-notes.html"
+    },
+
+    {
+      name: "Videos",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "Activities",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "TLM Materials",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "Worksheets",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "Practice Questions",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "FA / SA",
+      action: "page",
+      url: "pages/assessment.html"
+    },
+
+    {
+      name: "CCE Rubric",
+      action: "page",
+      url: "pages/cce-rubric.html"
+    },
+
+    {
+      name: "Project Work",
+      action: "page",
+      url: "pages/cce-project.html"
+    },
+
+    {
+      name: "Homework",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "Mind Map",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "Flash Cards",
+      action: "page",
+      url: "pages/chapter1-resources.html"
+    },
+
+    {
+      name: "Quiz",
+      action: "page",
+      url: "pages/question-bank.html"
+    }
+
+  ];
+
+
+  let a = items.map(function(item){
+
+    let clickAction;
+
+    if(item.action === "pdf"){
+
+      clickAction =
+        `window.open('${item.url}','_blank')`;
+
+    }else{
+
+      clickAction =
+        `window.location.href='${item.url}'`;
+
+    }
+
+    return `
+      <div class="step"
+           onclick="${clickAction}">
+
+        <b>${item.name}</b>
+
+        <small>
+          Open →
+        </small>
+
+      </div>
+    `;
+
+  }).join('');
+
+
+  openM(`
+
+    <button class="back"
+            onclick="chapters(${c},'${s}')">
+
+      ← Chapters
+
+    </button>
+
+
+    <h2>
+      Class ${c} • ${s} • Chapter ${n}
+    </h2>
+
+
+    <p>
+      Select learning resource
+    </p>
+
+
+    <div class="steps">
+      ${a}
+    </div>
+
+  `);
+    }
+      
+
+  /* =========================================================
+   TLM FOR ALL — AI CREATOR CENTER
+   ========================================================= */
+function openAICenter(){
+
+  openM(`
+    
+    <div class="ai-header">
+
+      <div class="ai-logo">🤖✨</div>
+
+      <h2>TLM FOR ALL AI CREATOR</h2>
+
+      <p>
+        Create • Teach • Learn • Inspire
+      </p>
+
+      <div class="ai-language">
+
+        <label>🌐 Language</label>
+
+        <select id="aiLanguage">
+
+          <option value="English">English</option>
+
+          <option value="Telugu">తెలుగు</option>
+
+          <option value="Hindi">हिन्दी</option>
+
+          <option value="Telugu + English">
+            తెలుగు + English
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="ai-tools">
+
+
+      <div class="ai-tool image-tool"
+           onclick="openAIImage()">
+
+        <div class="ai-tool-icon">
+          🖼️✨
+        </div>
+
+        <h3>Prompt → Image</h3>
+
+        <p>
+          Create educational images,
+          3D visuals, diagrams and maps.
+        </p>
+
+        <button>
+          CREATE IMAGE →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool video-tool"
+           onclick="openAIVideo()">
+
+        <div class="ai-tool-icon">
+          🎬✨
+        </div>
+
+        <h3>Prompt → Video</h3>
+
+        <p>
+          Create educational videos
+          from your topic or prompt.
+        </p>
+
+        <button>
+          CREATE VIDEO →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool image-video-tool"
+           onclick="openAIImageVideo()">
+
+        <div class="ai-tool-icon">
+          🖼️🎬
+        </div>
+
+        <h3>Image → Video</h3>
+
+        <p>
+          Turn educational images
+          into engaging videos.
+        </p>
+
+        <button>
+          CREATE VIDEO →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool ppt-tool"
+           onclick="openAIPPT()">
+
+        <div class="ai-tool-icon">
+          📊✨
+        </div>
+
+        <h3>Auto PPT</h3>
+
+        <p>
+          Generate complete educational
+          presentations automatically.
+        </p>
+
+        <button>
+          CREATE PPT →
+        </button>
+
+      </div>
+
+
+      <div class="ai-tool voice-tool"
+           onclick="openAIVoice()">
+
+        <div class="ai-tool-icon">
+          🎙️✨
+        </div>
+
+        <h3>AI Voice</h3>
+
+        <p>
+          Create attractive educational
+          voice narration.
+        </p>
+
+        <button>
+          CREATE VOICE →
+        </button>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="ai-footer-note">
+
+      🚀 <b>TLM FOR ALL AI CREATOR</b>
+
+      <br><br>
+
+      One place for Images • Videos • PPTs • Voice
+
+    </div>
+
+  `);
+
+  }
+ function openAIImage(){
+
+  openM(`
+    <button class="back" onclick="openAICenter()">
+      ← AI Creator
+    </button>
+
+    <div class="ai-create-header image-create-header">
+
+      <div class="ai-create-icon">🖼️✨</div>
+
+      <h2>Prompt → Image</h2>
+
+      <p>
+        Create accurate educational images, 3D visuals,
+        diagrams, maps and illustrations.
+      </p>
+
+    </div>
+
+
+    <div class="ai-form-card">
+
+      <label>✍️ What do you want to create?</label>
+
+      <textarea
+        id="imagePrompt"
+        class="ai-big-input"
+        placeholder="Example:
+
+Create a realistic 3D educational scene of a tribal village community meeting for Class 6 Social Studies. Show villagers sitting together and discussing an important community decision."
+      ></textarea>
+
+
+      <div class="ai-form-grid">
+
+        <div>
+
+          <label>🌐 Language</label>
+
+          <select id="imageLanguage">
+
+            <option value="English">English</option>
+
+            <option value="Telugu">తెలుగు</option>
+
+            <option value="Hindi">हिन्दी</option>
+
+            <option value="Telugu + English">
+              తెలుగు + English
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>🎨 Style</label>
+
+          <select id="imageStyle">
+
+            <option value="Educational realistic">
+              Educational Realistic
+            </option>
+
+            <option value="3D educational">
+              3D Educational
+            </option>
+
+            <option value="Cinematic">
+              Cinematic
+            </option>
+
+            <option value="Cartoon">
+              Cartoon
+            </option>
+
+            <option value="Watercolor">
+              Watercolor
+            </option>
+
+            <option value="Infographic">
+              Infographic
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>📐 Format</label>
+
+          <select id="imageRatio">
+
+            <option value="16:9">
+              16:9 — PPT / IFP
+            </option>
+
+            <option value="1:1">
+              1:1 — Square
+            </option>
+
+            <option value="4:3">
+              4:3 — Classroom
+            </option>
+
+            <option value="9:16">
+              9:16 — Mobile / Reel
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>🎓 Level</label>
+
+          <select id="imageLevel">
+
+            <option value="School">
+              School
+            </option>
+
+            <option value="Class 1–5">
+              Class 1–5
+            </option>
+
+            <option value="Class 6–8">
+              Class 6–8
+            </option>
+
+            <option value="Class 9–10">
+              Class 9–10
+            </option>
+
+            <option value="Teacher">
+              Teacher
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="ai-check-options">
+
+        <label>
+          <input type="checkbox"
+                 id="imageAccuracy"
+                 checked>
+          🎯 Educational Accuracy
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 id="imageText">
+          🔤 Add Text / Labels
+        </label>
+
+        <label>
+          <input type="checkbox"
+                 id="image3D">
+          🌍 3D Visual
+        </label>
+
+      </div>
+
+
+      <button
+        class="ai-main-generate"
+        onclick="generateImage()">
+
+        ✨ GENERATE IMAGE
+
+      </button>
+
+
+      <div id="imageResult"></div>
+
+    </div>
+  `);
+ }
+  function generateImage(){
+
+  const prompt =
+    document.getElementById("imagePrompt").value.trim();
+
+  if(!prompt){
+    alert("Please enter an image prompt.");
+    return;
+  }
+
+  const language =
+    document.getElementById("imageLanguage").value;
+
+  const style =
+    document.getElementById("imageStyle").value;
+
+  const ratio =
+    document.getElementById("imageRatio").value;
+
+  const level =
+    document.getElementById("imageLevel").value;
+
+  const accuracy =
+    document.getElementById("imageAccuracy").checked;
+
+  const addText =
+    document.getElementById("imageText").checked;
+
+  const use3D =
+    document.getElementById("image3D").checked;
+
+  const result =
+    document.getElementById("imageResult");
+
+  result.innerHTML = `
+    <div class="ai-processing">
+      <div style="font-size:42px">🤖🎨</div>
+
+      <h3>Preparing your educational image...</h3>
+
+      <p>
+        Understanding prompt →
+        Applying educational context →
+        Preparing visual
+      </p>
+    </div>
+  `;
+
+  const imageRequest = {
+    prompt: prompt,
+    language: language,
+    style: style,
+    aspectRatio: ratio,
+    level: level,
+    educationalAccuracy: accuracy,
+    addText: addText,
+    use3D: use3D
+  };
+
+  console.log(
+    "TLM FOR ALL Image Request:",
+    imageRequest
+  );
+
+  setTimeout(() => {
+
+    result.innerHTML = `
+      <div class="ai-processing">
+
+        <div style="font-size:45px">
+          🔐
+        </div>
+
+        <h3>AI Image Engine Ready</h3>
+
+        <p>
+          Secure AI connection will be activated
+          in the next step.
+        </p>
+
+        <small>
+          Your prompt has been prepared successfully.
+        </small>
+
+      </div>
+    `;
+
+  },700);
+
+        }
+function zone(t,a){openM(`<h2>${t}</h2><p>Touch any item to open its content.</p><div class="steps">${a.map(x=>`<div class="step" onclick="alert('${x} section is ready for content linking.')"><b>${x}</b><small>Open →</small></div>`).join('')}</div>`)}function search(){let q=document.getElementById('q').value.trim();if(q)zone('🤖 AI Smart Search',['Search: '+q,'AI Question Paper','AI PPT','Worksheet','Chapter','Activity'])}document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeM()};
+</script><script>
+/* Home page daily cards: tap a card (or its arrow) to read the full text */
+function openDaily(title,id){
+  var el=document.getElementById(id);
+  var t=(el?el.textContent:'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  openM('<h2>'+title+'</h2><p style="font-size:20px;line-height:1.7;font-weight:700;color:#07154e">'+t+'</p>');
+}
+document.querySelectorAll('#dailyContent article.dc').forEach(function(a){
+  a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();a.click();}});
+});
+</script>
+</body></html>
