@@ -65,6 +65,21 @@ button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
 @keyframes fade2{0%,70%{opacity:1}100%{opacity:0}}
 #snd{border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;font:inherit;padding:3px 12px;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.fxp{display:none}}
+
+.tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.tile{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:6px 8px;text-align:center;min-width:76px;box-shadow:0 3px 0 rgba(0,0,0,.12);color:var(--ink)}
+.tile.sel{border-color:var(--coral);border-width:4px}.tile .ti{display:block;font-size:2rem;line-height:1.25}.tile small{display:block;font-weight:700;font-size:.8rem}.tile .ti svg{max-width:64px;height:auto}
+.tile.ghost{opacity:.95;background:var(--sun);color:#1f2a5a}
+.field{display:grid;grid-template-columns:1fr 2.2fr 1fr;grid-template-rows:auto minmax(120px,2fr) auto;gap:6px;max-width:600px;margin:10px auto;padding:8px;background:#fffdf3;border-radius:14px;border:2px solid var(--line);color:#1f2a5a}
+.field.one{display:block;padding:8px}
+.field [data-z="n"]{grid-column:1/4;grid-row:1}.field [data-z="s"]{grid-column:1/4;grid-row:3}.field [data-z="w"]{grid-column:1;grid-row:2}.field [data-z="c"]{grid-column:2;grid-row:2}.field [data-z="e"]{grid-column:3;grid-row:2}
+.field [data-z]{border:2px dashed #cdbf9a;border-radius:10px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:center;position:relative;padding:18px 4px 6px;min-height:64px;cursor:pointer}
+.field .zbig{min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:1.2rem;padding:10px}
+.zl{position:absolute;top:2px;left:6px;font-size:.8rem;font-weight:800;color:#c0392b}
+.pl{font-size:1.7rem;line-height:1}.pl svg{width:46px;height:23px}
+.field [data-z="n"].has-wall{border-top:10px solid #6d4c41}.field [data-z="s"].has-wall{border-bottom:10px solid #6d4c41}.field [data-z="e"].has-wall{border-right:10px solid #6d4c41}.field [data-z="w"].has-wall{border-left:10px solid #6d4c41}
+#tm .blink{animation:blink .5s 4;stroke:#ff7a00;stroke-width:22}#tm .shown{stroke:#ff9800;stroke-width:12}
+@keyframes blink{50%{opacity:.2}}
 </style>
 </head>
 <body>
@@ -89,7 +104,7 @@ sub:{te:'6వ తరగతి సోషల్: ఆడు, చేసి చూడ
 next:{te:'తర్వాత ▶',en:'Next ▶'},again:{te:'మళ్లీ ఆడు 🔄',en:'Play again 🔄'},
 good:{te:'సరైనది! 🎉',en:'Correct! 🎉'},bad:{te:'కాదు. సరైన జవాబు గుర్తించాం.',en:'Not quite. The right answer is marked.'},
 sc:{te:'మీ స్కోరు',en:'Your score'},got:{te:'⭐ వచ్చింది!',en:'⭐ earned!'},tryagain:{te:'80% వస్తే ⭐ వస్తుంది. మళ్లీ ప్రయత్నించు!',en:'Score 80% to earn a ⭐. Try again!'}};
-const TABS=[['dir','🧭',{te:'దిక్కులు',en:'Directions'}],['scale','📏',{te:'స్కేలు',en:'Scale'}],['sym','🔣',{te:'చిహ్నాలు',en:'Symbols'}],['map','🗺️',{te:'పటం చదువు',en:'Read a map'}],['td','🏞️',{te:'తెలంగాణ జిల్లాలు',en:'Telangana districts'}],['route','🚶',{te:'మల్లిక ఇంటికి దారి',en:'Mallika\'s route'}],['game','🎯',{te:'రహస్య ప్రదేశం',en:'Secret place'}],['make','✏️',{te:'పటం తయారుచేయి',en:'Make a map'}],['do','✋',{te:'చేసి చూడు',en:'Do it'}]];
+const TABS=[['dir','🧭',{te:'దిక్కులు',en:'Directions'}],['mp','🗺️',{te:'పటాల రకాలు (ఆట)',en:'Map types (game)'}],['cp','🌳',{te:'దిక్కుల చిహ్నాలు (ఆట)',en:'Symbols game'}],['cr','🏫',{te:'తరగతి గది పటం (ఆట)',en:'Classroom game'}],['scale','📏',{te:'స్కేలు',en:'Scale'}],['sym','🔣',{te:'చిహ్నాలు',en:'Symbols'}],['map','🗺️',{te:'పటం చదువు',en:'Read a map'}],['td','🏞️',{te:'తెలంగాణ జిల్లాలు',en:'Telangana districts'}],['route','🚶',{te:'మల్లిక ఇంటికి దారి',en:'Mallika\'s route'}],['game','🎯',{te:'రహస్య ప్రదేశం',en:'Secret place'}],['make','✏️',{te:'పటం తయారుచేయి',en:'Make a map'}],['do','✋',{te:'చేసి చూడు',en:'Do it'}]];
 let tab='dir';
 
 /* feedback: flowers, emoji, sound */
@@ -347,7 +362,7 @@ function tdTab(){return `<h2>🏞️ ${L({te:'తెలంగాణ జిల్
 function tdInit(){
   const nm=(i)=>TD[i][lang==='te'?0:1],w=$('#tmw');
   w.innerHTML=`<svg id="tm" viewBox="380 320 2330 2330" class="fig" style="background:#d9f1ff;max-width:720px;touch-action:manipulation" role="img" aria-label="${L({te:'తెలంగాణ జిల్లాల పటం',en:'Map of Telangana districts'})}"><g>${TD.map((t,i)=>`<path data-i="${i}" d="${t[5]}" fill="${t[4]}" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>`).join('')}</g><g id="tl" pointer-events="none"></g><g pointer-events="none"><text x="2560" y="470" font-size="90" font-weight="800" fill="#c0392b" text-anchor="middle">N</text><polygon points="2560,490 2525,570 2595,570" fill="#c0392b"/><line x1="2560" y1="560" x2="2560" y2="700" stroke="#c0392b" stroke-width="14"/></g></svg>`;
-  const svg=$('#tm');let mode=1,order,pos,found,errs;
+  const svg=$('#tm');let mode=1,order,pos,found,errs,wr=0,lock=false;
   const lbl=(i)=>{const t=TD[i],x=t[2],y=t[3],nmS=nm(i),ws=nmS.split(' '),lines=ws.length>1&&nmS.length>9?[ws.slice(0,Math.ceil(ws.length/2)).join(' '),ws.slice(Math.ceil(ws.length/2)).join(' ')]:[nmS];
     return `<g class="pop"><circle cx="${x}" cy="${y-48}" r="34" fill="#1f9d63" stroke="#fff" stroke-width="5"/><path d="M${x-15} ${y-48} l10 12 l22 -24" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>${lines.map((l,k)=>`<text x="${x}" y="${y+22+k*44}" text-anchor="middle" font-size="40" font-weight="800" fill="#12357a" stroke="#fff" stroke-width="9" paint-order="stroke" stroke-linejoin="round">${l}</text>`).join('')}</g>`};
   const panel=(msg)=>{
@@ -360,14 +375,16 @@ function tdInit(){
     chip.onpointerup=e=>{if(!dr)return;dr=false;chip.classList.remove('drag');chip.style.pointerEvents='none';const t=document.elementFromPoint(e.clientX,e.clientY);chip.style.pointerEvents='';chip.style.position='';chip.style.left='';chip.style.top='';const p=t&&t.closest&&t.closest('#tm [data-i]');if(p)guess(+p.dataset.i)};
     chip.onpointercancel=()=>{dr=false;chip.classList.remove('drag');chip.style.position='';chip.style.left='';chip.style.top=''};
   };
+  const reveal=(t)=>{lock=true;const p=svg.querySelector(`[data-i="${t}"]`);p.classList.add('blink');panel('💡 '+L({te:`సమాధానం: ${nm(t)}. ఇదే!`,en:`Answer: ${nm(t)}. This one!`}));
+    setTimeout(()=>{p.classList.remove('blink');found.add(t);p.classList.add('found','shown');$('#tl').insertAdjacentHTML('beforeend',lbl(t));pos++;wr=0;lock=false;panel('')},2400)};
   const guess=(i)=>{
-    if(mode!==1||pos>=33||found.has(i))return;const t=order[pos],p=svg.querySelector(`[data-i="${i}"]`);
-    if(i===t){found.add(i);p.classList.add('found');fb(true);$('#tl').insertAdjacentHTML('beforeend',lbl(i));pos++;panel('✅ '+L({te:'సరైనది!',en:'Correct!'})+' '+nm(i))}
-    else{errs++;fb(false);const c=p.getAttribute('fill');p.style.fill='#ff2d2d';w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake','redflash');setTimeout(()=>{p.style.fill='';w.classList.remove('redflash')},700);if(navigator.vibrate)try{navigator.vibrate(150)}catch(e){}
-      panel('❌ '+L({te:`అది ${nm(i)}. ${nm(t)} కాదు, మళ్లీ ప్రయత్నించు!`,en:`That is ${nm(i)}, not ${nm(t)}. Try again!`}))}
+    if(mode!==1||pos>=33||found.has(i)||lock)return;const t=order[pos],p=svg.querySelector(`[data-i="${i}"]`);
+    if(i===t){found.add(i);p.classList.add('found');fb(true);$('#tl').insertAdjacentHTML('beforeend',lbl(i));pos++;wr=0;panel('✅ '+L({te:'సరైనది!',en:'Correct!'})+' '+nm(i))}
+    else{errs++;wr++;fb(false);const c=p.getAttribute('fill');p.style.fill='#ff2d2d';w.classList.remove('shake');void w.offsetWidth;w.classList.add('shake','redflash');setTimeout(()=>{p.style.fill='';w.classList.remove('redflash')},700);if(navigator.vibrate)try{navigator.vibrate(150)}catch(e){}
+      if(wr>=3){reveal(t);return}panel('❌ '+wr+'/3 · '+L({te:`అది ${nm(i)}. ${nm(t)} కాదు, మళ్లీ ప్రయత్నించు!`,en:`That is ${nm(i)}, not ${nm(t)}. Try again!`}))}
   };
   svg.onclick=e=>{const p=e.target.closest&&e.target.closest('[data-i]');if(p)guess(+p.dataset.i)};
-  const start=()=>{order=shuffle([...TD.keys()]);pos=0;found=new Set();errs=0;$('#tl').innerHTML='';svg.querySelectorAll('path[data-i]').forEach(p=>p.classList.remove('found'));panel('')};
+  const start=()=>{wr=0;lock=false;order=shuffle([...TD.keys()]);pos=0;found=new Set();errs=0;$('#tl').innerHTML='';svg.querySelectorAll('path[data-i]').forEach(p=>p.classList.remove('found'));panel('')};
   const dirOf=(a,b)=>{const dx=TD[a][2]-TD[b][2],dy=TD[a][3]-TD[b][3],ax=Math.abs(dx),ay=Math.abs(dy);if(Math.max(ax,ay)<1.4*Math.min(ax,ay))return null;return ay>ax?(dy<0?'n':'s'):(dx>0?'e':'w')};
   const PAIRS=[[1,26],[4,30],[10,25],[11,2],[20,13],[2,18],[7,1],[3,17],[19,9],[32,13],[16,4],[27,0],[12,10],[8,19],[9,17],[14,23]];
   const dirQuiz=()=>{
@@ -381,6 +398,99 @@ function tdInit(){
   $('#m1').onclick=()=>setMode(1);$('#m2').onclick=()=>setMode(2);
   start();setMode(1);
 }
+/* drag & drop games: map types, symbols+directions, classroom map */
+function bindDrag(root,drop){
+  let sel=null,ghost=null,st=null;
+  const clr=()=>root.querySelectorAll('[data-t]').forEach(t=>t.classList.remove('sel'));
+  root.querySelectorAll('[data-t]').forEach(t=>{
+    t.onpointerdown=e=>{e.preventDefault();t.setPointerCapture(e.pointerId);st={x:e.clientX,y:e.clientY,mv:false};
+      ghost=t.cloneNode(true);ghost.className='tile ghost';ghost.style.cssText='position:fixed;pointer-events:none;z-index:9998;display:none;transform:translate(-50%,-115%) scale(1.15)'};
+    t.onpointermove=e=>{if(!st)return;if(Math.hypot(e.clientX-st.x,e.clientY-st.y)>8)st.mv=true;
+      if(st.mv){if(!ghost.parentNode)document.body.appendChild(ghost);ghost.style.display='';ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}};
+    t.onpointerup=e=>{if(!st)return;const mv=st.mv;st=null;if(ghost){ghost.remove();ghost=null}
+      if(!mv){clr();sel=t.dataset.t;t.classList.add('sel');return}
+      const el=document.elementFromPoint(e.clientX,e.clientY),z=el&&el.closest&&el.closest('[data-z]');
+      if(z){sel=null;clr();drop(t.dataset.t,z.dataset.z)}};
+    t.onpointercancel=()=>{st=null;if(ghost){ghost.remove();ghost=null}};
+  });
+  root.querySelectorAll('[data-z]').forEach(z=>z.addEventListener('click',()=>{if(sel){const s=sel;sel=null;clr();drop(s,z.dataset.z)}}));
+}
+const dropHTML=(ic,ti,hint,cls)=>`<h2>${ic} ${L(ti)}</h2><p class="hint">${L(hint)}</p><div class="tray" id="tray"></div><div class="field ${cls||''}" id="field"></div><div class="prog"><i id="gp" style="width:0"></i></div><div class="q" id="gq"></div><div class="fb" id="gf"></div>`;
+function dropGame(o){
+  let i=0,mis=0,lock=false;const f=$('#field'),gq=$('#gq'),gf=$('#gf'),pr=$('#gp');
+  $('#tray').innerHTML=o.tiles.map(t=>`<div class="tile" data-t="${t.id}"><span class="ti">${t.ic}</span><small>${L(t.n)}</small></div>`).join('');
+  f.innerHTML=o.zones;
+  const ask=()=>{lock=false;if(o.reset)o.reset(f);if(i>=o.qs.length){fin();return}pr.style.width=(i/o.qs.length*100)+'%';gq.innerHTML=L(o.qs[i].q)+' <small>('+(i+1)+'/'+o.qs.length+')</small>';gf.textContent=''};
+  const fin=()=>{done[o.key]=true;save();stars();pr.style.width='100%';gq.innerHTML='🎉 '+L({te:'అన్నీ పూర్తి చేశావు! ⭐',en:'All done! ⭐'});
+    gf.innerHTML=L({te:'తప్పులు',en:'Mistakes'})+': '+mis+(o.final?'<br>'+o.final():'')+'<br><button class="again" id="ra">'+L(UI.again)+'</button>';$('#ra').onclick=render;fb(true)};
+  bindDrag($('#panel'),(t,z)=>{
+    const q=o.qs[i];if(!q||lock)return;
+    if(o.check(q,t,z)){lock=true;o.place(t,z,f,q);fb(true);i++;setTimeout(ask,o.wait||900)}
+    else{mis++;fb(false);f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake','redflash');setTimeout(()=>f.classList.remove('redflash'),700);gf.textContent='❌ '+L({te:'మళ్లీ ప్రయత్నించు!',en:'Try again!'})}
+  });
+  ask();
+}
+/* 1. map types */
+const thumb=k=>{
+  if(!document.getElementById('tdd'))document.body.insertAdjacentHTML('beforeend','<svg id="tdd" width="0" height="0" style="position:absolute"><defs>'+TD.map((t,i)=>`<path id="tdp${i}" d="${t[5]}"/>`).join('')+'</defs></svg>');
+  const pa=TD.map((t,i)=>{let f,s='#fff',w=8;
+    if(k=='pol')f=t[4];
+    else if(k=='phy'){f=['#7cb342','#aed581','#dce775','#ffd54f','#ffb74d','#a1887f'][(i*5+Math.floor(t[3]/400))%6];s='none';w=0}
+    else if(k=='his'){f='#e9d8a6';s='#8b5e3c';w=10}
+    else if(k=='rain')f=['#e3f2fd','#bbdefb','#90caf9','#64b5f6','#2196f3'][(i*3+Math.floor(t[2]/700))%5];
+    else if(k=='pop'){f='#fafafa';s='#bbb';w=6}
+    else if(k=='road'){f='#eceff1';s='#b0bec5';w=6}
+    else f=['#bcaaa4','#a1887f','#d7ccc8','#8d6e63','#efebe9'][(i*2+Math.floor(t[3]/500))%5];
+    return `<use href="#tdp${i}" fill="${f}" stroke="${s}" stroke-width="${w}" stroke-linejoin="round"${k=='his'?' stroke-dasharray="26 14"':''}/>`}).join('');
+  let x='';
+  if(k=='pop')x=TD.map((t,i)=>`<circle cx="${t[2]}" cy="${t[3]}" r="${30+(i*17)%70}" fill="#e53935" opacity=".75"/>`).join('');
+  if(k=='road')x=`<polyline points="${[4,30,17,10,3,25,12].map(i=>TD[i][2]+','+TD[i][3]).join(' ')}" fill="none" stroke="#d32f2f" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><polyline points="${[2,18,19,9,24,4,17,16].map(i=>TD[i][2]+','+TD[i][3]).join(' ')}" fill="none" stroke="#263238" stroke-width="14" stroke-dasharray="40 24"/>`;
+  if(k=='phy')x='<text x="1000" y="900" font-size="280">⛰️</text><text x="1800" y="1500" font-size="260">🌲</text>';
+  if(k=='his')x='<text x="1000" y="1150" font-size="320">🏰</text>';
+  if(k=='soil')x='<text x="1100" y="1000" font-size="300">🌾</text>';
+  return `<svg viewBox="380 320 2330 2330" width="84" height="84" style="background:${k=='his'?'#f6ecd0':'#d9f1ff'};border-radius:10px">${pa}${x}</svg>`;
+};
+const MT=[['pol',{te:'రాజకీయ పటం',en:'Political map'}],['phy',{te:'భౌతిక పటం',en:'Physical map'}],['his',{te:'చారిత్రక పటం',en:'Historical map'}],['rain',{te:'వర్షపాత పటం',en:'Rainfall map'}],['pop',{te:'జనాభా పటం',en:'Population map'}],['road',{te:'రహదారి పటం',en:'Road map'}],['soil',{te:'నేలలు, పంటల పటం',en:'Soil & crops map'}]];
+function mpTab(){return dropHTML('🗺️',{te:'ఏ పటం ఇది?',en:'Which map is it?'},{te:'పటాల రకాలను పక్కన చూడు. ప్రశ్న చదివి సరైన పటాన్ని మధ్యలోకి లాగి వదులు (లేదా పటాన్ని నొక్కి, మధ్య పెట్టెను నొక్కు).',en:'See the kinds of maps. Read the question and drag the right map to the middle box (or tap the map, then tap the box).'},'one')}
+function mpInit(){
+  const q=(a,te,en)=>({a,q:{te,en}});
+  const qs=shuffle([q('pol','రాజకీయ పటాన్ని మధ్యలోకి లాగండి.','Drag the political map to the middle.'),q('phy','భౌతిక పటాన్ని మధ్యలోకి లాగండి.','Drag the physical map to the middle.'),q('his','చారిత్రక పటాన్ని మధ్యలోకి లాగండి.','Drag the historical map to the middle.'),
+   q('phy','నదులు, పర్వతాలు, పీఠభూములు చూపే పటాన్ని లాగండి.','Drag the map that shows rivers, mountains and plateaus.'),q('pol','రాష్ట్రాలు, జిల్లాల సరిహద్దులు చూపే పటాన్ని లాగండి.','Drag the map that shows state and district boundaries.'),
+   q('his','పాత రాజ్యాలు, పూర్వకాలపు సంగతులు చూపే పటాన్ని లాగండి.','Drag the map that shows old kingdoms and past events.'),q('rain','ఏ ప్రాంతంలో ఎంత వర్షం పడుతుందో చూపే పటాన్ని లాగండి.','Drag the map that shows how much rain each place gets.'),
+   q('road','ఊరి నుంచి ఊరికి రోడ్లు, రైలుమార్గాలు చూడాలంటే ఏ పటం?','Which map helps you find roads and rail routes between places?'),q('pop','ప్రజలు ఎక్కడ ఎక్కువగా నివసిస్తున్నారో చూపే పటాన్ని లాగండి.','Drag the map that shows where most people live.'),
+   q('soil','నేలల రకాలు, పంటలు చూపే పటాన్ని లాగండి.','Drag the map that shows soils and crops.'),q('pol','మన జిల్లా పటం (పాఠం 1.1) ఏ రకం పటం?','What kind of map is our district map (lesson 1.1)?'),
+   q('his','అశోకుని సామ్రాజ్యం ఎంత విస్తరించిందో చూపే పటాన్ని లాగండి.','Drag the map that shows how far Ashoka\'s empire spread.'),q('phy','ఎత్తైన కొండలు ఎక్కడున్నాయో తెలుసుకోవాలంటే ఏ పటం చూడాలి?','Which map shows where the high hills are?'),q('rain','ఏ జిల్లాల్లో వర్షం ఎక్కువో తెలుసుకోవాలంటే ఏ పటం?','Which map tells you which districts get more rain?')]);
+  const ph=()=>`<div class="zbig" data-z="mid">⬇️ ${L({te:'ఇక్కడ వదులు',en:'Drop here'})}</div>`;
+  dropGame({key:'mp',qs,tiles:MT.map(([id,n])=>({id,n,ic:thumb(id)})),zones:ph(),check:(q,t)=>q.a===t,wait:1300,
+    place:(t,z,f)=>{const m=MT.find(x=>x[0]===t);f.querySelector('.zbig').innerHTML=thumb(t).replace('width="84" height="84"','width="140" height="140"')+'<br><b>✅ '+L(m[1])+'</b>'},reset:f=>{f.innerHTML=ph()}});
+}
+/* 2. symbols + directions */
+const DA={n:{te:'ఉత్తర',en:'north'},e:{te:'తూర్పు',en:'east'},s:{te:'దక్షిణ',en:'south'},w:{te:'పడమర',en:'west'}};
+const zoneHTML=()=>['n','w','c','e','s'].map(k=>`<div data-z="${k}">${k=='c'?'':`<b class="zl">${k.toUpperCase()}</b>`}</div>`).join('');
+const SY=[['tree','🌳',{te:'చెట్టు',en:'tree'}],['hill','⛰️',{te:'కొండ',en:'hill'}],['house','🏠',{te:'ఇల్లు',en:'house'}],['well','<svg viewBox="0 0 32 32" width="34" height="34"><circle cx="16" cy="16" r="14" fill="#8d6e63"/><circle cx="16" cy="16" r="8" fill="#4fc3f7"/></svg>',{te:'బావి',en:'well'}],['pond',SYM[1].f,{te:'చెరువు',en:'pond'}],['sun','☀️',{te:'సూర్యుడు',en:'sun'}],['kutcha',SYM[2].f,{te:'మట్టిరోడ్డు',en:'kutcha road'}],['pucca',SYM[3].f,{te:'తారురోడ్డు',en:'pucca road'}],['rail',SYM[7].f,{te:'రైలుమార్గం',en:'railway line'}],['temple','🛕',{te:'గుడి',en:'temple'}],['school','🏫',{te:'బడి',en:'school'}]];
+function cpTab(){return dropHTML('🧭',{te:'దిక్కుల పటం నింపు',en:'Fill the direction map'},{te:'చిహ్నాలను పక్కన చూడు. ప్రశ్న చెప్పిన దిక్కులో లాగి పెట్టు. ఉత్తరం పైన (N), తూర్పు కుడి (E) అని గుర్తుంచుకో!',en:'Pick the symbols. Drag each one to the direction asked. North (N) is on top, East (E) on the right!'})}
+function cpInit(){
+  const c=(i,z)=>{const s=SY.find(x=>x[0]==i)[2];return{i,z,q:{te:z=='c'?`మధ్యలో ${s.te} పెట్టు.`:`${DA[z].te} దిక్కున ${s.te} పెట్టు.`,en:z=='c'?`Put the ${s.en} in the middle.`:`Put the ${s.en} in the ${DA[z].en}.`}}};
+  const qs=shuffle([c('tree','n'),c('pond','s'),c('sun','e'),c('hill','w'),c('house','c'),c('well','e'),c('kutcha','w'),c('pucca','s'),c('rail','n'),c('temple','e'),c('school','w'),c('tree','s'),c('hill','n'),c('house','e'),c('pond','w'),c('temple','n'),c('well','c'),c('pucca','e'),c('kutcha','n')]);
+  dropGame({key:'cp',qs,tiles:SY.map(([id,ic,n])=>({id,ic,n})),zones:zoneHTML(),check:(q,t,z)=>q.i===t&&q.z===z,place:(t,z,f)=>{f.querySelector(`[data-z="${z}"]`).insertAdjacentHTML('beforeend',`<span class="pl">${SY.find(x=>x[0]==t)[1]}</span>`)}});
+}
+/* 3. classroom map */
+const CR=[['wall','<svg viewBox="0 0 64 32" width="60" height="30"><rect x="4" y="11" width="56" height="10" fill="#6d4c41"/></svg>',{te:'గోడ',en:'wall'}],['door','🚪',{te:'తలుపు',en:'door'}],['window','🪟',{te:'కిటికీ',en:'window'}],['board','<svg viewBox="0 0 64 32" width="60" height="30"><rect x="4" y="6" width="56" height="20" rx="3" fill="#2e5d3a" stroke="#8d6e63" stroke-width="3"/></svg>',{te:'నల్లబల్ల',en:'blackboard'}],['almirah','🗄️',{te:'అల్మారా',en:'almirah'}],['table','<svg viewBox="0 0 64 32" width="60" height="30"><rect x="10" y="8" width="44" height="16" rx="3" fill="#a1887f"/></svg>',{te:'బల్ల',en:'table'}],['chair','🪑',{te:'కుర్చీ',en:'chair'}]];
+function crTab(){return dropHTML('🏫',{te:'మన తరగతి గది పటం',en:'Our classroom map'},{te:'ఖాళీ గదిలో ప్రశ్న చెప్పినట్టు గోడలు, తలుపు, కిటికీలు, బల్లలు పెడుతూ తరగతి గది తయారు చెయ్యి. (ఉత్తరం పైన)',en:'Build the classroom in the empty room as each question says. (North is on top)'})}
+function crInit(){
+  const W={wall:['గోడ కట్టు','wall'],door:['తలుపు','door'],window:['కిటికీ','window'],board:['నల్లబల్ల','blackboard'],almirah:['అల్మారా','almirah'],table:['బల్ల','table'],chair:['కుర్చీ','chair']};
+  const mk=(i,z)=>{let te,en;const n=CR.find(x=>x[0]==i)[2];
+    if(i=='wall'){te=`${DA[z].te} గోడ కట్టు.`;en=`Build the ${DA[z].en} wall.`}
+    else if(i=='door'||i=='window'){te=`${DA[z].te} గోడకు ${n.te} పెట్టు.`;en=`Put a ${n.en} in the ${DA[z].en} wall.`}
+    else if(i=='board'){te=`${DA[z].te} గోడపై నల్లబల్ల పెట్టు.`;en=`Put the blackboard on the ${DA[z].en} wall.`}
+    else if(z=='c'){te=`మధ్యలో ${n.te} పెట్టు.`;en=`Put a ${n.en} in the middle.`}
+    else{te=`${DA[z].te} వైపు ${n.te} పెట్టు.`;en=`Put a ${n.en} on the ${DA[z].en} side.`}
+    return{i,z,q:{te,en}}};
+  const qs=[mk('wall','e'),mk('wall','s'),mk('wall','w'),mk('wall','n'),mk('door','e'),mk('window','n'),mk('window','s'),mk('board','w'),mk('almirah','n'),mk('almirah','s'),mk('table','w'),mk('chair','w'),mk('table','c'),mk('chair','c'),mk('table','c'),mk('chair','c'),mk('window','e'),mk('chair','c')];
+  dropGame({key:'cr',qs,tiles:CR.map(([id,ic,n])=>({id,ic,n})),zones:zoneHTML(),check:(q,t,z)=>q.i===t&&q.z===z,
+    place:(t,z,f)=>{const el=f.querySelector(`[data-z="${z}"]`);if(t=='wall')el.classList.add('has-wall');else el.insertAdjacentHTML('beforeend',`<span class="pl">${CR.find(x=>x[0]==t)[1]}</span>`)},
+    final:()=>`<b>${L({te:'సూచిక',en:'Index'})}:</b> ${CR.map(x=>x[1].replace(/<svg[^>]*>/,'<svg viewBox="0 0 64 32" width="34" height="17">')+' '+L(x[2])).join(' · ')}<br>📏 ${L({te:'స్కేలు: 1 సెం.మీ. = 1 మీ.',en:'Scale: 1 cm = 1 m'})} · 🧭 N ↑`});
+}
 /* shell */
 const stars=()=>{$('#stars').textContent=Object.values(done).filter(Boolean).length};
 function render(){
@@ -389,7 +499,7 @@ function render(){
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));
   $('#tabs').innerHTML=TABS.map(t=>`<button class="tab" role="tab" data-t="${t[0]}" aria-selected="${t[0]===tab}">${t[1]} ${L(t[2])}</button>`).join('');
   $('#tabs').querySelectorAll('.tab').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
-  const V={dir:[dirTab,()=>{cmpInit();quizDir()}],scale:[scaleTab,scaleInit],sym:[symTab,symInit],map:[mapTab,mapInit],td:[tdTab,tdInit],route:[routeTab,routeInit],game:[gameTab,gameInit],make:[makeTab,makeInit],do:[doTab,doInit]}[tab];
+  const V={dir:[dirTab,()=>{cmpInit();quizDir()}],scale:[scaleTab,scaleInit],sym:[symTab,symInit],map:[mapTab,mapInit],td:[tdTab,tdInit],mp:[mpTab,mpInit],cp:[cpTab,cpInit],cr:[crTab,crInit],route:[routeTab,routeInit],game:[gameTab,gameInit],make:[makeTab,makeInit],do:[doTab,doInit]}[tab];
   $('#panel').innerHTML=V[0]();V[1]();stars();
 }
 function quizDir(){
@@ -406,6 +516,7 @@ function quizDir(){
 $('#snd').onclick=()=>{snd=!snd;try{localStorage.setItem('tlm-snd',snd?'1':'0')}catch(e){}render();if(snd)beep(true)};
 $('#back').onclick=e=>{if(history.length>1){e.preventDefault();history.back()}};
 document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.l;save();render()});
+if(window.top!==window.self)$('#back').style.display='none';
 render();
 </script>
 <script src="tlm-bar.js"></script>
