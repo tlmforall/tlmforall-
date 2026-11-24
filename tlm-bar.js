@@ -1,7 +1,7 @@
 /* TLM FOR ALL – always-visible clock + class timer bar.
    Add to every page once:  <script src="tlm-bar.js"></script>  (just before </body>) */
 (function(){
-  if(window.__tlmBar)return;window.__tlmBar=1;
+  if(window.__tlmBar)return;window.__tlmBar=1;try{if(window.top!==window.self)return}catch(e){}
   var KEY='tlm-timer',H=44,$=function(s,r){return(r||document).querySelector(s)};
   function lang(){try{return localStorage.getItem('tlm-lang')||'te'}catch(e){return'te'}}
   var T={te:{timer:'⏱️ టైమర్',min:'ని.',done:'⏰ సమయం అయింది!',ok:'సరే',stop:'ఆపు',pause:'ఆపి ఉంచు',go:'కొనసాగించు',set:'ఎంత సేపు?',custom:'ఇతర'},en:{timer:'⏱️ Timer',min:'min',done:'⏰ Time is up!',ok:'OK',stop:'Stop',pause:'Pause',go:'Resume',set:'How long?',custom:'Other'}};
