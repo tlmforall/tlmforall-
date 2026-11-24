@@ -3231,7 +3231,7 @@ if (Number(n) === 10) {
 if (Number(n) === 1) {
   items += `
     <div class="step"
-         onclick="window.location.href='class6-social-ch1.html'"
+         onclick="tlmView('class6-social-ch1.html','🧪 Learning with Doing')"
          role="button"
          tabindex="0">
       <b>🧪 Learning with Doing</b>
@@ -4330,6 +4330,7 @@ var TLM_FILE_MAP={};
       if(TLM_FILE_MAP[m[1]])return {t:'pdf',u:tlmSiteUrl(TLM_FILE_MAP[m[1]])};
       return {t:'frame',u:'https://drive.google.com/file/d/'+m[1]+'/preview',block:true};
     }
+    if(/(^|\/)class\d+-[a-z]+-ch\d+\.html(\?|#|$)/i.test(u))return {t:'frame',u:u,block:false};
     if(/\.pdf(\?|#|$)/i.test(u))return {t:'pdf',u:u};
     if(/\.(pptx?|docx?)(\?|#|$)/i.test(u))return {t:'frame',u:'https://view.officeapps.live.com/op/embed.aspx?src='+encodeURIComponent(u),block:true};
     return null;
