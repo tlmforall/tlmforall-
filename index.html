@@ -1405,6 +1405,7 @@ body::before,body::after{display:none!important}
 .modal{padding-top:calc(var(--tlmbar,0px) + 14px)!important}
 #pdfv{top:var(--tlmbar,0px)}
 </style>
+<style>.dashboard .card.doing{background:linear-gradient(160deg,#00a86b,#006d4a)}.dashboard .card.earth{background:linear-gradient(160deg,#1a73e8,#0b3d91)}</style>
 </head>
 <body>
 <canvas id="spaceBg"></canvas>
@@ -1441,6 +1442,8 @@ body::before,body::after{display:none!important}
 <div class="card classes zc" onclick="classes()"><img data-zone="classes" alt="classes"><div class="zfb"><div class="pic">🌍📚</div><h2>CLASSES<br><span>ZONE</span></h2><p>State → Class → Subject → Chapters → PPTs &amp; more</p></div></div>
 <div class="card teacher zc" onclick="zone('Teacher Zone',['Lesson Planner','Teaching Notes','TLM Materials','Worksheets','Assessment','Question Papers'])"><img data-zone="teacher" alt="teacher"><div class="zfb"><div class="pic">👩‍🏫</div><h2>TEACHER<br><span>ZONE</span></h2><p>Lesson Plans, TLM, Worksheets and resources</p></div></div>
 <div class="card student zc" onclick="zone('Student Zone',['Student Notes','Practice','Worksheets','Projects','Quiz','Homework'])"><img data-zone="student" alt="student"><div class="zfb"><div class="pic">🎒</div><h2>STUDENT<br><span>ZONE</span></h2><p>Notes, Practice, Projects and activities</p></div></div>
+<div class="card doing" onclick="doingSubjects()"><div class="pic">🧪🎮</div><h2>LEARNING<br><span>WITH DOING</span></h2><p>చేస్తూ నేర్చుకో • Games, Quizzes &amp; Activities</p></div>
+<div class="card earth" onclick="openEarth()"><div class="pic">🛰️🌍</div><h2>TLM<br><span>EARTH</span></h2><p>Google Earth • Explore the world</p></div>
 <div class="card today" onclick="todayClass()"><div class="pic">💡📖</div><h2>TODAY'S<br><span>CLASS</span></h2><p id="todayHint">Class → Subject → Chapters. Opens your last class.</p></div>
 </div></main><footer class="footer"><span>🚀 NEP 2020 Aligned</span><span>🛡️ CCE Based Learning</span><span>👨‍👩‍👧‍👦 For Teachers & Students</span><b>❤️ Think • Learn • Create • Share</b><span>© 2026 TLM FOR ALL</span></footer>
 <div id="pdfv"><div class="pv-bar"><b id="pvT">Document</b><span id="pvP"></span><button id="pvO" title="Zoom out">−</button><button id="pvI" title="Zoom in">+</button><button class="x" id="pvX" title="Close">✕</button></div><div class="pv-body" id="pvB"></div></div>
@@ -4410,5 +4413,16 @@ function todaySubjects(c){try{localStorage.setItem('tlm-last-class',String(c))}c
 function todayClass(){var c=todayLast();if(c)todaySubjects(c);else todayClasses()}
 function todayHintUpdate(){var p=document.getElementById('todayHint'),c=todayLast();if(p)p.textContent=c?('Continue with Class '+c+' • tap to open subjects'):'Class → Subject → Chapters. Opens your last class.'}
 todayHintUpdate();
+</script>
+<script>
+/* ===== Learning with Doing (subject-wise) + TLM Earth ===== */
+var DOING_SUBJECTS=[['Telugu','తెలుగు'],['Hindi','हिन्दी'],['English','English'],['Mathematics','గణితం'],['Science','సైన్స్'],['Social Studies','సాంఘిక శాస్త్రం'],['EVS','పరిసరాల విజ్ఞానం']];
+var DOING_ITEMS={'Social Studies':[['🌍','భూగోళం (Globe)','doing/globe.html'],['🛰️','Google Earth','https://earth.google.com/web/']]};
+function doingSubjects(){var a=DOING_SUBJECTS.map(function(s){return'<div class="step" onclick="doingSub(\''+s[0]+'\')"><b>'+s[0]+'</b><small>'+s[1]+' • Open →</small></div>'}).join('');
+  openM('<h2>🧪 Learning with Doing</h2><p>చేస్తూ నేర్చుకో • Select Subject</p><div class="steps">'+a+'</div>')}
+function doingSub(n){var it=DOING_ITEMS[n]||[],a=it.length?it.map(function(x){return'<div class="step" onclick="doingOpen(\''+x[2]+'\')"><b>'+x[0]+' '+x[1]+'</b><small>Open →</small></div>'}).join(''):'<div class="step"><b>🚧 త్వరలో</b><small>Coming soon</small></div>';
+  openM('<button class="back" onclick="doingSubjects()">← Subjects</button><h2>🧪 '+n+'</h2><div class="steps">'+a+'</div>')}
+function doingOpen(u){window.open(u,'_blank')}
+function openEarth(){window.open('https://earth.google.com/web/','_blank')}
 </script>
 </body></html>

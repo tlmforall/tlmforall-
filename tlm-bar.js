@@ -3,6 +3,7 @@
 (function(){
   if(window.__tlmBar)return;window.__tlmBar=1;try{if(window.top!==window.self)return}catch(e){}
   var KEY='tlm-timer',H=44,$=function(s,r){return(r||document).querySelector(s)};
+  var cs=document.currentScript,HOME;try{HOME=new URL('index.html',(cs&&cs.src)||location.href).href}catch(e){HOME='index.html'}
   function lang(){try{return localStorage.getItem('tlm-lang')||'te'}catch(e){return'te'}}
   var T={te:{timer:'⏱️ టైమర్',min:'ని.',done:'⏰ సమయం అయింది!',ok:'సరే',stop:'ఆపు',pause:'ఆపి ఉంచు',go:'కొనసాగించు',set:'ఎంత సేపు?',custom:'ఇతర'},en:{timer:'⏱️ Timer',min:'min',done:'⏰ Time is up!',ok:'OK',stop:'Stop',pause:'Pause',go:'Resume',set:'How long?',custom:'Other'}};
   var css='#tlmbar{position:fixed;top:0;left:0;right:0;z-index:99998;height:'+H+'px;padding-top:env(safe-area-inset-top,0);box-sizing:content-box;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-left:12px;padding-right:12px;background:#1f2a5a;color:#fff;font:600 15px/1.2 "Noto Sans Telugu","Nirmala UI",Gautami,system-ui,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.25)}'
@@ -12,6 +13,7 @@
    +'#tlmpop{position:fixed;z-index:99999;right:8px;top:calc('+H+'px + env(safe-area-inset-top,0) + 6px);background:#fff;color:#1f2a5a;border-radius:16px;padding:12px;box-shadow:0 8px 24px rgba(0,0,0,.3);display:none;font:600 15px "Noto Sans Telugu","Nirmala UI",system-ui,sans-serif}'
    +'#tlmpop b{display:block;margin-bottom:8px}#tlmpop .g{display:flex;gap:8px;flex-wrap:wrap}#tlmpop button{font:inherit;font-weight:800;border:2px solid #1f2a5a;background:#fff;color:#1f2a5a;border-radius:12px;padding:8px 14px;cursor:pointer;min-height:42px}'
    +'#tlmbar.alarm{animation:tlmflash .6s infinite}@keyframes tlmflash{50%{background:#d93f3f}}'
+   +'#tlmbar .l{display:flex;align-items:center;gap:10px;min-width:0}#tlmbar #tlmhome{background:#fff;color:#1f2a5a;flex:none}'
    +'@media (max-width:420px){#tlmbar .d{display:none}}';
   var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
   var bar=document.createElement('div');bar.id='tlmbar';bar.setAttribute('role','timer');
@@ -36,11 +38,20 @@
       if(rem<=0){bar.classList.add('alarm');right='<span class="tm">'+L.done+'</span><button id="tlmok">'+L.ok+'</button>';
         if(Date.now()-lastBeep>4000){lastBeep=Date.now();beep()}}
       else right='<span class="tm'+(rem<60000?' low':'')+'">'+fmt(rem)+'</span><button id="tlmpz">'+(s.paused!=null?'▶':'⏸')+'</button><button id="tlmst" aria-label="'+L.stop+'">⏹</button>'}
-    var h='<div class="c"><span class="t">'+time+'</span><span class="d">'+date+'</span></div><div class="r">'+right+'</div>';
+    var h='<div class="l"><button id="tlmhome" aria-label="Home">🏠 Home</button><div class="c"><span class="t">'+time+'</span><span class="d">'+date+'</span></div></div><div class="r">'+right+'</div>';
     if(bar.__h!==h){bar.innerHTML=h;bar.__h=h;bind()}
   }
+  /* Home: opens the home page in a second tab (reused every time, never reloaded), so the current tab keeps its slide. */
+  function openHome(){
+    if(window.name==='tlm-home'){location.href=HOME;return}
+    var w=null;try{w=window.open('','tlm-home')}catch(e){}
+    if(!w){location.href=HOME;return}
+    try{if(!w.location.href||w.location.href==='about:blank')w.location.href=HOME}catch(e){}
+    try{w.focus()}catch(e){}
+  }
   function bind(){
-    var L=T[lang()]||T.te,a=$('#tlmset',bar),ok=$('#tlmok',bar),pz=$('#tlmpz',bar),sp=$('#tlmst',bar);
+    var L=T[lang()]||T.te,a=$('#tlmset',bar),ok=$('#tlmok',bar),pz=$('#tlmpz',bar),sp=$('#tlmst',bar),hm=$('#tlmhome',bar);
+    if(hm)hm.onclick=openHome;
     if(a)a.onclick=function(){pop.style.display=pop.style.display==='block'?'none':'block';
       pop.innerHTML='<b>'+L.set+'</b><div class="g">'+[30,40,45,60].map(function(m){return'<button data-m="'+m+'">'+m+' '+L.min+'</button>'}).join('')+'<button id="tlmc">'+L.custom+'</button></div>';
       pop.querySelectorAll('[data-m]').forEach(function(b){b.onclick=function(){start(+b.dataset.m)}});
