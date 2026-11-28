@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6వ తరగతి సోషల్ – 2 | TLM FOR ALL</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1f2a5a;--paper:#fffaf0;--sun:#ffc93c;--coral:#ff6b57;--leaf:#1f9d63;--sky:#3b82f6;--card:#fff;--line:#e6dcc3;--muted:#5b6385;--bad:#d93f3f}
+@media (prefers-color-scheme:dark){:root{--ink:#f1f3ff;--paper:#141830;--card:#1d2342;--line:#323a66;--muted:#aab2dd}}
+*{box-sizing:border-box}html,body{margin:0}html{font-size:clamp(16px,.9vw + 8px,26px);-webkit-text-size-adjust:100%}
+body{font-family:'Noto Sans Telugu','Nirmala UI','Gautami','Mandali','Noto Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+.wrap{max-width:min(1100px,96vw);margin:0 auto;padding:14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.top a{color:var(--ink);font-weight:600;text-decoration:none}
+.lang button{border:2px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-weight:600;padding:3px 12px;cursor:pointer}
+.lang button:first-child{border-radius:999px 0 0 999px}.lang button:last-child{border-radius:0 999px 999px 0;border-left:0}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.hero{background:var(--sun);color:#1f2a5a;border-radius:22px;padding:18px;margin:12px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.hero h1{margin:0;font-size:clamp(1.3rem,4.5vw,1.9rem);line-height:1.3}.hero p{margin:4px 0 0}
+.score{background:#1f2a5a;color:#fff;border-radius:16px;padding:8px 14px;text-align:center;font-weight:800;white-space:nowrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px}
+.tab{flex:none;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+.tab[aria-selected=true]{background:var(--coral);color:#fff;border-color:var(--coral)}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px}
+.panel h2{margin:0 0 4px;font-size:1.2rem}.hint{margin:0 0 12px;color:var(--muted)}
+svg{max-width:100%;height:auto}svg.fig{width:100%;max-width:640px}button,select{touch-action:manipulation}.opt{min-height:52px}
+.fig{display:block;margin:8px auto;background:#eaf5dc;border-radius:14px}
+.q{font-weight:800;font-size:1.1rem;margin:12px 0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px;font:inherit;font-weight:600;cursor:pointer;min-height:48px}
+.opt.ok{background:var(--leaf);color:#fff;border-color:var(--leaf)}.opt.no{background:var(--bad);color:#fff;border-color:var(--bad)}
+.next,.again{margin-top:12px;border:0;background:var(--ink);color:var(--paper);border-radius:12px;padding:10px 18px;font:inherit;font-weight:800;cursor:pointer}
+.fb{margin-top:10px;font-weight:600}.prog{height:8px;background:var(--line);border-radius:9px;overflow:hidden}.prog i{display:block;height:100%;background:var(--leaf)}
+.sym{display:flex;justify-content:center;font-size:2.4rem;min-height:56px;align-items:center}
+input[type=range]{width:100%;accent-color:var(--coral)}
+.big{font-size:1.3rem;font-weight:800;text-align:center;margin:6px 0}
+.task{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}
+.task button{flex:none;border:2px solid var(--leaf);background:transparent;color:var(--leaf);border-radius:10px;font:inherit;font-weight:800;padding:4px 10px;cursor:pointer}
+.task button[aria-pressed=true]{background:var(--leaf);color:#fff}
+.task ol{margin:4px 0 0;padding-left:20px}
+button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+
+#tm path{cursor:pointer;transition:opacity .2s,fill .2s}
+#tm.dim path:not(.on){opacity:.3}
+#tm .hA{stroke:#ff7a00;stroke-width:18}#tm .hB{stroke:#0057ff;stroke-width:18}
+#tm .found{stroke:#1f9d63;stroke-width:12}
+.shake{animation:shake .6s}.redflash{box-shadow:0 0 0 10px #ff2d2d;border-radius:14px}
+@keyframes shake{10%,90%{transform:translateX(-6px)}20%,80%{transform:translateX(10px)}30%,50%,70%{transform:translateX(-16px)}40%,60%{transform:translateX(16px)}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.chipbox{min-height:80px;display:flex;justify-content:center;align-items:center}
+.chip2{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:var(--sun);color:#1f2a5a;font-weight:800;font-size:1.4rem;padding:12px 26px;border-radius:999px;box-shadow:0 5px 0 rgba(0,0,0,.2);z-index:50;text-align:center}
+.chip2.drag{cursor:grabbing;transform:scale(1.1)}
+
+.fxl{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
+.fxp{position:absolute;top:-50px;animation:fall 2s ease-in forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(420deg)}}
+.fxe{position:absolute;left:50%;top:36%;text-align:center;transform:translate(-50%,-50%);animation:pop2 1.3s ease-out forwards}
+.fxe .em{font-size:5.5rem;line-height:1.1}.fxe .tx{font-weight:800;font-size:1.7rem;color:#1f9d63;text-shadow:0 2px 0 #fff,0 0 8px #fff}
+.fxe .xx{font-size:6.5rem;line-height:1;color:#e11d1d;font-weight:900;text-shadow:0 3px 0 #fff}
+.fxe.bad{animation:shake2 .7s,fade2 1.3s forwards}.fxe.bad .tx{color:#d93f3f}
+@keyframes pop2{0%{transform:translate(-50%,-50%) scale(0)}25%{transform:translate(-50%,-50%) scale(1.25)}50%{transform:translate(-50%,-50%) scale(1)}85%{opacity:1}100%{opacity:0;transform:translate(-50%,-75%) scale(1)}}
+@keyframes shake2{10%,90%{transform:translate(calc(-50% - 6px),-50%)}20%,80%{transform:translate(calc(-50% + 12px),-50%)}30%,50%,70%{transform:translate(calc(-50% - 18px),-50%)}40%,60%{transform:translate(calc(-50% + 18px),-50%)}0%,100%{transform:translate(-50%,-50%)}}
+@keyframes fade2{0%,70%{opacity:1}100%{opacity:0}}
+#snd{border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;font:inherit;padding:3px 12px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.fxp{display:none}}
+
+.tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.tile{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:6px 8px;text-align:center;min-width:76px;box-shadow:0 3px 0 rgba(0,0,0,.12);color:var(--ink)}
+.tile.sel{border-color:var(--coral);border-width:4px}.tile .ti{display:block;font-size:2rem;line-height:1.25}.tile small{display:block;font-weight:700;font-size:.8rem}.tile .ti svg{max-width:64px;height:auto}
+.tile.ghost{opacity:.95;background:var(--sun);color:#1f2a5a}
+.field{display:grid;grid-template-columns:1fr 2.2fr 1fr;grid-template-rows:auto minmax(120px,2fr) auto;gap:6px;max-width:600px;margin:10px auto;padding:8px;background:#fffdf3;border-radius:14px;border:2px solid var(--line);color:#1f2a5a}
+.field.one{display:block;padding:8px}
+.field [data-z="n"]{grid-column:1/4;grid-row:1}.field [data-z="s"]{grid-column:1/4;grid-row:3}.field [data-z="w"]{grid-column:1;grid-row:2}.field [data-z="c"]{grid-column:2;grid-row:2}.field [data-z="e"]{grid-column:3;grid-row:2}
+.field [data-z]{border:2px dashed #cdbf9a;border-radius:10px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:center;position:relative;padding:18px 4px 6px;min-height:64px;cursor:pointer}
+.field .zbig{min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:1.2rem;padding:10px}
+.zl{position:absolute;top:2px;left:6px;font-size:.8rem;font-weight:800;color:#c0392b}
+.pl{font-size:1.7rem;line-height:1}.pl svg{width:46px;height:23px}
+.field [data-z="n"].has-wall{border-top:10px solid #6d4c41}.field [data-z="s"].has-wall{border-bottom:10px solid #6d4c41}.field [data-z="e"].has-wall{border-right:10px solid #6d4c41}.field [data-z="w"].has-wall{border-left:10px solid #6d4c41}
+#tm .blink{animation:blink .5s 4;stroke:#ff7a00;stroke-width:22}#tm .shown{stroke:#ff9800;stroke-width:12}
+@keyframes blink{50%{opacity:.2}}
+
+.chipsrow{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.chipsrow .tab{padding:6px 10px}
+#gl{display:block;width:100%;max-width:440px;margin:6px auto;border-radius:50%;background:radial-gradient(circle at 50% 45%,#0e1a3d,#050816);touch-action:none;cursor:grab}
+.field svg [data-z]{border:0;padding:0;display:inline;min-height:0;position:static}
+svg.wm{width:100%;max-width:780px;height:auto;border-radius:12px;display:block;margin:8px auto}
+svg.wm path.ln,svg.wm path.oc{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><a href="./index.html" id="back"></a>
+<div style="display:flex;gap:8px"><button id="snd" aria-label="sound">🔊</button><div class="lang" role="group" aria-label="Language"><button data-l="te">తెలుగు</button><button data-l="en">English</button></div></div></div>
+<header class="hero"><div><h1 id="ttl"></h1><p id="sub"></p></div><div class="score" aria-live="polite"><span id="stars">0</span> ⭐</div></header>
+<nav class="tabs" id="tabs" role="tablist"></nav>
+<section class="panel" id="panel"></section>
+</div>
+<script>
+
+const $=s=>document.querySelector(s);
+let lang='te',done={};
+try{lang=localStorage.getItem('tlm-lang')||'te';done=JSON.parse(localStorage.getItem('tlm-ch2')||'{}')}catch(e){}
+const L=x=>x==null?'':(typeof x==='object'?x[lang]:x);
+const save=()=>{try{localStorage.setItem('tlm-ch2',JSON.stringify(done));localStorage.setItem('tlm-lang',lang)}catch(e){}};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const UI={
+back:{te:'← వెనక్కి',en:'← Back'},
+ttl:{te:'2. గ్లోబు – భూమికి నమూనా',en:'2. Globe – A Model of the Earth'},
+sub:{te:'6వ తరగతి సోషల్: ఆడు, చేసి చూడు, ⭐ సంపాదించు',en:'Class 6 Social: play, do, earn ⭐'},
+next:{te:'తర్వాత ▶',en:'Next ▶'},again:{te:'మళ్లీ ఆడు 🔄',en:'Play again 🔄'},
+good:{te:'సరైనది! 🎉',en:'Correct! 🎉'},bad:{te:'కాదు. సరైన జవాబు గుర్తించాం.',en:'Not quite. The right answer is marked.'},
+sc:{te:'మీ స్కోరు',en:'Your score'},got:{te:'⭐ వచ్చింది!',en:'⭐ earned!'},tryagain:{te:'80% వస్తే ⭐ వస్తుంది. మళ్లీ ప్రయత్నించు!',en:'Score 80% to earn a ⭐. Try again!'}};
+const TABS=[['globe','🌍',{te:'3D గ్లోబు',en:'3D Globe'}],['land','🗺️',{te:'ఖండాలు–సముద్రాలు',en:'Continents & oceans'}],['colour','🎨',{te:'పటానికి రంగులు',en:'Colour the map'}],['ll','📍',{te:'అక్షాంశ–రేఖాంశాలు',en:'Latitude & longitude'}],['think','🧠',{te:'ఆలోచించు (ఆటలు)',en:'Think (quizzes)'}],['do','✋',{te:'చేసి చూడు',en:'Do it'}]];
+let tab='globe';
+
+/* feedback: flowers, emoji, sound */
+let snd=true;try{snd=localStorage.getItem('tlm-snd')!=='0'}catch(e){}
+let AC;const tone=(f,t,d,ty,v)=>{const o=AC.createOscillator(),g=AC.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(v||.15,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d)};
+function beep(ok){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const t=AC.currentTime;if(ok)[523,659,784,1047].forEach((f,i)=>tone(f,t+i*.09,.28));else{tone(190,t,.2,'sawtooth',.12);tone(140,t+.17,.35,'sawtooth',.12)}}catch(e){}}
+const PRAISE=['Very good!','Excellent!','Super!','Well done!','Great job!'];
+function fb(ok){
+  beep(ok);const l=document.createElement('div');l.className='fxl';let h='';
+  if(ok){const pr=PRAISE[Math.random()*PRAISE.length|0],E=['🌸','🌼','🌺','🌷','🌻','⭐','🎉'];
+    for(let k=0;k<30;k++)h+=`<span class="fxp" style="left:${Math.random()*96}vw;font-size:${1.4+Math.random()*1.4}rem;animation-delay:${Math.random()*.6}s;animation-duration:${1.6+Math.random()*1.2}s">${E[k%E.length]}</span>`;
+    h+=`<div class="fxe"><div class="em">😄</div><div class="tx">${pr}<br>${L({te:'వెరీ గుడ్!',en:'Correct!'})}</div></div>`;
+    if(snd&&window.speechSynthesis)try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(pr);u.lang='en-IN';speechSynthesis.speak(u)}catch(e){}
+  }else h=`<div class="fxe bad"><div class="xx">✖</div><div class="em">😠</div><div class="tx">${L({te:'తప్పు! మళ్లీ ప్రయత్నించు',en:'Oops! Try again'})}</div></div>`;
+  l.innerHTML=h;document.body.appendChild(l);setTimeout(()=>l.remove(),2600);
+}
+function shakePanel(){const pn=$('#panel');pn.classList.remove('shake');void pn.offsetWidth;pn.classList.add('shake','redflash');setTimeout(()=>pn.classList.remove('redflash'),700)}
+/* quiz engine */
+function quiz(items,key){
+  let i=0,s=0;const box=$('#qbox');
+  const show=()=>{
+    if(i>=items.length){
+      const win=s>=Math.ceil(items.length*.8);if(win){done[key]=true;save();stars()}
+      box.innerHTML=`<div class="big">${L(UI.sc)}: ${s}/${items.length}</div><p class="big">${win?L(UI.got):L(UI.tryagain)}</p><div style="text-align:center"><button class="again">${L(UI.again)}</button></div>`;
+      box.querySelector('.again').onclick=()=>{i=0;s=0;show()};return}
+    const it=items[i],ord=shuffle(it.o.map((_,k)=>k));
+    box.innerHTML=`<div class="prog"><i style="width:${i/items.length*100}%"></i></div>${it.fig?`<div class="sym">${it.fig}</div>`:''}<div class="q">${L(it.q)}</div><div class="opts">${ord.map(k=>`<button class="opt" data-k="${k}">${L(it.o[k])}</button>`).join('')}</div><div class="fb"></div>`;
+    if(it.on)it.on();let locked=false;
+    box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(locked)return;locked=true;const ok=+b.dataset.k===it.a;if(ok)s++;
+      b.classList.add(ok?'ok':'no');fb(ok);if(!ok)shakePanel();
+      box.querySelectorAll('.opt').forEach(x=>{if(+x.dataset.k===it.a)x.classList.add('ok')});
+      box.querySelector('.fb').innerHTML=(ok?L(UI.good):L(UI.bad))+(it.e?'<br>'+L(it.e):'')+'<br><button class="next">'+L(UI.next)+'</button>';
+      box.querySelector('.next').onclick=()=>{i++;show()};
+    });
+  };
+  show();
+}
+
+const D={n:{te:'ఉత్తరం',en:'North'},e:{te:'తూర్పు',en:'East'},s:{te:'దక్షిణం',en:'South'},w:{te:'పడమర',en:'West'}};const DK=['n','e','s','w'];
+/* drag & drop games: map types, symbols+directions, classroom map */
+function bindDrag(root,drop){
+  let sel=null,ghost=null,st=null;
+  const clr=()=>root.querySelectorAll('[data-t]').forEach(t=>t.classList.remove('sel'));
+  root.querySelectorAll('[data-t]').forEach(t=>{
+    t.onpointerdown=e=>{e.preventDefault();t.setPointerCapture(e.pointerId);st={x:e.clientX,y:e.clientY,mv:false};
+      ghost=t.cloneNode(true);ghost.className='tile ghost';ghost.style.cssText='position:fixed;pointer-events:none;z-index:9998;display:none;transform:translate(-50%,-115%) scale(1.15)'};
+    t.onpointermove=e=>{if(!st)return;if(Math.hypot(e.clientX-st.x,e.clientY-st.y)>8)st.mv=true;
+      if(st.mv){if(!ghost.parentNode)document.body.appendChild(ghost);ghost.style.display='';ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}};
+    t.onpointerup=e=>{if(!st)return;const mv=st.mv;st=null;if(ghost){ghost.remove();ghost=null}
+      if(!mv){clr();sel=t.dataset.t;t.classList.add('sel');return}
+      const el=document.elementFromPoint(e.clientX,e.clientY),z=el&&el.closest&&el.closest('[data-z]');
+      if(z){sel=null;clr();drop(t.dataset.t,z.dataset.z)}};
+    t.onpointercancel=()=>{st=null;if(ghost){ghost.remove();ghost=null}};
+  });
+  root.querySelectorAll('[data-z]').forEach(z=>z.addEventListener('click',()=>{if(sel){const s=sel;sel=null;clr();drop(s,z.dataset.z)}}));
+}
+const dropHTML=(ic,ti,hint,cls)=>`<h2>${ic} ${L(ti)}</h2><p class="hint">${L(hint)}</p><div class="tray" id="tray"></div><div class="field ${cls||''}" id="field"></div><div class="prog"><i id="gp" style="width:0"></i></div><div class="q" id="gq"></div><div class="fb" id="gf"></div>`;
+function dropGame(o){
+  let i=0,mis=0,lock=false;const f=$('#field'),gq=$('#gq'),gf=$('#gf'),pr=$('#gp');
+  $('#tray').innerHTML=o.tiles.map(t=>`<div class="tile" data-t="${t.id}"><span class="ti">${t.ic}</span><small>${L(t.n)}</small></div>`).join('');
+  f.innerHTML=o.zones;
+  const ask=()=>{lock=false;if(o.reset)o.reset(f);if(i>=o.qs.length){fin();return}pr.style.width=(i/o.qs.length*100)+'%';gq.innerHTML=L(o.qs[i].q)+' <small>('+(i+1)+'/'+o.qs.length+')</small>';gf.textContent=''};
+  const fin=()=>{done[o.key]=true;save();stars();pr.style.width='100%';gq.innerHTML='🎉 '+L({te:'అన్నీ పూర్తి చేశావు! ⭐',en:'All done! ⭐'});
+    gf.innerHTML=L({te:'తప్పులు',en:'Mistakes'})+': '+mis+(o.final?'<br>'+o.final():'')+'<br><button class="again" id="ra">'+L(UI.again)+'</button>';$('#ra').onclick=render;fb(true)};
+  bindDrag($('#panel'),(t,z)=>{
+    const q=o.qs[i];if(!q||lock)return;
+    if(o.check(q,t,z)){lock=true;o.place(t,z,f,q);fb(true);i++;setTimeout(ask,o.wait||900)}
+    else{mis++;fb(false);f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake','redflash');setTimeout(()=>f.classList.remove('redflash'),700);gf.textContent='❌ '+L({te:'మళ్లీ ప్రయత్నించు!',en:'Try again!'})}
+  });
+  ask();
+}
+/* ===== chapter 2: simple world outlines (lon,lat), drawn by hand for teaching ===== */
+const PS=s=>s.trim().split(/\s+/).map(p=>p.split(',').map(Number));
+const G={
+NA:"-168,65.6 -163,69 -156,71.3 -141,69.7 -128,70 -115,68.5 -108,68 -95,71.5 -90,68.5 -85,69.5 -82,67 -88,64 -94,61 -94.2,58.8 -92.5,57 -88,56 -82.3,55.1 -80.6,51.3 -79,53 -77,55.5 -78,58.5 -77.5,60 -78,62.2 -73,62 -70,61 -67,58.5 -64.5,60.3 -62,57.5 -60,55.5 -57,53 -55.8,51.5 -59,50.2 -64,50.2 -66,49.5 -64.5,49.1 -64.2,48.5 -61,45.8 -63.5,44.5 -66,43.6 -66.1,44.7 -67,44.8 -70,43.7 -70,41.7 -72,41 -74,40.5 -75.5,38.5 -76,37 -75.7,35.2 -77.5,34.2 -79,33 -81,31.5 -80.3,27 -80,25.2 -81.2,25.2 -82.8,27.6 -83.6,29.9 -85.3,29.7 -88,30.4 -90,29.2 -93.8,29.7 -97,27.7 -97.5,25.5 -97.8,22 -97.2,20.5 -96.1,19.1 -94.5,18.2 -92,18.6 -90.5,19.9 -90.3,21.2 -88,21.5 -87,21.3 -87.4,19.5 -88,18 -88.5,15.8 -83.5,15 -83.3,11 -82.5,9.5 -79.8,9.4 -77.4,8.7 -77.3,8.4 -78.2,7.4 -80,7.3 -81.5,8.2 -83.3,8.4 -85.5,9.8 -87.5,13 -90,13.8 -92.5,14.5 -94.5,16.1 -97,15.8 -99,16.6 -102,17.9 -105.5,20 -106,23 -109,25.7 -111,27.9 -112.9,31 -114.8,31.8 -114.7,30.2 -112.7,28.4 -111.3,26 -109.6,23.1 -110.3,23.9 -112,24.8 -114,27.5 -115.5,29.5 -117,32.5 -118.5,34 -120.6,34.5 -122.5,37.5 -123.8,39.5 -124.4,42.5 -124,46.2 -124.7,48.4 -123,48.3 -125,49.8 -128,51 -130.5,54.5 -134,58 -137,58.8 -141,60 -146,60.7 -150.5,59.3 -153,58.5 -157,57 -162,55.2 -163,54.7 -158.5,56.3 -157.5,58.7 -162,59.9 -165,61.3 -165.6,62.5 -161,64.4 -166,65 -168,65.7",
+GRL:"-73,78 -60,82 -30,83.5 -20,81.5 -18,77 -20,74.5 -22,70.5 -27,68.5 -35,66 -41,63.5 -43.5,60.2 -47,61 -50,64 -52,67 -54,70 -56,73 -60,76 -66,76.5",
+BAF:"-90,73 -80,73.5 -72,71.5 -68,69 -62,66.5 -65,63 -72,64 -77,65 -73,67.5 -80,69.5 -88,70",
+VIC:"-117,73 -105,73 -100,70 -108,68.8 -115,69 -118,71.3",
+ELL:"-90,76.5 -78,76.4 -62,82.5 -75,83 -90,81 -92,78",
+CUB:"-85,21.8 -82,23 -77,21.7 -74.2,20.2 -77.5,19.9 -80,21.7",
+HIS:"-74.4,19.8 -69,19.3 -68.4,18.5 -71,17.9 -74.3,18.5",
+NFL:"-59.3,47.6 -56,51.6 -55.5,49.5 -53,47 -56,46.9",
+SA:"-77.3,8.4 -76.5,8.8 -75.5,10.5 -72,12 -71.3,12.4 -70,12 -68,10.5 -64.5,10.5 -62,10.7 -61,8.5 -58,6.8 -55,5.8 -52,5 -51,4 -50,1.8 -50.5,0 -48,-1 -44.5,-2.5 -41,-2.9 -38.5,-3.7 -35.3,-5.3 -34.8,-7 -35.5,-9.5 -37.5,-11.5 -39,-14 -39.2,-17.5 -40.5,-20.5 -41.5,-23 -43.2,-23 -46,-24 -48.5,-26 -48.7,-28.5 -50.5,-31 -52.2,-32.5 -53.5,-34 -55,-35 -56.5,-34.8 -58.3,-34.5 -57,-36.5 -57.5,-38 -62,-39 -62,-41 -65,-41 -64.5,-42.5 -65.5,-45 -67.5,-46.5 -65.5,-47.8 -68.5,-50 -69,-52 -68.3,-53.8 -66,-55 -70,-55 -72,-53.5 -74.5,-51 -75.5,-47.5 -73.5,-44 -73.7,-41.5 -72.5,-38 -71.6,-33 -71.5,-30 -70.5,-26 -70.2,-21 -70.3,-18.4 -75.2,-15 -77.2,-12 -79,-8 -81,-5.5 -80,-3 -80.5,-1 -80,0.8 -78.8,1.8 -77.5,4 -77.3,6.5 -77.8,7.5",
+AF:"-5.9,35.8 -2,35.2 2,36.8 8,37 10.2,37.3 11,35 10,33.8 15,32.5 19,30.3 20,32.5 23,32.7 25,31.7 29.5,31 32.3,31.3 32.6,30 33.6,27.2 35.5,24 37,21 38.5,18 39.8,15.5 43,12.8 43.3,11.5 44,10.5 49,11.3 51.3,11.8 51,10 49,6 46,2 43,-0.5 41,-2 39.5,-5 39,-7 39.5,-10 40.5,-14 40.5,-16.5 37,-18 35,-20 35.5,-24 33,-26 32.9,-28 31,-30 28,-33 25.5,-34 22,-34.2 19,-34.5 18.4,-34 18,-32 16.5,-28.5 15,-26 14.5,-22.5 13,-20 11.8,-17 13.5,-12 13,-9 12.3,-6 12,-5 9.5,-1 9,1 9.8,3.5 8.5,4.5 6,4.3 4,6.3 1,6 -2,4.8 -4,5.2 -7.5,4.4 -9,5 -11.5,7 -13.5,9.5 -15.5,11.5 -16.7,12.5 -17.5,14.7 -16.5,16.5 -16.2,19 -17,21 -15.5,24 -13,27.5 -10,29.5 -9.8,31 -8.5,33.2 -6.8,34",
+MAD:"49.3,-12 50.4,-15.5 49.5,-17.5 47.5,-24.8 44.3,-25 43.7,-22 44.5,-19.5 44,-16.5 46,-15.7 48,-13.5",
+EU:"-9,37 -9.5,38.7 -9,43 -1.8,43.4 -1.2,46 -4.5,48.4 -1.5,48.7 1.5,50.2 3.3,51.4 4.5,53 8.5,53.6 8.6,57.1 10.6,57.7 10.9,56.5 9.9,54.8 11,54 14,54 18.5,54.7 21,55.2 21,57 24,57.3 24.3,59.4 28,59.5 30,60 25,60.2 22.5,60 21.5,61.5 21.5,63 25,65 25.4,65.5 22,65.8 21,64 19,63 17.5,61 18.5,60 16.5,57.5 16,56 14,55.5 12.5,56.3 11.5,58.5 10.5,59.5 8,58 5.5,58.8 5,61 7,63 10,64 14,67 18,69.5 25,71 31,70.3 33,69.5 41,67 40,66 36,64 40,64.5 44,66.2 44,68 53,68.5 60,69 60.5,65 59.5,61 58.5,57 59.5,54 56,51 53,50 51.5,47.2 49,46.5 47.8,45.5 47.5,43.5 49.5,40.5 46,41.2 43,42.4 40,43.6 37.5,44.7 36.6,45.3 35,45 33.5,44.6 33,45.4 32,46.2 30.5,46.5 29.7,45.2 28.7,44 28,43 27.9,41.7 26.3,40 26,40.7 24,40.9 23.8,40.6 22.5,40.3 23.5,38 22.9,36.5 21.5,36.8 19.5,40 19.4,41.8 15,44.5 13.7,45.6 12.3,45.4 12.5,44 14,42.2 16,41.9 18.5,40.1 17,39 16.5,38.3 15.7,38 16,39.5 15,40.5 14,41 12.5,41.7 10.5,43 8.5,44.4 7.5,43.7 5,43.3 3.2,43.2 3,42 0.7,40.7 0,39.5 -0.5,38.2 -2,36.8 -4.5,36.7 -5.6,36 -6.2,36.8 -7.4,37.2",
+UK:"-5.7,50 1.4,51.1 1.7,52.7 0,53.5 -1.5,55.5 -2,57.6 -3.5,58.6 -5,58.6 -6,57 -5.5,55.5 -3,54.8 -3,53.4 -4.7,52.8 -5,51.7",
+IRL:"-6.2,52.2 -6,54 -5.5,54.5 -7.5,55.3 -9.5,54.2 -10,52.2 -8.5,51.6",
+ICE:"-24,65.5 -22,66.5 -16,66.5 -13.5,65 -15,64.2 -19,63.4 -22.5,63.8",
+AS:"60,69 69,66.5 72,68 73.5,71 76,72.5 80,72.5 87,74.5 95,76 104,77.7 113,75.7 113,73.5 125,73.5 130,71 140,72.7 150,71.2 160,69.7 170,70 178,69.2 184,67 190,66 190.2,65.5 186,64.5 180,65.2 178,64.7 172,60.3 164.5,59.8 162.5,56 160,54 156.8,51 156,55 155.5,57.5 151,59.4 143,59 138,56 136,54.5 141,53 140.5,50 140.3,48 138,46.5 133,42.9 129.5,41 128,39.5 129.4,36 129,35 126.5,34.5 126.5,37 125,38.3 124.5,40 121.5,39 122,40.8 119.5,39.5 118,38.2 119,37.2 122.5,37.2 120,35 121,32 122,30.5 120.5,27 119,25 117,23.3 114.5,22.3 111,21.4 110,20.3 108.5,21.5 106.5,20.2 105.8,19 108,16 109.2,13 109,11.5 107,10.4 105,8.6 104.8,10.4 103,11.5 102.3,12.2 100.7,13.5 99.5,11 100,8.2 101.3,6.8 103.4,4.5 103.5,1.4 101.5,2.8 100.3,5 98.5,8 98.3,10 98.6,13.5 97.5,16.8 94.5,16 94.2,19 92.2,21 91.5,23 90,22 87,21.5 86.5,20 85,19.2 82.5,16.5 80.3,15.5 80.2,13 79.8,10.5 78,8.5 77.5,8 76.3,9.9 75,12.5 73.5,16.5 72.8,19 72.6,21.2 70,21 69,22.3 70.5,23 68.2,23.6 66.5,25.3 62,25.2 57.5,25.7 56.5,27 54,26.7 51,28 49,30 48,30 50,26.5 51,24.5 52,24 56,26 56.5,24.5 58.5,23.6 59.8,22.3 58.5,20.5 57.5,18.5 55,17 52.2,16 49,14.5 45,12.8 43.2,13 42.7,15 41,19 39,21.5 36,26 35,28 34.9,29.5 34.2,27.8 32.9,29.9 32.4,31 34.2,31.3 35.1,33 36,34.7 36.2,36.5 35.8,36.8 34.5,36.6 32.5,36.1 30.5,36.8 29,36.5 27.5,37 26.5,38.5 26.2,40 29,41 31,41.1 35,42 36.8,41.2 39.5,41 41.5,41.5 40,43.6 43,42.4 46,41.2 49.5,40.5 47.5,43.5 47.8,45.5 49,46.5 51.5,47.2 53,50 56,51 59.5,54 58.5,57 59.5,61 60.5,65",
+HON:"130.9,34 132.5,35.5 136,36.2 137,37.5 139.5,38.3 140,40.5 141.5,41.2 142,39.5 141,37 140.8,35.7 139.8,35 138.2,34.6 136.8,34.3 135.2,33.5 133.5,34.3 131.2,34.2",
+HOK:"140,42 140.3,43.5 141.7,45.3 145.3,43.5 143.2,42 141,42.5",
+KYU:"129.8,33.5 131.8,33.7 131.5,31.3 130.2,31",
+SAK:"142,46 142.2,49.5 143,53 143.2,54.3 142,53.5 141.6,50.5 142,47",
+SRI:"79.8,9.8 81.5,8 81.8,7 80.2,6 79.8,7.5",
+TAI:"120.2,23 121.9,25 122,24 120.8,22",
+HAI:"108.7,19 111,19.8 110.5,18.3 109.2,18.2",
+LUZ:"120.3,18.5 122.3,18.5 122.2,16.5 121.5,15 123.5,13.8 121,13.6 120.5,14.5 119.9,16",
+MIN:"122,7 126.5,9.5 126.5,6.5 125,5.8 123.5,7",
+BOR:"109,1.5 111,2.8 114,4.9 117.8,7 119.2,5.4 117.5,2 118.6,1 116.5,-3.5 114.5,-4 110.2,-2.8 109.3,-0.5",
+SUM:"95.3,5.6 98,4 100.5,2.3 103.5,-0.5 106,-3 104.5,-5.8 102,-4.2 99.5,-1.5 97,1.5",
+JAV:"105.2,-6.8 108,-6.3 112.5,-6.8 114.5,-7.8 114.3,-8.8 110,-8.2 106.5,-7.5",
+SUL:"119.5,-3.5 119.8,0 121,1.2 125,1.7 123,0.5 121.5,-1 123,-2 122,-4.5 120.5,-5.5 119.5,-5",
+AU:"113.5,-22 114,-26 115,-33.5 118,-35 122,-34 124,-33 129,-31.6 131,-31.5 134,-32.8 135.5,-35 138,-34.5 137.8,-33 138,-35.5 140,-37.9 144,-38.4 146.5,-39 150,-37.5 151.2,-33.8 153.5,-28.5 153,-25 150,-22.3 146.5,-19 145.3,-15 143.5,-12 142.5,-10.7 141.5,-13 140,-17.5 137.5,-15.7 135.5,-14.7 136.8,-12.2 132.5,-11.5 130,-13 128,-14.8 126,-14 123.5,-17 122,-18 120,-19.8 116.5,-20.7",
+TAS:"144.7,-40.7 148.3,-40.9 148,-43 146,-43.7 145,-42",
+NZN:"172.7,-34.5 174.5,-36.5 178.5,-37.7 176,-39.5 175,-41.5 174.7,-39.5 173.5,-35.5",
+NZS:"172.7,-40.5 174.2,-41.3 171,-44.5 169,-46.5 166.5,-46 168.5,-44 171.2,-42.5",
+NG:"131,-0.9 135,-3.3 138,-1.7 141,-2.6 145.5,-5.5 148,-8.5 150.5,-10.5 147,-10 143.5,-8.5 141,-9.3 138,-8.3 135,-4.5 132,-2.8",
+AN:"-180,-90 -180,-78 -165,-78 -150,-76 -130,-74 -100,-73.5 -75,-73 -70,-70 -66,-67 -62,-65 -57,-63.5 -61,-65.5 -64,-68 -61,-71 -67,-75 -60,-76.5 -45,-78 -30,-77 -15,-72 0,-70 20,-70 40,-68 60,-67.5 69,-69.5 75,-67.5 90,-66 110,-66 130,-66 150,-68 165,-70 170,-72 180,-76 180,-90",
+CASP:"47,45 49.5,46.5 51.5,47 53,45 53,41.5 54,40 52.5,37.5 50,37 49,38.5 49.5,40.5 47.5,43"
+};
+const CONT={
+ as:{n:{te:'ఆసియా',en:'Asia'},col:'#f4b942',p:['AS','HON','HOK','KYU','SAK','SRI','TAI','HAI','LUZ','MIN','BOR','SUM','JAV','SUL'].map(k=>PS(G[k]))},
+ eu:{n:{te:'ఐరోపా',en:'Europe'},col:'#ec7fa9',p:['EU','UK','IRL','ICE'].map(k=>PS(G[k]))},
+ af:{n:{te:'ఆఫ్రికా',en:'Africa'},col:'#e8864a',p:['AF','MAD'].map(k=>PS(G[k]))},
+ na:{n:{te:'ఉత్తర అమెరికా',en:'North America'},col:'#66bb6a',p:['NA','GRL','BAF','VIC','ELL','CUB','HIS','NFL'].map(k=>PS(G[k]))},
+ sa:{n:{te:'దక్షిణ అమెరికా',en:'South America'},col:'#b6d84f',p:['SA'].map(k=>PS(G[k]))},
+ au:{n:{te:'ఆస్ట్రేలియా',en:'Australia'},col:'#b583e6',p:['AU','TAS','NZN','NZS','NG'].map(k=>PS(G[k]))},
+ an:{n:{te:'అంటార్కిటికా',en:'Antarctica'},col:'#e3f1f9',p:['AN'].map(k=>PS(G[k]))}};
+const OCN={pac:{te:'పసిఫిక్ మహాసముద్రం',en:'Pacific Ocean'},atl:{te:'అట్లాంటిక్ మహాసముద్రం',en:'Atlantic Ocean'},ind:{te:'హిందూ మహాసముద్రం',en:'Indian Ocean'},sou:{te:'దక్షిణ మహాసముద్రం',en:'Southern Ocean'},arc:{te:'ఆర్కిటిక్ మహాసముద్రం',en:'Arctic Ocean'}};
+const OCC={pac:'#7fb8ec',atl:'#9fd0f0',ind:'#8fdad4',sou:'#d5e8f5',arc:'#cfeef7'};
+const OC=[['arc',[[-180,90],[180,90],[180,66.5],[-180,66.5]]],['sou',[[-180,-58],[180,-58],[180,-90],[-180,-90]]],
+ ['atl',[[-100,66.5],[25,66.5],[25,35],[20,25],[20,-58],[-68,-58],[-68,-40],[-55,-20],[-65,0],[-80,8.5],[-84,10],[-88,14],[-95,20],[-95,50]]],
+ ['pac',[[-180,66.5],[-100,66.5],[-95,50],[-95,20],[-88,14],[-84,10],[-80,8.5],[-65,0],[-55,-20],[-68,-40],[-68,-58],[-180,-58]]],
+ ['pac',[[105,66.5],[180,66.5],[180,-58],[147,-58],[147,-30],[142,-10],[130,-3],[120,4],[101,5],[100,25]]],
+ ['ind',[[20,-58],[147,-58],[147,-30],[142,-10],[130,-3],[120,4],[101,5],[100,25],[60,30],[45,25],[35,15],[25,10],[20,0]]]];
+const LBL={as:[95,45],eu:[18,52],af:[20,5],na:[-100,45],sa:[-60,-12],au:[134,-25],an:[0,-80],pac:[-150,5],atl:[-35,20],ind:[80,-25],sou:[0,-66],arc:[0,78]};
+const CASPP=PS(G.CASP);
+function pip(x,y,pg){let c=false;for(let i=0,j=pg.length-1;i<pg.length;j=i++){const a=pg[i],b=pg[j];if((a[1]>y)!=(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])c=!c}return c}
+function whereIs(lat,lon){
+  if(pip(lon,lat,CASPP))return{k:'sea'};
+  for(const k in CONT)for(const pg of CONT[k].p)if(pip(lon,lat,pg)||pip(lon+360,lat,pg))return{k,land:1};
+  for(const [id,pg] of OC)if(pip(lon,lat,pg))return{k:id};
+  return{k:'sea'};
+}
+const nameOf=w=>w.k=='sea'?L({te:'సముద్రం / సరస్సు',en:'Sea / lake'}):L((CONT[w.k]||{}).n||OCN[w.k]);
+const fmtLL=(a,o)=>Math.abs(a).toFixed(1)+'°'+(a>=0?'N':'S')+' '+Math.abs(o).toFixed(1)+'°'+(o>=0?'E':'W');
+/* ===== 3D globe (texture-mapped, no libraries) ===== */
+const DEG=Math.PI/180,TW=720,TH=360,GN=260;
+let TEX=null;
+const nh=(i,j)=>{const s=Math.sin(i*127.1+j*311.7)*43758.5453;return s-Math.floor(s)};
+function nz(u,v){const i=Math.floor(u),j=Math.floor(v),fu=u-i,fv=v-j,a=nh(i,j),b=nh(i+1,j),c=nh(i,j+1),d=nh(i+1,j+1),su=fu*fu*(3-2*fu),sv=fv*fv*(3-2*fv);return a+(b-a)*su+(c-a)*sv+(a-b-c+d)*su*sv}
+function boxBlur(m,w,h,r){const t=new Float32Array(m.length),o=new Float32Array(m.length);
+  for(let y=0;y<h;y++){let s=0;for(let x=-r;x<=r;x++)s+=m[y*w+((x+w)%w)];for(let x=0;x<w;x++){t[y*w+x]=s/(2*r+1);s+=m[y*w+((x+r+1)%w)]-m[y*w+((x-r+w)%w)]}}
+  for(let x=0;x<w;x++){let s=0;for(let y=-r;y<=r;y++)s+=t[Math.min(h-1,Math.max(0,y))*w+x];for(let y=0;y<h;y++){o[y*w+x]=s/(2*r+1);s+=t[Math.min(h-1,y+r+1)*w+x]-t[Math.max(0,y-r)*w+x]}}return o}
+function buildTex(){
+  if(TEX)return;
+  const c=document.createElement('canvas');c.width=TW;c.height=TH;const x=c.getContext('2d');
+  x.fillStyle='#000';x.fillRect(0,0,TW,TH);x.fillStyle='#fff';
+  for(const k in CONT)CONT[k].p.forEach(pg=>{for(const off of[0,-360]){x.beginPath();pg.forEach((p,i)=>{const px=(p[0]+180+off)*2,py=(90-p[1])*2;i?x.lineTo(px,py):x.moveTo(px,py)});x.closePath();x.fill()}});
+  const d=x.getImageData(0,0,TW,TH).data,m=new Float32Array(TW*TH);for(let i=0;i<m.length;i++)m[i]=d[i*4]>127?1:0;
+  const bl=boxBlur(boxBlur(m,TW,TH,3),TW,TH,3),out=new Uint8ClampedArray(TW*TH*4);
+  for(let y=0;y<TH;y++)for(let xx=0;xx<TW;xx++){
+    const i=y*TW+xx,lat=90-y/2,lon=xx/2-180,a=Math.abs(lat),n=nz(xx*.07,y*.07)*.6+nz(xx*.22,y*.22)*.4;let r,g,b;
+    if(m[i]){
+      if(lat<-60||(lat>59.8&&lon>-74&&lon<-12)){r=236;g=244;b=248;const k=.92+.08*n;r*=k;g*=k;b*=k}
+      else{
+        const sm=(p,q,v)=>{const t=Math.max(0,Math.min(1,(v-p)/(q-p)));return t*t*(3-2*t)};
+        const bx=(l0,l1,a0,a1,e)=>sm(l0,l0+e,lon)*sm(-l1,-l1+e,-lon)*sm(a0,a0+e,lat)*sm(-a1,-a1+e,-lat);
+        const ar=Math.min(1,Math.max(bx(-17,72,14,32,9),bx(90,115,38,46,6),bx(118,142,-31,-20,7),bx(15,26,-28,-18,6))*(.6+.8*n));
+        const S=[[0,48,134,58],[12,70,142,62],[24,118,158,68],[40,84,146,74],[58,104,132,92],[68,190,204,200],[90,200,212,210]];
+        let q=1;while(q<S.length-1&&a>S[q][0])q++;const u=(a-S[q-1][0])/(S[q][0]-S[q-1][0]);
+        r=S[q-1][1]+(S[q][1]-S[q-1][1])*u;g=S[q-1][2]+(S[q][2]-S[q-1][2])*u;b=S[q-1][3]+(S[q][3]-S[q-1][3])*u;
+        r+=(206-r)*ar;g+=(178-g)*ar;b+=(112-b)*ar;
+        const k=.8+.4*n;r*=k;g*=k;b*=k;
+        if(n>.78&&a<60){r=120;g=100;b=82}
+      }
+    }else{
+      const w=Math.min(1,bl[i]*2.4);r=14+(70-14)*w;g=76+(176-76)*w;b=156+(214-156)*w;
+      if(lat>76||lat<-64){const t=Math.min(1,(lat>76?lat-76:-64-lat)/6),k=.5+.5*n;r+=(232-r)*t*k;g+=(242-g)*t*k;b+=(248-b)*t*k}
+    }
+    const o=i*4;out[o]=r;out[o+1]=g;out[o+2]=b;out[o+3]=255}
+  TEX=out;
+}
+let GS,gcv,gctx;
+function gProj(lat,lon,rad){rad=rad||1;const R=GN/2-8,p=lat*DEG,dl=(lon-GS.lon0)*DEG,p0=GS.lat0*DEG;
+  const x=rad*Math.cos(p)*Math.sin(dl),y=rad*(Math.cos(p0)*Math.sin(p)-Math.sin(p0)*Math.cos(p)*Math.cos(dl)),z=Math.sin(p0)*Math.sin(p)+Math.cos(p0)*Math.cos(p)*Math.cos(dl);
+  return{x:GN/2+x*R,y:GN/2-y*R,z}}
+function gInv(px,py){const R=GN/2-8,nx=(px-GN/2)/R,ny=(GN/2-py)/R,r2=nx*nx+ny*ny;if(r2>1)return null;const z=Math.sqrt(1-r2),sp=Math.sin(GS.lat0*DEG),cp=Math.cos(GS.lat0*DEG);
+  const lat=Math.asin(z*sp+ny*cp)/DEG;let lon=GS.lon0+Math.atan2(nx,z*cp-ny*sp)/DEG;lon=((lon+540)%360)-180;return[lat,lon]}
+function sunVec(){const s=GS.sun;if(!s)return null;const a=(s.lat||0)*DEG,o=s.lon*DEG;return[Math.cos(a)*Math.cos(o),Math.cos(a)*Math.sin(o),Math.sin(a)]}
+const GL_={cx:GN/2};
+function gDraw(){
+  if(!gctx||!TEX)return;
+  const N=GN,R=N/2-8,c=N/2,img=gctx.createImageData(N,N),px=img.data,sp=Math.sin(GS.lat0*DEG),cp=Math.cos(GS.lat0*DEG),l0=GS.lon0*DEG,SU=sunVec(),Ln=GS.lines;
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+    const nx=(x+.5-c)/R,ny=(c-y-.5)/R,r2=nx*nx+ny*ny,id=(y*N+x)*4;if(r2>1)continue;
+    const z=Math.sqrt(1-r2),lat=Math.asin(Math.max(-1,Math.min(1,z*sp+ny*cp))),lon=l0+Math.atan2(nx,z*cp-ny*sp),la=lat/DEG;let lo=((lon/DEG+540)%360)-180;
+    const ty=Math.min(TH-1,Math.max(0,((90-la)*2)|0)),tx=Math.min(TW-1,((lo+180)*2)|0),ti=(ty*TW+tx)*4;let r=TEX[ti],g=TEX[ti+1],b=TEX[ti+2];
+    const ocean=b>150&&r<120&&g>70&&TEX[ti+1]<200&&r<90;
+    let lam;
+    if(!SU)lam=.3+.7*Math.max(0,-.42*nx+.5*ny+.75*z);
+    else{const ca=Math.cos(lat),d=ca*Math.cos(lon)*SU[0]+ca*Math.sin(lon)*SU[1]+Math.sin(lat)*SU[2];
+      if(d>=.08)lam=.3+.7*d;else if(d<=-.08)lam=GS.night;else lam=GS.night+(.356-GS.night)*(d+.08)/.16}
+    if(Ln){const cl=Math.max(.25,Math.cos(lat)),eps=.9/cl;
+      const q=(v,m)=>((v%m)+m)%m;
+      if(Ln.eq&&Math.abs(la)<1.1){r=255;g=40;b=40}
+      else if(Ln.pm&&Math.abs(lo)<eps){r=60;g=255;b=60}
+      else if(Ln.dl&&Math.abs(Math.abs(lo)-180)<eps){r=190;g=90;b=255}
+      else if(Ln.lat&&(q(la+90,30)<.9||q(la+90,30)>29.1)){r=255;g=255;b=255}
+      else if(Ln.lon&&(q(lo+180,30)<eps||q(lo+180,30)>30-eps)){r=255;g=255;b=255}}
+    let sp2=0;if(!SU&&ocean)sp2=Math.pow(Math.max(0,-.3*nx+.4*ny+.86*z),40)*90;
+    const rim=Math.pow(1-z,3)*70;
+    px[id]=Math.min(255,r*lam+sp2+rim*.5);px[id+1]=Math.min(255,g*lam+sp2+rim*.8);px[id+2]=Math.min(255,b*lam+sp2+rim*1.3);px[id+3]=255}
+  gctx.clearRect(0,0,N,N);
+  const gr=gctx.createRadialGradient(c,c,R*.98,c,c,R*1.06);gr.addColorStop(0,'rgba(120,180,255,.55)');gr.addColorStop(1,'rgba(120,180,255,0)');gctx.fillStyle=gr;gctx.beginPath();gctx.arc(c,c,R*1.06,0,7);gctx.fill();
+  gctx.putImageData(img,0,0);
+  gctx.font='bold 11px sans-serif';gctx.textAlign='center';
+  const vis=(p)=>p.z>0.02;
+  if(GS.axis){const a=gProj(90,0,1.28),b=gProj(-90,0,1.28);gctx.strokeStyle='#ffe066';gctx.lineWidth=2;gctx.setLineDash([5,4]);gctx.beginPath();gctx.moveTo(a.x,a.y);gctx.lineTo(b.x,b.y);gctx.stroke();gctx.setLineDash([]);gctx.fillStyle='#ffe066';gctx.fillText(L({te:'అక్షం',en:'Axis'}),a.x+22,a.y+4)}
+  const pn=gProj(90,0),ps=gProj(-90,0);gctx.fillStyle='#fff';
+  if(vis(pn)){gctx.beginPath();gctx.arc(pn.x,pn.y,3,0,7);gctx.fill();gctx.fillText(L({te:'ఉత్తర ధ్రువం',en:'North Pole'}),pn.x,pn.y-7)}
+  if(vis(ps)){gctx.beginPath();gctx.arc(ps.x,ps.y,3,0,7);gctx.fill();gctx.fillText(L({te:'దక్షిణ ధ్రువం',en:'South Pole'}),ps.x,ps.y+14)}
+  const poly=(pts,col,w,dash)=>{gctx.strokeStyle=col;gctx.lineWidth=w;gctx.setLineDash(dash||[]);gctx.beginPath();let on=false;pts.forEach(p=>{const q=gProj(p[0],p[1]);if(vis(q)){on?gctx.lineTo(q.x,q.y):gctx.moveTo(q.x,q.y);on=true}else on=false});gctx.stroke();gctx.setLineDash([])};
+  GS.routes.forEach(r=>poly(r.pts,r.col,3,r.dash));
+  if(GS.trail.length>1)poly(GS.trail,'#ffd400',3);
+  GS.dots.forEach(d=>{if(GS.spin||GS.showTrails){const pts=[];for(let o=0;o<=360;o+=6)pts.push([d.lat,o-180]);poly(pts,d.col,1.5,[3,3])}});
+  GS.dots.forEach(d=>{const q=gProj(d.lat,d.lon);if(vis(q)){gctx.fillStyle=d.col;gctx.strokeStyle='#fff';gctx.lineWidth=2;gctx.beginPath();gctx.arc(q.x,q.y,6,0,7);gctx.fill();gctx.stroke()}});
+  GS.people.forEach(p=>{const q=gProj(p.lat,p.lon);if(vis(q)){const ang=Math.atan2(q.y-c,q.x-c);
+    if(GS.grav){gctx.strokeStyle='#ff5252';gctx.lineWidth=2;gctx.beginPath();gctx.moveTo(q.x,q.y);gctx.lineTo(q.x+(c-q.x)*.35,q.y+(c-q.y)*.35);gctx.stroke();gctx.fillStyle='#ff5252';gctx.beginPath();gctx.arc(q.x+(c-q.x)*.35,q.y+(c-q.y)*.35,3.5,0,7);gctx.fill()}
+    gctx.save();gctx.translate(q.x,q.y);gctx.rotate(ang+Math.PI/2);gctx.font='20px sans-serif';gctx.fillText('🧍',0,-2);gctx.restore()}});
+  if(GS.obs&&GS.showObs){const q=gProj(GS.obs[0],GS.obs[1]);if(vis(q)){gctx.fillStyle='#fff';gctx.beginPath();gctx.arc(q.x,q.y,5,0,7);gctx.fill();gctx.font='16px sans-serif';gctx.fillText('🏠',q.x,q.y-8)}}
+  if(GS.start){const q=gProj(GS.start[0],GS.start[1]);if(vis(q)){gctx.font='18px sans-serif';gctx.fillText('📍',q.x,q.y)}}
+  if(GS.mover){const q=gProj(GS.mover[0],GS.mover[1]);if(vis(q)){gctx.font='20px sans-serif';gctx.fillText('⛵',q.x,q.y)}}
+  if(GS.mode=='s'||GS.sunrise){gctx.fillStyle='#fff';gctx.font='bold 11px sans-serif';gctx.fillText(L({te:'⟵ పడమర   తూర్పు ⟶',en:'⟵ West   East ⟶'}),c,N-3)}
+}
+function gAnim(){GS.dirty=1;if(GS.raf)return;let t0=performance.now();const loop=t=>{if(!document.body.contains(gcv)){GS.raf=0;return}const dt=Math.min(.05,(t-t0)/1000);t0=t;let busy=false;
+  if(GS.spin){const dd=-18*dt;GS.lon0+=dd;if(GS.sun)GS.sun.lon+=dd;busy=true;if(GS.tick)GS.tick(dt)}
+  if(GS.auto){GS.lon0-=14*dt;busy=true}
+  if(GS.go){GS.go(dt);busy=true}
+  if(GS.dirty||busy){GS.dirty=0;gDraw()}
+  GS.raf=requestAnimationFrame(loop)};GS.raf=requestAnimationFrame(loop)}
+function gv(lat,lon){const p=lat*DEG,l=lon*DEG;return[Math.cos(p)*Math.cos(l),Math.cos(p)*Math.sin(l),Math.sin(p)]}
+function gll(v){return[Math.asin(Math.max(-1,Math.min(1,v[2])))/DEG,Math.atan2(v[1],v[0])/DEG]}
+const gmodes=[['x','🔄',{te:'తిప్పి చూడు',en:'Explore'}],['m','🌙',{te:'చంద్రుడి నుంచి భూమి',en:'Earth from the Moon'}],['p','📍',{te:'ధ్రువాలు వెతుకు',en:'Find the poles'}],['g','🧍',{te:'బొమ్మలు',en:'Toy people'}],['j','⛵',{te:'ప్రయాణం',en:'Journey'}],['s','🔁',{te:'తిరిగే భూమి',en:'Spinning Earth'}]];
+function globeTab(){return `<h2>🌍 ${L({te:'3D గ్లోబు',en:'3D Globe'})}</h2><p class="hint">${L({te:'గ్లోబును వేలితో లేదా మౌస్‌తో లాగి తిప్పు. ఒక చోటును నొక్కితే అది ఏ ఖండమో, ఏ సముద్రమో చెబుతుంది.',en:'Drag the globe to turn it. Tap any place to learn its continent or ocean.'})}</p>
+<div class="chipsrow" id="gm"></div><canvas id="gl" width="${GN}" height="${GN}" aria-label="3D globe"></canvas><div id="gctl"></div><div id="qbox"></div>`}
+function globeInit(){
+  buildTex();GS={lon0:78,lat0:18,sun:null,night:.07,spin:false,dots:[],people:[],trail:[],routes:[],lines:{eq:true},axis:false,grav:false,mode:'x',dirty:1,raf:0,obs:[17.4,78.5],start:[17.4,78.5]};
+  gcv=$('#gl');gctx=gcv.getContext('2d');
+  const info=()=>$('#ginfo');
+  let gd=null;
+  gcv.onpointerdown=e=>{gcv.setPointerCapture(e.pointerId);gd={x:e.clientX,y:e.clientY,l:GS.lon0,a:GS.lat0,mv:false};GS.auto=false;GS.follow=false};
+  gcv.onpointermove=e=>{if(!gd)return;const dx=e.clientX-gd.x,dy=e.clientY-gd.y;if(Math.hypot(dx,dy)>6)gd.mv=true;if(gd.mv){GS.lon0=gd.l-dx*.5;GS.lat0=Math.max(-90,Math.min(90,gd.a+dy*.4));GS.dirty=1}};
+  gcv.onpointerup=e=>{const mv=gd&&gd.mv;gd=null;if(!mv){const r=gcv.getBoundingClientRect(),ll=gInv((e.clientX-r.left)/r.width*GN,(e.clientY-r.top)/r.height*GN);if(ll)gTap(ll)}};
+  gcv.onpointercancel=()=>{gd=null};
+  const modeBar=()=>{$('#gm').innerHTML=gmodes.map(m=>`<button class="tab" data-m="${m[0]}" aria-selected="${GS.mode==m[0]}">${m[1]} ${L(m[2])}</button>`).join('');$('#gm').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>setMode(b.dataset.m))};
+  window.gSet=setMode;
+  function reset(){GS.spin=false;GS.auto=false;GS.go=null;GS.tick=null;GS.sun=null;GS.night=.07;GS.dots=[];GS.people=[];GS.trail=[];GS.routes=[];GS.mover=null;GS.axis=false;GS.grav=false;GS.sunrise=false;GS.showObs=false;GS.showTrails=false;GS.lines={eq:true};GS.targetIdx=0}
+  function setMode(m){reset();GS.mode=m;modeBar();$('#qbox').innerHTML='';const c=$('#gctl');GS.dirty=1;
+    if(m=='x')modeX(c);if(m=='m')modeM(c);if(m=='p')modeP(c);if(m=='g')modeG(c);if(m=='j')modeJ(c);if(m=='s')modeS(c);gAnim()}
+  const chip=(id,te,en,on)=>`<button class="tab" id="${id}" aria-selected="${!!on}">${L({te,en})}</button>`;
+  function gTap(ll){const[lat,lon]=ll;
+    if(GS.mode=='x'){const w=whereIs(lat,lon);$('#ginfo').innerHTML=`📍 <b>${fmtLL(lat,lon)}</b> — ${nameOf(w)}`}
+    else if(GS.mode=='p')pTap(lat);
+    else if(GS.mode=='g'){if(GS.people.length>=6)GS.people.shift();GS.people.push({lat,lon});if(GS.people.length>=3&&!done.gpeople){done.gpeople=true;save();stars();fb(true)}GS.dirty=1;$('#ginfo').textContent=L({te:`బొమ్మలు: ${GS.people.length}. అందరి కాళ్లూ భూమి వైపే!`,en:`People: ${GS.people.length}. Everybody's feet point to the Earth!`})}
+    else if(GS.mode=='j'){GS.start=[lat,lon];GS.trail=[];GS.mover=null;GS.dirty=1;$('#ginfo').textContent='📍 '+fmtLL(lat,lon)}
+    else if(GS.mode=='s'){if(GS.dots.length>=4)GS.dots.shift();const cols=['#ff3b3b','#ffd400','#2ecc71','#a855f7'];GS.dots.push({lat,lon,col:cols[GS.dotc++%4]});GS.dirty=1;sSpeeds()}
+  }
+  GS.dotc=0;
+  function modeX(c){c.innerHTML=`<div class="chipsrow">${chip('lq1','అక్షాంశాలు','Latitudes',0)}${chip('lq2','రేఖాంశాలు','Longitudes',0)}${chip('lq3','భూమధ్యరేఖ','Equator',1)}${chip('lq4','0° & 180° రేఖలు','0° & 180° lines',0)}${chip('lq5','అక్షం','Axis',0)}${chip('lq6','▶ తిరుగు','▶ Auto-turn',0)}</div><div class="fb" id="ginfo">${L({te:'భూమి బంతిలా ఉంది! తిప్పి చూడు, నొక్కి చూడు.',en:'The Earth is like a ball! Turn it and tap places.'})}</div>`;
+    const tg=(id,fn)=>$(id).onclick=function(){const on=this.getAttribute('aria-selected')!='true';this.setAttribute('aria-selected',on);fn(on);GS.dirty=1};
+    tg('#lq1',o=>GS.lines.lat=o);tg('#lq2',o=>GS.lines.lon=o);tg('#lq3',o=>GS.lines.eq=o);tg('#lq4',o=>{GS.lines.pm=o;GS.lines.dl=o});tg('#lq5',o=>GS.axis=o);tg('#lq6',o=>GS.auto=o)}
+  function modeM(c){GS.sun={lon:GS.lon0+60,lat:0};GS.night=.04;GS.lon0=GS.lon0;
+    c.innerHTML=`<div class="fb">${L({te:'🌙 చంద్రుడి నుంచి చూసిన భూమిలా ఉంది! సూర్యుడిని కదిలించు:',en:'🌙 Just like the photo from the Moon! Move the Sun:'})}</div><input type="range" id="sl2" min="-180" max="180" value="${Math.round(GS.sun.lon)}" aria-label="sun"><div class="fb">${L({te:'సూర్యకాంతి పడే సగం భాగమే కనిపిస్తుంది, మిగతా సగం చీకటి.',en:'Only the half that gets sunlight is seen; the other half is dark.'})}</div>`;
+    $('#sl2').oninput=e=>{GS.sun.lon=+e.target.value;GS.dirty=1};
+    quiz([{q:{te:'ఫోటోలో భూమి సగం భాగం ఎందుకు కనిపించలేదు?',en:'Why is half of the Earth not visible in the photograph?'},o:[{te:'సూర్యకాంతి పడని భాగం చీకటిగా ఉంది',en:'The part without sunlight is dark'},{te:'భూమి సగమే ఉంది',en:'The Earth is only half'},{te:'చంద్రుడు అడ్డం వచ్చాడు',en:'The Moon blocked it'},{te:'ఫోటో చిరిగింది',en:'The photo is torn'}],a:0},{q:{te:'భూమి నీలం రంగులో ఎందుకు కనిపిస్తుంది?',en:'Why does the Earth look blue?'},o:[{te:'ఎక్కువ భాగం మహాసముద్రాలతో కప్పి ఉంది',en:'Most of it is covered with oceans'},{te:'ఆకాశం నీలం',en:'The sky is blue'},{te:'పొగ వల్ల',en:'Because of smoke'},{te:'చంద్రుడి వల్ల',en:'Because of the Moon'}],a:0}],'moon')}
+  function modeP(c){GS.lines={eq:true};GS.axis=true;const P=[{t:'n',te:'ఉత్తర ధ్రువాన్ని నొక్కు',en:'Tap the North Pole'},{t:'s',te:'దక్షిణ ధ్రువాన్ని నొక్కు',en:'Tap the South Pole'},{t:'e',te:'భూమధ్యరేఖను (ఎర్ర గీత) నొక్కు',en:'Tap the Equator (red line)'}];GS.pq=shuffle([...P,...P]);GS.pi=0;pShow()}
+  function pShow(){const c=$('#gctl');if(GS.pi>=GS.pq.length){done.gpoles=true;save();stars();c.innerHTML=`<div class="big">🎉 ${L({te:'ధ్రువాలు, భూమధ్యరేఖ కనుక్కున్నావు! ⭐',en:'You found the poles and the Equator! ⭐'})}</div>`;fb(true);return}c.innerHTML=`<div class="q">${L(GS.pq[GS.pi])} <small>(${GS.pi+1}/${GS.pq.length})</small></div><div class="fb">${L({te:'గ్లోబును వంచి ధ్రువాలు చూడు (పైకి/కిందకు లాగు).',en:'Tilt the globe (drag up/down) to see the poles.'})}</div>`}
+  function pTap(lat){const t=GS.pq[GS.pi];if(!t)return;const ok=t.t=='n'?lat>78:t.t=='s'?lat<-78:Math.abs(lat)<5;if(ok){fb(true);GS.pi++;pShow()}else{fb(false);gcv.classList.remove('shake');void gcv.offsetWidth;gcv.classList.add('shake');$('#gctl').insertAdjacentHTML('beforeend','<div class="fb">❌ '+L({te:'మళ్లీ ప్రయత్నించు',en:'Try again'})+'</div>')}}
+  function modeG(c){c.innerHTML=`<div class="fb" id="ginfo">${L({te:'గ్లోబుపై వేర్వేరు చోట్ల నొక్కి బొమ్మలను నిలబెట్టు (కనీసం 3). కింద ఉన్న బొమ్మ తలకిందులవుతుందా?',en:'Tap different places to stand toy people on the globe (at least 3). Is the person at the bottom upside down?'})}</div><div class="chipsrow">${chip('gv1','↓ భూమి లాగే బాణాలు','↓ Pull arrows',0)}${chip('gv2','🗑️ తుడువు','🗑️ Clear',0)}</div>`;
+    $('#gv1').onclick=function(){GS.grav=!GS.grav;this.setAttribute('aria-selected',GS.grav);GS.dirty=1};$('#gv2').onclick=()=>{GS.people=[];GS.dirty=1};
+    quiz([{q:{te:'మనం భూమి మీద నుంచి ఎందుకు పడిపోము?',en:'Why do we never fall off the Earth?'},o:[{te:'భూమి బలమైన అయస్కాంతంలా మనల్ని తనవైపు లాగుతుంది',en:'The Earth pulls us towards it like a powerful magnet'},{te:'మనం బరువు లేనివాళ్లం',en:'We have no weight'},{te:'భూమి చదునుగా ఉంది',en:'The Earth is flat'},{te:'గాలి పట్టుకుంటుంది',en:'The air holds us'}],a:0}],'grav')}
+  function modeJ(c){c.innerHTML=`<div class="fb" id="ginfo">${L({te:'📍 మొదలుపెట్టే చోటు నొక్కు (ఇప్పుడు హైదరాబాద్). దిక్కు ఎంచుకుని "వెళ్లు" నొక్కు. అదే దిక్కులో వెళ్తూ ఉంటే ఏమవుతుంది?',en:'📍 Tap a start place (now Hyderabad). Pick a direction and press Go. What happens if you keep going the same way?'})}</div><div class="chipsrow">${['n','e','s','w'].map(k=>`<button class="tab" data-h="${k}" aria-selected="${k=='e'}">${L(D[k])}</button>`).join('')}<button class="tab" id="jgo">⛵ ${L({te:'వెళ్లు',en:'Go'})}</button></div><div class="chipsrow"><button class="tab" id="jc1">⛵ ${L({te:'కొలంబస్ నిజమైన దారి',en:"Columbus' real route"})}</button><button class="tab" id="jc2">❓ ${L({te:'అతను అనుకున్న దారి (భారతదేశానికి)',en:'The route he hoped for (to India)'})}</button></div>`;
+    let hd='e';c.querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>{hd=b.dataset.h;c.querySelectorAll('[data-h]').forEach(x=>x.setAttribute('aria-selected',x===b))});
+    $('#jgo').onclick=()=>{const s=GS.start,p0=gv(s[0],s[1]),la=s[0]*DEG,lo=s[1]*DEG,north=[-Math.sin(la)*Math.cos(lo),-Math.sin(la)*Math.sin(lo),Math.cos(la)],east=[-Math.sin(lo),Math.cos(lo),0],h={n:0,e:90,s:180,w:270}[hd]*DEG,
+      t=[0,1,2].map(i=>Math.cos(h)*north[i]+Math.sin(h)*east[i]);let th=0;GS.trail=[s.slice()];GS.follow=true;
+      GS.go=dt=>{th+=dt*50;const a=th*DEG,v=[0,1,2].map(i=>p0[i]*Math.cos(a)+t[i]*Math.sin(a)),ll=gll(v);GS.mover=ll;GS.trail.push(ll);GS.lon0+=(ll[1]-GS.lon0)*Math.min(1,dt*3);GS.lat0+=(ll[0]-GS.lat0)*Math.min(1,dt*3);GS.dirty=1;
+        if(th>=360){GS.go=null;GS.mover=null;GS.trail.push(s.slice());$('#ginfo').innerHTML='🎉 '+L({te:'మొదలుపెట్టిన చోటుకే తిరిగి వచ్చావు! భూమి గుండ్రంగా ఉందని ఇలా తెలుస్తుంది.',en:'You are back where you started! This shows the Earth is round.'});if(!done.gjourney){done.gjourney=true;save();stars()}fb(true)}}};
+    const route=(pts,dash,msg,key)=>{GS.trail=[];let i=0;GS.routes=[{pts:[],col:'#ffd400',dash}];GS.follow=true;GS.go=dt=>{i+=dt*18;const k=Math.min(pts.length,Math.floor(i));GS.routes[0].pts=pts.slice(0,k);const l=pts[Math.max(0,k-1)];GS.mover=l;GS.lon0+=(l[1]-GS.lon0)*Math.min(1,dt*3);GS.lat0+=(l[0]-GS.lat0)*Math.min(1,dt*3);GS.dirty=1;if(k>=pts.length){GS.go=null;$('#ginfo').innerHTML=msg;if(!done[key]){done[key]=true;save();stars()}fb(true)}}};
+    const gc=(a,b,n)=>{const A=gv(a[0],a[1]),B=gv(b[0],b[1]),om=Math.acos(Math.max(-1,Math.min(1,A[0]*B[0]+A[1]*B[1]+A[2]*B[2]))),o=[];for(let i=0;i<=n;i++){const t=i/n,s1=Math.sin((1-t)*om)/Math.sin(om),s2=Math.sin(t*om)/Math.sin(om);o.push(gll([0,1,2].map(j=>A[j]*s1+B[j]*s2)))}return o};
+    $('#jc1').onclick=()=>{GS.sun=null;route(gc([37.2,-6.9],[24.1,-74.5],40),null,'⛵ '+L({te:'1492: కొలంబస్ ఐరోపా (స్పెయిన్) నుంచి బయలుదేరి అమెరికా చేరాడు.',en:'1492: Columbus sailed from Europe (Spain) and reached America.'}),'gcol1')};
+    $('#jc2').onclick=()=>{const pts=[];for(let i=0;i<=90;i++){const t=i/90;pts.push([37.2+(10-37.2)*t,-6.9-277*t>-180?-6.9-277*t:-6.9-277*t+360])}route(pts,[6,5],'❓ '+L({te:'ఆయన పడమర వైపు వెళ్తే భారతదేశం చేరతానని అనుకున్నాడు. కానీ మధ్యలో అమెరికా అడ్డం వచ్చింది!',en:'He hoped sailing west would reach India. But America came in the way!'}),'gcol2')};
+    quiz([{q:{te:'1492 ప్రాంతంలో కొలంబస్ ఐరోపా నుంచి ఎందుకు బయలుదేరాడు?',en:'Why did Columbus set out from Europe around 1492?'},o:[{te:'భారతదేశం చేరాలని',en:'To reach India'},{te:'చంద్రుడిపైకి వెళ్లాలని',en:'To go to the Moon'},{te:'ఆఫ్రికాలో వ్యాపారానికి',en:'To trade in Africa'},{te:'ఆటల కోసం',en:'To play games'}],a:0},{q:{te:'ఒకే దిక్కులో వెనక్కి తిరగకుండా వెళ్తూ ఉంటే ఏమవుతుంది?',en:'If you keep going in one direction without turning back, what happens?'},o:[{te:'మొదలుపెట్టిన చోటుకే తిరిగి వస్తాం',en:'We come back to the same place'},{te:'భూమి అంచుకు చేరతాం',en:'We reach the edge of the Earth'},{te:'పడిపోతాం',en:'We fall off'},{te:'ఎప్పటికీ చేరం',en:'We never arrive'}],a:0}],'jrn')}
+  function sSpeeds(){const e=$('#ginfo');if(!e)return;e.innerHTML=(GS.dots.length?GS.dots.map(d=>`<span style="color:${d.col}">●</span> ${Math.abs(d.lat).toFixed(0)}°${d.lat>=0?'N':'S'}: <b>${Math.round(1670*Math.cos(d.lat*DEG))}</b> ${L({te:'కి.మీ./గంట',en:'km/h'})}`).join('<br>'):L({te:'గ్లోబుపై భూమధ్యరేఖ నుంచి ధ్రువాల వరకు 3–4 చోట్ల నొక్కి రంగు చుక్కలు పెట్టు. తర్వాత ▶ నొక్కు.',en:'Tap 3-4 places from the Equator to the poles to put coloured dots. Then press ▶.'}))+'<br><small>'+L({te:'(వేగం ≈ 1670 × cos అక్షాంశం, భూమి తిరిగే వేగం)',en:'(speed ≈ 1670 × cos latitude, due to Earth\'s spin)'})+'</small>'}
+  function modeS(c){GS.axis=true;GS.showTrails=true;GS.lines={eq:true};GS.dots=[];c.innerHTML=`<div class="chipsrow"><button class="tab" id="ss1">▶ ${L({te:'తిప్పు (పడమర→తూర్పు)',en:'Spin (west→east)'})}</button><button class="tab" id="ss2">🌅 ${L({te:'సూర్యోదయం చూడు',en:'Watch sunrise'})}</button></div><div class="fb" id="ginfo"></div>`;sSpeeds();
+    $('#ss1').onclick=function(){GS.spin=!GS.spin;GS.sunrise=false;this.setAttribute('aria-selected',GS.spin);if(GS.spin&&GS.dots.length>=3&&!done.gspin){done.gspin=true;save();stars();fb(true)}GS.dirty=1};
+    $('#ss2').onclick=()=>{GS.sunrise=true;GS.showObs=true;GS.showTrails=false;GS.lon0=GS.obs[1]+8;GS.sun={lon:GS.obs[1]+150,lat:0};GS.night=.22;GS.lat0=20;GS.spin=true;let was=false;GS.tick=()=>{const so=gv(GS.obs[0],GS.obs[1]),sv=sunVec(),d=so[0]*sv[0]+so[1]*sv[1]+so[2]*sv[2];if(d>0&&!was&&GS.sunrise){$('#ginfo').innerHTML='🌅 '+L({te:'సూర్యోదయం! భూమి పడమర నుంచి తూర్పుకు తిరుగుతుంది కాబట్టి సూర్యుడు తూర్పున ఉదయిస్తున్నట్టు కనిపిస్తుంది.',en:'Sunrise! The Earth turns from west to east, so the Sun seems to rise in the east.'});if(!done.gsun){done.gsun=true;save();stars()}fb(true)}was=d>0};$('#ginfo').textContent=L({te:'🏠 మన ఊరు (భారతదేశం). భూమి తిరుగుతుంటే వెలుతురు తూర్పు నుంచి వస్తుంది…',en:'🏠 Our place (India). As the Earth turns, light arrives from the east…'});GS.dirty=1};
+    quiz([{q:{te:'ఏ దిశలో భూమి ప్రతిరోజూ తిరుగుతుంది?',en:'In which direction does the Earth rotate every day?'},o:[{te:'పడమర నుంచి తూర్పుకు',en:'West to east'},{te:'తూర్పు నుంచి పడమరకు',en:'East to west'},{te:'ఉత్తరం నుంచి దక్షిణానికి',en:'North to south'},{te:'తిరగదు',en:'It does not rotate'}],a:0},{q:{te:'ధ్రువం మీద పెట్టిన చుక్క ఏమవుతుంది?',en:'What happens to a dot placed on the pole?'},o:[{te:'కదలదు',en:'It does not move'},{te:'అతి వేగంగా తిరుగుతుంది',en:'It moves the fastest'},{te:'మాయమవుతుంది',en:'It disappears'},{te:'పైకి ఎగురుతుంది',en:'It flies up'}],a:0},{q:{te:'భూమధ్యరేఖ మీద చుక్క ఏమవుతుంది?',en:'What happens to a dot on the Equator?'},o:[{te:'అతి పెద్ద వృత్తంలో అతి వేగంగా తిరుగుతుంది',en:'It travels the biggest circle, the fastest'},{te:'కదలదు',en:'It stays still'},{te:'ధ్రువానికి పోతుంది',en:'It goes to the pole'},{te:'చిన్న వృత్తంలో తిరుగుతుంది',en:'It moves in a small circle'}],a:0},{q:{te:'"సూర్యుడు ఎప్పుడూ తూర్పున ఉదయిస్తాడు" ఎందుకు?',en:'"The Sun always rises in the east." Why?'},o:[{te:'భూమి పడమర నుంచి తూర్పుకు తిరుగుతుంది',en:'The Earth rotates from west to east'},{te:'సూర్యుడు తూర్పున ఉంటాడు',en:'The Sun lives in the east'},{te:'సూర్యుడు తిరుగుతాడు',en:'The Sun goes round the Earth'},{te:'గాలి వల్ల',en:'Because of wind'}],a:0}],'spin')}
+  setMode('x');
+}
+/* ===== flat world map + games ===== */
+const WX=l=>(l+180)*2,WY=a=>(90-a)*2;
+const wpath=(pg,off)=>'M'+pg.map(p=>(WX(p[0])+off*2).toFixed(1)+','+WY(p[1]).toFixed(1)).join('L')+'Z';
+function worldSVG(o){o=o||{};
+  let s=`<svg viewBox="0 0 720 360" class="fig wm" id="wm" style="max-width:780px;background:#cfe7f6" role="img" aria-label="${L({te:'ప్రపంచ పటం',en:'World map'})}">`;
+  OC.forEach(([id,pg])=>{s+=`<path data-z="${id}" class="oc" d="${wpath(pg,0)}" fill="${o.oc?o.oc(id):OCC[id]}"/>`});
+  for(const k in CONT)CONT[k].p.forEach(pg=>{const f=o.fill?o.fill(k):CONT[k].col,dd=wpath(pg,0);s+=`<path data-z="${k}" class="ln" d="${dd}" fill="${f}" stroke="#7a6a4a" stroke-width=".6"/>`;if(Math.max(...pg.map(p=>p[0]))>180)s+=`<path data-z="${k}" class="ln" d="${wpath(pg,-360)}" fill="${f}" stroke="#7a6a4a" stroke-width=".6"/>`});
+  s+=`<path d="${wpath(CASPP,0)}" fill="#9fd0f0" stroke="#7a6a4a" stroke-width=".5" pointer-events="none"/>`;
+  if(o.grid){for(let l=-150;l<=150;l+=30)s+=`<line x1="${WX(l)}" y1="0" x2="${WX(l)}" y2="360" stroke="#fff" stroke-opacity=".6" stroke-width=".8" pointer-events="none"/>`;for(let a=-60;a<=60;a+=30)s+=`<line x1="0" y1="${WY(a)}" x2="720" y2="${WY(a)}" stroke="#fff" stroke-opacity=".6" stroke-width=".8" pointer-events="none"/>`}
+  return s+'<g id="lbl" pointer-events="none"></g><g id="ovl" pointer-events="none"></g></svg>';
+}
+const KL={eq:{y:WY(0),c:'#e53935',te:'భూమధ్యరేఖ 0°',en:'Equator 0°'},tc:{y:WY(23.5),c:'#fb8c00',te:'కర్కాటక రేఖ 23½°N',en:'Tropic of Cancer'},tp:{y:WY(-23.5),c:'#fb8c00',te:'మకర రేఖ 23½°S',en:'Tropic of Capricorn'},ac:{y:WY(66.5),c:'#1e88e5',te:'ఆర్కిటిక్ వృత్తం 66½°N',en:'Arctic Circle'},sc:{y:WY(-66.5),c:'#1e88e5',te:'అంటార్కిటిక్ వృత్తం 66½°S',en:'Antarctic Circle'},pm:{x:WX(0),c:'#2e7d32',te:'గ్రీనిచ్ 0°',en:'Greenwich 0°'},dl:{x:WX(180)-1,c:'#8e24aa',te:'180° (దిన రేఖ)',en:'180° Date Line'}};
+function drawKeys(on){const g=$('#ovl');if(!g)return;g.innerHTML=on.map(k=>{const l=KL[k];return l.y!=null?`<line x1="0" y1="${l.y}" x2="720" y2="${l.y}" stroke="${l.c}" stroke-width="1.8" stroke-dasharray="${k=='eq'?'':'6 3'}"/><text x="4" y="${l.y-3}" font-size="9" font-weight="800" fill="${l.c}" stroke="#fff" stroke-width="2.5" paint-order="stroke">${L(l)}</text>`:`<line x1="${l.x}" y1="0" x2="${l.x}" y2="360" stroke="${l.c}" stroke-width="1.8" stroke-dasharray="6 3"/><text x="${l.x+3}" y="12" font-size="9" font-weight="800" fill="${l.c}" stroke="#fff" stroke-width="2.5" paint-order="stroke">${L(l)}</text>`}).join('')}
+const svgLL=(svg,e)=>{const r=svg.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*720,y=(e.clientY-r.top)/r.height*360;return[90-y/2,x/2-180]};
+const keyChips=(on)=>Object.keys(KL).map(k=>`<button class="tab" data-k="${k}" aria-selected="${on.includes(k)}">${L(KL[k])}</button>`).join('');
+/* continents & oceans (drag names) */
+function landTab(){return dropHTML('🗺️',{te:'ఖండాలు, మహాసముద్రాలు',en:'Continents & oceans'},{te:'పేరును లాగి పటంలో సరైన చోట వదులు (లేదా పేరును నొక్కి, పటంలో ఆ చోటును నొక్కు). 7 ఖండాలు, 5 మహాసముద్రాలు!',en:'Drag each name to the right place on the map (or tap the name, then tap the place). 7 continents, 5 oceans!'},'one')}
+function landInit(){
+  const ids=[...Object.keys(CONT),...Object.keys(OCN)],nm=id=>(CONT[id]||{}).n||OCN[id];
+  const Q=(a,te,en)=>({a,q:{te,en}});
+  const lab=ids.map(id=>Q(id,`"${nm(id).te}" పేరును పటంలో సరైన చోట వదులు.`,`Drop "${nm(id).en}" at its place on the map.`));
+  const facts=[Q('pac','అతి పెద్ద మహాసముద్రం ఏది?','Which is the largest ocean?'),Q('arc','గడ్డకట్టిన మహాసముద్రం ఏది?','Which ocean is frozen into ice?'),Q('an','మంచుతో కప్పి ఉన్న ఖండం ఏది?','Which continent is covered with ice?'),Q('as','భారతదేశం ఉన్న ఖండం ఏది?','On which continent is India located?'),Q('ind','భారతదేశానికి దక్షిణాన ఉన్న మహాసముద్రం ఏది?','Which ocean lies south of India?'),Q('au','అతి చిన్న ఖండం ఏది?','Which is the smallest continent?'),Q('as','అతి పెద్ద ఖండం ఏది?','Which is the largest continent?'),Q('arc','అతి చిన్న మహాసముద్రం ఏది?','Which is the smallest ocean?')];
+  const qs=[...shuffle(lab),...shuffle(facts)];
+  dropGame({key:'land',qs,tiles:ids.map(id=>({id,ic:CONT[id]?'🌍':'🌊',n:nm(id)})),zones:worldSVG({fill:()=>'#efe4c6',oc:()=>'#d7eaf7'}),check:(q,t,z)=>t===q.a&&z===t,wait:1100,
+    place:(t,z,f)=>{f.querySelectorAll(`[data-z="${t}"]`).forEach(p=>p.setAttribute('fill',CONT[t]?CONT[t].col:OCC[t]));const l=LBL[t];f.querySelector('#lbl').insertAdjacentHTML('beforeend',`<text class="pop" x="${WX(l[0])}" y="${WY(l[1])}" text-anchor="middle" font-size="12" font-weight="800" fill="#12357a" stroke="#fff" stroke-width="3.5" paint-order="stroke">✅ ${L(nm(t))}</text>`)}});
+}
+/* colour the map */
+function colourTab(){return `<h2>🎨 ${L({te:'పటానికి రంగులు వేయి',en:'Colour the map'})}</h2><p class="hint">${L({te:'రంగు ఎంచుకుని ఖండాన్ని లేదా సముద్రాన్ని నొక్కు. పేరు కనిపిస్తుంది. కింద ముఖ్యమైన అక్షాంశాలను చూపించే బటన్లు ఉన్నాయి. అన్నీ 12 రంగు వేస్తే ⭐!',en:'Pick a colour and tap a continent or ocean. Its name appears. Buttons below show the main latitudes. Colour all 12 to earn a ⭐!'})}</p><div class="chipsrow" id="pal2"></div>${worldSVG({fill:()=>'#f5efe0',oc:()=>'#e6f2fa'})}<div class="fb" id="cn">&nbsp;</div><div class="chipsrow" id="kc"></div>`}
+function colourInit(){
+  const C=['#ef5350','#ffa726','#ffee58','#66bb6a','#26c6da','#42a5f5','#ab47bc','#8d6e63'];let cur=C[0];const painted=new Set(),svg=$('#wm'),on=[];
+  const pal=()=>{$('#pal2').innerHTML=C.map(c=>`<button class="opt" data-c="${c}" aria-label="colour" style="background:${c};min-width:44px;min-height:44px;border-width:${c==cur?5:2}px;border-color:${c==cur?'#1f2a5a':'#fff'}"></button>`).join('');$('#pal2').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{cur=b.dataset.c;pal()})};pal();
+  svg.onclick=e=>{const p=e.target.closest&&e.target.closest('[data-z]');if(!p)return;const id=p.dataset.z;svg.querySelectorAll(`[data-z="${id}"]`).forEach(x=>x.setAttribute('fill',cur));$('#cn').innerHTML='🎨 <b>'+L(CONT[id]?CONT[id].n:OCN[id])+'</b>';painted.add(id);if(painted.size>=12&&!done.colour){done.colour=true;save();stars();fb(true)}};
+  const kc=()=>{$('#kc').innerHTML=keyChips(on);$('#kc').querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k,i=on.indexOf(k);i<0?on.push(k):on.splice(i,1);drawKeys(on);kc()})};kc();
+}
+/* latitude & longitude */
+const LLS=[['a','🧭',{te:'నొక్కి చూడు',en:'Tap & see'}],['b','🎯',{te:'ఎక్కడ ఉంది?',en:'Where is it?'}],['c','📏',{te:'అక్షాంశం పొడవు',en:'Length of a latitude'}],['d','🌓',{te:'అర్ధగోళాలు, రేఖలు',en:'Hemispheres & lines'}]];
+function llTab(){return `<h2>📍 ${L({te:'అక్షాంశాలు, రేఖాంశాలు',en:'Latitudes & longitudes'})}</h2><p class="hint">${L({te:'అక్షాంశాలు పడమర→తూర్పు గీతలు, రేఖాంశాలు ధ్రువం→ధ్రువం గీతలు. ఇవి కలిసి "వల" లాగా చోటును గుర్తిస్తాయి.',en:'Latitudes run west→east, longitudes run pole→pole. Together they form a net that locates any place.'})}</p><div class="chipsrow" id="lls"></div><div id="llb"></div>`}
+function llInit(){
+  let sub='a';const bar=()=>{$('#lls').innerHTML=LLS.map(s=>`<button class="tab" data-s="${s[0]}" aria-selected="${s[0]==sub}">${s[1]} ${L(s[2])}</button>`).join('');$('#lls').querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{sub=b.dataset.s;bar();show()})};
+  const hem=(lat,lon)=>L({te:`${lat>=0?'ఉత్తర':'దక్షిణ'} అర్ధగోళం, ${lon>=0?'తూర్పు':'పశ్చిమ'} అర్ధగోళం`,en:`${lat>=0?'Northern':'Southern'} & ${lon>=0?'Eastern':'Western'} Hemisphere`});
+  function show(){const b=$('#llb');
+    if(sub=='a'){const on=['eq','pm'];b.innerHTML=worldSVG({grid:true})+`<div class="fb" id="li">${L({te:'పటంలో ఎక్కడైనా నొక్కు: అక్షాంశం, రేఖాంశం చెబుతా.',en:'Tap anywhere on the map: I will tell its latitude and longitude.'})}</div><div class="chipsrow" id="kc"></div>`;
+      const svg=$('#wm');drawKeys(on);const kc=()=>{$('#kc').innerHTML=keyChips(on);$('#kc').querySelectorAll('[data-k]').forEach(x=>x.onclick=()=>{const k=x.dataset.k,i=on.indexOf(k);i<0?on.push(k):on.splice(i,1);drawKeys(on);kc()})};kc();
+      svg.onclick=e=>{const[lat,lon]=svgLL(svg,e),w=whereIs(lat,lon);$('#li').innerHTML=`📍 <b>${fmtLL(lat,lon)}</b> — ${nameOf(w)}<br>${hem(lat,lon)}`;$('#ovl').insertAdjacentHTML('beforeend',`<circle cx="${WX(lon)}" cy="${WY(lat)}" r="4" fill="#d32f2f" stroke="#fff"/>`);if(!done.llexp){done.llexp=true;save();stars()}}}
+    else if(sub=='b'){const T=[[0,0],[20,78],[0,20],[-25,135],[-10,-55],[40,-100],[60,100],[-80,0],[0,-150],[30,30],[51,0],[35,138]],Q=shuffle(T);let i=0,wr=0;
+      b.innerHTML=`<div class="q" id="bq"></div>`+worldSVG({grid:true})+`<div class="fb" id="bf"></div>`;const svg=$('#wm'),ask=()=>{if(i>=Q.length){done.llfind=true;save();stars();$('#bq').innerHTML='🎉 '+L({te:'అన్నీ కనుక్కున్నావు! ⭐',en:'You found them all! ⭐'});fb(true);return}$('#bq').innerHTML=`🎯 ${L({te:'ఈ చోటును పటంలో నొక్కు:',en:'Tap this place on the map:'})} <b>${fmtLL(Q[i][0],Q[i][1])}</b> <small>(${i+1}/${Q.length})</small>`;wr=0;$('#bf').textContent='';$('#ovl').innerHTML=''};ask();
+      svg.onclick=e=>{if(i>=Q.length)return;const[lat,lon]=svgLL(svg,e),t=Q[i],dl=lat-t[0],dn=lon-t[1];
+        if(Math.hypot(dl,dn)<=12){fb(true);const w=whereIs(t[0],t[1]);$('#ovl').innerHTML=`<circle cx="${WX(t[1])}" cy="${WY(t[0])}" r="7" fill="#2e7d32" stroke="#fff" stroke-width="2"/>`;$('#bf').innerHTML='✅ '+nameOf(w);i++;setTimeout(ask,1300)}
+        else{wr++;fb(false);svg.classList.remove('shake');void svg.offsetWidth;svg.classList.add('shake');const h=[];if(dl>6)h.push(L({te:'ఇంకా ఉత్తరానికి ↑',en:'more North ↑'}));if(dl<-6)h.push(L({te:'ఇంకా దక్షిణానికి ↓',en:'more South ↓'}));if(dn>6)h.push(L({te:'ఇంకా తూర్పుకు →',en:'more East →'}));if(dn<-6)h.push(L({te:'ఇంకా పడమరకు ←',en:'more West ←'}));$('#bf').innerHTML='❌ '+L({te:'నువ్వు నొక్కింది',en:'You tapped'})+' '+fmtLL(lat,lon)+'. '+h.join(', ')}}}
+    else if(sub=='c'){b.innerHTML=`<div class="fb">${L({te:'స్లైడర్ కదిలించు: అక్షాంశం మారితే వృత్తం పొడవు ఎలా మారుతుందో చూడు.',en:'Move the slider: see how the length of the latitude circle changes.'})}</div><svg viewBox="0 0 220 200" class="fig" style="max-width:300px" id="cs"></svg><input type="range" id="cl" min="0" max="85" step="5" value="0" aria-label="latitude"><div class="big" id="ct"></div>`;
+      const up=()=>{const a=+$('#cl').value,c=Math.cos(a*DEG),y=110-90*Math.sin(a*DEG);$('#cs').innerHTML=`<circle cx="110" cy="110" r="90" fill="#7fb8ec" stroke="#1f2a5a" stroke-width="2"/><ellipse cx="110" cy="110" rx="90" ry="18" fill="none" stroke="#e53935" stroke-width="1.5" stroke-dasharray="4 3"/><ellipse cx="110" cy="${y}" rx="${90*c}" ry="${Math.max(1,18*c)}" fill="none" stroke="#ffd400" stroke-width="4"/><text x="110" y="196" text-anchor="middle" font-size="11" fill="#1f2a5a">${L({te:'ఎరుపు చుక్కల గీత = భూమధ్యరేఖ',en:'Red dashed = Equator'})}</text>`;
+        $('#ct').innerHTML=`${a}° → ${Math.round(40075*c).toLocaleString()} ${L({te:'కి.మీ.',en:'km'})} (${Math.round(c*100)}%)`;if(a>=60&&!done.llslide){done.llslide=true;save();stars();fb(true)}};$('#cl').oninput=up;up();
+      quiz2('lcq',b,[{q:{te:'అన్ని అక్షాంశాల్లో అతి పొడవైనది ఏది?',en:'Which is the longest of all latitudes?'},o:[{te:'భూమధ్యరేఖ',en:'The Equator'},{te:'60°N',en:'60°N'},{te:'80°S',en:'80°S'},{te:'ధ్రువం వద్ద',en:'At the pole'}],a:0},{q:{te:'అక్షాంశాలన్నీ ఒకే పొడవుంటాయా?',en:'Are all latitudes of the same length?'},o:[{te:'లేదు, ధ్రువాల వైపు చిన్నవవుతాయి',en:'No, they get smaller towards the poles'},{te:'అవును',en:'Yes'},{te:'పెద్దవవుతాయి',en:'They get bigger'},{te:'చెప్పలేం',en:'Cannot say'}],a:0},{q:{te:'రేఖాంశాలన్నీ ఒకే పొడవుంటాయా?',en:'Are all longitudes of the same length?'},o:[{te:'అవును, అన్నీ సమానం',en:'Yes, all equal'},{te:'లేదు',en:'No'},{te:'సగం మాత్రమే',en:'Only half'},{te:'ఒక్కటే ఉంది',en:'There is only one'}],a:0}])}
+    else{const H=(h)=>{const rect={N:'0" y="0" width="720" height="180',S:'0" y="180" width="720" height="180',W:'0" y="0" width="360" height="360',E:'360" y="0" width="360" height="360'}[h];let p='';for(const k in CONT)CONT[k].p.forEach(pg=>{p+=`<path d="${wpath(pg,0)}" fill="#cfe3d0" stroke="#789" stroke-width=".6"/>`});return `<svg viewBox="0 0 720 360" width="240" style="background:#eef6fb;border-radius:8px">${p}<rect x="${rect}" fill="#0a0a0a" opacity=".72"/><line x1="0" y1="180" x2="720" y2="180" stroke="#e53935" stroke-width="3"/><line x1="360" y1="0" x2="360" y2="360" stroke="#e53935" stroke-width="3"/></svg>`};
+      const o4=[{te:'ఉత్తర అర్ధగోళం',en:'Northern Hemisphere'},{te:'దక్షిణ అర్ధగోళం',en:'Southern Hemisphere'},{te:'తూర్పు అర్ధగోళం',en:'Eastern Hemisphere'},{te:'పశ్చిమ అర్ధగోళం',en:'Western Hemisphere'}];
+      const hq=(k,i)=>({fig:H(k),q:{te:'రంగుతో (నలుపు) చూపిన అర్ధగోళం పేరేంటి?',en:'What is the name of the shaded (black) hemisphere?'},o:o4,a:i});
+      const items=[hq('N',0),hq('W',3),hq('S',1),hq('E',2),{q:{te:'భారతదేశం ఏ అర్ధగోళంలో ఉంది (ఉత్తర/దక్షిణ)?',en:'India is in which hemisphere (north/south)?'},o:[o4[0],o4[1]],a:0},{q:{te:'భారతదేశం ఏ అర్ధగోళంలో ఉంది (తూర్పు/పశ్చిమ)?',en:'India is in which hemisphere (east/west)?'},o:[o4[2],o4[3]],a:0},{q:{te:'ఏ అర్ధగోళంలో భూభాగం కంటే జలభాగం ఎక్కువ?',en:'Which hemisphere has more water than land?'},o:[o4[1],o4[0]],a:0},{q:{te:'భూమధ్యరేఖ గ్లోబును రెండు సమాన భాగాలుగా చేస్తుంది. వాటిని ఏమంటారు?',en:'The Equator divides the globe into two equal halves. What are they called?'},o:[{te:'అర్ధగోళాలు',en:'Hemispheres'},{te:'ఖండాలు',en:'Continents'},{te:'ధ్రువాలు',en:'Poles'},{te:'సముద్రాలు',en:'Seas'}],a:0},{q:{te:'0° రేఖాంశాన్ని ఏమంటారు?',en:'What is the 0° longitude called?'},o:[{te:'గ్రీనిచ్ రేఖాంశం',en:'Greenwich line'},{te:'అంతర్జాతీయ దిన రేఖ',en:'International Date Line'},{te:'భూమధ్యరేఖ',en:'Equator'},{te:'అక్షం',en:'Axis'}],a:0},{q:{te:'180° రేఖాంశాన్ని ఏమంటారు?',en:'What is the 180° longitude called?'},o:[{te:'అంతర్జాతీయ దిన రేఖ',en:'International Date Line'},{te:'గ్రీనిచ్ రేఖ',en:'Greenwich line'},{te:'భూమధ్యరేఖ',en:'Equator'},{te:'ధ్రువం',en:'Pole'}],a:0},{q:{te:'ఈ వాటిలో భూమధ్యరేఖ దాటని ఖండం ఏది?',en:'Which of these continents is NOT crossed by the Equator?'},o:[{te:'ఐరోపా',en:'Europe'},{te:'ఆఫ్రికా',en:'Africa'},{te:'దక్షిణ అమెరికా',en:'South America'},{te:'ఆసియా (ఇండోనేషియా)',en:'Asia (Indonesia)'}],a:0},{q:{te:'అక్షాంశ, రేఖాంశాల భావనలు తెలిసిన మన భారతీయ పూర్వీకుడు ఎవరు?',en:'Which Indian ancestor knew the idea of latitudes and longitudes?'},o:[{te:'ఆర్యభట్ట',en:'Aryabhata'},{te:'కొలంబస్',en:'Columbus'},{te:'అశోకుడు',en:'Ashoka'},{te:'గ్రీనిచ్',en:'Greenwich'}],a:0}];
+      b.innerHTML='<div id="qbox"></div>';quiz(items,'llh')}}
+  bar();show();
+}
+function quiz2(key,parent,items){parent.insertAdjacentHTML('beforeend','<div id="qbox"></div>');quiz(items,key)}
+/* think: quizzes + bangle */
+function thinkTab(){return `<h2>🧠 ${L({te:'ఆలోచించు',en:'Think'})}</h2><p class="hint">${L({te:'"మీ అభ్యసనాన్ని మెరుగుపరచుకోండి" ప్రశ్నలు ఆటలుగా. మొదట గాజును తిప్పి చూడు!',en:'The "Improve your learning" questions as games. First, spin the bangle!'})}</p>
+<div style="text-align:center"><svg id="bg" viewBox="0 0 140 120" width="150" class="fig" style="max-width:150px;background:none"><g id="bgs"></g></svg><br><button class="again" id="bgb">🌀 ${L({te:'గాజును బొంగరంలా తిప్పు',en:'Spin the bangle like a top'})}</button></div><div id="qbox"></div>`}
+function thinkInit(){
+  let on=false;const g=$('#bgs'),draw=()=>{let h='';if(!on)h='<ellipse cx="70" cy="60" rx="50" ry="6" fill="none" stroke="#e5484d" stroke-width="5"/>';else for(let i=0;i<9;i++){h+=`<ellipse cx="70" cy="60" rx="50" ry="6" fill="none" stroke="#e5484d" stroke-width="3" opacity=".55" transform="rotate(${i*20} 70 60)"><animateTransform attributeName="transform" type="rotate" from="${i*20} 70 60" to="${i*20+360} 70 60" dur="1.4s" repeatCount="indefinite"/></ellipse>`}g.innerHTML=h};draw();
+  $('#bgb').onclick=()=>{on=!on;draw();if(on){$('#qbox').scrollIntoView&&0;if(!done.bangle){done.bangle=true;save();stars()}}};
+  const o=(a,b,c,d)=>[a,b,c,d],t=(te,en)=>({te,en});
+  quiz([
+   {q:t('రోజీ గాజును బొంగరంలా తిప్పుతుంటే ఏ ఆకారం కనిపిస్తుంది?','Rosy spins a bangle like a top. What shape do you see?'),o:o(t('గోళం (బంతి ఆకారం)','A sphere (ball)'),t('చతురస్రం','A square'),t('త్రికోణం','A triangle'),t('గీత','A line')),a:0},
+   {q:t('భూమి బల్లపరుపుగా ఉందని రమేశ్ అంటున్నాడు. ఏ ఆధారం అతని మాట తప్పని చూపుతుంది?','Ramesh says "Earth is flat". Which fact shows he is wrong?'),o:o(t('ఒకే దిక్కులో వెళ్తూ ఉంటే మొదలుపెట్టిన చోటుకే చేరతాం','Going in one direction brings us back to the start'),t('భూమి పెద్దదిగా ఉంది','The Earth is big'),t('సముద్రం నీలంగా ఉంది','The sea is blue'),t('మేఘాలు ఉన్నాయి','There are clouds')),a:0},
+   {q:t('చంద్రుడి నుంచి తీసిన భూమి ఫోటో ఏ ఆకారం చూపిస్తుంది?','What shape does the photo of Earth taken from the Moon show?'),o:o(t('చంద్రుడిలా గుండ్రంగా','Round like the Moon'),t('చదునుగా','Flat'),t('చతురస్రంగా','Square'),t('గీతలా','Like a line')),a:0},
+   {q:t('భూమి ఆకారాన్ని సరిగ్గా ఏమంటారు?','What is the exact shape of the Earth called?'),o:o(t('గోళాకృతి (ధ్రువాల వద్ద కొద్దిగా నొక్కుకుపోయింది)','Spheroid (slightly pressed at the poles)'),t('సంపూర్ణ గోళం','A perfect sphere'),t('ఘనం','A cube'),t('సిలిండర్','A cylinder')),a:0},
+   {q:t('గ్లోబు/పటం మీద ఊహారేఖలను ఎందుకు గీస్తారు?','Why do we draw imaginary lines on a globe/map?'),o:o(t('ఒక ప్రాంతాన్ని సులభంగా గుర్తించడానికి','To locate places easily'),t('అందంగా ఉండటానికి','To look beautiful'),t('భూమిని ముక్కలు చేయడానికి','To cut the Earth'),t('అవసరం లేదు','They are not needed')),a:0},
+   {q:t('మనం తాగే నీటికి, సముద్రపు నీటికి ఉండే ముఖ్య తేడా ఏమిటి?','What is the main difference between drinking water and sea water?'),o:o(t('సముద్రపు నీరు ఉప్పగా ఉంటుంది','Sea water is salty'),t('సముద్రపు నీరు తియ్యగా ఉంటుంది','Sea water is sweet'),t('రంగు మాత్రమే','Only the colour'),t('తేడా లేదు','No difference')),a:0},
+   {q:t('గ్లోబు అంటే ఏమిటి?','What is a globe?'),o:o(t('భూమికి ఒక నమూనా','A model of the Earth'),t('ఒక ఆట వస్తువు మాత్రమే','Only a toy'),t('చంద్రుడి నమూనా','A model of the Moon'),t('ఒక బల్బు','A bulb')),a:0},
+   {q:t('భూమి మీద ఎంత భాగం సముద్రాలు?','Most of the Earth\'s surface is covered by…'),o:o(t('మహాసముద్రాల నీరు','Water of the oceans'),t('ఎడారులు','Deserts'),t('అడవులు','Forests'),t('మంచు మాత్రమే','Only ice')),a:0},
+   {q:t('అక్షాంశం అంటే?','What is a latitude?'),o:o(t('పడమర నుంచి తూర్పుకు గీసిన ఊహారేఖ','An imaginary line drawn west to east'),t('ధ్రువం నుంచి ధ్రువానికి ఊహారేఖ','An imaginary line pole to pole'),t('ఒక ఖండం పేరు','Name of a continent'),t('ఒక సముద్రం','An ocean')),a:0},
+   {q:t('రేఖాంశం అంటే?','What is a longitude?'),o:o(t('ఒక ధ్రువం నుంచి మరొక ధ్రువాన్ని కలిపే ఊహారేఖ','An imaginary line joining one pole to the other'),t('పడమర నుంచి తూర్పుకు రేఖ','A west to east line'),t('సూర్యుడి కిరణం','A sun ray'),t('నది','A river')),a:0},
+   {q:t('"అక్షం" అంటే ఏమిటి?','What is the "axis"?'),o:o(t('భూమి లోపల నుంచి రెండు ధ్రువాలను కలిపే ఊహారేఖ, దాని చుట్టూ భూమి తిరుగుతుంది','The imaginary line through the Earth joining the poles, around which it rotates'),t('భూమధ్యరేఖ','The Equator'),t('ఒక సముద్రం','An ocean'),t('ఒక ఖండం','A continent')),a:0},
+   {q:t('ధ్రువాలు అంటే ఏమిటి?','What are the poles?'),o:o(t('భూమికి రెండు వైపులా ఉండే రెండు చుక్కలు (ఉత్తర, దక్షిణ)','Two points at the opposite ends of the Earth'),t('రెండు నదులు','Two rivers'),t('రెండు ఖండాలు','Two continents'),t('రెండు సముద్రాలు','Two seas')),a:0},
+   {q:t('కొలంబస్ ఏ దేశానికి చెందిన అన్వేషకుడు?','Columbus was an explorer from which country?'),o:o(t('ఇటలీ','Italy'),t('భారతదేశం','India'),t('చైనా','China'),t('ఆఫ్రికా','Africa')),a:0},
+   {q:t('కొలంబస్ నిజంగా ఏ ఖండాన్ని చేరుకున్నాడు?','Which land did Columbus actually reach?'),o:o(t('అమెరికా','America'),t('భారతదేశం','India'),t('ఆస్ట్రేలియా','Australia'),t('అంటార్కిటికా','Antarctica')),a:0},
+   {q:t('(అదనపు సమాచారం) 1498లో సముద్రమార్గంలో భారతదేశం చేరిన పోర్చుగీసు నావికుడు ఎవరు?','(Extra) Which Portuguese sailor reached India by sea in 1498?'),o:o(t('వాస్కో డా గామా','Vasco da Gama'),t('కొలంబస్','Columbus'),t('మెజెల్లన్','Magellan'),t('కుక్','Cook')),a:0},
+   {q:t('(అదనపు సమాచారం) మొదటిసారి భూమిని చుట్టి వచ్చిన నౌకా యాత్ర (1519–22) ఎవరిది?','(Extra) Whose expedition (1519–22) first sailed all the way around the world?'),o:o(t('మెజెల్లన్ యాత్ర','Magellan\'s expedition'),t('కొలంబస్','Columbus'),t('వాస్కో డా గామా','Vasco da Gama'),t('ఆర్యభట్ట','Aryabhata')),a:0},
+   {q:t('భూమిని తెలుసుకోవడానికి శాస్త్రవేత్తలు, నావికులు ఏం చేశారు?','What did scientists and sailors do to learn about the Earth?'),o:o(t('పరిశీలించారు, సముద్రాల్లో సాహస యాత్రలు చేశారు','They observed and made brave sea voyages'),t('ఏమీ చేయలేదు','Nothing'),t('ఇంటి వద్దే కూర్చున్నారు','Stayed at home'),t('ఆటలు ఆడారు','Played games')),a:0}
+  ].map(x=>x),'think');
+}
+/* offline tasks */
+const TASKS2=[
+['🌍','తరగతికి గ్లోబులు తెచ్చి, ప్రతి 5–6 మంది జట్టుకు ఒకటి ఇవ్వండి. ప్రతి విద్యార్థి చేతిలో పట్టుకుని తిప్పి చూడాలి.','Bring globes; one for each group of 5–6. Every student holds and turns it.'],
+['📍','ఉపాధ్యాయుని సహాయంతో గ్లోబుపై ఉత్తర ధ్రువం, దక్షిణ ధ్రువం, భూమధ్యరేఖను గుర్తించండి.','With your teacher, find the North Pole, South Pole and Equator on the globe.'],
+['🧍','గ్లోబుపై వేర్వేరు చోట్ల బొమ్మలను నిలబెట్టి చూడండి. కింది బొమ్మ తలకిందులుగా ఉందా? ఎందుకు పడిపోరో చర్చించండి.','Stand toy people at different places on the globe. Why don\'t they fall? Discuss.'],
+['🔁','గ్లోబుపై ఒక చోట నుంచి ఒకే దిక్కులో వేలితో వెళ్తూ చూడండి. మొదలుపెట్టిన చోటుకే చేరారా?','Run your finger on the globe from a point in one direction. Do you return to the start?'],
+['⛵','కొలంబస్ అమెరికా చేరిన దారిని, అతను భారతదేశానికి అనుకున్న ఊహా దారిని గ్లోబుపై వేలితో చూపండి.','Show with your finger Columbus\' route to America and his imagined route to India on the globe.'],
+['🌊','సముద్రం గురించి కొన్ని వాక్యాలు రాయండి లేదా బొమ్మ గీయండి. సముద్రపు నీరు ఉప్పగా ఉంటుంది కదా, తాగే నీటికి తేడా రాయండి.','Write a few lines or draw the sea. Note how sea water differs from drinking water.'],
+['🗺️','గ్లోబులో ఐదు మహాసముద్రాల పేర్లు రాయండి. అతి పెద్దదానికి గీత గీయండి.','Write the names of the five oceans from the globe. Underline the largest.'],
+['🌏','ఏడు ఖండాల పేర్లు రాయండి. మంచుతో కప్పి ఉన్న ఖండం పేరు, ఉనికి తెలపండి.','Write the seven continents. Name the icy continent and say where it is.'],
+['🇮🇳','గ్లోబులో భారతదేశాన్ని వెతికి ఏ ఖండంలో ఉందో చెప్పండి. మీరు విన్న ఇతర దేశాలనూ వెతకండి.','Find India on the globe and say its continent. Look for other countries you know.'],
+['🔴','గ్లోబుపై భూమధ్యరేఖ నుంచి ధ్రువాల వరకు 3–4 రంగుల చుక్కలు పెట్టి గ్లోబును తిప్పి చూడండి. ధ్రువం మీది చుక్క కదులుతుందా?','Put 3–4 coloured dots from the Equator to the pole on the globe and spin it. Does the dot at the pole move?'],
+['➖','గ్లోబులో భూమధ్యరేఖ ఏ ఖండాల గుండా వెళ్తుందో రాయండి. ఉత్తర, దక్షిణ అర్ధగోళాలను గుర్తించండి.','Note the continents the Equator passes through. Identify the northern and southern hemispheres.'],
+['🖍️','పాఠ్యపుస్తకం 28/29 పేజీలోని ప్రపంచ పటంలో ఖండాలు, మహాసముద్రాల పేర్లు రాసి రంగులు వేయండి. ముఖ్యమైన అక్షాంశాలను గీయండి.','On the outline world map (page 28/29) write names of continents and oceans, colour it and draw the main latitudes.'],
+['🍊','ఒక బంతి లేదా నారింజ పండు మీద అక్షాంశాలు, రేఖాంశాలు గీయండి.','Draw latitudes and longitudes on a ball or an orange.'],
+['🔍','కొలంబస్ లాంటి అన్వేషకుల గురించి సమాచారం సేకరించండి.','Collect information about explorers like Columbus.'],
+['☀️','"సూర్యుడు ఎప్పుడూ తూర్పున ఉదయిస్తాడు" అనడానికి కారణం కనుక్కోండి (గ్లోబును పడమర→తూర్పు తిప్పండి).','Find why "the Sun always rises in the east" (turn the globe west to east).']];
+function doTab2(){return `<h2>✋ ${L({te:'చేసి చూడు',en:'Do it yourself'})}</h2><p class="hint">${L({te:'పాఠంలోని ప్రతి కృత్యం ఇక్కడ ఉంది. చేశాక "చేశాను" నొక్కితే ⭐.',en:'Every activity of the lesson is here. Tap "Done" after doing it to earn a ⭐.'})}</p>`+TASKS2.map((t,i)=>`<div class="task"><div style="flex:1">${t[0]} ${lang=='te'?t[1]:t[2]}</div><button data-i="${i}" aria-pressed="${!!done['do'+i]}">${done['do'+i]?'✓':L({te:'చేశాను',en:'Done'})}</button></div>`).join('')}
+function doInit2(){document.querySelectorAll('.task button').forEach(b=>b.onclick=()=>{const k='do'+b.dataset.i;done[k]=!done[k];save();render()})}
+/* shell */
+const stars=()=>{$('#stars').textContent=Object.values(done).filter(Boolean).length};
+function render(){
+  if(typeof GS!=='undefined'&&GS)GS.raf=0;
+  document.documentElement.lang=lang;$('#snd').textContent=snd?'🔊':'🔇';
+  $('#back').textContent=L(UI.back);$('#ttl').textContent=L(UI.ttl);$('#sub').textContent=L(UI.sub);
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));
+  $('#tabs').innerHTML=TABS.map(t=>`<button class="tab" role="tab" data-t="${t[0]}" aria-selected="${t[0]===tab}">${t[1]} ${L(t[2])}</button>`).join('');
+  $('#tabs').querySelectorAll('.tab').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+  const V={globe:[globeTab,globeInit],land:[landTab,landInit],colour:[colourTab,colourInit],ll:[llTab,llInit],think:[thinkTab,thinkInit],do:[doTab2,doInit2]}[tab];
+  $('#panel').innerHTML=V[0]();V[1]();stars();
+}
+$('#snd').onclick=()=>{snd=!snd;try{localStorage.setItem('tlm-snd',snd?'1':'0')}catch(e){}render();if(snd)beep(true)};
+$('#back').onclick=e=>{if(history.length>1){e.preventDefault();history.back()}};
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.l;save();render()});
+if(window.top!==window.self)$('#back').style.display='none';
+render();
+</script>
+<script src="tlm-bar.js"></script>
+</body>
+</html>
