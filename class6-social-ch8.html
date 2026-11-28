@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6వ తరగతి సోషల్ – 8 | TLM FOR ALL</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1f2a5a;--paper:#fffaf0;--sun:#ffc93c;--coral:#ff6b57;--leaf:#1f9d63;--sky:#3b82f6;--card:#fff;--line:#e6dcc3;--muted:#5b6385;--bad:#d93f3f}
+@media (prefers-color-scheme:dark){:root{--ink:#f1f3ff;--paper:#141830;--card:#1d2342;--line:#323a66;--muted:#aab2dd}}
+*{box-sizing:border-box}html,body{margin:0}html{font-size:clamp(16px,.9vw + 8px,26px);-webkit-text-size-adjust:100%}
+body{font-family:'Noto Sans Telugu','Nirmala UI','Gautami','Mandali','Noto Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+.wrap{max-width:min(1100px,96vw);margin:0 auto;padding:14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.top a{color:var(--ink);font-weight:600;text-decoration:none}
+.lang button{border:2px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-weight:600;padding:3px 12px;cursor:pointer}
+.lang button:first-child{border-radius:999px 0 0 999px}.lang button:last-child{border-radius:0 999px 999px 0;border-left:0}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.hero{background:var(--sun);color:#1f2a5a;border-radius:22px;padding:18px;margin:12px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.hero h1{margin:0;font-size:clamp(1.3rem,4.5vw,1.9rem);line-height:1.3}.hero p{margin:4px 0 0}
+.score{background:#1f2a5a;color:#fff;border-radius:16px;padding:8px 14px;text-align:center;font-weight:800;white-space:nowrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px}
+.tab{flex:none;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:8px 12px;font:inherit;font-weight:600;cursor:pointer}
+.tab[aria-selected=true]{background:var(--coral);color:#fff;border-color:var(--coral)}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px}
+.panel h2{margin:0 0 4px;font-size:1.2rem}.hint{margin:0 0 12px;color:var(--muted)}
+svg{max-width:100%;height:auto}svg.fig{width:100%;max-width:640px}button,select{touch-action:manipulation}.opt{min-height:52px}
+.fig{display:block;margin:8px auto;background:#eaf5dc;border-radius:14px}
+.q{font-weight:800;font-size:1.1rem;margin:12px 0}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:2px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px;font:inherit;font-weight:600;cursor:pointer;min-height:48px}
+.opt.ok{background:var(--leaf);color:#fff;border-color:var(--leaf)}.opt.no{background:var(--bad);color:#fff;border-color:var(--bad)}
+.next,.again{margin-top:12px;border:0;background:var(--ink);color:var(--paper);border-radius:12px;padding:10px 18px;font:inherit;font-weight:800;cursor:pointer}
+.fb{margin-top:10px;font-weight:600}.prog{height:8px;background:var(--line);border-radius:9px;overflow:hidden}.prog i{display:block;height:100%;background:var(--leaf)}
+.sym{display:flex;justify-content:center;font-size:2.4rem;min-height:56px;align-items:center}
+input[type=range]{width:100%;accent-color:var(--coral)}
+.big{font-size:1.3rem;font-weight:800;text-align:center;margin:6px 0}
+.task{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}
+.task button{flex:none;border:2px solid var(--leaf);background:transparent;color:var(--leaf);border-radius:10px;font:inherit;font-weight:800;padding:4px 10px;cursor:pointer}
+.task button[aria-pressed=true]{background:var(--leaf);color:#fff}
+.task ol{margin:4px 0 0;padding-left:20px}
+button:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+
+#tm path{cursor:pointer;transition:opacity .2s,fill .2s}
+#tm.dim path:not(.on){opacity:.3}
+#tm .hA{stroke:#ff7a00;stroke-width:18}#tm .hB{stroke:#0057ff;stroke-width:18}
+#tm .found{stroke:#1f9d63;stroke-width:12}
+.shake{animation:shake .6s}.redflash{box-shadow:0 0 0 10px #ff2d2d;border-radius:14px}
+@keyframes shake{10%,90%{transform:translateX(-6px)}20%,80%{transform:translateX(10px)}30%,50%,70%{transform:translateX(-16px)}40%,60%{transform:translateX(16px)}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop .5s}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.chipbox{min-height:80px;display:flex;justify-content:center;align-items:center}
+.chip2{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:var(--sun);color:#1f2a5a;font-weight:800;font-size:1.4rem;padding:12px 26px;border-radius:999px;box-shadow:0 5px 0 rgba(0,0,0,.2);z-index:50;text-align:center}
+.chip2.drag{cursor:grabbing;transform:scale(1.1)}
+
+.fxl{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
+.fxp{position:absolute;top:-50px;animation:fall 2s ease-in forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(420deg)}}
+.fxe{position:absolute;left:50%;top:36%;text-align:center;transform:translate(-50%,-50%);animation:pop2 1.3s ease-out forwards}
+.fxe .em{font-size:5.5rem;line-height:1.1}.fxe .tx{font-weight:800;font-size:1.7rem;color:#1f9d63;text-shadow:0 2px 0 #fff,0 0 8px #fff}
+.fxe .xx{font-size:6.5rem;line-height:1;color:#e11d1d;font-weight:900;text-shadow:0 3px 0 #fff}
+.fxe.bad{animation:shake2 .7s,fade2 1.3s forwards}.fxe.bad .tx{color:#d93f3f}
+@keyframes pop2{0%{transform:translate(-50%,-50%) scale(0)}25%{transform:translate(-50%,-50%) scale(1.25)}50%{transform:translate(-50%,-50%) scale(1)}85%{opacity:1}100%{opacity:0;transform:translate(-50%,-75%) scale(1)}}
+@keyframes shake2{10%,90%{transform:translate(calc(-50% - 6px),-50%)}20%,80%{transform:translate(calc(-50% + 12px),-50%)}30%,50%,70%{transform:translate(calc(-50% - 18px),-50%)}40%,60%{transform:translate(calc(-50% + 18px),-50%)}0%,100%{transform:translate(-50%,-50%)}}
+@keyframes fade2{0%,70%{opacity:1}100%{opacity:0}}
+#snd{border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;font:inherit;padding:3px 12px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.fxp{display:none}}
+
+.tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.tile{touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:6px 8px;text-align:center;min-width:76px;box-shadow:0 3px 0 rgba(0,0,0,.12);color:var(--ink)}
+.tile.sel{border-color:var(--coral);border-width:4px}.tile .ti{display:block;font-size:2rem;line-height:1.25}.tile small{display:block;font-weight:700;font-size:.8rem}.tile .ti svg{max-width:64px;height:auto}
+.tile.ghost{opacity:.95;background:var(--sun);color:#1f2a5a}
+.field{display:grid;grid-template-columns:1fr 2.2fr 1fr;grid-template-rows:auto minmax(120px,2fr) auto;gap:6px;max-width:600px;margin:10px auto;padding:8px;background:#fffdf3;border-radius:14px;border:2px solid var(--line);color:#1f2a5a}
+.field.one{display:block;padding:8px}
+.field [data-z="n"]{grid-column:1/4;grid-row:1}.field [data-z="s"]{grid-column:1/4;grid-row:3}.field [data-z="w"]{grid-column:1;grid-row:2}.field [data-z="c"]{grid-column:2;grid-row:2}.field [data-z="e"]{grid-column:3;grid-row:2}
+.field [data-z]{border:2px dashed #cdbf9a;border-radius:10px;display:flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:center;position:relative;padding:18px 4px 6px;min-height:64px;cursor:pointer}
+.field .zbig{min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:1.2rem;padding:10px}
+.zl{position:absolute;top:2px;left:6px;font-size:.8rem;font-weight:800;color:#c0392b}
+.pl{font-size:1.7rem;line-height:1}.pl svg{width:46px;height:23px}
+.field [data-z="n"].has-wall{border-top:10px solid #6d4c41}.field [data-z="s"].has-wall{border-bottom:10px solid #6d4c41}.field [data-z="e"].has-wall{border-right:10px solid #6d4c41}.field [data-z="w"].has-wall{border-left:10px solid #6d4c41}
+#tm .blink{animation:blink .5s 4;stroke:#ff7a00;stroke-width:22}#tm .shown{stroke:#ff9800;stroke-width:12}
+@keyframes blink{50%{opacity:.2}}
+.field.cols{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));grid-template-rows:none}
+.field.cols [data-z]{padding-top:8px}
+.field.cols .pl{margin-top:4px}
+.tile small{max-width:120px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><a href="./index.html" id="back"></a>
+<div style="display:flex;gap:8px"><button id="snd" aria-label="sound">🔊</button><div class="lang" role="group" aria-label="Language"><button data-l="te">తెలుగు</button><button data-l="en">English</button></div></div></div>
+<header class="hero"><div><h1 id="ttl"></h1><p id="sub"></p></div><div class="score" aria-live="polite"><span id="stars">0</span> ⭐</div></header>
+<nav class="tabs" id="tabs" role="tablist"></nav>
+<section class="panel" id="panel"></section>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+let lang='te',done={};
+try{lang=localStorage.getItem('tlm-lang')||'te';done=JSON.parse(localStorage.getItem('tlm-ch8')||'{}')}catch(e){}
+const L=x=>x==null?'':(typeof x==='object'?x[lang]:x);
+const save=()=>{try{localStorage.setItem('tlm-ch8',JSON.stringify(done));localStorage.setItem('tlm-lang',lang)}catch(e){}};
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const UI={
+back:{te:'← వెనక్కి',en:'← Back'},
+ttl:{te:'1. పటాల అధ్యయనం–తయారీ',en:'1. Reading and Making Maps'},
+sub:{te:'6వ తరగతి సోషల్: ఆడు, చేసి చూడు, ⭐ సంపాదించు',en:'Class 6 Social: play, do, earn ⭐'},
+next:{te:'తర్వాత ▶',en:'Next ▶'},again:{te:'మళ్లీ ఆడు 🔄',en:'Play again 🔄'},
+good:{te:'సరైనది! 🎉',en:'Correct! 🎉'},bad:{te:'కాదు. సరైన జవాబు గుర్తించాం.',en:'Not quite. The right answer is marked.'},
+sc:{te:'మీ స్కోరు',en:'Your score'},got:{te:'⭐ వచ్చింది!',en:'⭐ earned!'},tryagain:{te:'80% వస్తే ⭐ వస్తుంది. మళ్లీ ప్రయత్నించు!',en:'Score 80% to earn a ⭐. Try again!'}};
+
+/* feedback: flowers, emoji, sound */
+let snd=true;try{snd=localStorage.getItem('tlm-snd')!=='0'}catch(e){}
+let AC;const tone=(f,t,d,ty,v)=>{const o=AC.createOscillator(),g=AC.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(v||.15,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d)};
+function beep(ok){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const t=AC.currentTime;if(ok)[523,659,784,1047].forEach((f,i)=>tone(f,t+i*.09,.28));else{tone(190,t,.2,'sawtooth',.12);tone(140,t+.17,.35,'sawtooth',.12)}}catch(e){}}
+const PRAISE=['Very good!','Excellent!','Super!','Well done!','Great job!'];
+function fb(ok){
+  beep(ok);const l=document.createElement('div');l.className='fxl';let h='';
+  if(ok){const pr=PRAISE[Math.random()*PRAISE.length|0],E=['🌸','🌼','🌺','🌷','🌻','⭐','🎉'];
+    for(let k=0;k<30;k++)h+=`<span class="fxp" style="left:${Math.random()*96}vw;font-size:${1.4+Math.random()*1.4}rem;animation-delay:${Math.random()*.6}s;animation-duration:${1.6+Math.random()*1.2}s">${E[k%E.length]}</span>`;
+    h+=`<div class="fxe"><div class="em">😄</div><div class="tx">${pr}<br>${L({te:'వెరీ గుడ్!',en:'Correct!'})}</div></div>`;
+    if(snd&&window.speechSynthesis)try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(pr);u.lang='en-IN';speechSynthesis.speak(u)}catch(e){}
+  }else h=`<div class="fxe bad"><div class="xx">✖</div><div class="em">😠</div><div class="tx">${L({te:'తప్పు! మళ్లీ ప్రయత్నించు',en:'Oops! Try again'})}</div></div>`;
+  l.innerHTML=h;document.body.appendChild(l);setTimeout(()=>l.remove(),2600);
+}
+function shakePanel(){const pn=$('#panel');pn.classList.remove('shake');void pn.offsetWidth;pn.classList.add('shake','redflash');setTimeout(()=>pn.classList.remove('redflash'),700)}
+/* quiz engine */
+function quiz(items,key){
+  let i=0,s=0;const box=$('#qbox');
+  const show=()=>{
+    if(i>=items.length){
+      const win=s>=Math.ceil(items.length*.8);if(win){done[key]=true;save();stars()}
+      box.innerHTML=`<div class="big">${L(UI.sc)}: ${s}/${items.length}</div><p class="big">${win?L(UI.got):L(UI.tryagain)}</p><div style="text-align:center"><button class="again">${L(UI.again)}</button></div>`;
+      box.querySelector('.again').onclick=()=>{i=0;s=0;show()};return}
+    const it=items[i],ord=shuffle(it.o.map((_,k)=>k));
+    box.innerHTML=`<div class="prog"><i style="width:${i/items.length*100}%"></i></div>${it.fig?`<div class="sym">${it.fig}</div>`:''}<div class="q">${L(it.q)}</div><div class="opts">${ord.map(k=>`<button class="opt" data-k="${k}">${L(it.o[k])}</button>`).join('')}</div><div class="fb"></div>`;
+    if(it.on)it.on();let locked=false;
+    box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      if(locked)return;locked=true;const ok=+b.dataset.k===it.a;if(ok)s++;
+      b.classList.add(ok?'ok':'no');fb(ok);if(!ok)shakePanel();
+      box.querySelectorAll('.opt').forEach(x=>{if(+x.dataset.k===it.a)x.classList.add('ok')});
+      box.querySelector('.fb').innerHTML=(ok?L(UI.good):L(UI.bad))+(it.e?'<br>'+L(it.e):'')+'<br><button class="next">'+L(UI.next)+'</button>';
+      box.querySelector('.next').onclick=()=>{i++;show()};
+    });
+  };
+  show();
+}
+
+/* Directions */
+function bindDrag(root,drop){
+  let sel=null,ghost=null,st=null;
+  const clr=()=>root.querySelectorAll('[data-t]').forEach(t=>t.classList.remove('sel'));
+  root.querySelectorAll('[data-t]').forEach(t=>{
+    t.onpointerdown=e=>{e.preventDefault();t.setPointerCapture(e.pointerId);st={x:e.clientX,y:e.clientY,mv:false};
+      ghost=t.cloneNode(true);ghost.className='tile ghost';ghost.style.cssText='position:fixed;pointer-events:none;z-index:9998;display:none;transform:translate(-50%,-115%) scale(1.15)'};
+    t.onpointermove=e=>{if(!st)return;if(Math.hypot(e.clientX-st.x,e.clientY-st.y)>8)st.mv=true;
+      if(st.mv){if(!ghost.parentNode)document.body.appendChild(ghost);ghost.style.display='';ghost.style.left=e.clientX+'px';ghost.style.top=e.clientY+'px'}};
+    t.onpointerup=e=>{if(!st)return;const mv=st.mv;st=null;if(ghost){ghost.remove();ghost=null}
+      if(!mv){clr();sel=t.dataset.t;t.classList.add('sel');return}
+      const el=document.elementFromPoint(e.clientX,e.clientY),z=el&&el.closest&&el.closest('[data-z]');
+      if(z){sel=null;clr();drop(t.dataset.t,z.dataset.z)}};
+    t.onpointercancel=()=>{st=null;if(ghost){ghost.remove();ghost=null}};
+  });
+  const fld=root.querySelector('.field');if(fld)fld.addEventListener('click',e=>{const z=e.target.closest('[data-z]');if(z&&sel){const s=sel;sel=null;clr();drop(s,z.dataset.z)}});
+}
+const dropHTML=(ic,ti,hint,cls)=>`<h2>${ic} ${L(ti)}</h2><p class="hint">${L(hint)}</p><div class="tray" id="tray"></div><div class="field ${cls||''}" id="field"></div><div class="prog"><i id="gp" style="width:0"></i></div><div class="q" id="gq"></div><div class="fb" id="gf"></div>`;
+function dropGame(o){
+  let i=0,mis=0,lock=false;const f=$('#field'),gq=$('#gq'),gf=$('#gf'),pr=$('#gp');
+  $('#tray').innerHTML=o.tiles.map(t=>`<div class="tile" data-t="${t.id}"><span class="ti">${t.ic}</span><small>${L(t.n)}</small></div>`).join('');
+  f.innerHTML=o.zones;
+  const ask=()=>{lock=false;if(o.reset)o.reset(f);if(i>=o.qs.length){fin();return}pr.style.width=(i/o.qs.length*100)+'%';gq.innerHTML=L(o.qs[i].q)+' <small>('+(i+1)+'/'+o.qs.length+')</small>';gf.textContent=''};
+  const fin=()=>{done[o.key]=true;save();stars();pr.style.width='100%';gq.innerHTML='🎉 '+L({te:'అన్నీ పూర్తి చేశావు! ⭐',en:'All done! ⭐'});
+    gf.innerHTML=L({te:'తప్పులు',en:'Mistakes'})+': '+mis+(o.final?'<br>'+o.final():'')+'<br><button class="again" id="ra">'+L(UI.again)+'</button>';$('#ra').onclick=render;fb(true)};
+  bindDrag($('#panel'),(t,z)=>{
+    const q=o.qs[i];if(!q||lock)return;
+    if(o.check(q,t,z)){lock=true;o.place(t,z,f,q);fb(true);i++;setTimeout(ask,o.wait||900)}
+    else{mis++;fb(false);f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake','redflash');setTimeout(()=>f.classList.remove('redflash'),700);gf.textContent='❌ '+L({te:'మళ్లీ ప్రయత్నించు!',en:'Try again!'})}
+  });
+  ask();
+}
+/* ===== shared helpers (bilingual: 'తెలుగు|English') ===== */
+const T=s=>{const p=s.split('|');return {te:p[0],en:p.length>1?p[1]:p[0]}};
+const TL=a=>a.split(';').map(T);
+const QI=(q,o,a,e)=>({q:T(q),o:TL(o),a,e:e?T(e):null});
+const H=(ic,ti,h)=>`<h2>${ic} ${L(T(ti))}</h2><p class="hint">${L(T(h))}</p>`;
+const SUB=t=>`<h3 style="margin:18px 0 6px">${L(T(t))}</h3>`;
+const DH=(ic,ti,h,c)=>dropHTML(ic,T(ti),T(h),c);
+const QB='<div id="qbox"></div>';
+const stars=()=>{$('#stars').textContent=Object.values(done).filter(Boolean).length};
+/* pick: drag the right answer tile into the middle box */
+function pickInit(key,tiles,qs){
+  const tl=tiles.map(x=>({id:x[0],ic:x[1],n:T(x[2])}));
+  const ph=()=>`<div class="zbig" data-z="mid">⬇️ ${L({te:'ఇక్కడ వదులు',en:'Drop here'})}</div>`;
+  dropGame({key,qs:shuffle(qs).map(x=>({a:x[0],q:T(x[1])})),tiles:tl,zones:ph(),check:(q,t)=>q.a===t,wait:1200,
+    place:(t,z,f)=>{const m=tl.find(x=>x.id===t);f.querySelector('.zbig').innerHTML=`<span style="font-size:3rem">${m.ic}</span><br><b>✅ ${L(m.n)}</b>`},reset:f=>{f.innerHTML=ph()}});
+}
+const PICKH=(ic,ti,h)=>DH(ic,ti,h||'ప్రశ్న చదివి సరైన జవాబును మధ్య పెట్టెలోకి లాగి వదులు (లేదా జవాబును నొక్కి, పెట్టెను నొక్కు).|Read the clue. Drag the right answer into the middle box (or tap the answer, then tap the box).','one');
+/* sort: drag every card into the right box */
+function sortInit(key,items,zones){
+  const it=items.map(x=>({id:x[0],ic:x[1],n:T(x[2]),z:x[3]}));
+  const zh=zones.map(z=>`<div data-z="${z[0]}" class="zbig" style="min-height:96px"><span style="font-size:2rem">${z[1]}</span><span>${L(T(z[2]))}</span><div class="pl" id="pl-${z[0]}"></div></div>`).join('');
+  dropGame({key,qs:it.map(()=>({q:{te:'అన్ని కార్డులను సరైన పెట్టెలో వేయి',en:'Put every card in the right box'}})),tiles:shuffle(it),zones:zh,wait:250,
+    check:(q,t,z)=>it.find(x=>x.id===t).z===z,
+    place:(t,z)=>{const m=it.find(x=>x.id===t);$('#pl-'+z).insertAdjacentHTML('beforeend',`<span title="${L(m.n)}" style="margin:0 3px">${m.ic}</span>`);const el=document.querySelector(`.tile[data-t="${t}"]`);if(el)el.remove()}});
+}
+const SORTH=(ic,ti,h)=>DH(ic,ti,h||'కార్డును లాగి సరైన పెట్టెలో వదులు (లేదా కార్డును నొక్కి, పెట్టెను నొక్కు).|Drag each card into the right box (or tap the card, then tap the box).','cols');
+/* seq: tap the steps in the right order */
+function seqInit(key,steps){
+  const ss=steps.map((s,i)=>({i,t:T(s)})),ord=shuffle(ss),b=$('#sq');let n=0;
+  const draw=()=>{b.innerHTML=`<div class="prog"><i style="width:${n/ss.length*100}%"></i></div><div class="opts" style="grid-template-columns:1fr;margin-top:8px">${ord.map(s=>`<button class="opt" data-i="${s.i}"${s.i<n?' disabled style="opacity:.6"':''}>${s.i<n?'✅ '+(s.i+1)+'. ':''}${L(s.t)}</button>`).join('')}</div><div class="fb">${n===ss.length?'🎉 '+L({te:'సరైన వరుస! ⭐',en:'Perfect order! ⭐'})+'<br><button class="again" id="sa">'+L(UI.again)+'</button>':''}</div>`;
+    b.querySelectorAll('.opt').forEach(x=>x.onclick=()=>{if(+x.dataset.i===n){n++;if(n===ss.length){done[key]=true;save();stars();fb(true)}else beep(true);draw()}else{fb(false);shakePanel()}});
+    const a=$('#sa');if(a)a.onclick=()=>{n=0;draw()}};
+  draw();
+}
+const SEQH='<div id="sq"></div>';
+/* tasks + keywords */
+const doTab=tasks=>H('✋','చేసి చూడు|Do it yourself','చేసిన పనికి ✔ నొక్కు. ప్రతి పనికి ⭐!|Tick ✔ each task you finish. Each earns a ⭐!')+tasks.map((t,i)=>`<div class="task"><button data-i="${i}" aria-pressed="${!!done['do'+i]}" aria-label="done">✔</button><div>${L(T(t))}</div></div>`).join('');
+const doInit=()=>document.querySelectorAll('.task button').forEach(b=>b.onclick=()=>{const k='do'+b.dataset.i;done[k]=!done[k];save();render()});
+const keyHTML=()=>H('🔑','కీలక పదాలు|Keywords','కార్డు నొక్కి అర్థం చూడు. అన్నీ చూస్తే ⭐!|Tap each card to see its meaning. See all of them to earn a ⭐!')+`<div class="opts" id="kw">${KW.map((k,i)=>`<button class="opt" data-i="${i}" style="min-height:90px"><b>${L(T(k[0]))}</b><br><span style="display:none;font-weight:400">${L(T(k[1]))}</span></button>`).join('')}</div>`;
+const keyInit=()=>{const seen=new Set();document.querySelectorAll('#kw .opt').forEach(b=>b.onclick=()=>{b.querySelector('span').style.display='block';seen.add(b.dataset.i);beep(true);if(seen.size===KW.length&&!done.kw){done.kw=true;save();stars();fb(true)}})};
+const QZ=(key,arr)=>()=>quiz(arr,key);
+UI.ttl=T('8. వ్యవసాయ ఉత్పత్తుల వ్యాపారం|8. Trade in Agricultural Produce');
+UI.sub=T('6వ తరగతి సోషల్: ఆడు, లెక్కలు వేయి, ⭐ సంపాదించు|Class 6 Social: play, calculate, earn ⭐');
+const KW=[['టోకు వ్యాపారులు|Wholesale traders','పెద్ద మొత్తాల్లో కొని అమ్మేవారు|Traders who buy and sell in large quantities'],['చిల్లర వ్యాపారులు|Retail traders','వినియోగదారులకు చిన్న మొత్తాల్లో అమ్మేవారు|Traders who sell small quantities to consumers'],['సంత (వారపు సంత)|Weekly market','వారానికి ఒకసారి జరిగే మార్కెట్|A market held once a week'],['రైతు బజార్|Rythu bazaar','రైతులు నేరుగా వినియోగదారులకు అమ్మే మార్కెట్|A market where farmers sell directly to consumers'],['పావలా వడ్డీ|Paavala vaddi','పేదలకు పావలా (25 పైసలు) వడ్డీ పథకం|A government low-interest scheme (25 paise per 100)'],['స్వయం సహాయక సంఘం|Self-help group','సభ్యులు కలిసి పొదుపు చేసి అప్పులు ఇచ్చుకునే సంఘం|A group of members who save and lend to each other'],['వ్యవసాయ మార్కెట్ యార్డు|Agriculture Market Yard','ప్రభుత్వం నడిపే బహిరంగ వేలం మార్కెట్|A government-run market with open auction'],['కనీస మద్దతు ధర|Minimum Support Price','ప్రభుత్వం ప్రకటించే కనిష్ఠ ధర|The minimum price announced by the government'],['భారత ఆహార సంస్థ|Food Corporation of India','MSP కి పంట కొనే ప్రభుత్వ సంస్థ|Government agency that buys at MSP'],['వ్యాపారులు, దళారీ|Commission agent','కమిషన్ తీసుకుని కొనుగోలుదారు, అమ్మకందారు మధ్య ఉండేవారు|A middleman who takes commission']];
+const TABS=[['mkt','🏪','ఏ మార్కెట్?|Which market?'],['gouri','🍅','గౌరి టమాటాలు|Gouri'],['loan','🏦','అప్పులు|Loans'],['rythu','🧺','రైతు బజార్|Rythu bazaar'],['amy','🔨','వేలం|AMY auction'],['pay','🧮','ఎంత చేతికి?|Paddy payout'],['msp','🛡️','కనీస మద్దతు ధర|MSP'],['do','✋','చేసి చూడు|Do it'],['key','🔑','కీలక పదాలు|Keywords']];
+let tab='mkt';
+const rs=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const bar=(lab,v,max,c)=>`<div style="margin:7px 0"><div style="font-weight:800">${lab}: ${rs(v)}</div><div style="background:#eee;border-radius:10px;height:22px;overflow:hidden"><div style="height:100%;width:${Math.max(2,v/max*100)}%;background:${c};transition:.3s"></div></div></div>`;
+const V={
+mkt:[()=>PICKH('🏪','ఏ మార్కెట్ గురించి?|Which market is it?','క్లూ చదివి సరైన మార్కెట్‌ను మధ్య పెట్టెలోకి లాగి వదులు.|Read the clue and drag the right market into the middle box.'),()=>pickInit('mkt',[['sa','🛍️','వారపు సంత|Weekly market'],['ry','🧺','రైతు బజార్|Rythu bazaar'],['wh','🏬','టోకు మార్కెట్|Wholesale market'],['am','🔨','వ్యవసాయ మార్కెట్ యార్డు|Market yard (AMY)']],[
+['ry','ఉత్పత్తిదారులైన రైతులు నేరుగా వినియోగదారులకు అమ్ముతారు. ఫొటో గుర్తింపు కార్డు తప్పనిసరి.|Producers sell directly to consumers. A photo ID card is a must.'],['sa','వ్యాపారులు వారానికి ఒకసారి ఒక్కో చోట దుకాణం పెడతారు. పంచాయతీకి ₹10 పన్ను.|Traders set up shop once a week in different places and pay ₹10 tax to the panchayat.'],['wh','చిన్న వ్యాపారులు ఇక్కడ కొని వినియోగదారులకు అమ్ముతారు.|Small traders buy here and sell to consumers.'],['am','బహిరంగ వేలం. బిడ్లు పిలుస్తారు, కనీస మద్దతు ధర నుంచి మొదలు.|Open auction with bids, starting from the minimum support price.'],['ry','అధికారులు, ముగ్గురు సభ్యుల కమిటీ రోజూ ఉదయం ధరలు నిర్ణయిస్తారు.|Officers and a three-member committee fix prices every morning.'],['sa','వ్యాపారుల్లో సుమారు మూడొంతుల మంది మహిళలు.|About three-fourths of the traders are women.'],['am','తెలంగాణలో సుమారు 100 ఉన్నాయి. పంటలో నాలుగో వంతు ఇక్కడ అమ్ముతారు.|About 100 in Telangana, where nearly a quarter of produce is traded.'],['am','రైతుకు డబ్బు వెంటనే చెల్లిస్తారు.|The farmer is paid immediately.'],['ry','స్టాళ్లు ముందు వచ్చినవారికి ముందు ఇస్తారు.|Stalls are given on a first come first served basis.'],['sa','పశువులు, గొర్రెలు, మేకల కొనుగోలుకు దళారులు కమిషన్ తీసుకుంటారు.|Brokers take commission in cattle, sheep and goat trade.'],['wh','ధాన్యం, పప్పులను ఎక్కువగా నేరుగా వ్యాపారులకే అమ్ముతారు.|Grains and pulses are mostly sold directly to merchants here.']])],
+gouri:[()=>H('🍅','గౌరి టమాటాలు అమ్ముతోంది|Gouri sells tomatoes','గౌరి 10 కిలోల టమాటాలను ₹100కి కొంది. కిలో అమ్ము బటన్ నొక్కి రోజంతా ధర ఎలా తగ్గుతుందో చూడు. (ఉదాహరణ లెక్క)|Gouri bought 10 kg of tomatoes for ₹100. Tap Sell 1 kg and watch how the price falls through the day. (Example calculation)')+'<div id="tm" style="text-align:center"></div>'+SUB('క్విజ్|Quiz')+QB,()=>{
+  const P=[15,15,15,15,15,9,9,9,5,5],N=10;let n=0,sum=0;const draw=()=>{const t=['🌅 ఉదయం|Morning','🌅 ఉదయం|Morning','🌅 ఉదయం|Morning','🌅 ఉదయం|Morning','🌅 ఉదయం|Morning','🌆 సాయంత్రం|Evening','🌆 సాయంత్రం|Evening','🌆 సాయంత్రం|Evening','🍅 పండిపోయినవి|Over-ripe','🍅 పండిపోయినవి|Over-ripe','✅'][n];
+    $('#tm').innerHTML=`<div style="font-size:3rem">${'🍅'.repeat(N-n)||'🧺'}</div><div class="big">${n<N?L(T(t))+' – ₹'+P[n]+L(T('/కిలో|/kg')):'✅'}</div><div class="prog"><i style="width:${n/N*100}%"></i></div>`+(n<N?`<button class="again" id="sl">${L(T('1 కిలో అమ్ము|Sell 1 kg'))}</button>`:`<div class="fb">${L(T('కొన్నది ₹100, అమ్మినది|Bought for ₹100, sold for'))} ${rs(sum)}. ${L(T('లాభం కేవలం|Profit only'))} ${rs(sum-100)} — ${L(T('ఇంకా బస్సు ఖర్చు రోజుకు ₹25! ఇలాంటి చాలా బుట్టలు అమ్మాలి.|and the bus fare is ₹25 a day! She must sell many baskets.'))}</div><button class="again" id="sr">${L(UI.again)}</button>`);
+    const s=$('#sl');if(s)s.onclick=()=>{sum+=P[n];n++;beep(true);if(n===N){done.tom=true;save();stars();fb(true)}draw()};const r=$('#sr');if(r)r.onclick=()=>{n=0;sum=0;draw()}};draw();
+  quiz([
+QI('గౌరి కూరగాయలు ఎక్కడ కొంటుంది?|Where does Gouri buy vegetables?','పట్టణంలోని టోకు కూరగాయల మార్కెట్‌లో|At the wholesale vegetable market in a nearby town;పొలాల్లో|In the fields;రైతు బజారులో|In the Rythu bazaar;ఆన్‌లైన్|Online',0),
+QI('గౌరి రోజుకు రవాణాకు ఎంత ఖర్చు చేస్తుంది?|How much does Gouri spend on transport daily?','₹25|₹25;₹250|₹250;₹2.5|₹2.50;₹2,500|₹2,500',0),
+QI('గౌరి రోజుకు సుమారు ఎంత సంపాదిస్తుంది?|How much does Gouri earn in a day?','₹100–150|₹100–150;₹1,000|₹1,000;₹10,000|₹10,000;₹10|₹10',0),
+QI('కూరగాయలు మిగిలిపోతే గౌరికి ఎందుకు నష్టం?|Why is unsold produce a loss for Gouri?','నిల్వ సౌకర్యం లేదు, త్వరగా పాడైపోతాయి|She has no storage and vegetables spoil fast;ఆమెకు ఇష్టం లేదు|She dislikes them;పన్ను పడుతుంది|Tax is charged;ఎవరూ కొనరు|Nobody buys any vegetables',0),
+QI('పెద్ద వ్యాపారులకు ఉండి గౌరికి లేనివి?|What do big traders have that Gouri lacks?','కోల్డ్ స్టోరేజీలు, గోదాములు, బ్యాంకు అప్పులు|Cold storage, godowns and bank loans;పెద్ద బుట్ట|A bigger basket;ఎక్కువ సమయం|More time;ఏమీ లేవు|Nothing',0)],'gq')}],
+loan:[()=>H('🏦','అప్పు ఎక్కడ మేలు?|Where is a loan better?','అప్పు మొత్తాన్ని ఎంచుకుని వడ్డీ వ్యాపారి, స్వయం సహాయక సంఘం వడ్డీలు పోల్చు. (వడ్డీ వ్యాపారి నెలకు ₹100కి ₹3, సంఘం ₹100కి 25 పైసలు – ఇందిర అనుభవం)|Choose a loan amount and compare moneylender and self-help group interest. (Moneylender ₹3 per ₹100 a month, SHG 25 paise per ₹100 – Indra’s case)')+'<input type="range" id="ls" min="5000" max="50000" step="5000" value="30000" style="width:100%"><div id="lv"></div>'+SORTH('🏦','ఎవరు అప్పు ఇస్తారు?|Who lends?','కార్డును లాగి సరైన పెట్టెలో వదులు.|Drag each card into the right box.')+SUB('క్విజ్|Quiz')+QB,()=>{
+  const upd=()=>{const a=+$('#ls').value,m=a*.03,s=a*.0025;$('#lv').innerHTML=`<div class="big">${rs(a)}</div>`+bar(L(T('వడ్డీ వ్యాపారి (నెలకు)|Moneylender (per month)')),m,1500,'#d93f3f')+bar(L(T('స్వయం సహాయక సంఘం (నెలకు)|Self-help group (per month)')),s,1500,'#1f9d63')+`<p class="hint">${L(T('వడ్డీ వ్యాపారి వద్ద ఇది సంఘం కంటే 12 రెట్లు ఎక్కువ!|The moneylender charges 12 times more than the group!'))}</p>`;if(!done.ln&&a===50000){done.ln=true;save();stars();fb(true)}};
+  $('#ls').oninput=upd;upd();
+  sortInit('lsort',[['a','⚠️','అప్పు ₹500 అని చెప్పి ₹450 మాత్రమే ఇస్తారు, మరుసటి రోజు ₹500 కట్టాలి|Gives ₹450 on a ₹500 loan, ₹500 to be repaid next day','m'],['b','📈','నెలకు ₹100కి ₹3 వడ్డీ|₹3 interest per ₹100 a month','m'],['c','🤝','సభ్యులే సభ్యులకు అప్పు, వాయిదాల్లో చెల్లింపు|Members lend to members, repaid in instalments','s'],['d','🌟','పావలా వడ్డీ పథకం, ₹100కి 25 పైసలే|Paavala vaddi scheme, only 25 paise per ₹100','s'],['e','🏪','పెద్ద వ్యాపారులకు తక్కువ వడ్డీకి అప్పు|Lends to big traders at low interest','b'],['f','🚪','చిన్న వ్యాపారులకు ఇవ్వడానికి సంకోచిస్తాయి|Reluctant to lend to small traders','b']],[['m','😠','వడ్డీ వ్యాపారి|Moneylender'],['s','👩‍👩‍👧','స్వయం సహాయక సంఘం|Self-help group'],['b','🏦','బ్యాంకు|Bank']]);
+  quiz([
+QI('ఇందిర సంఘం నుంచి ఎంత అప్పు తీసుకుంది?|How much did Indra borrow from her SHG?','₹30,000|₹30,000;₹3,000|₹3,000;₹3 లక్షలు|₹3 lakh;₹300|₹300',0),
+QI('ఆమె నెలవారీ వాయిదా ఎంత?|What is her monthly instalment?','₹1,200|₹1,200;₹12|₹12;₹12,000|₹12,000;₹120|₹120',0),
+QI('వారపు సంతలో చిన్న వ్యాపారులు పంచాయతీకి ఎంత పన్ను కడతారు?|What tax do small traders pay the panchayat?','₹10|₹10;₹100|₹100;₹1|₹1;₹1,000|₹1,000',0)],'lq')}],
+rythu:[()=>H('🧺','రైతు బజార్ ధర ఎలా?|How is the Rythu bazaar price fixed?','టోకు ధరను మార్చి చూడు. రైతు బజార్ ధర టోకు కంటే 25% ఎక్కువ, చిల్లర కంటే 25% తక్కువగా ఉంటుంది.|Change the wholesale price. The Rythu bazaar price is about 25% more than wholesale and 25% less than retail.')+'<input type="range" id="ws" min="10" max="60" step="5" value="20" style="width:100%"><div id="rv"></div>'+SUB('క్విజ్|Quiz')+QB,()=>{
+  const upd=()=>{const w=+$('#ws').value,r=w*1.25,t=r/.75;$('#rv').innerHTML=bar(L(T('టోకు ధర (కిలో)|Wholesale price (kg)')),w,100,'#8d6e63')+bar(L(T('రైతు బజార్ ధర (కిలో)|Rythu bazaar price (kg)')),r,100,'#1f9d63')+bar(L(T('చిల్లర ధర (కిలో)|Retail price (kg)')),t,100,'#d93f3f')+`<p class="hint">${L(T('రైతుకు టోకు కంటే ఎక్కువ ధర, కొనేవారికి చిల్లర కంటే తక్కువ ధర. ఇద్దరికీ లాభం!|The farmer gets more than wholesale and the buyer pays less than retail. Both gain!'))}</p>`;if(!done.ry&&w===60){done.ry=true;save();stars();fb(true)}};
+  $('#ws').oninput=upd;upd();
+  quiz([
+QI('రైతు బజారులో అమ్మడానికి ఏం కావాలి?|What is needed to sell in the Rythu bazaar?','ఫొటో గుర్తింపు కార్డు|A photo identity card;లైసెన్సు ఫీజు|A licence fee;ట్రాక్టర్|A tractor;బ్యాంకు ఖాతా మాత్రమే|Only a bank account',0),
+QI('స్టాళ్లు ఎలా కేటాయిస్తారు?|How are stalls allotted?','రోజూ ముందు వచ్చినవారికి ముందు|Daily, first come first served;వేలం ద్వారా|By auction;లాటరీ|By lottery;అద్దెకు|On rent',0),
+QI('రైతులు ఎంతమంది గ్రామాల నుంచి వస్తారు?|From how many villages do farmers come?','10–15 గ్రామాల నుంచి|From 10–15 villages;1 గ్రామం|1 village;100 గ్రామాలు|100 villages;ఎవరూ రారు|None',0),
+QI('రైతు బజారులో రైతులకు ఉన్న సమస్యలు?|Problems of farmers in the Rythu bazaar?','ఆలస్యంగా వస్తే మంచి స్థలం దొరకదు, వాహనాలకు చోటు తక్కువ, రైతుల వేషంలో వ్యాపారులు|Late comers get poor space, little parking, traders posing as farmers;ఎక్కువ లాభం|Too much profit;పన్ను లేదు|No problems;ఖాళీ|Empty',0),
+QI('రైతులు మాత్రమే రైతు బజారులో అమ్మేవారు – ఒప్పా తప్పా?|Farmers are the only sellers – true or false?','తప్పు (మిల్లర్లు, సంఘ మహిళలూ ఉంటారు)|False (millers and SHG women also sell);ఒప్పు|True;తెలియదు|Not known;ఎప్పుడూ ఒప్పు|Always true',0)],'rq')}],
+amy:[()=>H('🔨','వ్యవసాయ మార్కెట్ యార్డు వేలం|Auction at the market yard','చంద్రశేఖర్ 60 క్వింటాళ్ల వరి తెచ్చాడు. కనీస మద్దతు ధర ₹1,080. బిడ్లను ఒక్కొక్కటిగా చూడు, తర్వాత లెక్క వేయి. (బిడ్ల వరుస ఉదాహరణ)|Chandrashekhar brought 60 quintals of paddy. MSP is ₹1,080. Watch the bids one by one, then calculate. (Bid sequence is an example)')+'<div id="au" style="text-align:center"></div>'+SUB('లెక్క వేయి|Calculate')+QB,()=>{
+  const B=[['వ్యాపారి A|Trader A',1090],['వ్యాపారి B|Trader B',1100],['వ్యాపారి C|Trader C',1120],['రైస్ మిల్లు ఏజెంట్|Rice mill agent',1150]];let i=-1,cnt=0;
+  const draw=()=>{const cur=i<0?1080:B[i][1];const sold=cnt>=3;$('#au').innerHTML=`<div style="font-size:3rem">🔨</div><div class="big">${rs(cur)} / ${L(T('క్వింటాల్|quintal'))}</div><div class="fb">${i<0?L(T('వేలం MSP నుంచి మొదలు|The auction starts from MSP')):L(T(B[i][0]))}${cnt>0&&!sold?' – '+['','1…','2…'][cnt]:''}${sold?' 🎉 '+L(T('అమ్ముడైంది! చంద్రశేఖర్‌కు అత్యధిక ధర|SOLD! Highest price of the day for Chandrashekhar')):''}</div>`+(sold?`<button class="again" id="ar">${L(UI.again)}</button>`:(i<B.length-1?`<button class="again" id="ab">${L(T('తర్వాతి బిడ్|Next bid'))}</button>`:`<button class="again" id="ac">${L(T('ఎవరైనా ఎక్కువ? (1…2…3)|Any higher bid? (1…2…3)'))}</button>`));
+    const b=$('#ab');if(b)b.onclick=()=>{i++;beep(true);draw()};const c=$('#ac');if(c)c.onclick=()=>{cnt++;beep(true);if(cnt>=3){done.amy=true;save();stars();fb(true)}draw()};const r=$('#ar');if(r)r.onclick=()=>{i=-1;cnt=0;draw()}};draw();
+  quiz([
+QI('60 క్వింటాళ్లు × ₹1,150 మొత్తం ఎంత?|60 quintals × ₹1,150 = ?','₹69,000|₹69,000;₹6,900|₹6,900;₹60,000|₹60,000;₹1,150|₹1,150',0),
+QI('రైతు చెల్లించే ఛార్జీలు ₹100కి ₹3.50. ₹69,000కి ఎంత?|Charges are ₹3.50 per ₹100. How much on ₹69,000?','₹2,415|₹2,415;₹241|₹241;₹24,150|₹24,150;₹3.50|₹3.50',0),
+QI('చంద్రశేఖర్ చేతికి వచ్చేది?|What does Chandrashekhar finally get?','₹66,585|₹66,585;₹69,000|₹69,000;₹2,415|₹2,415;₹60,000|₹60,000',0),
+QI('వేలంలో బిడ్ పిలిచాక అధికారి ఎంతవరకు లెక్కిస్తాడు?|Up to what number does the official count after a bid?','మూడు|Three;రెండు|Two;పది|Ten;వంద|Hundred',0),
+QI('వ్యాపారి AMY కమిషన్ ఎంత చెల్లించాలి?|What commission must the trader pay the AMY?','₹100కి ₹1|₹1 per ₹100;₹100కి ₹100|₹100 per ₹100;ఏమీ లేదు|Nothing;₹1000|₹1000',0),
+QI('AMY లో రైతుకు ఎలాంటి మేలు?|How do farmers benefit in an AMY?','వెంటనే చెల్లింపు, బహిరంగ వేలంలో మంచి ధర|Immediate payment and a good price by open auction;ఏమీ లేదు|Nothing;అప్పు దొరుకుతుంది|A loan;ఉచిత రవాణా|Free transport',0)],'aq')}],
+pay:[()=>H('🧮','14 క్వింటాళ్ల వరి – ఎవరికి అమ్మితే ఎంత?|14 quintals of paddy – how much from each buyer?','ఒక్కో కొనుగోలుదారును ఎంచుకుని మల్లయ్య 14 క్వింటాళ్లకు చేతికి వచ్చే డబ్బు చూడు.|Pick each buyer and see what Mallaiah gets for 14 quintals.')+'<div class="opts" id="pb" style="grid-template-columns:1fr 1fr"></div><div id="pv" style="max-width:440px;margin:auto"></div>'+SUB('క్విజ్|Quiz')+QB,()=>{
+  const D={a:['🔨 మార్కెట్ యార్డు (₹1,100)|🔨 Market yard (₹1,100)',1100*14,1100*14*.035,0,'యార్డు ఛార్జీలు 3.5%|Yard charges 3.5%'],m:['🏭 రైస్ మిల్లర్ (₹950, వెంటనే చెల్లింపు)|🏭 Rice miller (₹950, instant pay)',950*14,200,0,'వెంటనే చెల్లింపుకు కోత|Deduction for instant payment'],l:['🏭 మిల్లర్ + అప్పు|🏭 Miller + loan',950*14,200,5400,'అప్పు ₹5,000 + వడ్డీ ₹400|Loan ₹5,000 + interest ₹400'],b:['🧑‍💼 దళారీ (₹1,000)|🧑‍💼 Broker (₹1,000)',1000*14,25*14,0,'కమిషన్ క్వింటాల్‌కు ₹25|Commission ₹25 per quintal']};let k='a',seen={a:1};
+  const draw=()=>{$('#pb').innerHTML=Object.keys(D).map(x=>`<button class="opt" data-k="${x}" ${x===k?'style="background:#d8f5e2"':''}>${L(T(D[x][0]))}</button>`).join('');const d=D[k],net=d[1]-d[2]-d[3];
+    $('#pv').innerHTML=bar(L(T('మొత్తం ధర|Total price')),d[1],16000,'#8d6e63')+bar(L(T('కోతలు|Deductions'))+' ('+L(T(d[4]))+')',d[2]+d[3],16000,'#d93f3f')+bar(L(T('చేతికి వచ్చేది|Hands received')),net,16000,'#1f9d63');
+    document.querySelectorAll('#pb .opt').forEach(b=>b.onclick=()=>{k=b.dataset.k;seen[k]=1;if(Object.keys(seen).length===4&&!done.pay){done.pay=true;save();stars();fb(true)}draw()})};draw();
+  quiz([
+QI('మల్లయ్య 14 క్వింటాళ్ల వరిని ₹950 చొప్పున అమ్మితే మొత్తం?|14 quintals at ₹950 each?','₹13,300|₹13,300;₹1,330|₹1,330;₹950|₹950;₹14,000|₹14,000',0),
+QI('వెంటనే చెల్లింపుకు కోత (₹14.25×14) సుమారు?|Deduction for instant payment (₹14.25×14) is about?','₹200|₹200;₹20|₹20;₹2,000|₹2,000;₹14|₹14',0),
+QI('అప్పు ₹5,000 + వడ్డీ ₹400 తీసివేస్తే మల్లయ్య చేతికి?|After deducting loan ₹5,000 and interest ₹400, Mallaiah gets?','₹7,700|₹7,700;₹13,100|₹13,100;₹5,400|₹5,400;₹14,000|₹14,000',0),
+QI('శాంతి 7 క్వింటాళ్లను ₹1,000కి అమ్మి క్వింటాల్‌కు ₹25 కమిషన్ ఇస్తే చేతికి?|Shanti sold 7 quintals at ₹1,000 with ₹25 per quintal commission. She gets?','₹6,825|₹6,825;₹7,000|₹7,000;₹175|₹175;₹6,500|₹6,500',0),
+QI('మల్లయ్య, శాంతి క్వింటాల్‌కు సుమారు ఎంత పొందారు?|About how much per quintal did Mallaiah and Shanti get?','₹935 మరియు ₹975|₹935 and ₹975;₹1,100 మరియు ₹1,150|₹1,100 and ₹1,150;₹500 మరియు ₹600|₹500 and ₹600;ఒకే ధర|The same',0),
+QI('మల్లయ్య కంటే శాంతికి ఎందుకు ఎక్కువ?|Why did Shanti get more than Mallaiah?','ఆమె మిల్లర్ అప్పు తీసుకోలేదు, సంఘ సభ్యుల సమక్షంలో తూకం వేయించింది|She had no miller loan and weighed the paddy before SHG members;ఆమె ఎక్కువ అమ్మింది|She sold more;అదృష్టం|Luck;ఆమె ఎక్కువ పండించింది|She grew more',0),
+QI('గ్రామాల్లో రైతులు పంటలో ఎంతభాగం ఊళ్లోనే, ఎంత AMY లో అమ్ముతారు?|How much of the harvest is sold in village and in AMY?','మూడొంతులు ఊళ్లో, ఒక వంతు AMY లో|Three-fourths in villages, one-fourth in AMY;సగం సగం|Half and half;మొత్తం AMYలో|All in AMY;ఏదీ కాదు|None',0)],'pq')}],
+msp:[()=>H('🛡️','కనీస మద్దతు ధర (MSP)|Minimum Support Price','వ్యాపారులు ఇచ్చే అత్యధిక బిడ్‌ను మార్చి చూడు. MSP ₹1,080 (పాఠంలో ఉదాహరణ).|Change the highest bid offered by traders. MSP is ₹1,080 (the example in the lesson).')+'<input type="range" id="ms" min="900" max="1200" step="20" value="1000" style="width:100%"><div id="mv"></div>'+SUB('క్విజ్|Quiz')+QB,()=>{
+  const upd=()=>{const b=+$('#ms').value,g=Math.max(b,1080);$('#mv').innerHTML=bar(L(T('వ్యాపారి బిడ్|Trader bid')),b,1200,'#d98e04')+bar(L(T('రైతుకు వచ్చే ధర|Price the farmer gets')),g,1200,'#1f9d63')+`<p class="hint">${b<1080?L(T('వ్యాపారి MSP కంటే తక్కువ చెప్పాడు, భారత ఆహార సంస్థ (FCI) MSPకే కొంటుంది! 🛡️|The trader bid is below MSP, so the Food Corporation of India buys at MSP! 🛡️')):L(T('వ్యాపారి MSP కంటే ఎక్కువ ఇస్తున్నాడు, రైతుకు ఆ ధరే.|The trader pays more than MSP, so the farmer gets that price.'))}</p>`;if(!done.msp&&b<1080){seenLow=1}if(!done.msp&&seenLow&&b>=1080){done.msp=true;save();stars();fb(true)}};let seenLow=0;
+  $('#ms').oninput=upd;upd();
+  quiz([
+QI('కనీస మద్దతు ధరను ఎవరు ప్రకటిస్తారు?|Who announces the MSP?','ప్రభుత్వం|The government;రైస్ మిల్లర్|The rice miller;దళారీ|The broker;రైతు|The farmer',0),
+QI('వ్యాపారులు MSP కంటే ఎక్కువ ఇవ్వకపోతే ఎవరు కొంటారు?|If no trader offers more than MSP, who buys?','భారత ఆహార సంస్థ (FCI)|Food Corporation of India;ఎవరూ కాదు|Nobody;బ్యాంకు|Bank;పంచాయతీ|Panchayat',0),
+QI('MSP కంటే ఎక్కువ ధరకు రైతు అమ్మవచ్చా?|May farmers sell above MSP?','అవును, స్వేచ్ఛ ఉంది|Yes, they are free to;కాదు|No;పంచాయతీ అనుమతితో|With permission;ఒక్కసారి మాత్రమే|Only once',0)],'mq')}],
+do:[()=>doTab(['📋 మీరు రోజూ తినే ఆహార పదార్థాల పట్టిక తయారు చేసి, అవి ఎక్కడ నుంచి వస్తాయో రాయి.|📋 Make a table of food items you eat daily and where they come from.','🥬 మీ ప్రాంతంలోని కూరగాయల వ్యాపారులతో మాట్లాడి వారి పని, జీవనం, సమస్యలపై నివేదిక తయారు చేయి.|🥬 Talk to vegetable vendors in your area and prepare a report on their work, livelihood and problems.','🛍️ దగ్గర్లోని వారపు సంతను గమనించి, దాని చిత్రం గీసి తరగతిలో ప్రదర్శించు.|🛍️ Visit a weekly market, observe it, draw it and display it in class.','🗺️ ఉపాధ్యాయుల సహాయంతో మీ జిల్లా పటంలో సంతలు జరిగే చోట్లను గుర్తించు.|🗺️ With your teacher mark the places of weekly markets on your district map.','🧮 నీ ఊరిలో వరి కొనేవారెవరు? ఏ ధరలు ఇస్తారు? వివరాలు సేకరించు.|🧮 Who buys paddy in your place? Collect details of prices they pay.','⚖️ ఒక క్వింటాల్ బియ్యం, ఒక క్వింటాల్ వరి ధరలను పోల్చి తేడాకు కారణాలు కనుక్కో.|⚖️ Compare the price of a quintal of rice and a quintal of paddy and find the reasons for the difference.','💬 ప్రభుత్వం వరికి ఒకే ధర నిర్ణయించడం అవసరమా? చర్చించు.|💬 Is it necessary for the government to fix a single price for paddy? Discuss.','🤝 స్వయం సహాయక సంఘాల వల్ల రైతులకు ఏం లాభం? రాయి.|🤝 How do farmers benefit from self-help groups? Write.','🎭 ఒక AMY ని సందర్శించి, వ్యాపారులు బిడ్లు పిలిచే విధానాన్ని నటించి చూపండి (రోల్ ప్లే).|🎭 Visit an AMY and enact a role play of how traders bid for paddy.','📝 తెలంగాణ చిన్న రైతుల కష్టాలపై ఒక చిన్న నాటిక స్క్రిప్టు రాయి.|📝 Write a short play script about the plight of small farmers of Telangana.','📖 “వ్యాపారులు, అప్పులు, వరి అమ్మకం” పేరా చదివి అభిప్రాయం రాయి.|📖 Read the paragraph on indebtedness and selling paddy and write your comment.']),doInit],
+key:[keyHTML,keyInit]};
+function render(){
+  document.documentElement.lang=lang;$('#snd').textContent=snd?'🔊':'🔇';
+  $('#back').textContent=L(UI.back);$('#ttl').textContent=L(UI.ttl);$('#sub').textContent=L(UI.sub);
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===lang));
+  $('#tabs').innerHTML=TABS.map(t=>`<button class="tab" role="tab" data-t="${t[0]}" aria-selected="${t[0]===tab}">${t[1]} ${L(T(t[2]))}</button>`).join('');
+  $('#tabs').querySelectorAll('.tab').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render()});
+  const v=V[tab];$('#panel').innerHTML=v[0]();if(v[1])v[1]();stars();
+}
+$('#snd').onclick=()=>{snd=!snd;try{localStorage.setItem('tlm-snd',snd?'1':'0')}catch(e){}render();if(snd)beep(true)};
+$('#back').onclick=e=>{if(history.length>1){e.preventDefault();history.back()}};
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.l;save();render()});
+if(window.top!==window.self)$('#back').style.display='none';
+render();
+</script>
+<script src="tlm-bar.js"></script>
+</body>
+</html>
