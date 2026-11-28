@@ -3231,8 +3231,16 @@ if (Number(n) === 10) {
 
 
  /* LEARNING WITH DOING (Chapter 1) */
-const DOING = [1,2,3,4,5,6,7,8,9];
-if (DOING.includes(Number(n))) {
+const DOING = [1,2,3,4,5,6,7,8,9]; /* ready pages: class6-social-chN.html */
+const DOING_SOON = [];             /* add numbers here until their page is uploaded */
+if (DOING_SOON.includes(Number(n))) {
+  items += `
+    <div class="step">
+      <b>🧪 Learning with Doing</b>
+      <small>చేస్తూ నేర్చుకో • త్వరలో | Coming soon</small>
+    </div>
+  `;
+} else if (DOING.includes(Number(n))) {
   items += `
     <div class="step"
          onclick="tlmView('class6-social-ch${Number(n)}.html','🧪 Learning with Doing')"
